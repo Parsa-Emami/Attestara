@@ -1,0 +1,16 @@
+{
+  "project": "Attestara",
+  "envelope": "CloudEvents-compatible 1.0 profile",
+  "delivery": "at-least-once",
+  "ordering": "not globally guaranteed; per-aggregate sequencing when documented",
+  "deduplication": "required by event id",
+  "types": [
+    "source.snapshot_received.v1",
+    "scan.requested.v1",
+    "runner.allocated.v1",
+    "evidence.normalized.v1",
+    "policy.evaluated.v1",
+    "release.gate_decided.v1",
+    "runner.destroyed.v1"
+  ]
+}

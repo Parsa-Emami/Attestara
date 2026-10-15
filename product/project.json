@@ -1,0 +1,102 @@
+{
+  "folder": "04-attestara",
+  "name": "Attestara",
+  "rank": 3,
+  "score": 7.7,
+  "verdict": "ابتدا verifier و release passport بساز؛ scanner و builder جدید نساز.",
+  "user": "maintainer متن‌باز و تیم کوچک DevSecOps",
+  "pain": "چند فایل SBOM، vulnerability و signature به تصمیم انتشار قابل‌فهم تبدیل نمی‌شوند",
+  "value": "جمع‌کردن evidence و توضیح تصمیم release gate",
+  "wedge": "بررسی مستقل بستهٔ انتشار؛ جداکردن missing evidence از failed policy",
+  "alternatives": "Syft/Grype، Trivy و ابزارهای امضای موجود",
+  "source_ids": [
+    "syft",
+    "opa"
+  ],
+  "mvp": [
+    "CLI واردسازی SBOM و خروجی scanner موجود",
+    "schema validation و subject binding",
+    "policy توضیح‌پذیر و report قابل‌حمل",
+    "PWA محلی برای مشاهدهٔ passport"
+  ],
+  "later": [
+    "scanner server عمومی",
+    "اجرای build/test کد کاربران",
+    "Firecracker runners",
+    "webhook GitHub App و چند سازمان"
+  ],
+  "stack": [
+    "Go verifier/CLI",
+    "TypeScript report viewer",
+    "Syft/Grype adapters optional",
+    "OPA policy adapter"
+  ],
+  "mode": "web-viewer-private-engine",
+  "stores": {
+    "Filesystem": "immutable evidence bundles and scanner raw output",
+    "Memory": "validation and policy evaluation only",
+    "SQLite optional private scan profile": "jobs, subjects, idempotency and audit; not required for CLI/viewer"
+  },
+  "removed": [
+    "Laravel",
+    "PostgreSQL",
+    "Valkey",
+    "S3 requirement",
+    "Firecracker in initial MVP"
+  ],
+  "limits": {
+    "bundle_max_mib": 100,
+    "files_per_bundle": 2000,
+    "policy_deadline_seconds": 10,
+    "private_scan_concurrency": 1
+  },
+  "hardware": "CLI هدف 2 vCPU / 2 GiB؛ viewer static. اسکن خصوصی در host جدا با حدود 4 GiB RAM آزمون شود.",
+  "weeks": "5–9 هفته؛ hosted scanner خارج از این برآورد",
+  "risks": [
+    "هش به‌تنهایی اصالت تولیدکننده را ثابت نمی‌کند",
+    "نبود امضا باید unverified باشد؛ fabricated provenance ممنوع",
+    "CVE database قدیمی و license rules باید وضعیت و نسخه داشته باشند"
+  ],
+  "uat": [
+    "یک SBOM معتبر و policy را به passport با subject digest تبدیل کن",
+    "subject عوض‌شده، manifest ناقص و امضای نامعتبر باید خطا یا unverified مشخص بدهند",
+    "خروجی offline verifier و viewer دربارهٔ نتیجهٔ policy برابر باشند"
+  ],
+  "domain": {
+    "primary": "release-evidence",
+    "fields": {
+      "subject_digest": "hash",
+      "source_revision": "text",
+      "tool": "text",
+      "tool_version": "text",
+      "evidence_digest": "hash",
+      "policy_digest": "hash",
+      "verification": "text"
+    },
+    "invariants": [
+      "No user source execution",
+      "Digest binds subject and outputs",
+      "Missing evidence never means pass"
+    ]
+  },
+  "version": "0.0.0",
+  "status": "WEB_FOUNDATION",
+  "source_implemented": true,
+  "market_validation": "UNVALIDATED",
+  "assumption": "Browser application first; optional CLI/worker remains an engine adapter. Web foundation does not satisfy domain release gates.",
+  "engine_implemented": false,
+  "previous_engine_mode": "file-cli",
+  "web_application": {
+    "status": "foundation_implemented",
+    "deployment_profile": "web-viewer-private-engine",
+    "frontend": "React + TypeScript + Vite",
+    "web_runtime": "Node.js static shell; no engine proxy",
+    "default_engine_enabled": false,
+    "preview_storage": "tab memory only",
+    "offline_supported": false,
+    "engine_status": "planned",
+    "source": "apps/web/src/main.tsx",
+    "existing_backend": null
+  },
+  "web_version": "0.0.1"
+}

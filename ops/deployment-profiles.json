@@ -1,0 +1,41 @@
+{
+  "version": "0",
+  "project": "Attestara",
+  "status": "web_foundation",
+  "primary_mode": "web-viewer-private-engine",
+  "domain_profile": {
+    "public_demo": "synthetic-only",
+    "admit_untrusted_runtime_jobs": false,
+    "enable_sensitive_data_upload_by_default": false,
+    "https_required": true
+  },
+  "private_profile": {
+    "single_owner": true,
+    "persistent_local_volume": false,
+    "use_external_database_service": false,
+    "providers": [
+      "Go verifier/CLI",
+      "TypeScript report viewer",
+      "Syft/Grype adapters optional",
+      "OPA policy adapter"
+    ]
+  },
+  "capacity_targets": {
+    "bundle_max_mib": 100,
+    "files_per_bundle": 2000,
+    "policy_deadline_seconds": 10,
+    "private_scan_concurrency": 1
+  },
+  "measured": false,
+  "engine_mode": "file-cli",
+  "web": {
+    "artifact": "dist/release",
+    "listen": "127.0.0.1",
+    "port": 4304,
+    "https_proxy": "ops/web/nginx.conf.template",
+    "service": "ops/web/service.systemd",
+    "engine_enabled": false,
+    "private_admission": "deny-all until operator sets trusted network ranges",
+    "offline": false
+  }
+}

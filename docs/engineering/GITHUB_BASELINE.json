@@ -1,0 +1,13 @@
+{
+  "repository": "Parsa-Emami/Attestara",
+  "reviewed_commit": "441c165488fc248fe2427f87901c8cb8860b1e83",
+  "existing_file_count": 78,
+  "existing_runtime": "architecture scaffold only",
+  "protected_files_sha256": {
+    ".env.example": "a042105a4b33c9ef360325d2a4277832019439cfc0d7a3f925828f3504a1f330"
+  },
+  "skipped_input_archival_config_paths": [
+    "legacy/v7/.env.example"
+  ],
+  "preservation": "All existing protected files remain at their original paths with identical bytes. Supplied archival env duplicates were omitted to avoid creating extra config files."
+}
