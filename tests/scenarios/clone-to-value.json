@@ -1,0 +1,35 @@
+{
+  "project": "Attestara",
+  "status": "planned acceptance contract; not executed domain proof",
+  "input": "repository-authored synthetic licensed fixtures",
+  "steps": [
+    "Load valid sample SBOM with manifest",
+    "evaluate local policy",
+    "produce passport",
+    "change one byte",
+    "verify failure",
+    "distinguish unsigned from signed/trusted."
+  ],
+  "expected_invariants": [
+    "No user source execution",
+    "Digest binds subject and outputs",
+    "Missing evidence never means pass"
+  ],
+  "negative_uat": [
+    "یک SBOM معتبر و policy را به passport با subject digest تبدیل کن",
+    "subject عوض‌شده، manifest ناقص و امضای نامعتبر باید خطا یا unverified مشخص بدهند",
+    "خروجی offline verifier و viewer دربارهٔ نتیجهٔ policy برابر باشند"
+  ],
+  "clean_host_commands": [
+    "git clone https://github.com/Parsa-Emami/Attestara.git",
+    "cd Attestara",
+    "npm run setup",
+    "npm start"
+  ],
+  "requires_at_C30": [
+    "real engine and required local providers",
+    "the entire workflow",
+    "restart and restore",
+    "no paid/cloud account or sibling clone"
+  ]
+}

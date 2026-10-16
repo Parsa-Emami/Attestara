@@ -1,0 +1,15 @@
+{
+  "project": "Attestara",
+  "reviewed_commit": "05147604277990500cad0af5a4af7357d51d748a",
+  "readiness": "WEB_FOUNDATION",
+  "core_ready": false,
+  "implemented": [
+    "responsive web shell",
+    "roadmap browser",
+    "local bounded JSON structure preview"
+  ],
+  "engine": "not implemented",
+  "next_task": "C01",
+  "next_command": "npm run plan -- next",
+  "full_product_endpoint": "C30 locally usable; C40 full published OSS v1"
+}

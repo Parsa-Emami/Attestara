@@ -1,0 +1,415 @@
+openapi: 3.2.0
+info:
+  title: Attestara API
+  version: 1.0.0
+  description: Canonical implementation-start HTTP contract. Source code must conform to this contract; changes require compatibility review.
+servers:
+- url: /api/v1
+tags:
+- name: Attestara
+security:
+- bearerAuth: []
+paths:
+  /sources:
+    post:
+      summary: Register source snapshot
+      operationId: attestara_post_sources
+      tags:
+      - Attestara
+      responses:
+        '202':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OperationResult'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+        '401':
+          $ref: '#/components/responses/ErrorResponse'
+        '403':
+          $ref: '#/components/responses/ErrorResponse'
+        '404':
+          $ref: '#/components/responses/ErrorResponse'
+        '409':
+          $ref: '#/components/responses/ErrorResponse'
+        '422':
+          $ref: '#/components/responses/ErrorResponse'
+        '429':
+          $ref: '#/components/responses/ErrorResponse'
+        '500':
+          $ref: '#/components/responses/ErrorResponse'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              properties:
+                source_name:
+                  type: string
+                  minLength: 1
+                  maxLength: 4096
+                digest:
+                  type: string
+                  pattern: ^[A-Fa-f0-9]{64}$
+                size_bytes:
+                  type: integer
+                  minimum: 0
+                media_type:
+                  type: string
+                  minLength: 1
+                  maxLength: 4096
+              required:
+              - source_name
+              - digest
+              - size_bytes
+              - media_type
+      parameters:
+      - $ref: '#/components/parameters/IdempotencyKey'
+      - $ref: '#/components/parameters/RequestId'
+  /scans:
+    post:
+      summary: Request isolated non-executing scan
+      operationId: attestara_post_scans
+      tags:
+      - Attestara
+      responses:
+        '202':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OperationResult'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+        '401':
+          $ref: '#/components/responses/ErrorResponse'
+        '403':
+          $ref: '#/components/responses/ErrorResponse'
+        '404':
+          $ref: '#/components/responses/ErrorResponse'
+        '409':
+          $ref: '#/components/responses/ErrorResponse'
+        '422':
+          $ref: '#/components/responses/ErrorResponse'
+        '429':
+          $ref: '#/components/responses/ErrorResponse'
+        '500':
+          $ref: '#/components/responses/ErrorResponse'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              properties:
+                source_id:
+                  type: string
+                  minLength: 1
+                  maxLength: 4096
+                scanner_set:
+                  type: array
+                  items:
+                    type: string
+                  uniqueItems: true
+                policy_bundle_digest:
+                  type: string
+                  pattern: ^[A-Fa-f0-9]{64}$
+              required:
+              - source_id
+              - scanner_set
+              - policy_bundle_digest
+      parameters:
+      - $ref: '#/components/parameters/IdempotencyKey'
+      - $ref: '#/components/parameters/RequestId'
+  /scans/{scan}:
+    parameters:
+    - name: scan
+      in: path
+      required: true
+      schema:
+        type: string
+        minLength: 1
+        maxLength: 255
+      description: Opaque resource identifier.
+    get:
+      summary: Read scan/evidence state
+      operationId: attestara_get_scans_scan
+      tags:
+      - Attestara
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OperationResult'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+        '401':
+          $ref: '#/components/responses/ErrorResponse'
+        '403':
+          $ref: '#/components/responses/ErrorResponse'
+        '404':
+          $ref: '#/components/responses/ErrorResponse'
+        '409':
+          $ref: '#/components/responses/ErrorResponse'
+        '422':
+          $ref: '#/components/responses/ErrorResponse'
+        '429':
+          $ref: '#/components/responses/ErrorResponse'
+        '500':
+          $ref: '#/components/responses/ErrorResponse'
+      parameters:
+      - $ref: '#/components/parameters/RequestId'
+  /policies/evaluate:
+    post:
+      summary: Evaluate normalized evidence
+      operationId: attestara_post_policies_evaluate
+      tags:
+      - Attestara
+      responses:
+        '202':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OperationResult'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+        '401':
+          $ref: '#/components/responses/ErrorResponse'
+        '403':
+          $ref: '#/components/responses/ErrorResponse'
+        '404':
+          $ref: '#/components/responses/ErrorResponse'
+        '409':
+          $ref: '#/components/responses/ErrorResponse'
+        '422':
+          $ref: '#/components/responses/ErrorResponse'
+        '429':
+          $ref: '#/components/responses/ErrorResponse'
+        '500':
+          $ref: '#/components/responses/ErrorResponse'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              properties:
+                subject_digest:
+                  type: string
+                  pattern: ^[A-Fa-f0-9]{64}$
+                evidence_ids:
+                  type: array
+                  items:
+                    type: string
+                  uniqueItems: true
+                policy_bundle_digest:
+                  type: string
+                  pattern: ^[A-Fa-f0-9]{64}$
+              required:
+              - subject_digest
+              - evidence_ids
+              - policy_bundle_digest
+      parameters:
+      - $ref: '#/components/parameters/IdempotencyKey'
+      - $ref: '#/components/parameters/RequestId'
+  /subjects/{digest}/passport:
+    parameters:
+    - name: digest
+      in: path
+      required: true
+      schema:
+        type: string
+        minLength: 1
+        maxLength: 255
+      description: Opaque resource identifier.
+    get:
+      summary: Read source/artifact passport
+      operationId: attestara_get_subjects_digest_passport
+      tags:
+      - Attestara
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OperationResult'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+        '401':
+          $ref: '#/components/responses/ErrorResponse'
+        '403':
+          $ref: '#/components/responses/ErrorResponse'
+        '404':
+          $ref: '#/components/responses/ErrorResponse'
+        '409':
+          $ref: '#/components/responses/ErrorResponse'
+        '422':
+          $ref: '#/components/responses/ErrorResponse'
+        '429':
+          $ref: '#/components/responses/ErrorResponse'
+        '500':
+          $ref: '#/components/responses/ErrorResponse'
+      parameters:
+      - $ref: '#/components/parameters/RequestId'
+  /release-candidates/{id}/decide:
+    parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+        minLength: 1
+        maxLength: 255
+      description: Opaque resource identifier.
+    post:
+      summary: Record authorized release decision
+      operationId: attestara_post_release_candidates_id_decide
+      tags:
+      - Attestara
+      responses:
+        '202':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OperationResult'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+        '401':
+          $ref: '#/components/responses/ErrorResponse'
+        '403':
+          $ref: '#/components/responses/ErrorResponse'
+        '404':
+          $ref: '#/components/responses/ErrorResponse'
+        '409':
+          $ref: '#/components/responses/ErrorResponse'
+        '422':
+          $ref: '#/components/responses/ErrorResponse'
+        '429':
+          $ref: '#/components/responses/ErrorResponse'
+        '500':
+          $ref: '#/components/responses/ErrorResponse'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              properties:
+                decision:
+                  type: string
+                  minLength: 1
+                  maxLength: 4096
+                reason:
+                  type: string
+                  minLength: 1
+                  maxLength: 4096
+                expected_version:
+                  type: string
+                  minLength: 1
+                  maxLength: 4096
+              required:
+              - decision
+              - reason
+              - expected_version
+      parameters:
+      - $ref: '#/components/parameters/IdempotencyKey'
+      - $ref: '#/components/parameters/RequestId'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: opaque/OIDC-access-token
+    mutualTLS:
+      type: mutualTLS
+  parameters:
+    IdempotencyKey:
+      name: Idempotency-Key
+      in: header
+      required: true
+      schema:
+        type: string
+        minLength: 16
+        maxLength: 128
+      description: Unique command key. Same key + same principal + same semantic request must replay the original result.
+    RequestId:
+      name: X-Request-ID
+      in: header
+      required: false
+      schema:
+        type: string
+        minLength: 8
+        maxLength: 128
+  schemas:
+    OperationResult:
+      type: object
+      additionalProperties: false
+      required:
+      - request_id
+      - status
+      properties:
+        request_id:
+          type: string
+        operation_id:
+          type:
+          - string
+          - 'null'
+        resource_id:
+          type:
+          - string
+          - 'null'
+        version:
+          type:
+          - integer
+          - 'null'
+          minimum: 0
+        status:
+          type: string
+        data:
+          type:
+          - object
+          - array
+          - string
+          - number
+          - boolean
+          - 'null'
+    ApiError:
+      type: object
+      additionalProperties: false
+      required:
+      - request_id
+      - code
+      - message
+      properties:
+        request_id:
+          type: string
+        code:
+          type: string
+          pattern: ^[A-Z0-9_]+$
+        message:
+          type: string
+        retryable:
+          type: boolean
+        details:
+          type:
+          - object
+          - array
+          - 'null'
+  responses:
+    ErrorResponse:
+      description: Stable API error envelope.
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
