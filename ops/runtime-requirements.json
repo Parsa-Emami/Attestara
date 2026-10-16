@@ -1,0 +1,27 @@
+{
+  "project": "Attestara",
+  "hardware": {
+    "vcpu": 2,
+    "ram_mib": 2048,
+    "free_disk_mib": 10240,
+    "measurement": "Unmeasured planning target; C28 must verify or reduce it."
+  },
+  "engine_language": "Go",
+  "providers": [
+    "optional local OPA and Syft/Grype report ingestion"
+  ],
+  "capacity_limits": {
+    "bundle_max_mib": 100,
+    "files_per_bundle": 2000,
+    "policy_deadline_seconds": 10,
+    "private_scan_concurrency": 1
+  },
+  "current_shell_requires": [
+    "Git",
+    "Node 24.19+ within Node 24 (npm included)"
+  ],
+  "full_engine_platform_target": "Linux x86_64; other platforms need their own installed evidence",
+  "paid_or_cloud_account_required": false,
+  "owned_domain_required": false,
+  "versions": "Web versions are locked now; resolve exact engine/provider pins from official sources at C02."
+}

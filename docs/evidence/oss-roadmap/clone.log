@@ -1,0 +1,6 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> @parsa-emami/attestara-web@0.0.1 test:clone
+> node scripts/clone-smoke.mjs
+
+{"passed":true,"stagedTree":"0f408999fed0e1c58f4abe3d5090992357f44e3c","proof":"real git clone -> npm run setup -> web startup","coreReady":false}
