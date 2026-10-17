@@ -1,0 +1,17 @@
+{
+  "cases": [
+    {"id": "missing-subject", "field": "subject_digest", "mutation": "remove", "expected_code": "invalid_input"},
+    {"id": "bad-subject-digest", "field": "subject_digest", "mutation": "set", "value": "sha256:bad", "expected_code": "invalid_input"},
+    {"id": "missing-tool", "field": "tool", "mutation": "remove", "expected_code": "invalid_input"},
+    {"id": "missing-tool-version", "field": "tool_version", "mutation": "remove", "expected_code": "invalid_input"},
+    {"id": "blank-tool-version", "field": "tool_version", "mutation": "set", "value": "   ", "expected_code": "invalid_input"},
+    {"id": "bad-configuration-digest", "field": "configuration_digest", "mutation": "set", "value": "sha256:bad", "expected_code": "invalid_input"},
+    {"id": "missing-configuration-digest", "field": "configuration_digest", "mutation": "remove", "expected_code": "invalid_input"},
+    {"id": "missing-artifact", "field": "artifact", "mutation": "remove", "expected_code": "invalid_input"},
+    {"id": "bad-artifact-digest", "field": "artifact", "mutation": "set", "value": {"path":"evidence.txt","digest":"sha256:bad","size_bytes":23,"media_type":"text/plain"}, "expected_code": "invalid_input"},
+    {"id": "unsupported-version", "field": "schema_version", "mutation": "set", "value": "2", "expected_code": "unsupported_version"},
+    {"id": "unknown-member", "mutation": "unknown", "expected_code": "invalid_input"},
+    {"id": "duplicate-member", "raw": "{\"schema_version\":\"1\",\"schema_version\":\"1\"}", "expected_code": "invalid_json"},
+    {"id": "malformed-json", "raw": "{", "expected_code": "invalid_json"}
+  ]
+}

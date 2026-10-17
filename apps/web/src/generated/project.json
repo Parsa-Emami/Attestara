@@ -95,7 +95,7 @@
       "id": "C07",
       "title": "feat(subjects): model artifact digest and evidence envelope",
       "stage": "domain",
-      "status": "planned",
+      "status": "verified",
       "acceptance": [
         "Each evidence file is bound to subject, tool version and configuration hash."
       ],

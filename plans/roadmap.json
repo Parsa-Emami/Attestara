@@ -615,11 +615,16 @@
       ],
       "deliverables": [
         "internal/evidence/model.go",
-        "tests/subject_test.go"
+        "tests/subject_test.go",
+        "tests/web/oss-tooling.test.mjs",
+        "scripts/verify-engine-tests.mjs",
+        "tests/fixtures/attestara/C07/"
       ],
       "verification": [
         "npm run validate:plan — All task/dependency/resource/reference/evidence metadata validates; no runtime capability inferred.",
-        "go test ./... — C03 creates this engine test command in the same commit; C06 adds CI/integration collection. Pass the actual C07 acceptance and negative cases on the selected engine; shell-only tests cannot certify this task."
+        "go test -count=1 -v ./... — Pass the actual C07 acceptance and negative cases on the selected engine; shell-only tests cannot certify this task.",
+        "go vet ./... and go build ./... — Verify the internal typed model and engine packages.",
+        "npm test, npm run typecheck and npm run build — Preserve existing web workspace contracts and generated project data."
       ],
       "acceptance": [
         "Each evidence file is bound to subject, tool version and configuration hash."
@@ -636,7 +641,7 @@
         "plans/project-state.json"
       ],
       "before": "Entry requirement: verified C06 evidence. Preserve its demonstrated behavior; inspect actual source and any recorded blockers before editing.",
-      "after": "Each evidence file is bound to subject, tool version and configuration hash.",
+      "after": "Each evidence artifact has a versioned typed envelope bound to subject digest, producer tool/version and an independent configuration digest; the C04 input JSON remains unchanged.",
       "resources": {
         "hardware": {
           "vcpu": 2,
@@ -656,22 +661,22 @@
         ],
         "fixture": {
           "path": "tests/fixtures/attestara/C07/",
-          "status": "planned; implement positive, negative and expected-output fixtures in this task",
-          "provenance": "repository-authored synthetic data or explicitly licensed upstream data"
+          "status": "repository-authored synthetic positive, negative, expected-output and artifact-byte fixtures",
+          "provenance": "Apache-2.0 synthetic data; no user source or external provider execution"
         },
         "licenses": "Apache-2.0 project source; pin and inventory every shipped upstream library/provider/grammar/rule/dataset license. Unknown/restricted required resources block release."
       },
       "negative_cases": [
-        "Missing prerequisites, malformed fixtures or unavailable required providers produce an explicit error rather than placeholder success.",
-        "Repeat after restart and verify the declared invariant and documented recovery outcome.",
+        "Missing, malformed or unsupported envelope fields produce a safe explicit error.",
+        "Reloading the serialized envelope preserves subject, tool, configuration and artifact digest bindings.",
         "No user source execution"
       ],
       "implementation_steps": [
         "Inspect the actual implementation, source/locks and verified dependencies for C07; preserve accepted existing behavior.",
-        "Define the versioned positive and negative release-evidence fixtures and expected error/result semantics under tests/fixtures/attestara/C07/.",
-        "Implement: Each evidence file is bound to subject, tool version and configuration hash.",
-        "Change the listed exact targets and wire the actual typed outcome into the supported browser/engine workflow. Keep domain facts, validation, storage/provider adapters and UI separate.",
-        "Add regression/integration coverage for every acceptance and negative case; real storage/provider/security boundaries cannot be verified only with mocks.",
+        "Define a versioned evidence envelope that reuses contracts.File and the existing SHA-256 digest format; bind each artifact to subject, producer tool/version and an independent configuration digest.",
+        "Strictly decode the envelope and reject unsupported versions or malformed/missing digest metadata with the existing safe contracts.Error shape; leave the C04 input contract unchanged.",
+        "Add synthetic positive/negative fixtures and Go tests for actual byte-hash binding, explicit errors and reload; register the tests in required engine discovery. Never execute fixture source bytes.",
+        "Keep this task at the model/contract boundary; do not add a provider, storage schema, endpoint or UI change.",
         "Run the labeled verification commands; record exact source, fixture license/hash, tool/provider versions, command exits and observed results in docs/evidence/C07.json. Update progress only when the whole task is genuinely verified."
       ],
       "verification_commands": [
@@ -682,10 +687,28 @@
           "expected": "All task/dependency/resource/reference/evidence metadata validates; no runtime capability inferred."
         },
         {
-          "command": "go test ./...",
-          "available_now": false,
+          "command": "go test -count=1 -v ./...",
+          "available_now": true,
+          "introduced_by": "C06",
+          "expected": "Pass actual C07 acceptance and negative cases in the Go engine; shell-only tests cannot certify this task."
+        },
+        {
+          "command": "go vet ./...",
+          "available_now": true,
+          "introduced_by": "C06",
+          "expected": "No Go static-analysis findings."
+        },
+        {
+          "command": "go build ./...",
+          "available_now": true,
           "introduced_by": "C03",
-          "expected": "C03 creates this engine test command in the same commit; C06 adds CI/integration collection. Pass the actual C07 acceptance and negative cases on the selected engine; shell-only tests cannot certify this task."
+          "expected": "All Go engine packages build."
+        },
+        {
+          "command": "npm test; npm run typecheck; npm run build",
+          "available_now": true,
+          "introduced_by": "web-foundation",
+          "expected": "Existing web/contracts tests, TypeScript checking and production build pass."
         }
       ],
       "stop_conditions": [

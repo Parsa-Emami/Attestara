@@ -1,0 +1,8 @@
+{
+  "schema_version": "1",
+  "subject_digest": "sha256:ec6f03fcd0d2fc719cc633c355c63f5c87eb6ee66517e914f73f6a576b004e8f",
+  "tool": "synthetic-fixture-tool",
+  "tool_version": "fixture-only",
+  "configuration_digest": "sha256:9c3dacf1d4fd96be675c923eb139da44a41d96531075421d15c6ee177e51fdd3",
+  "artifact_digest": "sha256:483078279bc6f273ffbd15986139e494b62a9ad7d4dad032b8a677e0a7b610ad"
+}

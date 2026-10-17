@@ -6,7 +6,7 @@ export const suites = {
   './cmd/attestara': ['TestHealthContractAndAdmission', 'TestRealListenerShutdownAndOccupiedPort', 'TestVersionAndInvalidLaunch'],
   './internal/contracts': ['TestC04Fixtures', 'TestC04StrictJSON', 'TestC04LimitsAndCancellation', 'TestC04NestedFieldsResultsAndNoExecution'],
   './internal/storage': ['TestC05InjectedDiskFullRecovery', 'TestC05RealProcessCrashRecoveryAndWriterLock', 'TestC05CorruptionFailsClosedAndPreservesManifest', 'TestC05SourceBytesStayInertAndPrivate'],
-  './tests': ['TestC05CommitRestartReplayAndConflict', 'TestC05SingleWriterAndCorruptReferences', 'TestC05RejectsInvalidBytesPathsAndInputBinding'],
+  './tests': ['TestC05CommitRestartReplayAndConflict', 'TestC05SingleWriterAndCorruptReferences', 'TestC05RejectsInvalidBytesPathsAndInputBinding', 'TestC07EvidenceEnvelopeBindsSubjectToolConfigurationAndArtifact', 'TestC07EnvelopeRejectsInvalidFixtures', 'TestC07EnvelopeReloadPreservesBindings'],
 };
 
 export function validateDiscovery(pkg, output) {

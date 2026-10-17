@@ -1,0 +1,6 @@
+{
+  "schema_version": 1,
+  "license": "Apache-2.0",
+  "source": "Repository-authored synthetic subject, configuration and evidence bytes. The fixture names a synthetic tool and does not claim a real provider ran.",
+  "execution": "No user source or external provider is executed."
+}

@@ -60,10 +60,12 @@
     },
     {
       "id": "C07",
-      "status": "planned",
-      "evidence": [],
-      "source_identity": null,
-      "notes": ""
+      "status": "verified",
+      "evidence": [
+        "docs/evidence/C07.json"
+      ],
+      "source_identity": "sha256:cd1ffe778a2402e415d4373b3977a132384ce5da4210931069cecf1e2d69b885",
+      "notes": "Verified the versioned per-artifact envelope, actual subject/configuration/artifact byte digests, strict negative cases and serialized reload. No API/UI/provider/full-workflow claim."
     },
     {
       "id": "C08",

@@ -1,6 +1,6 @@
 {
   "project": "Attestara",
-  "reviewed_commit": "69684328ba1cd66063366a26a7fbefae7660c1f2",
+  "reviewed_commit": "ac110c6c48cec7ad005027284c478697d9aca61a",
   "readiness": "WEB_FOUNDATION",
   "core_ready": false,
   "implemented": [
@@ -10,10 +10,11 @@
     "unified local Go process lifecycle and browser process health",
     "v1 typed release-evidence contracts and real Go byte-input validators",
     "internal single-writer local authoritative file repository with atomic durable commit, replay and tested crash/ENOSPC recovery",
-    "dedicated pinned engine CI and explicit Go test discovery; C03-C05 build/vet/tests and web regressions verified locally on an isolated clean candidate checkout"
+    "dedicated pinned engine CI and explicit Go test discovery; C03-C05 build/vet/tests and web regressions verified locally on an isolated clean candidate checkout",
+    "versioned per-artifact evidence envelopes bound to subject, producer tool/version and independent configuration SHA-256 digests"
   ],
-  "engine": "Go lifecycle/health, v1 typed release-evidence validators and internal recoverable local file repository implemented; domain API, policy execution, cryptographic trust and full workflow pending",
-  "next_task": "C07",
+  "engine": "Go lifecycle/health, v1 typed release-evidence validators, recoverable local file repository and versioned per-artifact evidence envelopes implemented; domain API, policy execution, cryptographic trust and full workflow pending",
+  "next_task": "C08",
   "next_command": "npm run plan -- next",
   "full_product_endpoint": "C30 locally usable; C40 full published OSS v1"
 }
