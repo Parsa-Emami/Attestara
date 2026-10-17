@@ -1,20 +1,35 @@
 {
   "project": "Attestara",
-  "date": "2026-10-16",
-  "base_commit": "0717cbc89c456dc3f62d2cb01800512e95a74324",
-  "scope": "Repair CI for all main and Dependabot heads: historical source records, exact current Git checkout and real regression tests",
-  "core_tasks_verified": [],
-  "commands": [
-    "python3 -m unittest discover -s tests/engineering -p 'test_*.py' -v",
-    "python3 scripts/verify_ci_source.py",
-    "npm run check",
-    "npm run test:clone"
+  "date": "2026-10-17",
+  "base_commit": "39784890b1c3b4ba1d58b85d587b875993303023",
+  "scope": "C01 synthetic clone-to-value reference contract, fixture descriptions and standalone validator",
+  "core_tasks_verified": ["C01"],
+  "changed_paths": [
+    "docs/product/REFERENCE_WORKFLOW.md",
+    "tests/scenarios/clone-to-value.json",
+    "tests/fixtures/attestara/C01/",
+    "scripts/verify-reference.mjs",
+    "tests/web/reference-contract.test.mjs",
+    "docs/evidence/C01.json",
+    "plans/progress.json",
+    "plans/requirements.json",
+    "plans/project-state.json",
+    "docs/agents/SESSION_HANDOFF.json"
   ],
-  "validation_results": "docs/evidence/ci-integrity-repair.json",
-  "final_source_identity": "Read the source_identity in docs/evidence/oss-roadmap.json; it excludes evidence and SHA256SUMS.txt to avoid recursive hashing. This is a source digest, not a fabricated remote commit ID.",
+  "commands": [
+    "npm run validate:plan",
+    "node scripts/verify-reference.mjs",
+    "npm test",
+    "python3 scripts/validate_repo.py",
+    "git diff --check"
+  ],
+  "validation_results": "docs/evidence/C01.json",
+  "final_source_identity": "sha256:8cecd0c1f4f923b6f0239276991a7424807911c06a996cdf156e90103785a0fa",
+  "source_identity_scope": "C01 implementation files listed and hashed in docs/evidence/C01.json; worktree is not committed",
   "protected_paths_changed": [],
   "current_core_ready": false,
-  "next_task": "C01",
+  "blockers": [],
+  "next_task": "C02",
   "next_command": "npm run plan -- next",
-  "continuation": "See docs/engineering/CI_SOURCE_INTEGRITY.md for source proof scope. Historical evidence retains its original source; current runtime results are the actual new CI jobs. Core implementation remains at the existing next task."
+  "continuation": "C01 certifies only the synthetic specification. Materialized SBOM/policy artifacts, real engine/provider results and restart/restore remain for their planned tasks."
 }

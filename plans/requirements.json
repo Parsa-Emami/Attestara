@@ -8,7 +8,7 @@
       "mandatory": true,
       "planned_commit": "C01",
       "evidence_path": "docs/evidence/C01.json",
-      "status": "unimplemented"
+      "status": "verified"
     },
     {
       "id": "N02",

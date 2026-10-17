@@ -6,10 +6,10 @@
   "commits": [
     {
       "id": "C01",
-      "status": "planned",
-      "evidence": [],
-      "source_identity": null,
-      "notes": ""
+      "status": "verified",
+      "evidence": ["docs/evidence/C01.json"],
+      "source_identity": "sha256:8cecd0c1f4f923b6f0239276991a7424807911c06a996cdf156e90103785a0fa",
+      "notes": "Synthetic reference specification and standalone validator verified; domain engine execution remains unimplemented."
     },
     {
       "id": "C02",

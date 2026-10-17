@@ -9,7 +9,7 @@
     "local bounded JSON structure preview"
   ],
   "engine": "not implemented",
-  "next_task": "C01",
+  "next_task": "C02",
   "next_command": "npm run plan -- next",
   "full_product_endpoint": "C30 locally usable; C40 full published OSS v1"
 }

@@ -1,0 +1,17 @@
+{
+  "id": "positive",
+  "kind": "positive",
+  "provenance": "repository-authored synthetic data",
+  "license": "Apache-2.0",
+  "owner": "synthetic Attestara maintainer",
+  "release_id": "attestara-c01-release",
+  "source_revision": "synthetic-revision-1",
+  "subject_bytes_utf8": "attestara-c01-subject\n",
+  "subject_digest": "sha256:95c270748c08aaca24c51614d4614e44a74cf306b9adcc102f8ad040f3663b8f",
+  "sbom": { "format": "CycloneDX JSON", "description": "Synthetic single-component release inventory; materialized domain artifact is a later task" },
+  "evidence_bytes_utf8": "attestara-c01-sbom\n",
+  "evidence_digest": "sha256:5ed96d99dbaa026ecc411427d432d29628bcc94f6ec38cccd2b1a96913bc0268",
+  "policy_bytes_utf8": "attestara-c01-policy\n",
+  "policy_digest": "sha256:3784a637891dd32dd46f72f49f1e9b24bb9fb114bd8ab8493af0ab183331b013",
+  "policy_intent": "Allow only when subject binding and required SBOM evidence are present; report authenticity separately"
+}

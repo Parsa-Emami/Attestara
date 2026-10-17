@@ -1,0 +1,24 @@
+{
+  "id": "expected",
+  "kind": "expected-output",
+  "provenance": "repository-authored synthetic expected results",
+  "license": "Apache-2.0",
+  "release_id": "attestara-c01-release",
+  "source_revision": "synthetic-revision-1",
+  "subject_digest": "sha256:95c270748c08aaca24c51614d4614e44a74cf306b9adcc102f8ad040f3663b8f",
+  "evidence_digest": "sha256:5ed96d99dbaa026ecc411427d432d29628bcc94f6ec38cccd2b1a96913bc0268",
+  "policy_digest": "sha256:3784a637891dd32dd46f72f49f1e9b24bb9fb114bd8ab8493af0ab183331b013",
+  "verification": "unverified",
+  "outcomes": [
+    { "step_id": "load", "summary": "Subject, source revision, evidence and policy digests are retained together", "status": "accepted" },
+    { "step_id": "policy", "summary": "The synthetic complete evidence satisfies the stated local policy", "status": "allow" },
+    { "step_id": "passport", "summary": "Unsigned passport carries the subject digest and an unverified authenticity status", "status": "unverified" },
+    { "step_id": "changed-subject", "summary": "Modified subject fails digest verification", "status": "rejected" },
+    { "step_id": "incomplete-manifest", "summary": "Incomplete manifest is rejected", "status": "rejected" },
+    { "step_id": "unsigned", "summary": "Unsigned passport is unverified, even when policy allows", "status": "unverified" },
+    { "step_id": "invalid-signature", "summary": "Invalid signature is rejected or explicitly unverified", "status": "rejected-or-unverified" },
+    { "step_id": "signed-untrusted", "summary": "Signature presence alone is unverified; trusted requires valid signature and trusted signer", "status": "unverified" },
+    { "step_id": "viewer-parity", "summary": "Viewer and offline verifier agree on the policy result", "status": "same-policy-decision" },
+    { "step_id": "restart-restore", "summary": "Restored passport retains the same subject digest and policy result", "status": "same-identity" }
+  ]
+}

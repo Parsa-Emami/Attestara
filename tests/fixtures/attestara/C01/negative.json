@@ -1,0 +1,15 @@
+{
+  "id": "negative",
+  "kind": "negative",
+  "provenance": "repository-authored synthetic data",
+  "license": "Apache-2.0",
+  "owner": "synthetic Attestara maintainer",
+  "source_revision": "synthetic-revision-1",
+  "cases": [
+    { "step_id": "changed-subject", "mutation": "Change the final newline byte of the synthetic subject", "expected_verification": "rejected" },
+    { "step_id": "incomplete-manifest", "mutation": "Remove evidence_digest from the manifest", "expected_verification": "rejected" },
+    { "step_id": "unsigned", "mutation": "Omit signature evidence", "expected_verification": "unverified" },
+    { "step_id": "invalid-signature", "mutation": "Provide a signature that fails verification", "expected_verification": "rejected-or-unverified" },
+    { "step_id": "signed-untrusted", "mutation": "Provide a signature without a trusted signer", "expected_verification": "unverified" }
+  ]
+}
