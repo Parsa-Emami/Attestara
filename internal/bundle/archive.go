@@ -86,5 +86,5 @@ func ReadArchive(data []byte) (contracts.Input, error) {
 			actual += n
 		}
 	}
-	return Read(manifest, r)
+	return readFS(manifest, r)
 }

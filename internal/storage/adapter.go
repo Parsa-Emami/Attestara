@@ -31,6 +31,7 @@ var (
 	ErrUnavailable = errors.New("storage I/O unavailable")
 	ErrRecovery    = errors.New("close and reopen storage to reconcile an uncertain write")
 	ErrClosed      = errors.New("storage is closed")
+	ErrQuota       = errors.New("storage quota exceeded")
 )
 
 // Record carries the existing C04 wire contracts and manifest-path-keyed bytes.
@@ -63,8 +64,16 @@ var _ Port = (*Adapter)(nil)
 const header = "{\"schema_version\":1}\n"
 
 // Two 100 MiB wire documents expand by 4/3 in base64; the remaining space
-// bounds the operation ID and envelope without an operation-count quota.
+// bounds the operation ID and envelope.
 const maxLine = int(3 * contracts.MaxBundleBytes)
+
+const (
+	maxOperations    = 1000
+	maxArtifactRefs  = 10000
+	maxHistoryBytes  = 1 << 30
+	maxObjectBytes   = 1 << 30
+	maxManifestBytes = 1 << 30
+)
 
 type entry struct {
 	OperationID string `json:"operation_id"`
@@ -264,50 +273,145 @@ func lines(data []byte, atEOF bool) (int, []byte, error) {
 	return 0, nil, nil
 }
 
-// scan never retains the history: memory is bounded by one C04 record.
-func (a *Adapter) scan(ctx context.Context, visit func(entry, contracts.Input) error) error {
-	if err := regular(a.root, "manifest"); err != nil {
-		return ErrCorrupt
+type storeUsage struct {
+	operations     int
+	artifactRefs   int
+	historyBytes   int64
+	objectBytes    int64
+	manifestBytes  int64
+	rewrittenBytes int64
+	objects        map[string]int64
+}
+
+func checkQuota(current storeUsage, input contracts.Input, nextLineBytes int64) error {
+	if current.operations >= maxOperations || current.artifactRefs+len(input.Files) > maxArtifactRefs || current.rewrittenBytes > maxManifestBytes-nextLineBytes {
+		return ErrQuota
 	}
+	var addedHistory, addedObjects int64
+	pending := make(map[string]int64, len(input.Files))
+	for _, file := range input.Files {
+		size := *file.SizeBytes
+		if addedHistory > maxHistoryBytes-size {
+			return ErrQuota
+		}
+		addedHistory += size
+		if existing, ok := current.objects[file.Digest]; ok {
+			if existing != size {
+				return ErrInvalid
+			}
+			continue
+		}
+		if existing, ok := pending[file.Digest]; ok {
+			if existing != size {
+				return ErrInvalid
+			}
+			continue
+		}
+		pending[file.Digest] = size
+		if addedObjects > maxObjectBytes-size {
+			return ErrQuota
+		}
+		addedObjects += size
+	}
+	if current.historyBytes > maxHistoryBytes-addedHistory || current.objectBytes > maxObjectBytes-addedObjects {
+		return ErrQuota
+	}
+	return nil
+}
+
+// scan bounds retained history and returns only capped counters and digest sizes.
+func (a *Adapter) scan(ctx context.Context, visit func(entry, contracts.Input) error) (storeUsage, error) {
+	usage := storeUsage{objects: make(map[string]int64)}
+	if err := regular(a.root, "manifest"); err != nil {
+		return usage, ErrCorrupt
+	}
+	info, err := a.root.Lstat("manifest")
+	if err != nil {
+		return usage, ErrCorrupt
+	}
+	usage.manifestBytes = info.Size()
+	if usage.manifestBytes > maxManifestBytes {
+		return usage, ErrQuota
+	}
+	usage.rewrittenBytes = int64(len(header))
 	f, err := a.root.OpenFile("manifest", os.O_RDONLY|syscall.O_NOFOLLOW, 0)
 	if err != nil {
-		return ErrCorrupt
+		return usage, ErrCorrupt
 	}
 	defer f.Close()
 	s := bufio.NewScanner(f)
 	s.Buffer(make([]byte, 64*1024), maxLine)
 	s.Split(lines)
 	if !s.Scan() || string(s.Bytes())+"\n" != header {
-		return ErrCorrupt
+		return usage, ErrCorrupt
 	}
+	ids := make(map[string]struct{})
 	for s.Scan() {
 		if err := ctx.Err(); err != nil {
-			return err
+			return usage, err
 		}
 		var e entry
 		if err := json.Unmarshal(s.Bytes(), &e, json.RejectUnknownMembers(true)); err != nil || e.Checksum != checksum(e) {
-			return ErrCorrupt
+			return usage, ErrCorrupt
 		}
 		v, err := validate(ctx, Record{OperationID: e.OperationID, InputJSON: e.Input, ResultJSON: e.Result}, false)
 		if err != nil {
 			if ctx.Err() != nil {
-				return ctx.Err()
+				return usage, ctx.Err()
 			}
-			return ErrCorrupt
+			return usage, ErrCorrupt
+		}
+		if _, exists := ids[e.OperationID]; exists {
+			return usage, ErrCorrupt
+		}
+		ids[e.OperationID] = struct{}{}
+		usage.operations++
+		if usage.operations > maxOperations {
+			return usage, ErrQuota
+		}
+		line, err := json.Marshal(e)
+		if err != nil {
+			return usage, ErrCorrupt
+		}
+		usage.rewrittenBytes += int64(len(line) + 1)
+		if usage.rewrittenBytes > maxManifestBytes {
+			return usage, ErrQuota
+		}
+		for _, file := range v.Files {
+			if usage.artifactRefs == maxArtifactRefs {
+				return usage, ErrQuota
+			}
+			usage.artifactRefs++
+			size := *file.SizeBytes
+			if usage.historyBytes > maxHistoryBytes-size {
+				return usage, ErrQuota
+			}
+			usage.historyBytes += size
+			if prior, exists := usage.objects[file.Digest]; exists {
+				if prior != size {
+					return usage, ErrCorrupt
+				}
+				continue
+			}
+			if len(usage.objects) == maxArtifactRefs || usage.objectBytes > maxObjectBytes-size {
+				return usage, ErrQuota
+			}
+			usage.objects[file.Digest] = size
+			usage.objectBytes += size
 		}
 		if err := visit(e, v); err != nil {
-			return err
+			return usage, err
 		}
 	}
 	if s.Err() != nil {
-		return ErrCorrupt
+		return usage, ErrCorrupt
 	}
-	return ctx.Err()
+	return usage, ctx.Err()
 }
 func (a *Adapter) find(ctx context.Context, id string) (entry, error) {
 	var found entry
 	count := 0
-	err := a.scan(ctx, func(e entry, _ contracts.Input) error {
+	_, err := a.scan(ctx, func(e entry, _ contracts.Input) error {
 		if e.OperationID == id {
 			count++
 			found = e
@@ -392,18 +496,15 @@ func (a *Adapter) entries(dir string, visit func(string) error) error {
 }
 func (a *Adapter) recover(ctx context.Context) error {
 	// Validate every reference before deleting any orphan.
-	// shortcut: recovery scans can be quadratic, add a rebuildable index when C28 measurements require it.
-	if err := a.scan(ctx, func(e entry, v contracts.Input) error {
-		if _, err := a.find(ctx, e.OperationID); err != nil {
-			return err
-		}
+	usage, err := a.scan(ctx, func(_ entry, v contracts.Input) error {
 		for _, f := range v.Files {
 			if _, err := a.object(ctx, f, false); err != nil {
 				return err
 			}
 		}
 		return nil
-	}); err != nil {
+	})
+	if err != nil {
 		return err
 	}
 	if err := a.entries("staging", func(name string) error {
@@ -435,18 +536,7 @@ func (a *Adapter) recover(ctx context.Context) error {
 		if err := regular(a.root, "objects/"+name); err != nil {
 			return ErrCorrupt
 		}
-		used := false
-		if err := a.scan(ctx, func(_ entry, v contracts.Input) error {
-			for _, f := range v.Files {
-				if f.Digest[7:] == name {
-					used = true
-				}
-			}
-			return nil
-		}); err != nil {
-			return err
-		}
-		if !used {
+		if _, used := usage.objects["sha256:"+name]; !used {
 			info, err := a.root.Lstat("objects/" + name)
 			if err != nil || info.Size() > contracts.MaxBundleBytes {
 				return ErrCorrupt
@@ -495,8 +585,18 @@ func (a *Adapter) Commit(ctx context.Context, r Record) (err error) {
 	}
 	e := entry{OperationID: r.OperationID, Input: r.InputJSON, Result: r.ResultJSON}
 	e.Checksum = checksum(e)
-	old, err := a.find(ctx, r.OperationID)
-	if err == nil {
+	var old entry
+	found := false
+	usage, err := a.scan(ctx, func(candidate entry, _ contracts.Input) error {
+		if candidate.OperationID == r.OperationID {
+			old, found = candidate, true
+		}
+		return nil
+	})
+	if err != nil {
+		return err
+	}
+	if found {
 		if old.Checksum != e.Checksum {
 			return ErrConflict
 		}
@@ -507,7 +607,11 @@ func (a *Adapter) Commit(ctx context.Context, r Record) (err error) {
 		}
 		return nil
 	}
-	if !errors.Is(err, ErrNotFound) {
+	line, err := json.Marshal(e)
+	if err != nil {
+		return ErrInvalid
+	}
+	if err = checkQuota(usage, v, int64(len(line)+1)); err != nil {
 		return err
 	}
 	// Once writes begin, a failed commit must be reconciled before reuse.
@@ -600,7 +704,7 @@ func (a *Adapter) publish(ctx context.Context, e entry) error {
 	if _, err = io.WriteString(f, header); err != nil {
 		return storageError(err)
 	}
-	if err = a.scan(ctx, func(old entry, _ contracts.Input) error {
+	if _, err = a.scan(ctx, func(old entry, _ contracts.Input) error {
 		b, err := json.Marshal(old)
 		if err != nil {
 			return err

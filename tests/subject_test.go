@@ -116,6 +116,40 @@ func TestC07EnvelopeRejectsInvalidFixtures(t *testing.T) {
 	}
 }
 
+func TestC07EnvelopeRejectsUnsafeArtifactPaths(t *testing.T) {
+	var envelope map[string]json.RawMessage
+	if err := json.Unmarshal(readC07(t, "positive.json"), &envelope); err != nil {
+		t.Fatal(err)
+	}
+	var artifact map[string]json.RawMessage
+	if err := json.Unmarshal(envelope["artifact"], &artifact); err != nil {
+		t.Fatal(err)
+	}
+	for _, path := range []string{"../evidence.txt", "/tmp/evidence.txt", "dir/../evidence.txt", "dir\\evidence.txt"} {
+		t.Run(path, func(t *testing.T) {
+			encodedPath, err := json.Marshal(path)
+			if err != nil {
+				t.Fatal(err)
+			}
+			artifact["path"] = encodedPath
+			encodedArtifact, err := json.Marshal(artifact)
+			if err != nil {
+				t.Fatal(err)
+			}
+			envelope["artifact"] = encodedArtifact
+			input, err := json.Marshal(envelope)
+			if err != nil {
+				t.Fatal(err)
+			}
+			_, err = evidence.DecodeEnvelope(input)
+			var contractErr *contracts.Error
+			if !errors.As(err, &contractErr) || contractErr.Code != "invalid_input" || contractErr.Field != "artifact.path" {
+				t.Fatalf("path %q error = %v", path, err)
+			}
+		})
+	}
+}
+
 func TestC07EnvelopeReloadPreservesBindings(t *testing.T) {
 	input := readC07(t, "positive.json")
 	want, err := evidence.DecodeEnvelope(input)

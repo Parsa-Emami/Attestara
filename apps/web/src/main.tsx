@@ -27,8 +27,8 @@ function App({ config }: { config: Runtime }) {
     fetch('/api/engine/health', { cache: 'no-store', credentials: 'omit', signal: controller.signal }).then(async response => {
       if (!response.ok) throw new Error('Engine unavailable');
       return validateEngineHealth(await response.json());
-    }).then(health => { if (!controller.signal.aborted) { setEngine(health); setEngineState('Local engine process is healthy.'); } }).catch(() => {
-      if (active) { setEngine(null); setEngineState('Local engine is unavailable. Run setup/start or reload to retry.'); }
+    }).then(health => { if (!controller.signal.aborted) { setEngine(health); setEngineState('Local engine process was healthy at the last check.'); } }).catch(() => {
+      if (active) { setEngine(null); setEngineState('Local engine was unavailable at the last check. Run setup/start and reload to retry.'); }
     }).finally(() => clearTimeout(timeout));
     return () => { active = false; clearTimeout(timeout); controller.abort(); };
   }, []);

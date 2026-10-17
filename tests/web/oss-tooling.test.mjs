@@ -12,7 +12,13 @@ test('setup validates toolchain/options and stops at the first failed prerequisi
   assert.throws(() => setup(['--unknown']), /options/);
   const prior = process.env.npm_execpath; process.env.npm_execpath ??= 'test-npm';
   let calls = 0; assert.throws(() => setup([], () => { calls++; return { status: 1 }; }, process.version, dir), /failed/); assert.equal(calls, 1);
-  assert.equal(setup(['--check'], () => { throw new Error('must not execute'); }).executed, false);
+  const check = setup(['--check'], (command, args) => {
+    assert.equal(command, process.execPath);
+    assert.deepEqual(args, [process.env.npm_execpath, '--version']);
+    return { status: 0, stdout: '11.9.0\n' };
+  });
+  assert.equal(check.executed, false); assert.equal(check.npm, '11.9.0');
+  assert.throws(() => setup(['--check'], () => ({ status: 0, stdout: '11.8.0\n' })), /npm 11.9.0/);
   if (prior === undefined) delete process.env.npm_execpath; else process.env.npm_execpath = prior;
 });
 test('roadmap rejects absent resources, escaping paths and unproved completion', async () => {

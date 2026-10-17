@@ -47,7 +47,7 @@ test('C03 setup invalidates stale output and fails explicitly for missing/mismat
    calls++;
    if (calls === 1) return { status: 0, stdout: 'go1.27.2\n' };
    if (calls === 2) return { status: 0 };
-   if (calls === 3) { writeFileSync(binary + '.pending', 'partial'); return { status: failure === 'build' ? 1 : 0 }; }
+   if (calls === 4) { writeFileSync(binary + '.pending', 'partial'); return { status: failure === 'build' ? 1 : 0 }; }
    return { status: 0, stdout: '{"status":"ok"}' };
   }, process.version, dir), /Setup failed|Invalid engine/);
   await assert.rejects(access(binary)); await assert.rejects(access(binary + '.pending'));

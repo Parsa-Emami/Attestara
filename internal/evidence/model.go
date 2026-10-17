@@ -82,7 +82,7 @@ func DecodeEnvelope(data []byte) (Envelope, error) {
 	if !validDigest(value.ConfigurationDigest) {
 		return Envelope{}, invalid("configuration_digest")
 	}
-	if !validText(value.Artifact.Path) {
+	if !contracts.ValidManifestPath(value.Artifact.Path) {
 		return Envelope{}, invalid("artifact.path")
 	}
 	if !validDigest(value.Artifact.Digest) {

@@ -7,6 +7,8 @@ import (
 	"encoding/hex"
 	"io"
 	"io/fs"
+	"os"
+	"syscall"
 
 	"attestara/internal/contracts"
 )
@@ -15,20 +17,39 @@ func failure(code, field, message string) error {
 	return &contracts.Error{Code: code, Field: field, Message: message}
 }
 
-// Read validates a v1 manifest and the bytes it references without executing
-// them or treating a hash as proof of signer trust.
-func Read(manifest []byte, files fs.FS) (contracts.Input, error) {
+// readFS validates a v1 manifest against a safe, immutable virtual filesystem.
+func readFS(manifest []byte, files fs.FS) (contracts.Input, error) {
 	if files == nil {
 		return contracts.Input{}, failure("input_unavailable", "files", "File source is unavailable.")
 	}
+	return read(manifest, files.Open)
+}
+
+// ReadRoot reads host files through a confined root. Symlinks may resolve only
+// within that root; blocking or non-regular filesystem entries are rejected.
+func ReadRoot(manifest []byte, root *os.Root) (contracts.Input, error) {
+	if root == nil {
+		return contracts.Input{}, failure("input_unavailable", "files", "File source is unavailable.")
+	}
+	return read(manifest, func(path string) (fs.File, error) {
+		return root.OpenFile(path, os.O_RDONLY|syscall.O_NONBLOCK, 0)
+	})
+}
+
+func read(manifest []byte, open func(string) (fs.File, error)) (contracts.Input, error) {
 	input, err := contracts.DecodeInput(context.Background(), manifest)
 	if err != nil {
 		return contracts.Input{}, err
 	}
 	for _, file := range input.Files {
-		f, err := files.Open(file.Path)
+		f, err := open(file.Path)
 		if err != nil {
 			return contracts.Input{}, failure("input_unavailable", "files.path", "A referenced file is unavailable.")
+		}
+		info, statErr := f.Stat()
+		if statErr != nil || !info.Mode().IsRegular() {
+			_ = f.Close()
+			return contracts.Input{}, failure("input_unavailable", "files.path", "A referenced file is not a regular file.")
 		}
 		h := sha256.New()
 		n, copyErr := io.Copy(h, io.LimitReader(f, *file.SizeBytes+1))

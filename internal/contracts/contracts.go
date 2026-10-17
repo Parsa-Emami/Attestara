@@ -70,6 +70,10 @@ var digestPattern = regexp.MustCompile(`^sha256:[a-f0-9]{64}$`)
 var pathPattern = regexp.MustCompile(`^[A-Za-z0-9_-][A-Za-z0-9._-]*(/[A-Za-z0-9_-][A-Za-z0-9._-]*)*$`)
 var errorCodes = map[string]bool{"invalid_json": true, "invalid_input": true, "unsupported_version": true, "limit_exceeded": true, "cancelled": true, "deadline_exceeded": true, "input_unavailable": true, "dependency_unavailable": true}
 
+// ValidManifestPath checks the portable, relative path syntax used by C04.
+// It does not establish filesystem confinement or symlink safety.
+func ValidManifestPath(path string) bool { return pathPattern.MatchString(path) }
+
 func failure(code, field, message string) error {
 	if field == "" {
 		field = "$"
@@ -152,7 +156,8 @@ func version(v string) error {
 }
 
 // DecodeInput validates immutable JSON bytes under a cooperative 10 second cap.
-// Cancellation is checked before/after bounded decoding and during file traversal.
+// Cancellation is checked before/after bounded decoding and during validation;
+// Unmarshal itself cannot be interrupted while a synchronous parse is running.
 func DecodeInput(parent context.Context, data []byte) (Input, error) {
 	ctx, cancel := context.WithTimeout(parent, ValidationDeadline)
 	defer cancel()
@@ -189,7 +194,7 @@ func DecodeInput(parent context.Context, data []byte) (Input, error) {
 		if err := interrupted(ctx); err != nil {
 			return Input{}, err
 		}
-		if !text(f.Path) || !pathPattern.MatchString(f.Path) || paths[f.Path] {
+		if !text(f.Path) || !ValidManifestPath(f.Path) || paths[f.Path] {
 			return Input{}, invalid("files.path")
 		}
 		if !digestPattern.MatchString(f.Digest) {

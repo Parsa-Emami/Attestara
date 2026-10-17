@@ -99,18 +99,23 @@ including user payload bytes. These are internal library errors, not HTTP codes.
 ## Bounds, reproduction and limits
 
 C04's 100 MiB per JSON document, 100 MiB total artifact bytes and 2000 files remain
-in force. The manifest is scanned/rebuilt incrementally rather than retained as an
-unbounded in-memory map. A line is capped at 3 times the C04 wire byte limit to
-accommodate base64 and the envelope. A constant number of bounded records may be
-resident during nested validation. Directory enumeration is batched. Accepted
-history and stable operation IDs are never evicted; a full volume rejects writes.
-There is no new operation-count quota, retention policy or background cleanup.
+in force. The store additionally caps accepted history at 1000 operations, 10000
+artifact references, 1 GiB of referenced artifact bytes, 1 GiB of unique object
+bytes and a 1 GiB manifest. Referenced artifact bytes count again for each
+operation; object bytes count each digest once. `Commit` checks all caps before
+staging any file or replacing the manifest and returns `ErrQuota` without changing
+the accepted snapshot. Existing state beyond a cap is retained and fails closed;
+no automatic eviction or migration is attempted.
 
-Recovery uses repeated scans to retain bounded memory (quadratic history/objects
-work is possible); each commit rewrites the manifest. C28 must measure capacity
-and latency before an index or another adapter is justified. No minimum-memory or
-throughput claim is made here. A complete-record checksum is not a signed journal
-and cannot detect deletion of a whole trailing record by a privileged editor.
+The manifest is scanned incrementally. Memory used for duplicate-operation and
+digest tracking is bounded by the limits above; recovery validates the manifest
+once and removes unreferenced objects using that digest set. A line is capped at 3
+times the C04 wire byte limit to accommodate base64 and the envelope. A constant
+number of bounded records may be resident during nested validation. Directory
+enumeration is batched. C28 must measure capacity and latency before an index or
+another adapter is justified. No minimum-memory or throughput claim is made here.
+A complete-record checksum is not a signed journal and cannot detect deletion of
+a whole trailing record by a privileged editor.
 
 Use the existing pinned Node/npm/Go toolchain and run:
 

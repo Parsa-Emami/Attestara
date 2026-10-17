@@ -102,6 +102,91 @@ func accepted(t *testing.T, a *Adapter, r Record) {
 		t.Fatal(err)
 	}
 }
+
+func TestC05QuotaBoundaries(t *testing.T) {
+	r := fixture(t, "quota", false)
+	input, err := contracts.DecodeInput(context.Background(), r.InputJSON)
+	if err != nil {
+		t.Fatal(err)
+	}
+	var historyBytes int64
+	objects := make(map[string]int64, len(input.Files))
+	var objectBytes int64
+	for _, file := range input.Files {
+		historyBytes += *file.SizeBytes
+		if _, exists := objects[file.Digest]; !exists {
+			objects[file.Digest] = *file.SizeBytes
+			objectBytes += *file.SizeBytes
+		}
+	}
+	for _, tc := range []struct {
+		name  string
+		usage storeUsage
+		want  error
+	}{
+		{"within limits", storeUsage{rewrittenBytes: int64(len(header)), objects: map[string]int64{}}, nil},
+		{"operation count", storeUsage{operations: maxOperations, rewrittenBytes: int64(len(header)), objects: map[string]int64{}}, ErrQuota},
+		{"artifact references", storeUsage{artifactRefs: maxArtifactRefs - len(input.Files) + 1, rewrittenBytes: int64(len(header)), objects: map[string]int64{}}, ErrQuota},
+		{"history bytes", storeUsage{historyBytes: maxHistoryBytes - historyBytes + 1, rewrittenBytes: int64(len(header)), objects: map[string]int64{}}, ErrQuota},
+		{"object bytes", storeUsage{objectBytes: maxObjectBytes - objectBytes + 1, rewrittenBytes: int64(len(header)), objects: map[string]int64{}}, ErrQuota},
+		{"manifest bytes", storeUsage{rewrittenBytes: maxManifestBytes, objects: map[string]int64{}}, ErrQuota},
+	} {
+		t.Run(tc.name, func(t *testing.T) {
+			err := checkQuota(tc.usage, input, 1)
+			if !errors.Is(err, tc.want) {
+				t.Fatalf("checkQuota() = %v; want %v", err, tc.want)
+			}
+		})
+	}
+	if err := checkQuota(storeUsage{operations: maxOperations - 1, artifactRefs: maxArtifactRefs - len(input.Files), historyBytes: maxHistoryBytes - historyBytes, objectBytes: maxObjectBytes - objectBytes, rewrittenBytes: maxManifestBytes - 1, objects: map[string]int64{}}, input, 1); err != nil {
+		t.Fatalf("exact quota boundary rejected: %v", err)
+	}
+}
+
+func TestC05QuotaCommitPreservesFullSnapshot(t *testing.T) {
+	dir := filepath.Join(t.TempDir(), "store")
+	a := open(t, dir)
+	seed := fixture(t, "quota-0000", false)
+	accepted(t, a, seed)
+	if err := a.Close(); err != nil {
+		t.Fatal(err)
+	}
+
+	manifest := bytes.NewBufferString(header)
+	for i := 0; i < maxOperations; i++ {
+		e := entry{OperationID: fmt.Sprintf("quota-%04d", i), Input: seed.InputJSON, Result: seed.ResultJSON}
+		e.Checksum = checksum(e)
+		line, err := json.Marshal(e)
+		if err != nil {
+			t.Fatal(err)
+		}
+		manifest.Write(line)
+		manifest.WriteByte('\n')
+	}
+	if err := os.WriteFile(filepath.Join(dir, "manifest"), manifest.Bytes(), 0600); err != nil {
+		t.Fatal(err)
+	}
+	a = open(t, dir)
+	before, err := os.ReadFile(filepath.Join(dir, "manifest"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	if err := a.Commit(context.Background(), fixture(t, "quota-overflow", false)); !errors.Is(err, ErrQuota) {
+		t.Fatalf("Commit() = %v; want ErrQuota", err)
+	}
+	after, err := os.ReadFile(filepath.Join(dir, "manifest"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !bytes.Equal(after, before) {
+		t.Fatal("quota rejection changed the accepted manifest")
+	}
+	seed.OperationID = "quota-0000"
+	assertLoad(t, a, seed, true)
+	if _, err := os.Stat(filepath.Join(dir, "staging", "blob")); !errors.Is(err, os.ErrNotExist) {
+		t.Fatalf("quota rejection wrote a staged blob: %v", err)
+	}
+}
 func assertLoad(t *testing.T, a *Adapter, r Record, want bool) {
 	t.Helper()
 	got, err := a.Load(context.Background(), r.OperationID)
@@ -495,7 +580,7 @@ func TestC05AtomicVisibleSnapshot(t *testing.T) {
 				t.Fatal("snapshot mixed old and new state")
 			}
 			count := 0
-			if err := a.scan(context.Background(), func(_ entry, v contracts.Input) error {
+			if _, err := a.scan(context.Background(), func(_ entry, v contracts.Input) error {
 				count++
 				for _, f := range v.Files {
 					if _, err := a.object(context.Background(), f, false); err != nil {

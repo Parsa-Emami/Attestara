@@ -3,10 +3,10 @@ package tests
 import (
 	"encoding/json"
 	"errors"
-	"io/fs"
 	"os"
 	"path/filepath"
 	"reflect"
+	"syscall"
 	"testing"
 
 	"attestara/internal/bundle"
@@ -57,6 +57,16 @@ func copyC08(t *testing.T) string {
 	return root
 }
 
+func openC08Root(t *testing.T, path string) *os.Root {
+	t.Helper()
+	root, err := os.OpenRoot(path)
+	if err != nil {
+		t.Fatal(err)
+	}
+	t.Cleanup(func() { _ = root.Close() })
+	return root
+}
+
 func TestC08ReadsVersionedManifestAndRealFiles(t *testing.T) {
 	var expected struct {
 		SchemaVersion string `json:"schema_version"`
@@ -71,7 +81,7 @@ func TestC08ReadsVersionedManifestAndRealFiles(t *testing.T) {
 	if err := json.Unmarshal(readC08(t, "expected.json"), &expected); err != nil {
 		t.Fatal(err)
 	}
-	got, err := bundle.Read(readC08(t, "positive.json"), os.DirFS(c08Fixtures))
+	got, err := bundle.ReadRoot(readC08(t, "positive.json"), openC08Root(t, c08Fixtures))
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -137,7 +147,7 @@ func TestC08RejectsManifestAndFileNegatives(t *testing.T) {
 				if err != nil {
 					t.Fatal(err)
 				}
-				err = assertC08Rejected(t, encoded, os.DirFS(root), tc.ExpectedCode, tc.ExpectedField)
+				err = assertC08Rejected(t, encoded, openC08Root(t, root), tc.ExpectedCode, tc.ExpectedField)
 				if err != nil {
 					t.Fatal(err)
 				}
@@ -149,11 +159,54 @@ func TestC08RejectsManifestAndFileNegatives(t *testing.T) {
 			if err != nil {
 				t.Fatal(err)
 			}
-			if err := assertC08Rejected(t, encoded, os.DirFS(root), tc.ExpectedCode, tc.ExpectedField); err != nil {
+			if err := assertC08Rejected(t, encoded, openC08Root(t, root), tc.ExpectedCode, tc.ExpectedField); err != nil {
 				t.Fatal(err)
 			}
 		})
 	}
+}
+
+func TestC08RejectsEscapingSymlinkAndSpecialFiles(t *testing.T) {
+	t.Run("symlink within root", func(t *testing.T) {
+		root := copyC08(t)
+		if err := os.Rename(filepath.Join(root, "subject.txt"), filepath.Join(root, "subject-data.txt")); err != nil {
+			t.Fatal(err)
+		}
+		if err := os.Symlink("subject-data.txt", filepath.Join(root, "subject.txt")); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := bundle.ReadRoot(readC08(t, "positive.json"), openC08Root(t, root)); err != nil {
+			t.Fatalf("root-confined symlink was rejected: %v", err)
+		}
+	})
+	t.Run("outside-root symlink", func(t *testing.T) {
+		root := copyC08(t)
+		outside := filepath.Join(t.TempDir(), "subject.txt")
+		if err := os.WriteFile(outside, []byte("outside"), 0600); err != nil {
+			t.Fatal(err)
+		}
+		if err := os.Remove(filepath.Join(root, "subject.txt")); err != nil {
+			t.Fatal(err)
+		}
+		if err := os.Symlink(outside, filepath.Join(root, "subject.txt")); err != nil {
+			t.Fatal(err)
+		}
+		if err := assertC08Rejected(t, readC08(t, "positive.json"), openC08Root(t, root), "input_unavailable", "files.path"); err != nil {
+			t.Fatal(err)
+		}
+	})
+	t.Run("FIFO", func(t *testing.T) {
+		root := copyC08(t)
+		if err := os.Remove(filepath.Join(root, "subject.txt")); err != nil {
+			t.Fatal(err)
+		}
+		if err := syscall.Mkfifo(filepath.Join(root, "subject.txt"), 0600); err != nil {
+			t.Fatal(err)
+		}
+		if err := assertC08Rejected(t, readC08(t, "positive.json"), openC08Root(t, root), "input_unavailable", "files.path"); err != nil {
+			t.Fatal(err)
+		}
+	})
 }
 
 func TestC08RejectsUnavailableFileSource(t *testing.T) {
@@ -162,9 +215,9 @@ func TestC08RejectsUnavailableFileSource(t *testing.T) {
 	}
 }
 
-func assertC08Rejected(t *testing.T, manifest []byte, files fs.FS, code, field string) error {
+func assertC08Rejected(t *testing.T, manifest []byte, files *os.Root, code, field string) error {
 	t.Helper()
-	got, err := bundle.Read(manifest, files)
+	got, err := bundle.ReadRoot(manifest, files)
 	if err == nil {
 		return errors.New("invalid bundle was accepted")
 	}
@@ -185,11 +238,11 @@ func TestC08ReplayStaysUnverifiedAndDoesNotChangeFiles(t *testing.T) {
 		t.Fatal(err)
 	}
 	manifest := readC08(t, "positive.json")
-	first, err := bundle.Read(manifest, os.DirFS(root))
+	first, err := bundle.ReadRoot(manifest, openC08Root(t, root))
 	if err != nil {
 		t.Fatal(err)
 	}
-	second, err := bundle.Read(manifest, os.DirFS(root))
+	second, err := bundle.ReadRoot(manifest, openC08Root(t, root))
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -202,7 +255,7 @@ func TestC08ReplayStaysUnverifiedAndDoesNotChangeFiles(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	older, err := bundle.Read(staleManifest, os.DirFS(root))
+	older, err := bundle.ReadRoot(staleManifest, openC08Root(t, root))
 	if err != nil {
 		t.Fatal(err)
 	}
