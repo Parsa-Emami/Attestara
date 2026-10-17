@@ -96,10 +96,12 @@
     },
     {
       "id": "C11",
-      "status": "planned",
-      "evidence": [],
-      "source_identity": null,
-      "notes": ""
+      "status": "verified",
+      "evidence": [
+        "docs/evidence/C11.json"
+      ],
+      "source_identity": "sha256:f4476082e2b0a6315ebeacfbfee34d8aeced48f0dc76d6a389e3e6aa88fe1199",
+      "notes": "Owner-approved read-only SPDX 3.0.0 subset: exact package IDs and dependency graph normalized to CycloneDX 1.7, explicit purpose mappings, strict typed negatives, inert/no-fetch behavior and SIGKILL/repeat verified. No full SPDX conformance, API/UI, durable import or trust claim."
     },
     {
       "id": "C12",

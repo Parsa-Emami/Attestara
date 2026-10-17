@@ -98,7 +98,7 @@
       "mandatory": true,
       "planned_commit": "C11",
       "evidence_path": "docs/evidence/C11.json",
-      "status": "unimplemented"
+      "status": "verified"
     },
     {
       "id": "F06",

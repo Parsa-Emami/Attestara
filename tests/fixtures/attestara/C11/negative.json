@@ -1,0 +1,202 @@
+{
+  "cases": [
+    {
+      "id": "unsupported-version",
+      "input": "{\"@context\": \"https://spdx.org/rdf/3.0.0/spdx-context.jsonld\", \"@graph\": [{\"type\": \"CreationInfo\", \"@id\": \"_:creation\", \"specVersion\": \"3.0.1\", \"created\": \"2026-10-17T00:00:00Z\", \"createdBy\": [\"urn:c11:author\"]}, {\"type\": \"Person\", \"spdxId\": \"urn:c11:author\", \"name\": \"Synthetic maintainer\", \"creationInfo\": \"_:creation\"}, {\"type\": \"SpdxDocument\", \"spdxId\": \"urn:c11:document\", \"creationInfo\": \"_:creation\", \"rootElement\": [\"urn:c11:app\"], \"profileConformance\": [\"core\", \"software\"]}, {\"type\": \"software_Package\", \"spdxId\": \"urn:c11:app\", \"creationInfo\": \"_:creation\", \"name\": \"Synthetic application\", \"software_primaryPurpose\": \"application\", \"software_packageVersion\": \"1.0\", \"software_packageUrl\": \"pkg:generic/c11@1.0\", \"description\": \"inert source text\"}, {\"type\": \"software_Package\", \"spdxId\": \"urn:c11:lib\", \"creationInfo\": \"_:creation\", \"name\": \"Synthetic library\", \"software_primaryPurpose\": \"library\"}, {\"type\": \"Relationship\", \"spdxId\": \"urn:c11:dependency\", \"creationInfo\": \"_:creation\", \"from\": \"urn:c11:app\", \"to\": [\"urn:c11:lib\"], \"relationshipType\": \"dependsOn\"}]}",
+      "expected_code": "unsupported_version",
+      "expected_field": "specVersion"
+    },
+    {
+      "id": "unsupported-context",
+      "input": "{\"@context\": \"https://untrusted.invalid/context\", \"@graph\": [{\"type\": \"CreationInfo\", \"@id\": \"_:creation\", \"specVersion\": \"3.0.0\", \"created\": \"2026-10-17T00:00:00Z\", \"createdBy\": [\"urn:c11:author\"]}, {\"type\": \"Person\", \"spdxId\": \"urn:c11:author\", \"name\": \"Synthetic maintainer\", \"creationInfo\": \"_:creation\"}, {\"type\": \"SpdxDocument\", \"spdxId\": \"urn:c11:document\", \"creationInfo\": \"_:creation\", \"rootElement\": [\"urn:c11:app\"], \"profileConformance\": [\"core\", \"software\"]}, {\"type\": \"software_Package\", \"spdxId\": \"urn:c11:app\", \"creationInfo\": \"_:creation\", \"name\": \"Synthetic application\", \"software_primaryPurpose\": \"application\", \"software_packageVersion\": \"1.0\", \"software_packageUrl\": \"pkg:generic/c11@1.0\", \"description\": \"inert source text\"}, {\"type\": \"software_Package\", \"spdxId\": \"urn:c11:lib\", \"creationInfo\": \"_:creation\", \"name\": \"Synthetic library\", \"software_primaryPurpose\": \"library\"}, {\"type\": \"Relationship\", \"spdxId\": \"urn:c11:dependency\", \"creationInfo\": \"_:creation\", \"from\": \"urn:c11:app\", \"to\": [\"urn:c11:lib\"], \"relationshipType\": \"dependsOn\"}]}",
+      "expected_code": "unsupported_version",
+      "expected_field": "@context"
+    },
+    {
+      "id": "duplicate-id",
+      "input": "{\"@context\": \"https://spdx.org/rdf/3.0.0/spdx-context.jsonld\", \"@graph\": [{\"type\": \"CreationInfo\", \"@id\": \"_:creation\", \"specVersion\": \"3.0.0\", \"created\": \"2026-10-17T00:00:00Z\", \"createdBy\": [\"urn:c11:author\"]}, {\"type\": \"Person\", \"spdxId\": \"urn:c11:author\", \"name\": \"Synthetic maintainer\", \"creationInfo\": \"_:creation\"}, {\"type\": \"SpdxDocument\", \"spdxId\": \"urn:c11:document\", \"creationInfo\": \"_:creation\", \"rootElement\": [\"urn:c11:app\"], \"profileConformance\": [\"core\", \"software\"]}, {\"type\": \"software_Package\", \"spdxId\": \"urn:c11:app\", \"creationInfo\": \"_:creation\", \"name\": \"Synthetic application\", \"software_primaryPurpose\": \"application\", \"software_packageVersion\": \"1.0\", \"software_packageUrl\": \"pkg:generic/c11@1.0\", \"description\": \"inert source text\"}, {\"type\": \"software_Package\", \"spdxId\": \"urn:c11:lib\", \"creationInfo\": \"_:creation\", \"name\": \"Synthetic library\", \"software_primaryPurpose\": \"library\"}, {\"type\": \"Relationship\", \"spdxId\": \"urn:c11:dependency\", \"creationInfo\": \"_:creation\", \"from\": \"urn:c11:app\", \"to\": [\"urn:c11:lib\"], \"relationshipType\": \"dependsOn\"}, {\"type\": \"software_Package\", \"spdxId\": \"urn:c11:app\", \"creationInfo\": \"_:creation\", \"name\": \"Synthetic application\", \"software_primaryPurpose\": \"application\", \"software_packageVersion\": \"1.0\", \"software_packageUrl\": \"pkg:generic/c11@1.0\", \"description\": \"inert source text\"}]}",
+      "expected_code": "invalid_input",
+      "expected_field": "@graph"
+    },
+    {
+      "id": "missing-target",
+      "input": "{\"@context\": \"https://spdx.org/rdf/3.0.0/spdx-context.jsonld\", \"@graph\": [{\"type\": \"CreationInfo\", \"@id\": \"_:creation\", \"specVersion\": \"3.0.0\", \"created\": \"2026-10-17T00:00:00Z\", \"createdBy\": [\"urn:c11:author\"]}, {\"type\": \"Person\", \"spdxId\": \"urn:c11:author\", \"name\": \"Synthetic maintainer\", \"creationInfo\": \"_:creation\"}, {\"type\": \"SpdxDocument\", \"spdxId\": \"urn:c11:document\", \"creationInfo\": \"_:creation\", \"rootElement\": [\"urn:c11:app\"], \"profileConformance\": [\"core\", \"software\"]}, {\"type\": \"software_Package\", \"spdxId\": \"urn:c11:app\", \"creationInfo\": \"_:creation\", \"name\": \"Synthetic application\", \"software_primaryPurpose\": \"application\", \"software_packageVersion\": \"1.0\", \"software_packageUrl\": \"pkg:generic/c11@1.0\", \"description\": \"inert source text\"}, {\"type\": \"software_Package\", \"spdxId\": \"urn:c11:lib\", \"creationInfo\": \"_:creation\", \"name\": \"Synthetic library\", \"software_primaryPurpose\": \"library\"}, {\"type\": \"Relationship\", \"spdxId\": \"urn:c11:dependency\", \"creationInfo\": \"_:creation\", \"from\": \"urn:c11:app\", \"to\": [\"urn:missing\"], \"relationshipType\": \"dependsOn\"}]}",
+      "expected_code": "invalid_input",
+      "expected_field": "@graph"
+    },
+    {
+      "id": "unsupported-relationship",
+      "input": "{\"@context\": \"https://spdx.org/rdf/3.0.0/spdx-context.jsonld\", \"@graph\": [{\"type\": \"CreationInfo\", \"@id\": \"_:creation\", \"specVersion\": \"3.0.0\", \"created\": \"2026-10-17T00:00:00Z\", \"createdBy\": [\"urn:c11:author\"]}, {\"type\": \"Person\", \"spdxId\": \"urn:c11:author\", \"name\": \"Synthetic maintainer\", \"creationInfo\": \"_:creation\"}, {\"type\": \"SpdxDocument\", \"spdxId\": \"urn:c11:document\", \"creationInfo\": \"_:creation\", \"rootElement\": [\"urn:c11:app\"], \"profileConformance\": [\"core\", \"software\"]}, {\"type\": \"software_Package\", \"spdxId\": \"urn:c11:app\", \"creationInfo\": \"_:creation\", \"name\": \"Synthetic application\", \"software_primaryPurpose\": \"application\", \"software_packageVersion\": \"1.0\", \"software_packageUrl\": \"pkg:generic/c11@1.0\", \"description\": \"inert source text\"}, {\"type\": \"software_Package\", \"spdxId\": \"urn:c11:lib\", \"creationInfo\": \"_:creation\", \"name\": \"Synthetic library\", \"software_primaryPurpose\": \"library\"}, {\"type\": \"Relationship\", \"spdxId\": \"urn:c11:dependency\", \"creationInfo\": \"_:creation\", \"from\": \"urn:c11:app\", \"to\": [\"urn:c11:lib\"], \"relationshipType\": \"contains\"}]}",
+      "expected_code": "invalid_input",
+      "expected_field": "relationshipType"
+    },
+    {
+      "id": "unsupported-purpose",
+      "input": "{\"@context\": \"https://spdx.org/rdf/3.0.0/spdx-context.jsonld\", \"@graph\": [{\"type\": \"CreationInfo\", \"@id\": \"_:creation\", \"specVersion\": \"3.0.0\", \"created\": \"2026-10-17T00:00:00Z\", \"createdBy\": [\"urn:c11:author\"]}, {\"type\": \"Person\", \"spdxId\": \"urn:c11:author\", \"name\": \"Synthetic maintainer\", \"creationInfo\": \"_:creation\"}, {\"type\": \"SpdxDocument\", \"spdxId\": \"urn:c11:document\", \"creationInfo\": \"_:creation\", \"rootElement\": [\"urn:c11:app\"], \"profileConformance\": [\"core\", \"software\"]}, {\"type\": \"software_Package\", \"spdxId\": \"urn:c11:app\", \"creationInfo\": \"_:creation\", \"name\": \"Synthetic application\", \"software_primaryPurpose\": \"archive\", \"software_packageVersion\": \"1.0\", \"software_packageUrl\": \"pkg:generic/c11@1.0\", \"description\": \"inert source text\"}, {\"type\": \"software_Package\", \"spdxId\": \"urn:c11:lib\", \"creationInfo\": \"_:creation\", \"name\": \"Synthetic library\", \"software_primaryPurpose\": \"library\"}, {\"type\": \"Relationship\", \"spdxId\": \"urn:c11:dependency\", \"creationInfo\": \"_:creation\", \"from\": \"urn:c11:app\", \"to\": [\"urn:c11:lib\"], \"relationshipType\": \"dependsOn\"}]}",
+      "expected_code": "invalid_input",
+      "expected_field": "software_primaryPurpose"
+    },
+    {
+      "id": "missing-purpose",
+      "input": "{\"@context\": \"https://spdx.org/rdf/3.0.0/spdx-context.jsonld\", \"@graph\": [{\"type\": \"CreationInfo\", \"@id\": \"_:creation\", \"specVersion\": \"3.0.0\", \"created\": \"2026-10-17T00:00:00Z\", \"createdBy\": [\"urn:c11:author\"]}, {\"type\": \"Person\", \"spdxId\": \"urn:c11:author\", \"name\": \"Synthetic maintainer\", \"creationInfo\": \"_:creation\"}, {\"type\": \"SpdxDocument\", \"spdxId\": \"urn:c11:document\", \"creationInfo\": \"_:creation\", \"rootElement\": [\"urn:c11:app\"], \"profileConformance\": [\"core\", \"software\"]}, {\"type\": \"software_Package\", \"spdxId\": \"urn:c11:app\", \"creationInfo\": \"_:creation\", \"name\": \"Synthetic application\", \"software_packageVersion\": \"1.0\", \"software_packageUrl\": \"pkg:generic/c11@1.0\", \"description\": \"inert source text\"}, {\"type\": \"software_Package\", \"spdxId\": \"urn:c11:lib\", \"creationInfo\": \"_:creation\", \"name\": \"Synthetic library\", \"software_primaryPurpose\": \"library\"}, {\"type\": \"Relationship\", \"spdxId\": \"urn:c11:dependency\", \"creationInfo\": \"_:creation\", \"from\": \"urn:c11:app\", \"to\": [\"urn:c11:lib\"], \"relationshipType\": \"dependsOn\"}]}",
+      "expected_code": "invalid_input",
+      "expected_field": "software_primaryPurpose"
+    },
+    {
+      "id": "missing-name",
+      "input": "{\"@context\": \"https://spdx.org/rdf/3.0.0/spdx-context.jsonld\", \"@graph\": [{\"type\": \"CreationInfo\", \"@id\": \"_:creation\", \"specVersion\": \"3.0.0\", \"created\": \"2026-10-17T00:00:00Z\", \"createdBy\": [\"urn:c11:author\"]}, {\"type\": \"Person\", \"spdxId\": \"urn:c11:author\", \"name\": \"Synthetic maintainer\", \"creationInfo\": \"_:creation\"}, {\"type\": \"SpdxDocument\", \"spdxId\": \"urn:c11:document\", \"creationInfo\": \"_:creation\", \"rootElement\": [\"urn:c11:app\"], \"profileConformance\": [\"core\", \"software\"]}, {\"type\": \"software_Package\", \"spdxId\": \"urn:c11:app\", \"creationInfo\": \"_:creation\", \"software_primaryPurpose\": \"application\", \"software_packageVersion\": \"1.0\", \"software_packageUrl\": \"pkg:generic/c11@1.0\", \"description\": \"inert source text\"}, {\"type\": \"software_Package\", \"spdxId\": \"urn:c11:lib\", \"creationInfo\": \"_:creation\", \"name\": \"Synthetic library\", \"software_primaryPurpose\": \"library\"}, {\"type\": \"Relationship\", \"spdxId\": \"urn:c11:dependency\", \"creationInfo\": \"_:creation\", \"from\": \"urn:c11:app\", \"to\": [\"urn:c11:lib\"], \"relationshipType\": \"dependsOn\"}]}",
+      "expected_code": "invalid_input",
+      "expected_field": "@graph"
+    },
+    {
+      "id": "missing-creation",
+      "input": "{\"@context\": \"https://spdx.org/rdf/3.0.0/spdx-context.jsonld\", \"@graph\": [{\"type\": \"CreationInfo\", \"@id\": \"_:creation\", \"specVersion\": \"3.0.0\", \"created\": \"2026-10-17T00:00:00Z\", \"createdBy\": [\"urn:c11:author\"]}, {\"type\": \"Person\", \"spdxId\": \"urn:c11:author\", \"name\": \"Synthetic maintainer\", \"creationInfo\": \"_:creation\"}, {\"type\": \"SpdxDocument\", \"spdxId\": \"urn:c11:document\", \"creationInfo\": \"_:creation\", \"rootElement\": [\"urn:c11:app\"], \"profileConformance\": [\"core\", \"software\"]}, {\"type\": \"software_Package\", \"spdxId\": \"urn:c11:app\", \"creationInfo\": \"_:absent\", \"name\": \"Synthetic application\", \"software_primaryPurpose\": \"application\", \"software_packageVersion\": \"1.0\", \"software_packageUrl\": \"pkg:generic/c11@1.0\", \"description\": \"inert source text\"}, {\"type\": \"software_Package\", \"spdxId\": \"urn:c11:lib\", \"creationInfo\": \"_:creation\", \"name\": \"Synthetic library\", \"software_primaryPurpose\": \"library\"}, {\"type\": \"Relationship\", \"spdxId\": \"urn:c11:dependency\", \"creationInfo\": \"_:creation\", \"from\": \"urn:c11:app\", \"to\": [\"urn:c11:lib\"], \"relationshipType\": \"dependsOn\"}]}",
+      "expected_code": "invalid_input",
+      "expected_field": "@graph"
+    },
+    {
+      "id": "empty-targets",
+      "input": "{\"@context\": \"https://spdx.org/rdf/3.0.0/spdx-context.jsonld\", \"@graph\": [{\"type\": \"CreationInfo\", \"@id\": \"_:creation\", \"specVersion\": \"3.0.0\", \"created\": \"2026-10-17T00:00:00Z\", \"createdBy\": [\"urn:c11:author\"]}, {\"type\": \"Person\", \"spdxId\": \"urn:c11:author\", \"name\": \"Synthetic maintainer\", \"creationInfo\": \"_:creation\"}, {\"type\": \"SpdxDocument\", \"spdxId\": \"urn:c11:document\", \"creationInfo\": \"_:creation\", \"rootElement\": [\"urn:c11:app\"], \"profileConformance\": [\"core\", \"software\"]}, {\"type\": \"software_Package\", \"spdxId\": \"urn:c11:app\", \"creationInfo\": \"_:creation\", \"name\": \"Synthetic application\", \"software_primaryPurpose\": \"application\", \"software_packageVersion\": \"1.0\", \"software_packageUrl\": \"pkg:generic/c11@1.0\", \"description\": \"inert source text\"}, {\"type\": \"software_Package\", \"spdxId\": \"urn:c11:lib\", \"creationInfo\": \"_:creation\", \"name\": \"Synthetic library\", \"software_primaryPurpose\": \"library\"}, {\"type\": \"Relationship\", \"spdxId\": \"urn:c11:dependency\", \"creationInfo\": \"_:creation\", \"from\": \"urn:c11:app\", \"to\": [], \"relationshipType\": \"dependsOn\"}]}",
+      "expected_code": "invalid_input",
+      "expected_field": "@graph"
+    },
+    {
+      "id": "unsupported-element",
+      "input": "{\"@context\": \"https://spdx.org/rdf/3.0.0/spdx-context.jsonld\", \"@graph\": [{\"type\": \"CreationInfo\", \"@id\": \"_:creation\", \"specVersion\": \"3.0.0\", \"created\": \"2026-10-17T00:00:00Z\", \"createdBy\": [\"urn:c11:author\"]}, {\"type\": \"Person\", \"spdxId\": \"urn:c11:author\", \"name\": \"Synthetic maintainer\", \"creationInfo\": \"_:creation\"}, {\"type\": \"SpdxDocument\", \"spdxId\": \"urn:c11:document\", \"creationInfo\": \"_:creation\", \"rootElement\": [\"urn:c11:app\"], \"profileConformance\": [\"core\", \"software\"]}, {\"type\": \"software_Package\", \"spdxId\": \"urn:c11:app\", \"creationInfo\": \"_:creation\", \"name\": \"Synthetic application\", \"software_primaryPurpose\": \"application\", \"software_packageVersion\": \"1.0\", \"software_packageUrl\": \"pkg:generic/c11@1.0\", \"description\": \"inert source text\"}, {\"type\": \"software_File\", \"spdxId\": \"urn:c11:lib\", \"creationInfo\": \"_:creation\", \"name\": \"Synthetic library\", \"software_primaryPurpose\": \"library\"}, {\"type\": \"Relationship\", \"spdxId\": \"urn:c11:dependency\", \"creationInfo\": \"_:creation\", \"from\": \"urn:c11:app\", \"to\": [\"urn:c11:lib\"], \"relationshipType\": \"dependsOn\"}]}",
+      "expected_code": "invalid_input",
+      "expected_field": "type"
+    },
+    {
+      "id": "malformed",
+      "input": "{",
+      "expected_code": "invalid_json",
+      "expected_field": "$"
+    },
+    {
+      "id": "duplicate-member",
+      "input": "{\"@graph\":[],\"@graph\":[]}",
+      "expected_code": "invalid_json",
+      "expected_field": "$"
+    },
+    {
+      "id": "nested-duplicate",
+      "input": "{\"x\":{\"a\":1,\"a\":2}}",
+      "expected_code": "invalid_json",
+      "expected_field": "$"
+    },
+    {
+      "id": "trailing",
+      "input": "{} {}",
+      "expected_code": "invalid_json",
+      "expected_field": "$"
+    },
+    {
+      "id": "null",
+      "input": "null",
+      "expected_code": "invalid_input",
+      "expected_field": "$"
+    },
+    {
+      "id": "array",
+      "input": "[]",
+      "expected_code": "invalid_input",
+      "expected_field": "$"
+    },
+    {
+      "id": "empty",
+      "input": "{}",
+      "expected_code": "invalid_input",
+      "expected_field": "$"
+    },
+    {
+      "id": "scoped-context",
+      "input": "{\"@context\": \"https://spdx.org/rdf/3.0.0/spdx-context.jsonld\", \"@graph\": [{\"type\": \"CreationInfo\", \"@id\": \"_:creation\", \"specVersion\": \"3.0.0\", \"created\": \"2026-10-17T00:00:00Z\", \"createdBy\": [\"urn:c11:author\"]}, {\"type\": \"Person\", \"spdxId\": \"urn:c11:author\", \"name\": \"Synthetic maintainer\", \"creationInfo\": \"_:creation\"}, {\"type\": \"SpdxDocument\", \"spdxId\": \"urn:c11:document\", \"creationInfo\": \"_:creation\", \"rootElement\": [\"urn:c11:app\"], \"profileConformance\": [\"core\", \"software\"]}, {\"type\": \"software_Package\", \"spdxId\": \"urn:c11:app\", \"creationInfo\": \"_:creation\", \"name\": \"Synthetic application\", \"software_primaryPurpose\": \"application\", \"software_packageVersion\": \"1.0\", \"software_packageUrl\": \"pkg:generic/c11@1.0\", \"description\": \"inert source text\", \"@context\": {\"software_primaryPurpose\": \"https://evil.invalid/remap\"}}, {\"type\": \"software_Package\", \"spdxId\": \"urn:c11:lib\", \"creationInfo\": \"_:creation\", \"name\": \"Synthetic library\", \"software_primaryPurpose\": \"library\"}, {\"type\": \"Relationship\", \"spdxId\": \"urn:c11:dependency\", \"creationInfo\": \"_:creation\", \"from\": \"urn:c11:app\", \"to\": [\"urn:c11:lib\"], \"relationshipType\": \"dependsOn\"}]}",
+      "expected_code": "invalid_input",
+      "expected_field": "@context"
+    },
+    {
+      "id": "alternate-id",
+      "input": "{\"@context\": \"https://spdx.org/rdf/3.0.0/spdx-context.jsonld\", \"@graph\": [{\"type\": \"CreationInfo\", \"@id\": \"_:creation\", \"specVersion\": \"3.0.0\", \"created\": \"2026-10-17T00:00:00Z\", \"createdBy\": [\"urn:c11:author\"]}, {\"type\": \"Person\", \"spdxId\": \"urn:c11:author\", \"name\": \"Synthetic maintainer\", \"creationInfo\": \"_:creation\"}, {\"type\": \"SpdxDocument\", \"spdxId\": \"urn:c11:document\", \"creationInfo\": \"_:creation\", \"rootElement\": [\"urn:c11:app\"], \"profileConformance\": [\"core\", \"software\"]}, {\"type\": \"software_Package\", \"spdxId\": \"urn:c11:app\", \"creationInfo\": \"_:creation\", \"name\": \"Synthetic application\", \"software_primaryPurpose\": \"application\", \"software_packageVersion\": \"1.0\", \"software_packageUrl\": \"pkg:generic/c11@1.0\", \"description\": \"inert source text\", \"@id\": \"urn:different\"}, {\"type\": \"software_Package\", \"spdxId\": \"urn:c11:lib\", \"creationInfo\": \"_:creation\", \"name\": \"Synthetic library\", \"software_primaryPurpose\": \"library\"}, {\"type\": \"Relationship\", \"spdxId\": \"urn:c11:dependency\", \"creationInfo\": \"_:creation\", \"from\": \"urn:c11:app\", \"to\": [\"urn:c11:lib\"], \"relationshipType\": \"dependsOn\"}]}",
+      "expected_code": "invalid_input",
+      "expected_field": "@id"
+    },
+    {
+      "id": "qualified-relation",
+      "input": "{\"@context\": \"https://spdx.org/rdf/3.0.0/spdx-context.jsonld\", \"@graph\": [{\"type\": \"CreationInfo\", \"@id\": \"_:creation\", \"specVersion\": \"3.0.0\", \"created\": \"2026-10-17T00:00:00Z\", \"createdBy\": [\"urn:c11:author\"]}, {\"type\": \"Person\", \"spdxId\": \"urn:c11:author\", \"name\": \"Synthetic maintainer\", \"creationInfo\": \"_:creation\"}, {\"type\": \"SpdxDocument\", \"spdxId\": \"urn:c11:document\", \"creationInfo\": \"_:creation\", \"rootElement\": [\"urn:c11:app\"], \"profileConformance\": [\"core\", \"software\"]}, {\"type\": \"software_Package\", \"spdxId\": \"urn:c11:app\", \"creationInfo\": \"_:creation\", \"name\": \"Synthetic application\", \"software_primaryPurpose\": \"application\", \"software_packageVersion\": \"1.0\", \"software_packageUrl\": \"pkg:generic/c11@1.0\", \"description\": \"inert source text\"}, {\"type\": \"software_Package\", \"spdxId\": \"urn:c11:lib\", \"creationInfo\": \"_:creation\", \"name\": \"Synthetic library\", \"software_primaryPurpose\": \"library\"}, {\"type\": \"Relationship\", \"spdxId\": \"urn:c11:dependency\", \"creationInfo\": \"_:creation\", \"from\": \"urn:c11:app\", \"to\": [\"urn:c11:lib\"], \"relationshipType\": \"dependsOn\", \"completeness\": \"incomplete\"}]}",
+      "expected_code": "invalid_input",
+      "expected_field": "completeness"
+    },
+    {
+      "id": "bad-purpose-type",
+      "input": "{\"@context\": \"https://spdx.org/rdf/3.0.0/spdx-context.jsonld\", \"@graph\": [{\"type\": \"CreationInfo\", \"@id\": \"_:creation\", \"specVersion\": \"3.0.0\", \"created\": \"2026-10-17T00:00:00Z\", \"createdBy\": [\"urn:c11:author\"]}, {\"type\": \"Person\", \"spdxId\": \"urn:c11:author\", \"name\": \"Synthetic maintainer\", \"creationInfo\": \"_:creation\"}, {\"type\": \"SpdxDocument\", \"spdxId\": \"urn:c11:document\", \"creationInfo\": \"_:creation\", \"rootElement\": [\"urn:c11:app\"], \"profileConformance\": [\"core\", \"software\"]}, {\"type\": \"software_Package\", \"spdxId\": \"urn:c11:app\", \"creationInfo\": \"_:creation\", \"name\": \"Synthetic application\", \"software_primaryPurpose\": 2, \"software_packageVersion\": \"1.0\", \"software_packageUrl\": \"pkg:generic/c11@1.0\", \"description\": \"inert source text\"}, {\"type\": \"software_Package\", \"spdxId\": \"urn:c11:lib\", \"creationInfo\": \"_:creation\", \"name\": \"Synthetic library\", \"software_primaryPurpose\": \"library\"}, {\"type\": \"Relationship\", \"spdxId\": \"urn:c11:dependency\", \"creationInfo\": \"_:creation\", \"from\": \"urn:c11:app\", \"to\": [\"urn:c11:lib\"], \"relationshipType\": \"dependsOn\"}]}",
+      "expected_code": "invalid_input",
+      "expected_field": "software_primaryPurpose"
+    },
+    {
+      "id": "bad-version-type",
+      "input": "{\"@context\": \"https://spdx.org/rdf/3.0.0/spdx-context.jsonld\", \"@graph\": [{\"type\": \"CreationInfo\", \"@id\": \"_:creation\", \"specVersion\": \"3.0.0\", \"created\": \"2026-10-17T00:00:00Z\", \"createdBy\": [\"urn:c11:author\"]}, {\"type\": \"Person\", \"spdxId\": \"urn:c11:author\", \"name\": \"Synthetic maintainer\", \"creationInfo\": \"_:creation\"}, {\"type\": \"SpdxDocument\", \"spdxId\": \"urn:c11:document\", \"creationInfo\": \"_:creation\", \"rootElement\": [\"urn:c11:app\"], \"profileConformance\": [\"core\", \"software\"]}, {\"type\": \"software_Package\", \"spdxId\": \"urn:c11:app\", \"creationInfo\": \"_:creation\", \"name\": \"Synthetic application\", \"software_primaryPurpose\": \"application\", \"software_packageVersion\": 2, \"software_packageUrl\": \"pkg:generic/c11@1.0\", \"description\": \"inert source text\"}, {\"type\": \"software_Package\", \"spdxId\": \"urn:c11:lib\", \"creationInfo\": \"_:creation\", \"name\": \"Synthetic library\", \"software_primaryPurpose\": \"library\"}, {\"type\": \"Relationship\", \"spdxId\": \"urn:c11:dependency\", \"creationInfo\": \"_:creation\", \"from\": \"urn:c11:app\", \"to\": [\"urn:c11:lib\"], \"relationshipType\": \"dependsOn\"}]}",
+      "expected_code": "invalid_input",
+      "expected_field": "@graph"
+    },
+    {
+      "id": "bad-purl",
+      "input": "{\"@context\": \"https://spdx.org/rdf/3.0.0/spdx-context.jsonld\", \"@graph\": [{\"type\": \"CreationInfo\", \"@id\": \"_:creation\", \"specVersion\": \"3.0.0\", \"created\": \"2026-10-17T00:00:00Z\", \"createdBy\": [\"urn:c11:author\"]}, {\"type\": \"Person\", \"spdxId\": \"urn:c11:author\", \"name\": \"Synthetic maintainer\", \"creationInfo\": \"_:creation\"}, {\"type\": \"SpdxDocument\", \"spdxId\": \"urn:c11:document\", \"creationInfo\": \"_:creation\", \"rootElement\": [\"urn:c11:app\"], \"profileConformance\": [\"core\", \"software\"]}, {\"type\": \"software_Package\", \"spdxId\": \"urn:c11:app\", \"creationInfo\": \"_:creation\", \"name\": \"Synthetic application\", \"software_primaryPurpose\": \"application\", \"software_packageVersion\": \"1.0\", \"software_packageUrl\": \"https://example.invalid/sensitive-value\", \"description\": \"inert source text\"}, {\"type\": \"software_Package\", \"spdxId\": \"urn:c11:lib\", \"creationInfo\": \"_:creation\", \"name\": \"Synthetic library\", \"software_primaryPurpose\": \"library\"}, {\"type\": \"Relationship\", \"spdxId\": \"urn:c11:dependency\", \"creationInfo\": \"_:creation\", \"from\": \"urn:c11:app\", \"to\": [\"urn:c11:lib\"], \"relationshipType\": \"dependsOn\"}]}",
+      "expected_code": "invalid_input",
+      "expected_field": "@graph"
+    },
+    {
+      "id": "bad-creator",
+      "input": "{\"@context\": \"https://spdx.org/rdf/3.0.0/spdx-context.jsonld\", \"@graph\": [{\"type\": \"CreationInfo\", \"@id\": \"_:creation\", \"specVersion\": \"3.0.0\", \"created\": \"2026-10-17T00:00:00Z\", \"createdBy\": [\"urn:c11:lib\"]}, {\"type\": \"Person\", \"spdxId\": \"urn:c11:author\", \"name\": \"Synthetic maintainer\", \"creationInfo\": \"_:creation\"}, {\"type\": \"SpdxDocument\", \"spdxId\": \"urn:c11:document\", \"creationInfo\": \"_:creation\", \"rootElement\": [\"urn:c11:app\"], \"profileConformance\": [\"core\", \"software\"]}, {\"type\": \"software_Package\", \"spdxId\": \"urn:c11:app\", \"creationInfo\": \"_:creation\", \"name\": \"Synthetic application\", \"software_primaryPurpose\": \"application\", \"software_packageVersion\": \"1.0\", \"software_packageUrl\": \"pkg:generic/c11@1.0\", \"description\": \"inert source text\"}, {\"type\": \"software_Package\", \"spdxId\": \"urn:c11:lib\", \"creationInfo\": \"_:creation\", \"name\": \"Synthetic library\", \"software_primaryPurpose\": \"library\"}, {\"type\": \"Relationship\", \"spdxId\": \"urn:c11:dependency\", \"creationInfo\": \"_:creation\", \"from\": \"urn:c11:app\", \"to\": [\"urn:c11:lib\"], \"relationshipType\": \"dependsOn\"}]}",
+      "expected_code": "invalid_input",
+      "expected_field": "@graph"
+    },
+    {
+      "id": "bad-date",
+      "input": "{\"@context\": \"https://spdx.org/rdf/3.0.0/spdx-context.jsonld\", \"@graph\": [{\"type\": \"CreationInfo\", \"@id\": \"_:creation\", \"specVersion\": \"3.0.0\", \"created\": \"yesterday\", \"createdBy\": [\"urn:c11:author\"]}, {\"type\": \"Person\", \"spdxId\": \"urn:c11:author\", \"name\": \"Synthetic maintainer\", \"creationInfo\": \"_:creation\"}, {\"type\": \"SpdxDocument\", \"spdxId\": \"urn:c11:document\", \"creationInfo\": \"_:creation\", \"rootElement\": [\"urn:c11:app\"], \"profileConformance\": [\"core\", \"software\"]}, {\"type\": \"software_Package\", \"spdxId\": \"urn:c11:app\", \"creationInfo\": \"_:creation\", \"name\": \"Synthetic application\", \"software_primaryPurpose\": \"application\", \"software_packageVersion\": \"1.0\", \"software_packageUrl\": \"pkg:generic/c11@1.0\", \"description\": \"inert source text\"}, {\"type\": \"software_Package\", \"spdxId\": \"urn:c11:lib\", \"creationInfo\": \"_:creation\", \"name\": \"Synthetic library\", \"software_primaryPurpose\": \"library\"}, {\"type\": \"Relationship\", \"spdxId\": \"urn:c11:dependency\", \"creationInfo\": \"_:creation\", \"from\": \"urn:c11:app\", \"to\": [\"urn:c11:lib\"], \"relationshipType\": \"dependsOn\"}]}",
+      "expected_code": "invalid_input",
+      "expected_field": "@graph"
+    },
+    {
+      "id": "bad-root",
+      "input": "{\"@context\": \"https://spdx.org/rdf/3.0.0/spdx-context.jsonld\", \"@graph\": [{\"type\": \"CreationInfo\", \"@id\": \"_:creation\", \"specVersion\": \"3.0.0\", \"created\": \"2026-10-17T00:00:00Z\", \"createdBy\": [\"urn:c11:author\"]}, {\"type\": \"Person\", \"spdxId\": \"urn:c11:author\", \"name\": \"Synthetic maintainer\", \"creationInfo\": \"_:creation\"}, {\"type\": \"SpdxDocument\", \"spdxId\": \"urn:c11:document\", \"creationInfo\": \"_:creation\", \"rootElement\": [\"urn:missing\"], \"profileConformance\": [\"core\", \"software\"]}, {\"type\": \"software_Package\", \"spdxId\": \"urn:c11:app\", \"creationInfo\": \"_:creation\", \"name\": \"Synthetic application\", \"software_primaryPurpose\": \"application\", \"software_packageVersion\": \"1.0\", \"software_packageUrl\": \"pkg:generic/c11@1.0\", \"description\": \"inert source text\"}, {\"type\": \"software_Package\", \"spdxId\": \"urn:c11:lib\", \"creationInfo\": \"_:creation\", \"name\": \"Synthetic library\", \"software_primaryPurpose\": \"library\"}, {\"type\": \"Relationship\", \"spdxId\": \"urn:c11:dependency\", \"creationInfo\": \"_:creation\", \"from\": \"urn:c11:app\", \"to\": [\"urn:c11:lib\"], \"relationshipType\": \"dependsOn\"}]}",
+      "expected_code": "invalid_input",
+      "expected_field": "@graph"
+    },
+    {
+      "id": "bad-from",
+      "input": "{\"@context\": \"https://spdx.org/rdf/3.0.0/spdx-context.jsonld\", \"@graph\": [{\"type\": \"CreationInfo\", \"@id\": \"_:creation\", \"specVersion\": \"3.0.0\", \"created\": \"2026-10-17T00:00:00Z\", \"createdBy\": [\"urn:c11:author\"]}, {\"type\": \"Person\", \"spdxId\": \"urn:c11:author\", \"name\": \"Synthetic maintainer\", \"creationInfo\": \"_:creation\"}, {\"type\": \"SpdxDocument\", \"spdxId\": \"urn:c11:document\", \"creationInfo\": \"_:creation\", \"rootElement\": [\"urn:c11:app\"], \"profileConformance\": [\"core\", \"software\"]}, {\"type\": \"software_Package\", \"spdxId\": \"urn:c11:app\", \"creationInfo\": \"_:creation\", \"name\": \"Synthetic application\", \"software_primaryPurpose\": \"application\", \"software_packageVersion\": \"1.0\", \"software_packageUrl\": \"pkg:generic/c11@1.0\", \"description\": \"inert source text\"}, {\"type\": \"software_Package\", \"spdxId\": \"urn:c11:lib\", \"creationInfo\": \"_:creation\", \"name\": \"Synthetic library\", \"software_primaryPurpose\": \"library\"}, {\"type\": \"Relationship\", \"spdxId\": \"urn:c11:dependency\", \"creationInfo\": \"_:creation\", \"from\": \"urn:c11:author\", \"to\": [\"urn:c11:lib\"], \"relationshipType\": \"dependsOn\"}]}",
+      "expected_code": "invalid_input",
+      "expected_field": "@graph"
+    },
+    {
+      "id": "null-targets",
+      "input": "{\"@context\": \"https://spdx.org/rdf/3.0.0/spdx-context.jsonld\", \"@graph\": [{\"type\": \"CreationInfo\", \"@id\": \"_:creation\", \"specVersion\": \"3.0.0\", \"created\": \"2026-10-17T00:00:00Z\", \"createdBy\": [\"urn:c11:author\"]}, {\"type\": \"Person\", \"spdxId\": \"urn:c11:author\", \"name\": \"Synthetic maintainer\", \"creationInfo\": \"_:creation\"}, {\"type\": \"SpdxDocument\", \"spdxId\": \"urn:c11:document\", \"creationInfo\": \"_:creation\", \"rootElement\": [\"urn:c11:app\"], \"profileConformance\": [\"core\", \"software\"]}, {\"type\": \"software_Package\", \"spdxId\": \"urn:c11:app\", \"creationInfo\": \"_:creation\", \"name\": \"Synthetic application\", \"software_primaryPurpose\": \"application\", \"software_packageVersion\": \"1.0\", \"software_packageUrl\": \"pkg:generic/c11@1.0\", \"description\": \"inert source text\"}, {\"type\": \"software_Package\", \"spdxId\": \"urn:c11:lib\", \"creationInfo\": \"_:creation\", \"name\": \"Synthetic library\", \"software_primaryPurpose\": \"library\"}, {\"type\": \"Relationship\", \"spdxId\": \"urn:c11:dependency\", \"creationInfo\": \"_:creation\", \"from\": \"urn:c11:app\", \"to\": null, \"relationshipType\": \"dependsOn\"}]}",
+      "expected_code": "invalid_input",
+      "expected_field": "@graph"
+    },
+    {
+      "id": "null-node",
+      "input": "{\"@context\": \"https://spdx.org/rdf/3.0.0/spdx-context.jsonld\", \"@graph\": [{\"type\": \"CreationInfo\", \"@id\": \"_:creation\", \"specVersion\": \"3.0.0\", \"created\": \"2026-10-17T00:00:00Z\", \"createdBy\": [\"urn:c11:author\"]}, {\"type\": \"Person\", \"spdxId\": \"urn:c11:author\", \"name\": \"Synthetic maintainer\", \"creationInfo\": \"_:creation\"}, {\"type\": \"SpdxDocument\", \"spdxId\": \"urn:c11:document\", \"creationInfo\": \"_:creation\", \"rootElement\": [\"urn:c11:app\"], \"profileConformance\": [\"core\", \"software\"]}, {\"type\": \"software_Package\", \"spdxId\": \"urn:c11:app\", \"creationInfo\": \"_:creation\", \"name\": \"Synthetic application\", \"software_primaryPurpose\": \"application\", \"software_packageVersion\": \"1.0\", \"software_packageUrl\": \"pkg:generic/c11@1.0\", \"description\": \"inert source text\"}, {\"type\": \"software_Package\", \"spdxId\": \"urn:c11:lib\", \"creationInfo\": \"_:creation\", \"name\": \"Synthetic library\", \"software_primaryPurpose\": \"library\"}, {\"type\": \"Relationship\", \"spdxId\": \"urn:c11:dependency\", \"creationInfo\": \"_:creation\", \"from\": \"urn:c11:app\", \"to\": [\"urn:c11:lib\"], \"relationshipType\": \"dependsOn\"}, null]}",
+      "expected_code": "invalid_input",
+      "expected_field": "@graph"
+    },
+    {
+      "id": "alternate-type",
+      "input": "{\"@context\": \"https://spdx.org/rdf/3.0.0/spdx-context.jsonld\", \"@graph\": [{\"type\": \"CreationInfo\", \"@id\": \"_:creation\", \"specVersion\": \"3.0.0\", \"created\": \"2026-10-17T00:00:00Z\", \"createdBy\": [\"urn:c11:author\"]}, {\"type\": \"Person\", \"spdxId\": \"urn:c11:author\", \"name\": \"Synthetic maintainer\", \"creationInfo\": \"_:creation\"}, {\"type\": \"SpdxDocument\", \"spdxId\": \"urn:c11:document\", \"creationInfo\": \"_:creation\", \"rootElement\": [\"urn:c11:app\"], \"profileConformance\": [\"core\", \"software\"]}, {\"type\": \"software_Package\", \"spdxId\": \"urn:c11:app\", \"creationInfo\": \"_:creation\", \"name\": \"Synthetic application\", \"software_primaryPurpose\": \"application\", \"software_packageVersion\": \"1.0\", \"software_packageUrl\": \"pkg:generic/c11@1.0\", \"description\": \"inert source text\", \"@type\": \"software_File\"}, {\"type\": \"software_Package\", \"spdxId\": \"urn:c11:lib\", \"creationInfo\": \"_:creation\", \"name\": \"Synthetic library\", \"software_primaryPurpose\": \"library\"}, {\"type\": \"Relationship\", \"spdxId\": \"urn:c11:dependency\", \"creationInfo\": \"_:creation\", \"from\": \"urn:c11:app\", \"to\": [\"urn:c11:lib\"], \"relationshipType\": \"dependsOn\"}]}",
+      "expected_code": "invalid_input",
+      "expected_field": "type"
+    },
+    {
+      "id": "invalid-blank-id",
+      "input": "{\"@context\": \"https://spdx.org/rdf/3.0.0/spdx-context.jsonld\", \"@graph\": [{\"type\": \"CreationInfo\", \"@id\": \"_:bad id\", \"specVersion\": \"3.0.0\", \"created\": \"2026-10-17T00:00:00Z\", \"createdBy\": [\"urn:c11:author\"]}, {\"type\": \"Person\", \"spdxId\": \"urn:c11:author\", \"name\": \"Synthetic maintainer\", \"creationInfo\": \"_:creation\"}, {\"type\": \"SpdxDocument\", \"spdxId\": \"urn:c11:document\", \"creationInfo\": \"_:creation\", \"rootElement\": [\"urn:c11:app\"], \"profileConformance\": [\"core\", \"software\"]}, {\"type\": \"software_Package\", \"spdxId\": \"urn:c11:app\", \"creationInfo\": \"_:creation\", \"name\": \"Synthetic application\", \"software_primaryPurpose\": \"application\", \"software_packageVersion\": \"1.0\", \"software_packageUrl\": \"pkg:generic/c11@1.0\", \"description\": \"inert source text\"}, {\"type\": \"software_Package\", \"spdxId\": \"urn:c11:lib\", \"creationInfo\": \"_:creation\", \"name\": \"Synthetic library\", \"software_primaryPurpose\": \"library\"}, {\"type\": \"Relationship\", \"spdxId\": \"urn:c11:dependency\", \"creationInfo\": \"_:creation\", \"from\": \"urn:c11:app\", \"to\": [\"urn:c11:lib\"], \"relationshipType\": \"dependsOn\"}]}",
+      "expected_code": "invalid_input",
+      "expected_field": "@graph"
+    },
+    {
+      "id": "ambiguous-creation-id",
+      "input": "{\"@context\": \"https://spdx.org/rdf/3.0.0/spdx-context.jsonld\", \"@graph\": [{\"type\": \"CreationInfo\", \"@id\": \"_:creation\", \"specVersion\": \"3.0.0\", \"created\": \"2026-10-17T00:00:00Z\", \"createdBy\": [\"urn:c11:author\"], \"spdxId\": \"urn:ambiguous\"}, {\"type\": \"Person\", \"spdxId\": \"urn:c11:author\", \"name\": \"Synthetic maintainer\", \"creationInfo\": \"_:creation\"}, {\"type\": \"SpdxDocument\", \"spdxId\": \"urn:c11:document\", \"creationInfo\": \"_:creation\", \"rootElement\": [\"urn:c11:app\"], \"profileConformance\": [\"core\", \"software\"]}, {\"type\": \"software_Package\", \"spdxId\": \"urn:c11:app\", \"creationInfo\": \"_:creation\", \"name\": \"Synthetic application\", \"software_primaryPurpose\": \"application\", \"software_packageVersion\": \"1.0\", \"software_packageUrl\": \"pkg:generic/c11@1.0\", \"description\": \"inert source text\"}, {\"type\": \"software_Package\", \"spdxId\": \"urn:c11:lib\", \"creationInfo\": \"_:creation\", \"name\": \"Synthetic library\", \"software_primaryPurpose\": \"library\"}, {\"type\": \"Relationship\", \"spdxId\": \"urn:c11:dependency\", \"creationInfo\": \"_:creation\", \"from\": \"urn:c11:app\", \"to\": [\"urn:c11:lib\"], \"relationshipType\": \"dependsOn\"}]}",
+      "expected_code": "invalid_input",
+      "expected_field": "@graph"
+    }
+  ]
+}

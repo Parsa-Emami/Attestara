@@ -1,0 +1,6 @@
+{
+  "license": "Apache-2.0",
+  "provenance": "Repository-authored synthetic C11 fixtures; no customer data or executable payload.",
+  "specification_source": "https://github.com/spdx/spdx-spec/tree/f148837fa65ea5ce88c65531480404453c15fd26",
+  "source_archive_sha256": "245c87a5b0020479878b9c812a4122c088db589cb45a7f52e578428d79fc29fa"
+}

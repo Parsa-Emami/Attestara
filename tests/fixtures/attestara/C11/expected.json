@@ -1,0 +1,26 @@
+{
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.7",
+  "components": [
+    {
+      "type": "application",
+      "bom-ref": "urn:c11:app",
+      "name": "Synthetic application",
+      "version": "1.0",
+      "purl": "pkg:generic/c11@1.0"
+    },
+    {
+      "type": "library",
+      "bom-ref": "urn:c11:lib",
+      "name": "Synthetic library"
+    }
+  ],
+  "dependencies": [
+    {
+      "ref": "urn:c11:app",
+      "dependsOn": [
+        "urn:c11:lib"
+      ]
+    }
+  ]
+}

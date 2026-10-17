@@ -6,7 +6,7 @@ export const suites = {
   './cmd/attestara': ['TestHealthContractAndAdmission', 'TestRealListenerShutdownAndOccupiedPort', 'TestVersionAndInvalidLaunch'],
   './internal/contracts': ['TestC04Fixtures', 'TestC04StrictJSON', 'TestC04LimitsAndCancellation', 'TestC04NestedFieldsResultsAndNoExecution'],
   './internal/storage': ['TestC05InjectedDiskFullRecovery', 'TestC05RealProcessCrashRecoveryAndWriterLock', 'TestC05CorruptionFailsClosedAndPreservesManifest', 'TestC05SourceBytesStayInertAndPrivate'],
-  './tests': ['TestC05CommitRestartReplayAndConflict', 'TestC05SingleWriterAndCorruptReferences', 'TestC05RejectsInvalidBytesPathsAndInputBinding', 'TestC07EvidenceEnvelopeBindsSubjectToolConfigurationAndArtifact', 'TestC07EnvelopeRejectsInvalidFixtures', 'TestC07EnvelopeReloadPreservesBindings', 'TestC10ValidatesAndPreservesOriginalBytes', 'TestC10RejectsInvalidFixtures', 'TestC10LimitsStrictUTF8AndInertInput', 'TestC10NeverLoadsDocumentURLs', 'TestC10EmbeddedSchemaPins'],
+  './tests': ['TestC05CommitRestartReplayAndConflict', 'TestC05SingleWriterAndCorruptReferences', 'TestC05RejectsInvalidBytesPathsAndInputBinding', 'TestC07EvidenceEnvelopeBindsSubjectToolConfigurationAndArtifact', 'TestC07EnvelopeRejectsInvalidFixtures', 'TestC07EnvelopeReloadPreservesBindings', 'TestC10ValidatesAndPreservesOriginalBytes', 'TestC10RejectsInvalidFixtures', 'TestC10LimitsStrictUTF8AndInertInput', 'TestC10NeverLoadsDocumentURLs', 'TestC10EmbeddedSchemaPins', 'TestC11NormalizedRoundTrip', 'TestC11RejectsInvalidFixtures', 'TestC11PurposesAndMergedDependencies', 'TestC11BoundsInertInputAndArchiveBoundary', 'TestC11InterruptedRead', 'TestC11NeverFetchesContextOrMetadata'],
 };
 
 export function validateDiscovery(pkg, output) {

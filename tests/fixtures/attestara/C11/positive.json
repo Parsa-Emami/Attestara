@@ -1,0 +1,59 @@
+{
+  "@context": "https://spdx.org/rdf/3.0.0/spdx-context.jsonld",
+  "@graph": [
+    {
+      "type": "CreationInfo",
+      "@id": "_:creation",
+      "specVersion": "3.0.0",
+      "created": "2026-10-17T00:00:00Z",
+      "createdBy": [
+        "urn:c11:author"
+      ]
+    },
+    {
+      "type": "Person",
+      "spdxId": "urn:c11:author",
+      "name": "Synthetic maintainer",
+      "creationInfo": "_:creation"
+    },
+    {
+      "type": "SpdxDocument",
+      "spdxId": "urn:c11:document",
+      "creationInfo": "_:creation",
+      "rootElement": [
+        "urn:c11:app"
+      ],
+      "profileConformance": [
+        "core",
+        "software"
+      ]
+    },
+    {
+      "type": "software_Package",
+      "spdxId": "urn:c11:app",
+      "creationInfo": "_:creation",
+      "name": "Synthetic application",
+      "software_primaryPurpose": "application",
+      "software_packageVersion": "1.0",
+      "software_packageUrl": "pkg:generic/c11@1.0",
+      "description": "inert source text"
+    },
+    {
+      "type": "software_Package",
+      "spdxId": "urn:c11:lib",
+      "creationInfo": "_:creation",
+      "name": "Synthetic library",
+      "software_primaryPurpose": "library"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "urn:c11:dependency",
+      "creationInfo": "_:creation",
+      "from": "urn:c11:app",
+      "to": [
+        "urn:c11:lib"
+      ],
+      "relationshipType": "dependsOn"
+    }
+  ]
+}
