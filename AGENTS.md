@@ -4,10 +4,11 @@ Read START_HERE.md, docs/agents/EXECUTION_CONTRACT.md, docs/architecture/ADR-000
 
 1. Inspect Git status, current source/manifests/locks/tests/CI and preserve other work.
 2. Run npm run validate:plan and npm run plan -- next; read the returned plans/commits/Cxx.md in full. Complete only unmet dependency-ready criteria.
-3. Follow its exact targets, implementation actions, resources, fixtures, negative cases and current/future command labels. Domain belongs in the selected engine, UI in apps/web and adapters at boundaries. No sibling repository imports.
-4. Implement a real vertical slice and meaningful regressions. A static example, generic JSON preview, successful placeholder endpoint or mocked durability/auth cannot replace the product feature.
-5. Run actual relevant checks, record exact source/tool/provider/fixture identities and command exits/output; update only genuinely verified progress and session handoff. W evidence never certifies a C task.
-6. C30 needs full clean-host core workflow/restart/restore. C40 needs authorized published source/artifacts and installed full-workflow proof.
+3. Consult docs/AGENT_SKILLS.md for the task. Load one primary and at most two supporting skills from .agents/skills; read their full SKILL.md and only the referenced resources needed for this task. Load skills just in time; do not preload the catalog. User instructions, this file, product/architecture decisions and the selected Cxx card override generic skill guidance. Ponytail is opt-in, not a default project mode.
+4. Follow the card's exact targets, implementation actions, resources, fixtures, negative cases and current/future command labels. Domain belongs in the selected engine, UI in apps/web and adapters at boundaries. No sibling repository imports.
+5. Implement a real vertical slice and meaningful regressions. A static example, generic JSON preview, successful placeholder endpoint or mocked durability/auth cannot replace the product feature.
+6. Run actual relevant checks, record exact source/tool/provider/fixture identities and command exits/output; update only genuinely verified progress and session handoff. W evidence never certifies a C task.
+7. C30 needs full clean-host core workflow/restart/restore. C40 needs authorized published source/artifacts and installed full-workflow proof.
 
 Permanent owner restrictions: do not modify database schemas, migrations, .env files or Dockerfiles. Use compatible ADR-0003 adapters; record a precise blocker if a protected change is unavoidable and continue independent authorized work. Preserve existing code including RiskWeft's optional API, and fix observed CI defects without disabling checks or adding broad analysis ignores.
 
