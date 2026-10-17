@@ -1,15 +1,16 @@
 {
   "project": "Attestara",
-  "reviewed_commit": "04732c9496ee0a4637a69adcab1b4fdabe24737e",
+  "reviewed_commit": "771c5420927f12be8f8f6021fdd819ec367d5cb7",
   "readiness": "WEB_FOUNDATION",
   "core_ready": false,
   "implemented": [
     "responsive web shell",
     "roadmap browser",
-    "local bounded JSON structure preview"
+    "local bounded JSON structure preview",
+    "unified local Go process lifecycle and browser process health"
   ],
-  "engine": "not implemented",
-  "next_task": "C03",
+  "engine": "Go process health/lifecycle implemented; domain contracts and evaluation pending",
+  "next_task": "C04",
   "next_command": "npm run plan -- next",
   "full_product_endpoint": "C30 locally usable; C40 full published OSS v1"
 }

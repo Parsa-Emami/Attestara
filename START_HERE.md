@@ -1,6 +1,8 @@
 # Continue Attestara
 
-Current: web foundation; full domain workflow pending.
+Current: web workspace plus unified local Go process health; full domain workflow pending.
+
+Use the pinned Linux x86_64 Node/npm/Go prerequisites in docs/engineering/CLONE_TO_RUN.md.
 
 ```sh
 npm run setup

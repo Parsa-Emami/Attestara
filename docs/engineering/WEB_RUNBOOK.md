@@ -2,11 +2,13 @@
 
 ## Local checkout
 
-Use Node 24.19.0 and npm 11.9.0 from the tested toolchain. From the repository root:
+Use Node 24.19.0, npm 11.9.0 and Go 1.27.2 from the tested Linux x86_64 toolchain. [ENGINE_LAUNCH.md](ENGINE_LAUNCH.md) describes the unified lifecycle and Go source-build prerequisite. From the repository root:
 
 ```sh
 npm ci --ignore-scripts
+npm run setup -- --skip-install
 npm run check
+go test ./...
 npx --no-install playwright install chromium
 npm run test:browser
 npm run dev
@@ -14,10 +16,10 @@ npm run dev
 
 Browser checks may use an operator-provided Chromium executable through the `WEB_TEST_CHROMIUM` process variable. CI uses the Playwright-managed browser. This test override never changes application configuration.
 
-Development URL: http://127.0.0.1:5173. To run the built shell separately:
+Development URL: http://127.0.0.1:5173. To run the built workspace and Go process together:
 
 ```sh
-npm run build
+npm run setup -- --skip-install
 npm start -- --port 4304
 ```
 
@@ -27,7 +29,7 @@ Built URL: http://127.0.0.1:4304. Browser routing uses hashes and hosting at the
 
 The responsive React workspace, forty-step product roadmap, local bounded JSON structure preview, Node static server and its health endpoints are implemented. Preview uses tab memory, does not persist files and does not send them to the server. Reload clears the preview. This is not a domain import or a security assessment. The PWA manifest supplies install metadata; there is no service worker or offline claim. Cache rules retain only fingerprinted static assets; HTML and runtime configuration are no-store.
 
-`GET /healthz` covers the web process; `GET /readyz` covers web assets and valid startup configuration. Neither proves engine/provider/database health. `/api` and all `/api/` routes return 503 while the engine is unavailable. No upload endpoint or authentication service is created. Engine admission cannot be enabled by a public config flag.
+`GET /healthz` covers the web process; `GET /readyz` covers web assets and valid startup configuration. Neither proves engine/provider/database health. The unified launcher exposes only `GET/HEAD /api/engine/health`, backed by the actual loopback Go process. Invalid or unavailable health returns 503. Other `/api` routes return 503. No upload endpoint or authentication service is created. Engine admission cannot be enabled by a public config flag.
 
 ## Build an artifact
 
@@ -62,7 +64,7 @@ Build/test/package from a clean source commit; verify SHA256SUMS before switchin
 
 ## Engine integration and operations still required
 
-Profile: `web-viewer-private-engine`. Retained engine choices: Go verifier/CLI, TypeScript report viewer, Syft/Grype adapters optional, OPA policy adapter. Implement the first vertical slice in IMPLEMENTATION_BLUEPRINT.md and W06, then authenticated negative tests in W07. Route only explicitly supported endpoints through a same-origin authenticated service. Keep secrets exclusively on the server/provider. Add real engine readiness, bounded jobs, cancellation, redacted audit, operational metrics, alerts and retention/restore proof alongside the domain implementation. Public marketing/static demonstrations must use synthetic data; they cannot admit arbitrary runtime work.
+Profile: `web-viewer-private-engine`. Retained engine choices: Go verifier/CLI, TypeScript report viewer, Syft/Grype adapters optional, OPA policy adapter. C03 provides process health only. C04 and subsequent C tasks define domain contracts and behavior; private admission remains a later verified gate. Domain work must use explicitly supported endpoints through a same-origin authenticated service. Keep secrets exclusively on the server/provider. Add real engine readiness, bounded jobs, cancellation, redacted audit, operational metrics, alerts and retention/restore proof alongside the domain implementation. Public marketing/static demonstrations must use synthetic data; they cannot admit arbitrary runtime work.
 
 For KeyHelix, no plaintext secrets may enter browser file preview; import only synthetic nonsecret metadata. For RiftRange/MirageMesh, orchestration/sensors stay on isolated private hosts. Existing RiskWeft Laravel source is preserved and has not been connected to this shell or certified by web tests.
 

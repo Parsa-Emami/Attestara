@@ -2,7 +2,7 @@
 
 ## Runnable today
 
-Install Git and Node 24.19+ within Node 24 (npm bundled), then:
+On Linux x86_64, install Git, Node 24.19.0, npm 11.9.0 and Go 1.27.2 on PATH. Use the checksum-pinned official [Go source-build route](RESOURCE_LOCK.md) when the prebuilt archive is unavailable. Then:
 
 ```sh
 git clone https://github.com/Parsa-Emami/Attestara.git
@@ -11,9 +11,9 @@ npm run setup
 npm start
 ```
 
-Open http://127.0.0.1:4173. Setup installs the committed web lockfile with lifecycle scripts disabled, stops on errors and builds the workspace. No Python, Go, Rust, PHP, database, cloud account or domain is needed for the current web shell. It previews JSON structure locally and browses the roadmap; it does not implement the full domain product.
+Open http://127.0.0.1:4173. Setup installs the committed web lockfile with lifecycle scripts disabled, stops on errors, builds the workspace and prepares the real Go executable. The unified launcher displays actual engine process health/version. No database, cloud account or domain is required. It previews JSON structure locally and browses the roadmap; it does not implement the full domain product.
 
-`npm run setup -- --check` shows preparation without changes. `--skip-install` builds using already installed dependencies. `npm run doctor` reports actual web/core state. `npm run release:check` deliberately exits 2 until full evidence is ready. Ctrl+C stops the current web process. Ports can be selected with `npm start -- --port 4301` when running multiple projects.
+`npm run setup -- --check` shows preparation without changes. `--skip-install` builds using already installed dependencies. `npm run doctor` reports actual web/core state. `npm run release:check` deliberately exits 2 until full evidence is ready. Ctrl+C stops the web server and Go child. Ports can be selected with `npm start -- --port 4301` when running multiple projects.
 
 ## Full-product contract to implement
 
@@ -27,10 +27,11 @@ Local resources: optional local OPA and Syft/Grype report ingestion. Hardware ta
 
 ```sh
 npm run check
+go test ./...
 npx --no-install playwright install chromium
 npm run test:browser
 npm run test:clone
 npm run doctor
 ```
 
-The current test:clone performs a real local Git clone of the staged/committed source, runs setup and verifies web readiness and disabled engine admission. C30 must extend it to the full tests/scenarios/clone-to-value.json workflow and real engine readiness. Current shell checks cannot certify domain functionality. See each C task for future engine commands and prerequisites. Optional hosting/package operations remain in WEB_RUNBOOK.md.
+The current test:clone performs a real local Git clone of the staged/committed source, runs setup and verifies unified web/engine process health and disabled domain admission. C30 must extend it to the full tests/scenarios/clone-to-value.json workflow and complete domain/storage/provider readiness. Current shell checks cannot certify domain functionality. See each C task for future engine commands and prerequisites. Optional hosting/package operations remain in WEB_RUNBOOK.md.

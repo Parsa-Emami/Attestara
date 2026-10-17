@@ -7,23 +7,29 @@
     {
       "id": "C01",
       "status": "verified",
-      "evidence": ["docs/evidence/C01.json"],
+      "evidence": [
+        "docs/evidence/C01.json"
+      ],
       "source_identity": "sha256:8cecd0c1f4f923b6f0239276991a7424807911c06a996cdf156e90103785a0fa",
       "notes": "Synthetic reference specification and standalone validator verified; domain engine execution remains unimplemented."
     },
     {
       "id": "C02",
       "status": "verified",
-      "evidence": ["docs/evidence/C02.json"],
+      "evidence": [
+        "docs/evidence/C02.json"
+      ],
       "source_identity": "sha256:808579389f692bc13d969ddb76c30dcccf46a96eaa40657d52ef016191d741f6",
       "notes": "Eight exact source/artifact/license pins, offline and downloaded-byte validation, five C02 regressions, actual version probes and upstream Go/provider source builds verified. No product engine execution."
     },
     {
       "id": "C03",
-      "status": "in_progress",
-      "evidence": [],
-      "source_identity": null,
-      "notes": "Web foundation implemented in W01-W05. Remaining domain/runtime acceptance and earlier prerequisite evidence still pending."
+      "status": "verified",
+      "evidence": [
+        "docs/evidence/C03.json"
+      ],
+      "source_identity": "sha256:d1339e5b1f5f44ba507479b5b179309ba41090a66af15c226d578b25dc0233cb",
+      "notes": "Unified local Go process setup/start, real version/health, same-origin browser status and lifecycle/negative regressions verified. Domain evaluation, storage and full product readiness remain pending."
     },
     {
       "id": "C04",

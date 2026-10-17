@@ -12,7 +12,7 @@ concurrency:
 jobs:
   verify:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 25
     steps:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
         with:
@@ -21,9 +21,35 @@ jobs:
         with:
           node-version-file: .nvmrc
           cache: npm
+      - uses: actions/setup-go@924ae3a1cded613372ab5595356fb5720e22ba16
+        with:
+          go-version: '1.26.2'
+          cache: false
+      - name: Build locked Go toolchain from verified C02 source
+        shell: bash
+        run: |
+          set -euo pipefail
+          bootstrap_root=$(go env GOROOT)
+          source_dir="$RUNNER_TEMP/attestara-go"
+          mkdir -p "$source_dir"
+          node --input-type=module - "$source_dir/go-source.tar.gz" <<'NODE'
+          import { readFileSync, writeFileSync } from 'node:fs';
+          import { createHash } from 'node:crypto';
+          const resource = JSON.parse(readFileSync('docs/engineering/toolchain-lock.json')).resources.find(item => item.id === 'go');
+          const response = await fetch(resource.artifact.url, { signal: AbortSignal.timeout(120000) });
+          if (!response.ok) throw new Error('Locked Go source download failed: ' + response.status);
+          const bytes = Buffer.from(await response.arrayBuffer());
+          if (createHash('sha256').update(bytes).digest('hex') !== resource.artifact.sha256) throw new Error('Go source checksum mismatch');
+          writeFileSync(process.argv[2], bytes);
+          NODE
+          tar -xzf "$source_dir/go-source.tar.gz" --strip-components=1 -C "$source_dir"
+          (cd "$source_dir/src" && GOROOT_BOOTSTRAP="$bootstrap_root" GOMAXPROCS=2 ./make.bash)
+          "$source_dir/bin/go" version
+          echo "$source_dir/bin" >> "$GITHUB_PATH"
       - run: npm ci --ignore-scripts
       - run: npm run validate:plan
-      - run: npm run build
+      - run: npm run setup -- --skip-install
+      - run: go test ./...
       - run: npm test
       - run: npx --no-install playwright install --with-deps chromium
       - run: npm run test:browser

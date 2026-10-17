@@ -6,6 +6,9 @@ test('workspace, local preview, navigation and roadmap filters work', async ({ p
   page.on('request', request => { if (request.method() !== 'GET') uploads.push(request.url()); });
   await page.goto('/');
   await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
+  await expect(page.getByLabel('Availability')).toContainText('Local engine process is healthy.');
+  await expect(page.getByLabel('Availability')).toContainText('Engine 0.0.1 · go1.27.2');
+  await expect(page.getByLabel('Availability')).toContainText('does not produce security results');
   await page.getByLabel('Choose JSON file').setInputFiles({ name: 'example.json', mimeType: 'application/json', buffer: Buffer.from('{"review":"synthetic"}') });
   await expect(page.getByRole('status')).toContainText('example.json');
   await expect(page.getByRole('status')).toContainText('1 top-level fields');
@@ -20,6 +23,15 @@ test('workspace, local preview, navigation and roadmap filters work', async ({ p
   await page.setViewportSize({ width: 375, height: 812 });
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   expect(uploads).toEqual([]); expect(errors).toEqual([]);
+});
+test('malformed or unavailable runtime health is visible without blocking local preview', async ({ page }) => {
+  for (const response of [{ status: 503, body: '{"error":"engine_unavailable"}' }, { status: 200, body: '{"status":"ok"}' }]) {
+    await page.route('**/api/engine/health', route => route.fulfill({ ...response, contentType: 'application/json' }));
+    await page.goto('/');
+    await expect(page.getByLabel('Availability')).toContainText('Local engine is unavailable.');
+    await expect(page.getByLabel('Choose JSON file')).toBeVisible();
+    await page.unroute('**/api/engine/health');
+  }
 });
 test('configuration failure blocks workspace startup', async ({ page }) => {
   await page.route('**/runtime-config.json', route => route.fulfill({ status: 200, contentType: 'application/json', body: '{"engineEnabled":true}' }));

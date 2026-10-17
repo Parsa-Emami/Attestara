@@ -1,0 +1,6 @@
+{
+  "schemaVersion": 1,
+  "license": "Apache-2.0",
+  "provenance": "repository-authored synthetic invalid runtime responses",
+  "health": [null, {}, {"schemaVersion":1,"status":"ok","scope":"security-result","version":"0.0.1","goVersion":"go1.27.2"}, {"schemaVersion":2,"status":"ok","scope":"engine-process","version":"0.0.1","goVersion":"go1.27.2"}]
+}

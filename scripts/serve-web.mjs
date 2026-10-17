@@ -3,11 +3,36 @@ import { readFile, realpath, stat } from 'node:fs/promises';
 import { resolve, relative, extname, isAbsolute } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { validateRuntimeConfig } from '../apps/web/src/lib/runtime-config.mjs';
+import { validateEngineHealth } from '../apps/web/src/lib/engine-health.mjs';
+
+export function validateEngineURL(value) {
+  const url = new URL(value);
+  if (url.protocol !== 'http:' || !['127.0.0.1', '[::1]'].includes(url.hostname) || !url.port || url.username || url.password || url.pathname !== '/healthz' || url.search || url.hash) throw new Error('Engine health must use an explicit loopback HTTP port.');
+  return url.href;
+}
+
+export async function probeEngineHealth(url) {
+  const response = await fetch(validateEngineURL(url), { signal: AbortSignal.timeout(1500), redirect: 'error', credentials: 'omit' });
+  if (!response.ok || !response.body) throw new Error('Engine unavailable.');
+  const reader = response.body.getReader();
+  const chunks = []; let size = 0;
+  try {
+    while (true) {
+      const { value, done } = await reader.read();
+      if (done) break;
+      size += value.length;
+      if (size > 4096) throw new Error('Engine health exceeds limit.');
+      chunks.push(value);
+    }
+  } finally { await reader.cancel(); }
+  return validateEngineHealth(JSON.parse(Buffer.concat(chunks).toString('utf8')));
+}
 
 const types = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.css': 'text/css; charset=utf-8', '.svg': 'image/svg+xml', '.png': 'image/png', '.webmanifest': 'application/manifest+json' };
 const csp = "default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'; object-src 'none'";
-export function createWebServer({ root, config, projectId }) {
+export function createWebServer({ root, config, projectId, engineURL }) {
   const valid = validateRuntimeConfig(config, projectId);
+  if (engineURL !== undefined) engineURL = validateEngineURL(engineURL);
   const publicRoot = resolve(root);
   const within = path => { const diff = relative(publicRoot, path); return diff !== '..' && !diff.startsWith('../') && !isAbsolute(diff); };
   return http.createServer({ requestTimeout: 15000, headersTimeout: 10000, keepAliveTimeout: 5000, maxHeaderSize: 16384 }, async (req, res) => {
@@ -33,6 +58,13 @@ export function createWebServer({ root, config, projectId }) {
       catch { send(503, '{"status":"not_ready","scope":"web-shell"}'); }
       return;
     }
+    if (path === '/api/engine/health') {
+      try {
+        if (!engineURL) throw new Error('No local engine.');
+        send(200, JSON.stringify(await probeEngineHealth(engineURL)));
+      } catch { send(503, '{"error":"engine_unavailable"}'); }
+      return;
+    }
     if (path === '/api' || path.startsWith('/api/')) { send(503, '{"error":"engine_not_integrated"}'); return; }
     if (path === '/runtime-config.json') { send(200, JSON.stringify(valid)); return; }
     const asset = path.startsWith('/assets/');
@@ -47,8 +79,7 @@ export function createWebServer({ root, config, projectId }) {
   });
 }
 
-if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1])).href) {
-  const args = process.argv.slice(2);
+export function webOptions(args) {
   const options = { host: '127.0.0.1', port: '4173', root: 'dist/web', config: 'ops/web/runtime-config.json' };
   for (let i = 0; i < args.length; i += 2) {
     const key = args[i].slice(2);
@@ -57,6 +88,11 @@ if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1]
   }
   if (!['127.0.0.1', '::1'].includes(options.host)) throw new Error('Bind to loopback and use the documented TLS proxy.');
   if (!/^\d+$/.test(options.port) || +options.port < 1 || +options.port > 65535) throw new Error('Invalid port.');
+  return { ...options, port: +options.port };
+}
+
+if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1])).href) {
+  const options = webOptions(process.argv.slice(2));
   const product = JSON.parse(await readFile(new URL('../ops/web/brand.json', import.meta.url), 'utf8'));
   const config = JSON.parse(await readFile(resolve(options.config), 'utf8'));
   await stat(resolve(options.root, 'index.html'));

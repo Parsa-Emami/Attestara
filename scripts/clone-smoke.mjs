@@ -43,11 +43,12 @@ try {
   run(process.execPath, [process.env.npm_execpath, 'run', 'setup'], checkout);
 
   const launch = `
-    import { createWebServer } from './scripts/serve-web.mjs';
-    import fs from 'node:fs';
-    const config = JSON.parse(fs.readFileSync('ops/web/runtime-config.json'));
-    const instance = createWebServer({ root: 'dist/web', config, projectId: config.projectId });
-    instance.listen(0, '127.0.0.1', () => console.log(instance.address().port));
+    import { startLocal } from './scripts/start-local.mjs';
+    const controller = new AbortController();
+    for (const signal of ['SIGINT', 'SIGTERM']) process.once(signal, () => controller.abort());
+    const local = await startLocal({ port: 0, signal: controller.signal });
+    console.log(local.server.address().port);
+    process.exitCode = await local.done;
   `;
   server = spawn(process.execPath, ['--input-type=module', '-e', launch], {
     cwd: checkout, stdio: ['ignore', 'pipe', 'pipe'],
@@ -65,9 +66,11 @@ try {
     throw new Error('Incorrect readiness boundary');
   }
   if (!(await fetch(base)).ok) throw new Error('Workspace unavailable');
+  const engine = await fetch(base + '/api/engine/health');
+  if (!engine.ok || (await engine.json()).scope !== 'engine-process') throw new Error('Real engine unavailable');
   console.log(JSON.stringify({
     passed: true, stagedTree: tree,
-    proof: 'real git clone -> npm run setup -> web startup', coreReady: false,
+    proof: 'real git clone -> npm run setup -> unified web/engine health', coreReady: false,
   }));
 } finally {
   if (server && server.exitCode === null && server.pid) {

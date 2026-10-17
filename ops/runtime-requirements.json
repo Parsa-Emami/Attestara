@@ -18,7 +18,8 @@
   },
   "current_shell_requires": [
     "Git",
-    "Node 24.19+ within Node 24 (npm included)"
+    "Node 24.19.0 and npm 11.9.0",
+    "Go 1.27.2 on PATH for setup (C02 source-build route)"
   ],
   "full_engine_platform_target": "Linux x86_64; other platforms need their own installed evidence",
   "paid_or_cloud_account_required": false,

@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "license": "Apache-2.0",
+  "provenance": "repository-authored synthetic lifecycle expectations",
+  "success": {"healthStatus":200,"shutdownExit":0,"coreReady":false},
+  "failure": {"healthStatus":503,"error":"engine_unavailable","setupExit":1,"crashExit":1},
+  "restartInvariant": "Same versioned engine-process health; no domain or durability claim.",
+  "userSourceExecution": false,
+  "requiredProviders": []
+}
