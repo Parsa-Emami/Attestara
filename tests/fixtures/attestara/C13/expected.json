@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "assessments": [
+    {
+      "expression": "MIT",
+      "status": "recognized"
+    },
+    {
+      "expression": "mit",
+      "status": "recognized"
+    },
+    {
+      "expression": "Apache-2.0 AND MIT",
+      "status": "recognized"
+    },
+    {
+      "expression": "MIT OR BSD-3-Clause",
+      "status": "recognized"
+    },
+    {
+      "expression": "MIT or(BSD-3-Clause AND Apache-2.0)",
+      "status": "recognized"
+    },
+    {
+      "expression": "(MIT)OR(BSD-3-Clause)",
+      "status": "recognized"
+    },
+    {
+      "expression": "GPL-2.0-only+ WITH Classpath-exception-2.0",
+      "status": "recognized"
+    },
+    {
+      "expression": "gpl-2.0-only with classpath-exception-2.0",
+      "status": "recognized"
+    },
+    {
+      "expression": "((MIT))",
+      "status": "recognized"
+    },
+    {
+      "expression": "MIT OR BSD-3-Clause AND Apache-2.0",
+      "status": "recognized"
+    },
+    {
+      "expression": "Unknown-License",
+      "status": "review"
+    },
+    {
+      "expression": "LicenseRef-Custom",
+      "status": "review"
+    },
+    {
+      "expression": "DocumentRef-bundle:LicenseRef-Custom",
+      "status": "review"
+    },
+    {
+      "expression": "MIT OR LicenseRef-Custom",
+      "status": "review"
+    },
+    {
+      "expression": "MIT WITH AdditionRef-Custom",
+      "status": "review"
+    },
+    {
+      "expression": "MIT WITH DocumentRef-bundle:AdditionRef-Custom",
+      "status": "review"
+    },
+    {
+      "expression": "MIT WITH Unknown-exception",
+      "status": "review"
+    },
+    {
+      "expression": "NOASSERTION",
+      "status": "review"
+    },
+    {
+      "expression": "NONE",
+      "status": "review"
+    },
+    {
+      "expression": "",
+      "status": "review"
+    },
+    {
+      "expression": "   ",
+      "status": "review"
+    }
+  ]
+}

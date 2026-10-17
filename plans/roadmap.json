@@ -1245,7 +1245,7 @@
         "Inspect the actual implementation, source/locks and verified dependencies for C13; preserve accepted existing behavior.",
         "Define the versioned positive and negative release-evidence fixtures and expected error/result semantics under tests/fixtures/attestara/C13/.",
         "Implement: Unknown and ambiguous license expressions require review and are not called compliant.",
-        "Change the listed exact targets and wire the actual typed outcome into the supported browser/engine workflow. Keep domain facts, validation, storage/provider adapters and UI separate.",
+        "Expose the owner-approved read-only typed Go license assessment using the shared pinned catalog. No compliance verdict, HTTP/UI, SBOM license projection, OPA execution or persistence; see the C13 approved scope.",
         "Add regression/integration coverage for every acceptance and negative case; real storage/provider/security boundaries cannot be verified only with mocks.",
         "Run the labeled verification commands; record exact source, fixture license/hash, tool/provider versions, command exits and observed results in docs/evidence/C13.json. Update progress only when the whole task is genuinely verified."
       ],
@@ -1258,7 +1258,7 @@
         },
         {
           "command": "go test ./...",
-          "available_now": false,
+          "available_now": true,
           "introduced_by": "C03",
           "expected": "C03 creates this engine test command in the same commit; C06 adds CI/integration collection. Pass the actual C13 acceptance and negative cases on the selected engine; shell-only tests cannot certify this task."
         }

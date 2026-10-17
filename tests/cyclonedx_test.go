@@ -157,7 +157,11 @@ func TestC10EmbeddedSchemaPins(t *testing.T) {
 		t.Fatal("C02 schema pin changed")
 	}
 	for name, expected := range provenance.Files {
-		b, err := os.ReadFile(filepath.Join(root, name))
+		path := filepath.Join(root, name)
+		if name == "spdx.schema.json" {
+			path = filepath.Join("..", "internal", "licensecatalog", name)
+		}
+		b, err := os.ReadFile(path)
 		if err != nil {
 			t.Fatal(err)
 		}

@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "expressions": [
+    "MIT",
+    "mit",
+    "Apache-2.0 AND MIT",
+    "MIT OR BSD-3-Clause",
+    "MIT or(BSD-3-Clause AND Apache-2.0)",
+    "(MIT)OR(BSD-3-Clause)",
+    "GPL-2.0-only+ WITH Classpath-exception-2.0",
+    "gpl-2.0-only with classpath-exception-2.0",
+    "((MIT))",
+    "MIT OR BSD-3-Clause AND Apache-2.0",
+    "Unknown-License",
+    "LicenseRef-Custom",
+    "DocumentRef-bundle:LicenseRef-Custom",
+    "MIT OR LicenseRef-Custom",
+    "MIT WITH AdditionRef-Custom",
+    "MIT WITH DocumentRef-bundle:AdditionRef-Custom",
+    "MIT WITH Unknown-exception",
+    "NOASSERTION",
+    "NONE",
+    "",
+    "   "
+  ]
+}

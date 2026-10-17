@@ -19,14 +19,21 @@ The discovery command invokes `go test -list '^Test'` separately for each packag
 
 | Package | Real behavior exercised |
 | --- | --- |
+| `./internal/licensecatalog` | C13 missing/modified embedded catalog bytes fail closed |
 | `./cmd/attestara` | Health contract, real listener, shutdown, occupied port, invalid launch and refused user source arguments |
 | `./internal/contracts` | C04 immutable fixtures, strict JSON, missing evidence, versions, size/deadline/cancellation and inert source bytes |
 | `./internal/storage` | C05 real files, independent process locking/SIGKILL recovery, injected ENOSPC, corruption and private inert bytes |
-| `./tests` | Actual C04 validators and fixture bytes through the C05 storage port; commit/reopen/load, idempotent replay, conflict, missing references and altered bytes |
+| `./tests` | C04/C05 storage integration; C10–C12 inert evidence adapters; C13 SPDX expression recognition, review outcomes, safe errors, shared schema pins and fresh-process repetition |
 
 Existing Apache-2.0 repository-authored fixtures under `tests/fixtures/attestara/C04/` and `C05/` are reused unchanged. Their provenance and exact byte hashes are recorded in C06 evidence. No parallel C06 release fixture or production domain behavior is introduced. OPA, Syft and Grype are optional resources unused by these code paths; no provider execution is certified.
 
 ## Runtime CI
+
+C13 adds a shared, immutable SPDX catalog and a Go expression recognizer. The
+discovery guard requires the C13 tests in `./tests`; the full suite also reruns
+C10 schema validation after its catalog resource is moved. Fresh-process
+assessment repetition certifies deterministic read-only behavior, not recovery
+of persisted license decisions. `recognized` is not a compliance verdict.
 
 `.github/workflows/runtime.yml` runs on pull requests and pushes to main with read-only contents permission and commit-pinned actions. It follows the existing web workflow's C02 checksum-verified Go source-build route, checks the resulting version against the lock and uses `GOTOOLCHAIN=local` for verification. Each fresh checkout runs discovery, build, vet and all Go tests. The existing web, planning and source-integrity workflows retain their checks.
 

@@ -1,0 +1,160 @@
+{
+  "schema_version": 1,
+  "cases": [
+    {
+      "id": "invalid-00",
+      "expression": "MIT AND",
+      "expected_code": "invalid_input"
+    },
+    {
+      "id": "invalid-01",
+      "expression": "AND MIT",
+      "expected_code": "invalid_input"
+    },
+    {
+      "id": "invalid-02",
+      "expression": "MIT OR OR Apache-2.0",
+      "expected_code": "invalid_input"
+    },
+    {
+      "id": "invalid-03",
+      "expression": "MIT Apache-2.0",
+      "expected_code": "invalid_input"
+    },
+    {
+      "id": "invalid-04",
+      "expression": "(MIT",
+      "expected_code": "invalid_input"
+    },
+    {
+      "id": "invalid-05",
+      "expression": "MIT)",
+      "expected_code": "invalid_input"
+    },
+    {
+      "id": "invalid-06",
+      "expression": "()",
+      "expected_code": "invalid_input"
+    },
+    {
+      "id": "invalid-07",
+      "expression": "MIT +",
+      "expected_code": "invalid_input"
+    },
+    {
+      "id": "invalid-08",
+      "expression": "MIT++",
+      "expected_code": "invalid_input"
+    },
+    {
+      "id": "invalid-09",
+      "expression": "LicenseRef-X+",
+      "expected_code": "invalid_input"
+    },
+    {
+      "id": "invalid-10",
+      "expression": "LicenseRef-",
+      "expected_code": "invalid_input"
+    },
+    {
+      "id": "invalid-11",
+      "expression": "DocumentRef-:LicenseRef-x",
+      "expected_code": "invalid_input"
+    },
+    {
+      "id": "invalid-12",
+      "expression": "DocumentRef-x:LicenseRef-",
+      "expected_code": "invalid_input"
+    },
+    {
+      "id": "invalid-13",
+      "expression": "MIT WITH",
+      "expected_code": "invalid_input"
+    },
+    {
+      "id": "invalid-14",
+      "expression": "MIT WITH Apache-2.0",
+      "expected_code": "invalid_input"
+    },
+    {
+      "id": "invalid-15",
+      "expression": "Classpath-exception-2.0",
+      "expected_code": "invalid_input"
+    },
+    {
+      "id": "invalid-16",
+      "expression": "MIT WITH(MIT)",
+      "expected_code": "invalid_input"
+    },
+    {
+      "id": "invalid-17",
+      "expression": "(MIT OR Apache-2.0) WITH Classpath-exception-2.0",
+      "expected_code": "invalid_input"
+    },
+    {
+      "id": "invalid-18",
+      "expression": "MIT And Apache-2.0",
+      "expected_code": "invalid_input"
+    },
+    {
+      "id": "invalid-19",
+      "expression": "MIT | Apache-2.0",
+      "expected_code": "invalid_input"
+    },
+    {
+      "id": "invalid-20",
+      "expression": "MIT/Apache-2.0",
+      "expected_code": "invalid_input"
+    },
+    {
+      "id": "invalid-21",
+      "expression": "MIT\nOR BSD-3-Clause",
+      "expected_code": "invalid_input"
+    },
+    {
+      "id": "invalid-22",
+      "expression": "MIT\u0000",
+      "expected_code": "invalid_input"
+    },
+    {
+      "id": "invalid-23",
+      "expression": "MIT WITH LicenseRef-X",
+      "expected_code": "invalid_input"
+    },
+    {
+      "id": "invalid-24",
+      "expression": "AdditionRef-X",
+      "expected_code": "invalid_input"
+    },
+    {
+      "id": "invalid-25",
+      "expression": "https://example.invalid/license",
+      "expected_code": "invalid_input"
+    },
+    {
+      "id": "invalid-26",
+      "expression": "touch /tmp/sentinel",
+      "expected_code": "invalid_input"
+    },
+    {
+      "id": "invalid-27",
+      "expression": "MIT+OR BSD-3-Clause",
+      "expected_code": "invalid_input"
+    },
+    {
+      "id": "invalid-28",
+      "expression": "MIT+AND BSD-3-Clause",
+      "expected_code": "invalid_input"
+    },
+    {
+      "id": "invalid-29",
+      "expression": "MIT WITH Classpath-exception-2.0+",
+      "expected_code": "invalid_input"
+    },
+    {
+      "id": "invalid-30",
+      "expression": "MIT WITH Classpath-exception-2.0 WITH Classpath-exception-2.0",
+      "expected_code": "invalid_input"
+    }
+  ]
+}

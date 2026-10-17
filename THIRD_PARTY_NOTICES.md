@@ -94,7 +94,7 @@ The SPDX source snapshot is a specification reference; no SPDX-licensed implemen
 
 ## C10 Go adapter dependencies
 
-`go.mod` and `go.sum` pin the read-only validator and its runtime dependency. The four unchanged CycloneDX schema files and their SHA-256 pins are in `internal/adapters/schemas/`; `provenance.json` binds them to C02 source commit `349314a9d7671d7d2ca5b711a725f49a73979da6` (specification release 1.7.2, BOM format 1.7). The upstream JSF schema credits Anders Rundgren/OpenKeyStore and declares Apache-2.0; the embedded SPDX license enumeration is the CycloneDX Apache-2.0 schema, not the separately pinned SPDX specification source.
+`go.mod` and `go.sum` pin the read-only validator and its runtime dependency. The unchanged CycloneDX schema files are in `internal/adapters/schemas/` and the shared SPDX enumeration is in `internal/licensecatalog/spdx.schema.json`; `internal/adapters/schemas/provenance.json` retains their SHA-256 pins and binds them to C02 source commit `349314a9d7671d7d2ca5b711a725f49a73979da6` (specification release 1.7.2, BOM format 1.7). The upstream JSF schema credits Anders Rundgren/OpenKeyStore and declares Apache-2.0; the embedded SPDX license enumeration is the CycloneDX Apache-2.0 schema, not the separately pinned SPDX specification source.
 
 | Module | Version | Role | License / retained text |
 |---|---|---|---|

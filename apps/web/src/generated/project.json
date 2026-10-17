@@ -167,7 +167,7 @@
       "id": "C13",
       "title": "feat(licenses): evaluate declared license policy",
       "stage": "domain",
-      "status": "planned",
+      "status": "verified",
       "acceptance": [
         "Unknown and ambiguous license expressions require review and are not called compliant."
       ],

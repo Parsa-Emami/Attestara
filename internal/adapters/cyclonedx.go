@@ -10,6 +10,7 @@ import (
 	"sync"
 
 	"attestara/internal/contracts"
+	"attestara/internal/licensecatalog"
 	"github.com/santhosh-tekuri/jsonschema/v6"
 )
 
@@ -29,7 +30,13 @@ var cyclonedxSchema = sync.OnceValues(func() (*jsonschema.Schema, error) {
 	// Resolve only embedded resources; never fall back to filesystem or network.
 	c.UseLoader(jsonschema.SchemeURLLoader{})
 	for _, name := range []string{"bom-1.7.schema.json", "cryptography-defs.schema.json", "jsf-0.82.schema.json", "spdx.schema.json"} {
-		b, err := cyclonedxSchemas.ReadFile("schemas/" + name)
+		var b []byte
+		var err error
+		if name == "spdx.schema.json" {
+			b = licensecatalog.Schema()
+		} else {
+			b, err = cyclonedxSchemas.ReadFile("schemas/" + name)
+		}
 		if err != nil {
 			return nil, err
 		}
