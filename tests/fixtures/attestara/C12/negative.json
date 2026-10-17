@@ -1,0 +1,14 @@
+{
+  "cases": [
+    {"id": "malformed_json", "input": "{", "expected_code": "invalid_json", "expected_field": "$"},
+    {"id": "duplicate_member", "input": "{\"matches\":[],\"matches\":[],\"descriptor\":{\"name\":\"grype\",\"version\":\"0.120.1\"}}", "expected_code": "invalid_json", "expected_field": "$"},
+    {"id": "wrong_scanner", "input": "{\"matches\":[],\"descriptor\":{\"name\":\"other\",\"version\":\"1\"}}", "expected_code": "invalid_input", "expected_field": "descriptor.name"},
+    {"id": "missing_version", "input": "{\"matches\":[],\"descriptor\":{\"name\":\"grype\"}}", "expected_code": "invalid_input", "expected_field": "descriptor.version"},
+    {"id": "missing_matches", "input": "{\"descriptor\":{\"name\":\"grype\",\"version\":\"0.120.1\"}}", "expected_code": "invalid_input", "expected_field": "matches"},
+    {"id": "null_matches", "input": "{\"matches\":null,\"descriptor\":{\"name\":\"grype\",\"version\":\"0.120.1\"}}", "expected_code": "invalid_input", "expected_field": "matches"},
+    {"id": "bad_db_timestamp", "input": "{\"matches\":[],\"descriptor\":{\"name\":\"grype\",\"version\":\"0.120.1\",\"db\":{\"status\":{\"built\":\"yesterday\",\"valid\":true}}}}", "expected_code": "invalid_input", "expected_field": "descriptor.db.status.built"},
+    {"id": "bad_scan_timestamp", "input": "{\"matches\":[],\"descriptor\":{\"name\":\"grype\",\"version\":\"0.120.1\",\"timestamp\":\"yesterday\"}}", "expected_code": "invalid_input", "expected_field": "descriptor.timestamp"},
+    {"id": "bad_cve_capture", "input": "{\"matches\":[],\"descriptor\":{\"name\":\"grype\",\"version\":\"0.120.1\",\"db\":{\"status\":{\"valid\":true},\"providers\":{\"nvd\":{\"captured\":\"yesterday\"}}}}}", "expected_code": "invalid_input", "expected_field": "descriptor.db.providers.nvd.captured"},
+    {"id": "bad_finding", "input": "{\"matches\":[{\"vulnerability\":{\"id\":\"CVE-2026-0001\"},\"artifact\":{\"name\":\"pkg\"}}],\"descriptor\":{\"name\":\"grype\",\"version\":\"0.120.1\"}}", "expected_code": "invalid_input", "expected_field": "matches[0].artifact.id"}
+  ]
+}

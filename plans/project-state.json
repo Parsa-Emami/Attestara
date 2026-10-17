@@ -15,10 +15,11 @@
     "C08 typed Go bundle reader validates actual manifest file sizes and SHA-256 bytes; it returns unverified input only",
     "C09 read-only bounded ZIP reader composes C08; unsafe/duplicate paths, symlinks, corrupt members and oversized expansion rejected without extraction or authority changes",
     "C10 read-only CycloneDX JSON 1.7 adapter fully validates pinned embedded official schemas offline and preserves exact original bytes; other versions fail without conversion",
-    "C11 read-only SPDX 3.0.0 compact JSON-LD package/dependency subset normalizes to CycloneDX 1.7 and round-trips exact package IDs and directed edges; full SPDX conformance and durable import are not claimed"
+    "C11 read-only SPDX 3.0.0 compact JSON-LD package/dependency subset normalizes to CycloneDX 1.7 and round-trips exact package IDs and directed edges; full SPDX conformance and durable import are not claimed",
+    "C12 read-only Grype JSON adapter projects scanner version, reported database build/age/status, NVD capture and vulnerability/package matches; missing CVE feed is unknown and sensitive configuration is excluded"
   ],
-  "engine": "Go lifecycle/health, v1 typed release-evidence validation, recoverable local file repository, per-artifact evidence envelopes, typed manifest reader and bounded read-only ZIP reader implemented; domain API, policy execution, cryptographic trust, revision authority and full workflow pending; read-only CycloneDX JSON 1.7 schema adapter implemented; read-only SPDX 3.0.0 package/dependency normalization and subset export implemented",
-  "next_task": "C12",
+  "engine": "Go lifecycle/health, v1 typed release-evidence validation, recoverable local file repository, per-artifact evidence envelopes, typed manifest reader and bounded read-only ZIP reader implemented; domain API, policy execution, cryptographic trust, revision authority and full workflow pending; read-only CycloneDX JSON 1.7, SPDX 3.0.0 subset and Grype JSON adapters implemented",
+  "next_task": "C13",
   "next_command": "npm run plan -- next",
   "full_product_endpoint": "C30 locally usable; C40 full published OSS v1"
 }

@@ -105,10 +105,12 @@
     },
     {
       "id": "C12",
-      "status": "planned",
-      "evidence": [],
-      "source_identity": null,
-      "notes": ""
+      "status": "verified",
+      "evidence": [
+        "docs/evidence/C12.json"
+      ],
+      "source_identity": "sha256:9692f96f0dc4c74b211d576b378ee520beccce9f77c205ebda76b52008a3502a",
+      "notes": "Owner-approved read-only Grype JSON subset: scanner version, reported DB build/age/status, NVD feed capture and typed matches verified; missing feed remains unknown. No scanner execution, API/UI, durable import or provider trust claim."
     },
     {
       "id": "C13",

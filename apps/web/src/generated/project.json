@@ -155,7 +155,7 @@
       "id": "C12",
       "title": "feat(vulnerabilities): ingest existing scanner results",
       "stage": "domain",
-      "status": "planned",
+      "status": "verified",
       "acceptance": [
         "Database age and scanner version are retained; missing CVE feed is unknown."
       ],

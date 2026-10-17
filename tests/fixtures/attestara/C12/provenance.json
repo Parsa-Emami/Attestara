@@ -1,0 +1,7 @@
+{
+  "license": "Apache-2.0",
+  "fixture_source": "Repository-authored synthetic Grype JSON examples; no scanner or CVE feed was executed or downloaded.",
+  "format_source": "https://github.com/anchore/grype/tree/6f8d854af29d3a3086b11a84afa51554a2a245fe/grype/presenter/models",
+  "source_commit": "6f8d854af29d3a3086b11a84afa51554a2a245fe",
+  "source_archive_sha256": "238f5623555bed2190d8db85c3f48c8d50b13d230644ada3a9756acc702eec37"
+}

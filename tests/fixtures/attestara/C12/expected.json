@@ -1,0 +1,14 @@
+{
+  "scanner_version": "0.120.1",
+  "scan_time": "2026-10-17T12:00:00Z",
+  "database_schema": "6.1.10",
+  "database_built": "2026-10-16T12:00:00Z",
+  "database_age_seconds": 86400,
+  "database_status": "reported_valid",
+  "cve_feed_captured": "2026-10-16T08:00:00Z",
+  "cve_feed_status": "reported",
+  "findings": [
+    {"vulnerability_id": "CVE-2026-0001", "severity": "High", "artifact_id": "synthetic-package-1", "artifact_name": "example-library", "artifact_version": "1.0.0"},
+    {"vulnerability_id": "GHSA-xxxx-yyyy-zzzz", "severity": "Medium", "artifact_id": "synthetic-package-2", "artifact_name": "example-tool", "artifact_version": "2.0.0"}
+  ]
+}
