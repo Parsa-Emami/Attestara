@@ -1,0 +1,370 @@
+{
+  "planning_template": false,
+  "commit_id": "C10",
+  "date": "2026-10-17",
+  "base_commit": "874890590589ce23c25743c6f1739c61b7c9239c",
+  "worktree_committed": false,
+  "approved_scope": "Owner-approved read-only Go adapter with full offline CycloneDX JSON 1.7 Draft 7 validation. No HTTP/UI, normalization, authoritative import or new execution boundary. Persistent import interruption/recovery explicitly deferred by the owner to a task with that workflow.",
+  "source_identity": "sha256:b7dfa8173887d20d324ed87c8b04c22b4bb704da6a0437f1b19a9c736767b318",
+  "source_identity_method": "SHA-256 of sorted relative-path + NUL + per-file SHA-256 hex + newline records (UTF-8).",
+  "source_identity_scope": "All current Go engine/library/tests and synthetic fixture files; embedded schemas/provenance, C10 licenses, module/npm/toolchain locks, C10 task, roadmap, execution/architecture/reference documents and engine discovery. Excludes evidence, progress/requirements/project-state, handoff, generated projection and dependency/build/cache outputs to avoid self-reference.",
+  "source_files": {
+    ".nvmrc": "7e8a2fa94951112b894a3dbe3d05efef5e9263741fa49125f0a70f40fedab4cc",
+    "AGENTS.md": "3d960f81acd556c153142cc58c43d30d6dc69d0e3bbb5620384384b0db5894b5",
+    "THIRD_PARTY_NOTICES.md": "760fcd5d4c863c33552f236ef417e63073bd42683de2d62d0f604f1f7ae62516",
+    "cmd/attestara/main.go": "a53718b430ef1b2e6cf86dd43f6ed9bf711996c964d71ad94377cc94b10cb05f",
+    "cmd/attestara/main_test.go": "c3a67d986191af14b87068c2966901563b114c6612b59cf44641d82af2237c4f",
+    "docs/ROADMAP_FA.md": "5883aa312b4f2c53e9a6fa3e8577b1cea4ede90246433dca2443057dd749eb2c",
+    "docs/agents/EXECUTION_CONTRACT.md": "36e1f025a7035f09c38ddee5eec61b48a29419cf85b74da4ec493482cd28a018",
+    "docs/architecture/ADR-0003-open-source-local-first.md": "61a7dd7dc3eb546fe9329883da3c370535fede8ec45026dc5bce5b1d29f0be4d",
+    "docs/engineering/resources/cyclonedx-LICENSE.txt": "6c29f22a4a7385285c6f579ec9f33c5e989f00739d6b257243a0b082ec9447ae",
+    "docs/engineering/resources/golang-x-text-LICENSE.txt": "2d36597f7117c38b006835ae7f537487207d8ec407aa9d9980794b2030cbc067",
+    "docs/engineering/resources/golang-x-text-PATENTS.txt": "96f408bfae65bf137fc2525d3ecb030271c50c1e90799f87abf8846d8dd505cc",
+    "docs/engineering/resources/jsonschema-v6-LICENSE.txt": "c8858a5a76440bbca484e134cf7df46385d090dd18b2c58e650f939258802e5b",
+    "docs/engineering/toolchain-lock.json": "8f741c67d027523ae4223cf2a45b3eab5a8bd4a1132392281b803633e34288b0",
+    "docs/product/REFERENCE_WORKFLOW.md": "0d52cff0bcb48a7930dab841edcbabbb57cc966b76c6bb74b6917e5d81989ff0",
+    "go.mod": "54e5aa05625275d2510e80bd6f6993b02a9a432f0a112e6185b6cb6607abbfaa",
+    "go.sum": "190d9eb7b0bf958a72cdfa38e70887ba644442b0389537f21fcf5eff3daf325f",
+    "internal/adapters/cyclonedx.go": "c5c7d2cedd75a5b890e9671262c052eccb2337327bee95eaa6bc149dd0570f43",
+    "internal/adapters/schemas/bom-1.7.schema.json": "73308edec3ab2d38bfffd993e96a042b594314143b6971a6e9ed98bbb6bd76ce",
+    "internal/adapters/schemas/cryptography-defs.schema.json": "027b059a729a06d591bac79a584ef04f83fc32d91a826fdba6ad3c98a10e5b44",
+    "internal/adapters/schemas/jsf-0.82.schema.json": "8bae002c25e723db7ee1f26afde680ae1a2b1a8f6b4b4b0fd65dc3becb090aae",
+    "internal/adapters/schemas/provenance.json": "7617d0bce844a89b5f59553332f8fe5f56ceab9c02e4c1c1e6a83622035eb4fe",
+    "internal/adapters/schemas/spdx.schema.json": "4b345e2329f209f34e960ae2a8e7cb46a166907e6a45e94978565925dc47b359",
+    "internal/bundle/archive.go": "4b9c87253f632c2f38d0d3f1e7160962851a33e7dbeb3f6a1a91270e0b15a341",
+    "internal/bundle/read.go": "6a90505a7e189392c01f7f67f574d41a4e1f441beff0197c1f4ce4c93d50a306",
+    "internal/contracts/contracts.go": "344401636f7e323b81ea20e8fa684b9601cf27c2a8c799007eecb1a8791562e7",
+    "internal/contracts/contracts_test.go": "76cb9fde371861bfef50e792c421b7dc1f76b92b729391bd9d2924218a7d3fd8",
+    "internal/evidence/model.go": "d007c45f9dc3ed24f21921c8f3312b81dc6f60d25ca9d6728cfcaec639c30a57",
+    "internal/storage/adapter.go": "8447e4af920b04b7b85dbdf26d32dcf1071a7f7cfa9ce2a82268583f9a07f293",
+    "internal/storage/adapter_test.go": "adc41cc47589c868fb6f995e68c987cbd6f5b703ad610dea62c38626c180b9e5",
+    "package-lock.json": "2512e1850692f4fe46cebd1b04ac9c33a2ca3269fbf6800f1a026e6fdc8b6570",
+    "package.json": "3b9149893c03b02de1a1921409c360e7bc660aedd63ae0fc7fa3584e9550f74d",
+    "plans/commits/C10.md": "73ce008886168753ca8b1a8f0d506ba455323c4aad1402647b584ae1062fe176",
+    "plans/roadmap.json": "14e404a383fd4ed8b5cbe7fb58ba7728f8c63d1148dfe3d4e4c94f5300f6a211",
+    "scripts/verify-engine-tests.mjs": "3eb4c6a8ad07586153cd47d4d22f5fc934f57960895681a7025cb98b6f360a09",
+    "tests/archive_test.go": "2cd0338e9309f3aa207d4280a8cc663fd77b0ed2f2ec01a4b1b948d948ad4b76",
+    "tests/cyclonedx_test.go": "6360044c7f665a5bb2b4f3f5cc62e5f83e3b6923806d23ee3fda6f46ed017143",
+    "tests/fixtures/attestara/C01/expected.json": "7858012f6dde9429581295a6195e200ec225e242ffb15a92a15cd15de08fefd9",
+    "tests/fixtures/attestara/C01/negative.json": "6eba6240a1cf2376d5d9d72e291dee7a101c2aab2ed13a18ee18e61da9344b4e",
+    "tests/fixtures/attestara/C01/positive.json": "91ed2a6fb5baf75736d12f172cc01a58774b7190a5af4791291bde1bcbaeded6",
+    "tests/fixtures/attestara/C02/expected.json": "a1e714fbeb5141c6bdc86e16a541f2e16b0c763598d5d202fe363a114c79106f",
+    "tests/fixtures/attestara/C02/negative.json": "6e20b23f57981243a2ec00ac5eb2a8d227fe82dbe5652d9c8f0d9a196a91ab77",
+    "tests/fixtures/attestara/C02/positive.json": "1fd14b761e1b94b4d2aa3443c4272d4ea5e0957e7c15aec90296faee60692329",
+    "tests/fixtures/attestara/C03/expected.json": "4874a44c183448e606023e356b125b31d559910117d5f725d18a90edce435dae",
+    "tests/fixtures/attestara/C03/negative.json": "55d04af372a63d3992509e03f2a3d6522ff758dd326499438eb4ce8808813844",
+    "tests/fixtures/attestara/C03/positive.json": "d9585f785cde6d6170c72277ac7393e6e4f7ae48ec35e1a005c3e7d2686fb075",
+    "tests/fixtures/attestara/C04/expected.json": "e841165a4130ed17cb05f9a0fdc0c84321b40d9491ad7a8ce18ea0f58cb210a8",
+    "tests/fixtures/attestara/C04/input.valid.json": "9b353ef4e5e36c70181c35c4bbc1359385e719fec3e4e09bad65348a9c639564",
+    "tests/fixtures/attestara/C04/negative.json": "c69e9f0e719798032f480830cc4337c8d07aff659e1ed8471fd7c1b5b3414cbd",
+    "tests/fixtures/attestara/C04/policy.rego": "52f2452badde5b273ce44fb4663e08868116d8a1151544048021d8634b83483e",
+    "tests/fixtures/attestara/C04/provenance.json": "bf3f702e67541a44033e52d4cc7baf0d32b3027c0a8eb7b070209c94a6a49c85",
+    "tests/fixtures/attestara/C04/result.failed.json": "5467e50ae995f2bde9dbbd2bb7573a5e382f894084e349cdfd8fcfa47ad638f5",
+    "tests/fixtures/attestara/C04/result.valid.json": "c7de3f027722b154e2439e37107b9d689a51f5625427af3ddf82fb63d16496d0",
+    "tests/fixtures/attestara/C04/sbom.cdx.json": "55761b9f1b1f365a584540c0396fc6c669393bedd08d0736977461369345c9ab",
+    "tests/fixtures/attestara/C04/subject.txt": "49317372e0291e58af6c914df5d5121eea1bf5993ee2aeb503375e2cc6d3608c",
+    "tests/fixtures/attestara/C05/expected.json": "bc5c840aa1b03b0f8ce09bb2a97b64be6191e0f64358c97ae7b8fd7d86f0588c",
+    "tests/fixtures/attestara/C05/negative.json": "6bc0cf45071bfa0dd7d11de2aa096ad32b4eb9a440931725f31d66655ffa4d32",
+    "tests/fixtures/attestara/C05/positive.json": "30ca260ada14ebbe0cd4c7f5bf9ff824b37fe9fbcb0769d3464ada3007ea1f9c",
+    "tests/fixtures/attestara/C05/provenance.json": "8fbff02616de1c6af951752b4cd7401eace3a3c393d5035b4b66026cc03d1d97",
+    "tests/fixtures/attestara/C07/configuration.json": "9c3dacf1d4fd96be675c923eb139da44a41d96531075421d15c6ee177e51fdd3",
+    "tests/fixtures/attestara/C07/evidence.txt": "483078279bc6f273ffbd15986139e494b62a9ad7d4dad032b8a677e0a7b610ad",
+    "tests/fixtures/attestara/C07/expected.json": "4ec5ab1c76caa20f2286542d054cdce9e6c40a417143f28093e6c2b1103d5407",
+    "tests/fixtures/attestara/C07/negative.json": "9dde050075cc5c6fa480e4a36deebd62b0ec6ca3c62477641e85962957e521ee",
+    "tests/fixtures/attestara/C07/positive.json": "c4b29abb1809cf8d9a4ce8b0b94c6a98088b6d8fde37cc18d6ffc6e78cca5773",
+    "tests/fixtures/attestara/C07/provenance.json": "9aeea2fe3eae0287904e633b20811bf84ca3be0e2a665b65b98627b142f161af",
+    "tests/fixtures/attestara/C07/subject.txt": "ec6f03fcd0d2fc719cc633c355c63f5c87eb6ee66517e914f73f6a576b004e8f",
+    "tests/fixtures/attestara/C08/evidence.txt": "09c28470bdbce4baaa27d223d41a584823b06a183bcf5dbe226fccf42d7b55bf",
+    "tests/fixtures/attestara/C08/expected.json": "992c05b27d6a6a9743fdb795f786ffcbee013340d022abf68c8f1c86f6beabbb",
+    "tests/fixtures/attestara/C08/negative.json": "7b931d2997d2eda3d458cdd84fb6ed43631b2950622d460d12cc069ffc84113d",
+    "tests/fixtures/attestara/C08/policy.txt": "f5ec11ee33d80cc73968513cd2baec7c5ca347dd78369bd3ed0c29e3d0bb288f",
+    "tests/fixtures/attestara/C08/positive.json": "b4be01339816463cd2be73d4aaf1136fdba7c629dc90dba6daf2c62792c1fdc0",
+    "tests/fixtures/attestara/C08/provenance.json": "a5af0366f66f5164efdbcd49f7697e97b73d9ef58b67cb20feb18ea7349037b9",
+    "tests/fixtures/attestara/C08/subject.txt": "932b3d53fd10fa5bf895eb4fffecc08ecc73f193165eb3a5ff7c1502138881d9",
+    "tests/fixtures/attestara/C09/bomb.zip": "4ffa68cc21177a52858c18aa09f4d275db078fefea6e1d07b2f88cfab30d8141",
+    "tests/fixtures/attestara/C09/duplicate-manifest.zip": "f9c30adfa7c06f8bde38fe002f40e039e6d508bcab7beb639895905b798c6a79",
+    "tests/fixtures/attestara/C09/duplicate.zip": "a95409b376169a9924ae9390672c87f4d6aa8e9fe2d3af80007a295726f0165b",
+    "tests/fixtures/attestara/C09/expected.json": "459409cfead60ca61b5272f3569f65b9736bdb58f7c9b9e02c74e98305d033e8",
+    "tests/fixtures/attestara/C09/malformed-manifest.zip": "50b3336ac0ab1c4cc9924c18973b955c09988bd1234eb6563c6beca7648e9761",
+    "tests/fixtures/attestara/C09/malformed.zip": "6b73de250c0513b43e61962e67def702c95e0d337fcdef59d3e6c2c672e3ea2b",
+    "tests/fixtures/attestara/C09/manifest.json": "afd553ddf3c9ff83af6e295bd8c67f687c5c4868e259d0b91f4d382f385bc471",
+    "tests/fixtures/attestara/C09/missing-file.zip": "09d1d077a397a2cb9b675d13ee5197ea1cf0a6396230d73df0e74357594e50ff",
+    "tests/fixtures/attestara/C09/missing-manifest.zip": "4d62a30922489023ae9203ec918eaaf52a840ac4cd8c2a48059e3745cfe14e23",
+    "tests/fixtures/attestara/C09/modified-byte.zip": "e6a94fc932b972b3276207936a48ae1f9e80b49d4a59b3be518c3f266b43217f",
+    "tests/fixtures/attestara/C09/negative.json": "8c0771936a3c97fbb9067574da5bacfa7c26f77d1634a4db7d4967bfb2131dc0",
+    "tests/fixtures/attestara/C09/path-0.zip": "fe6673575a013af0ac76b282001567cd66c36b1cf9e7d1bbf781683191ed76c3",
+    "tests/fixtures/attestara/C09/path-1.zip": "61aeb7bfdf166e644fa9913b86541798eddc3c4918920862133fe11147ef738a",
+    "tests/fixtures/attestara/C09/path-2.zip": "acf4ac53935d952dc97b8af92143b8c161fbe80513aae1704fe578784a9aff6f",
+    "tests/fixtures/attestara/C09/path-3.zip": "7b5d6fc6e135c941d7e9c44edc6071579bdc75b4771937528ac40a8a7ce257c6",
+    "tests/fixtures/attestara/C09/path-4.zip": "9d8984c8385322e8097be090982c6e8db0ecd9bbe6b3b35bcb6be303bf05a99e",
+    "tests/fixtures/attestara/C09/path-5.zip": "58c5a2f193c121fd132040354994779152dcb6eabc1bfb1247c881a42996808e",
+    "tests/fixtures/attestara/C09/path-6.zip": "afb809565826640284afafe533d971988dc7c6d27d3de974425fa23633ce0c7e",
+    "tests/fixtures/attestara/C09/positive.zip": "fd84aad1ad63c28fa79a0ddb079136e938cdd70e3352d665d0e03132009126b6",
+    "tests/fixtures/attestara/C09/provenance.json": "d07dc60589fdd2694385b4acbc967c5ad57b9c5ce7e817b667c05a19a07217fc",
+    "tests/fixtures/attestara/C09/symlink-directory.zip": "4a34c8996e35a592ee201cc2167f97bbc3313354a704d33f0d2a65b46595b7ec",
+    "tests/fixtures/attestara/C09/symlink.zip": "fab3b87d2aec3921ff4868e015f8b37cf477b5e2fa6dfe15efbfa3dc6d1d4a74",
+    "tests/fixtures/attestara/C09/too-many-entries.zip": "15f2af1057e2a962df801d1a075c18bef49fe5e3a059f5e719bf9e20745b3b4e",
+    "tests/fixtures/attestara/C09/truncated.zip": "3f9e080deda9748b8db800867734d4c59ed52a72ccbc600924989c98905d33e4",
+    "tests/fixtures/attestara/C09/unsupported-version.zip": "a7f4964a4440651ed6e96ca703f6684a0619553368f763ec92a25292666915ec",
+    "tests/fixtures/attestara/C10/expected.json": "58385c8d9656173104026a539050e9c4d7cc737b4234a1b2be157b18e533870d",
+    "tests/fixtures/attestara/C10/negative.json": "87e7ac53a486c375d57d0a691dde34f8bc330bb73cdd687ad2538bece209265b",
+    "tests/fixtures/attestara/C10/positive.json": "912dd80cf072473f12597f0b989df07475296b499ee30451548165db0fc55948",
+    "tests/fixtures/attestara/C10/provenance.json": "5f6c8fa09285a825aff704a9f9da453a139fd3660e2c6aafeeaeac2168a6dac3",
+    "tests/manifest_test.go": "86a97995cfe9d4bccaabe01dd9f261471d8f8c569ab23c4ea1a1c14d80b4fd60",
+    "tests/storage_test.go": "8f1dc21d16ec5e6d579880d8e31b3a31b5ff5726984072ea52681971eb322685",
+    "tests/subject_test.go": "d319b286b74ede6436b63f55fe33585ba56f1d9e55cebfb8b2d7483681e31049"
+  },
+  "tool_versions": {
+    "go": "go1.27.2 linux/amd64",
+    "node": "v24.19.0",
+    "npm": "11.9.0"
+  },
+  "tool_sha256": {
+    "/tmp/attestara-c02/go-source/go-022c8636110ebac86a9b88724cda168ed713c21f/bin/go": "548d3c32f83fa81152f543eb1526be7884cfe0526eb5e9ce29d3eca14786e7e0",
+    "/tmp/attestara-c02/node-extracted/node-v24.19.0-linux-x64/bin/node": "bc17c508ffeed0ec622934f9b7fa72f8e78da65350e63c3eceb56fa688aa5e12",
+    "/tmp/attestara-c02/npm-extracted/package/bin/npm-cli.js": "8e5f6f3429f8cdbe693cdc29904e9d5a7b127a494bd15c804bd54c7403bfcbe7"
+  },
+  "providers": "None invoked. No OPA, Syft, Grype or external service is required by this adapter.",
+  "upstream": {
+    "cyclonedx": {
+      "format_version": "1.7",
+      "specification_release": "1.7.2",
+      "source_commit": "349314a9d7671d7d2ca5b711a725f49a73979da6",
+      "source_archive_sha256": "f290a268c2364ebe6f584c4fd2f4f8de16385cc18f8e7530e450eb0436890822",
+      "acquisition": "Four unchanged schema members read from the existing C02 source archive only after rechecking its pinned SHA-256; no extraction paths supplied by input.",
+      "file_hashes": "internal/adapters/schemas/provenance.json",
+      "license": "Apache-2.0"
+    },
+    "modules": {
+      "jsonschema": {
+        "Version": "v6.0.3",
+        "Time": "2026-06-28T17:38:00Z",
+        "Origin": {
+          "VCS": "git",
+          "URL": "https://github.com/santhosh-tekuri/jsonschema",
+          "Hash": "b0fc661f4939578bc429f408c18202573dbafcc4",
+          "Ref": "refs/tags/v6.0.3"
+        }
+      },
+      "checksum_lock": "github.com/dlclark/regexp2 v1.11.0 h1:G/nrcoOa7ZXlpoa/91N3X7mM3r8eIlMBBJZvsz/mxKI=\ngithub.com/dlclark/regexp2 v1.11.0/go.mod h1:DHkYz0B9wPfa6wondMfaivmHpzrQ3v9q8cnmRbL6yW8=\ngithub.com/santhosh-tekuri/jsonschema/v6 v6.0.3 h1:1EYB5IzjZawrrnELUi78f9fPu57HuXjmddZPjrls/28=\ngithub.com/santhosh-tekuri/jsonschema/v6 v6.0.3/go.mod h1:JXeL+ps8p7/KNMjDQk3TCwPpBy0wYklyWTfbkIzdIFU=\ngolang.org/x/text v0.14.0 h1:ScX5w1eTa3QqT8oi6+ziP7dTV1S2+ALU0bI+0zXKWiQ=\ngolang.org/x/text v0.14.0/go.mod h1:18ZOQIKpY8NJVqYksKHtTdi31H5itFRjB5/qKTNYzSU=\n"
+    }
+  },
+  "fixtures": {
+    "tests/fixtures/attestara/C10/expected.json": {
+      "sha256": "58385c8d9656173104026a539050e9c4d7cc737b4234a1b2be157b18e533870d",
+      "license": "Apache-2.0",
+      "provenance": "repository-authored synthetic"
+    },
+    "tests/fixtures/attestara/C10/negative.json": {
+      "sha256": "87e7ac53a486c375d57d0a691dde34f8bc330bb73cdd687ad2538bece209265b",
+      "license": "Apache-2.0",
+      "provenance": "repository-authored synthetic"
+    },
+    "tests/fixtures/attestara/C10/positive.json": {
+      "sha256": "912dd80cf072473f12597f0b989df07475296b499ee30451548165db0fc55948",
+      "license": "Apache-2.0",
+      "provenance": "repository-authored synthetic"
+    },
+    "tests/fixtures/attestara/C10/provenance.json": {
+      "sha256": "5f6c8fa09285a825aff704a9f9da453a139fd3660e2c6aafeeaeac2168a6dac3",
+      "license": "Apache-2.0",
+      "provenance": "repository-authored synthetic"
+    }
+  },
+  "hardware": {
+    "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.39",
+    "machine": "x86_64",
+    "logical_cpus": 16,
+    "memory_bytes": 32863944704,
+    "available_disk_bytes": 124662849536,
+    "capacity_claim": false
+  },
+  "commands": [
+    {
+      "command": "PATH=/tmp/attestara-c02/toolbin:/tmp/attestara-c02/go-source/go-022c8636110ebac86a9b88724cda168ed713c21f/bin:$PATH GOTOOLCHAIN=local GOPROXY=off GOSUMDB=sum.golang.org go mod verify",
+      "cwd": "/home/amirreza/Desktop/Projects/Attestara",
+      "exit_code": 0,
+      "output": "all modules verified\n"
+    },
+    {
+      "command": "PATH=/tmp/attestara-c02/toolbin:/tmp/attestara-c02/go-source/go-022c8636110ebac86a9b88724cda168ed713c21f/bin:$PATH GOTOOLCHAIN=local GOPROXY=off GOSUMDB=sum.golang.org go test -count=1 -v ./...",
+      "cwd": "/home/amirreza/Desktop/Projects/Attestara",
+      "exit_code": 0,
+      "output": "=== RUN   TestHealthContractAndAdmission\n--- PASS: TestHealthContractAndAdmission (0.00s)\n=== RUN   TestRealListenerShutdownAndOccupiedPort\n--- PASS: TestRealListenerShutdownAndOccupiedPort (0.00s)\n=== RUN   TestVersionAndInvalidLaunch\n--- PASS: TestVersionAndInvalidLaunch (0.00s)\nPASS\nok  \tattestara/cmd/attestara\t0.008s\n?   \tattestara/internal/adapters\t[no test files]\n?   \tattestara/internal/bundle\t[no test files]\n=== RUN   TestC04Fixtures\n=== RUN   TestC04Fixtures/input-version-0\n=== RUN   TestC04Fixtures/input-version-2\n=== RUN   TestC04Fixtures/input-unknown-field\n=== RUN   TestC04Fixtures/input-bad-digest\n=== RUN   TestC04Fixtures/result-version-0\n=== RUN   TestC04Fixtures/result-version-2\n=== RUN   TestC04Fixtures/result-unknown-field\n=== RUN   TestC04Fixtures/result-bad-digest\n=== RUN   TestC04Fixtures/missing-evidence_digest\n=== RUN   TestC04Fixtures/missing-source_revision\n=== RUN   TestC04Fixtures/missing-tool_version\n=== RUN   TestC04Fixtures/unsafe-path-11\n=== RUN   TestC04Fixtures/unsafe-path-12\n=== RUN   TestC04Fixtures/unsafe-path-13\n=== RUN   TestC04Fixtures/unsafe-path-14\n=== RUN   TestC04Fixtures/unsafe-path-15\n=== RUN   TestC04Fixtures/unsafe-path-16\n=== RUN   TestC04Fixtures/unsafe-path-17\n=== RUN   TestC04Fixtures/unsafe-path-18\n=== RUN   TestC04Fixtures/caller-trust\n=== RUN   TestC04Fixtures/bundle-over-limit\n=== RUN   TestC04Fixtures/negative-size\n=== RUN   TestC04Fixtures/missing-size\n=== RUN   TestC04Fixtures/missing-policy-file\n=== RUN   TestC04Fixtures/duplicate-path\n=== RUN   TestC04Fixtures/unproved-trusted-result\n=== RUN   TestC04Fixtures/complete-with-unknown-policy\n=== RUN   TestC04Fixtures/failed-without-error\n=== RUN   TestC04Fixtures/success-with-error\n=== RUN   TestC04Fixtures/unknown-error-code\n--- PASS: TestC04Fixtures (0.00s)\n    --- PASS: TestC04Fixtures/input-version-0 (0.00s)\n    --- PASS: TestC04Fixtures/input-version-2 (0.00s)\n    --- PASS: TestC04Fixtures/input-unknown-field (0.00s)\n    --- PASS: TestC04Fixtures/input-bad-digest (0.00s)\n    --- PASS: TestC04Fixtures/result-version-0 (0.00s)\n    --- PASS: TestC04Fixtures/result-version-2 (0.00s)\n    --- PASS: TestC04Fixtures/result-unknown-field (0.00s)\n    --- PASS: TestC04Fixtures/result-bad-digest (0.00s)\n    --- PASS: TestC04Fixtures/missing-evidence_digest (0.00s)\n    --- PASS: TestC04Fixtures/missing-source_revision (0.00s)\n    --- PASS: TestC04Fixtures/missing-tool_version (0.00s)\n    --- PASS: TestC04Fixtures/unsafe-path-11 (0.00s)\n    --- PASS: TestC04Fixtures/unsafe-path-12 (0.00s)\n    --- PASS: TestC04Fixtures/unsafe-path-13 (0.00s)\n    --- PASS: TestC04Fixtures/unsafe-path-14 (0.00s)\n    --- PASS: TestC04Fixtures/unsafe-path-15 (0.00s)\n    --- PASS: TestC04Fixtures/unsafe-path-16 (0.00s)\n    --- PASS: TestC04Fixtures/unsafe-path-17 (0.00s)\n    --- PASS: TestC04Fixtures/unsafe-path-18 (0.00s)\n    --- PASS: TestC04Fixtures/caller-trust (0.00s)\n    --- PASS: TestC04Fixtures/bundle-over-limit (0.00s)\n    --- PASS: TestC04Fixtures/negative-size (0.00s)\n    --- PASS: TestC04Fixtures/missing-size (0.00s)\n    --- PASS: TestC04Fixtures/missing-policy-file (0.00s)\n    --- PASS: TestC04Fixtures/duplicate-path (0.00s)\n    --- PASS: TestC04Fixtures/unproved-trusted-result (0.00s)\n    --- PASS: TestC04Fixtures/complete-with-unknown-policy (0.00s)\n    --- PASS: TestC04Fixtures/failed-without-error (0.00s)\n    --- PASS: TestC04Fixtures/success-with-error (0.00s)\n    --- PASS: TestC04Fixtures/unknown-error-code (0.00s)\n=== RUN   TestC04StrictJSON\n--- PASS: TestC04StrictJSON (0.00s)\n=== RUN   TestC04LimitsAndCancellation\n--- PASS: TestC04LimitsAndCancellation (0.20s)\n=== RUN   TestC04DraftCompatibility\n--- PASS: TestC04DraftCompatibility (0.00s)\n=== RUN   TestC04NestedFieldsResultsAndNoExecution\n--- PASS: TestC04NestedFieldsResultsAndNoExecution (0.00s)\nPASS\nok  \tattestara/internal/contracts\t0.237s\n?   \tattestara/internal/evidence\t[no test files]\n=== RUN   TestC05InjectedDiskFullRecovery\n=== RUN   TestC05InjectedDiskFullRecovery/object.write\n=== RUN   TestC05InjectedDiskFullRecovery/object.sync\n=== RUN   TestC05InjectedDiskFullRecovery/object.publish\n=== RUN   TestC05InjectedDiskFullRecovery/objects.sync\n=== RUN   TestC05InjectedDiskFullRecovery/staging.sync\n=== RUN   TestC05InjectedDiskFullRecovery/manifest.write\n=== RUN   TestC05InjectedDiskFullRecovery/manifest.sync\n=== RUN   TestC05InjectedDiskFullRecovery/manifest.publish\n=== RUN   TestC05InjectedDiskFullRecovery/directory.sync\n=== RUN   TestC05InjectedDiskFullRecovery/committed\n--- PASS: TestC05InjectedDiskFullRecovery (1.21s)\n    --- PASS: TestC05InjectedDiskFullRecovery/object.write (0.19s)\n    --- PASS: TestC05InjectedDiskFullRecovery/object.sync (0.10s)\n    --- PASS: TestC05InjectedDiskFullRecovery/object.publish (0.14s)\n    --- PASS: TestC05InjectedDiskFullRecovery/objects.sync (0.12s)\n    --- PASS: TestC05InjectedDiskFullRecovery/staging.sync (0.09s)\n    --- PASS: TestC05InjectedDiskFullRecovery/manifest.write (0.09s)\n    --- PASS: TestC05InjectedDiskFullRecovery/manifest.sync (0.11s)\n    --- PASS: TestC05InjectedDiskFullRecovery/manifest.publish (0.14s)\n    --- PASS: TestC05InjectedDiskFullRecovery/directory.sync (0.12s)\n    --- PASS: TestC05InjectedDiskFullRecovery/committed (0.10s)\n=== RUN   TestC05CrashHelper\n--- PASS: TestC05CrashHelper (0.00s)\n=== RUN   TestC05RealProcessCrashRecoveryAndWriterLock\n=== RUN   TestC05RealProcessCrashRecoveryAndWriterLock/object.write\n=== RUN   TestC05RealProcessCrashRecoveryAndWriterLock/objects.ready\n=== RUN   TestC05RealProcessCrashRecoveryAndWriterLock/manifest.sync\n=== RUN   TestC05RealProcessCrashRecoveryAndWriterLock/manifest.publish\n=== RUN   TestC05RealProcessCrashRecoveryAndWriterLock/directory.sync\n=== RUN   TestC05RealProcessCrashRecoveryAndWriterLock/committed\n--- PASS: TestC05RealProcessCrashRecoveryAndWriterLock (0.58s)\n    --- PASS: TestC05RealProcessCrashRecoveryAndWriterLock/object.write (0.12s)\n    --- PASS: TestC05RealProcessCrashRecoveryAndWriterLock/objects.ready (0.12s)\n    --- PASS: TestC05RealProcessCrashRecoveryAndWriterLock/manifest.sync (0.09s)\n    --- PASS: TestC05RealProcessCrashRecoveryAndWriterLock/manifest.publish (0.09s)\n    --- PASS: TestC05RealProcessCrashRecoveryAndWriterLock/directory.sync (0.07s)\n    --- PASS: TestC05RealProcessCrashRecoveryAndWriterLock/committed (0.08s)\n=== RUN   TestC05CorruptionFailsClosedAndPreservesManifest\n=== RUN   TestC05CorruptionFailsClosedAndPreservesManifest/version\n=== RUN   TestC05CorruptionFailsClosedAndPreservesManifest/truncated\n=== RUN   TestC05CorruptionFailsClosedAndPreservesManifest/checksum\n=== RUN   TestC05CorruptionFailsClosedAndPreservesManifest/duplicate\n=== RUN   TestC05CorruptionFailsClosedAndPreservesManifest/unknown-field\n=== RUN   TestC05CorruptionFailsClosedAndPreservesManifest/missing-manifest\n=== RUN   TestC05CorruptionFailsClosedAndPreservesManifest/missing-object\n=== RUN   TestC05CorruptionFailsClosedAndPreservesManifest/changed-object\n=== RUN   TestC05CorruptionFailsClosedAndPreservesManifest/symlink\n=== RUN   TestC05CorruptionFailsClosedAndPreservesManifest/hardlink\n=== RUN   TestC05CorruptionFailsClosedAndPreservesManifest/unknown-object\n=== RUN   TestC05CorruptionFailsClosedAndPreservesManifest/forged-orphan\n--- PASS: TestC05CorruptionFailsClosedAndPreservesManifest (0.55s)\n    --- PASS: TestC05CorruptionFailsClosedAndPreservesManifest/version (0.04s)\n    --- PASS: TestC05CorruptionFailsClosedAndPreservesManifest/truncated (0.04s)\n    --- PASS: TestC05CorruptionFailsClosedAndPreservesManifest/checksum (0.04s)\n    --- PASS: TestC05CorruptionFailsClosedAndPreservesManifest/duplicate (0.04s)\n    --- PASS: TestC05CorruptionFailsClosedAndPreservesManifest/unknown-field (0.04s)\n    --- PASS: TestC05CorruptionFailsClosedAndPreservesManifest/missing-manifest (0.04s)\n    --- PASS: TestC05CorruptionFailsClosedAndPreservesManifest/missing-object (0.04s)\n    --- PASS: TestC05CorruptionFailsClosedAndPreservesManifest/changed-object (0.05s)\n    --- PASS: TestC05CorruptionFailsClosedAndPreservesManifest/symlink (0.04s)\n    --- PASS: TestC05CorruptionFailsClosedAndPreservesManifest/hardlink (0.06s)\n    --- PASS: TestC05CorruptionFailsClosedAndPreservesManifest/unknown-object (0.04s)\n    --- PASS: TestC05CorruptionFailsClosedAndPreservesManifest/forged-orphan (0.04s)\n=== RUN   TestC05CancellationAndConcurrentAdmission\n=== RUN   TestC05CancellationAndConcurrentAdmission/objects.ready\n=== RUN   TestC05CancellationAndConcurrentAdmission/directory.sync\n--- PASS: TestC05CancellationAndConcurrentAdmission (0.11s)\n    --- PASS: TestC05CancellationAndConcurrentAdmission/objects.ready (0.03s)\n    --- PASS: TestC05CancellationAndConcurrentAdmission/directory.sync (0.04s)\n=== RUN   TestC05SourceBytesStayInertAndPrivate\n--- PASS: TestC05SourceBytesStayInertAndPrivate (0.05s)\n=== RUN   TestC05PrivateRootAndUnknownStaging\n--- PASS: TestC05PrivateRootAndUnknownStaging (0.01s)\n=== RUN   TestC05InterruptedInitialization\n=== RUN   TestC05InterruptedInitialization/0\n=== RUN   TestC05InterruptedInitialization/5\n=== RUN   TestC05InterruptedInitialization/21\n--- PASS: TestC05InterruptedInitialization (0.13s)\n    --- PASS: TestC05InterruptedInitialization/0 (0.04s)\n    --- PASS: TestC05InterruptedInitialization/5 (0.04s)\n    --- PASS: TestC05InterruptedInitialization/21 (0.04s)\n=== RUN   TestC05AtomicVisibleSnapshot\n--- PASS: TestC05AtomicVisibleSnapshot (0.06s)\nPASS\nok  \tattestara/internal/storage\t2.698s\n=== RUN   TestC09ReadsZIPThroughC08\n--- PASS: TestC09ReadsZIPThroughC08 (0.00s)\n=== RUN   TestC09RejectsArchiveFixtures\n=== RUN   TestC09RejectsArchiveFixtures/path-0\n=== RUN   TestC09RejectsArchiveFixtures/path-1\n=== RUN   TestC09RejectsArchiveFixtures/path-2\n=== RUN   TestC09RejectsArchiveFixtures/path-3\n=== RUN   TestC09RejectsArchiveFixtures/path-4\n=== RUN   TestC09RejectsArchiveFixtures/path-5\n=== RUN   TestC09RejectsArchiveFixtures/path-6\n=== RUN   TestC09RejectsArchiveFixtures/symlink\n=== RUN   TestC09RejectsArchiveFixtures/duplicate\n=== RUN   TestC09RejectsArchiveFixtures/duplicate-manifest\n=== RUN   TestC09RejectsArchiveFixtures/missing-manifest\n=== RUN   TestC09RejectsArchiveFixtures/malformed-manifest\n=== RUN   TestC09RejectsArchiveFixtures/unsupported-version\n=== RUN   TestC09RejectsArchiveFixtures/modified-byte\n=== RUN   TestC09RejectsArchiveFixtures/missing-file\n=== RUN   TestC09RejectsArchiveFixtures/too-many-entries\n=== RUN   TestC09RejectsArchiveFixtures/bomb\n=== RUN   TestC09RejectsArchiveFixtures/malformed\n=== RUN   TestC09RejectsArchiveFixtures/truncated\n=== RUN   TestC09RejectsArchiveFixtures/symlink-directory\n--- PASS: TestC09RejectsArchiveFixtures (0.00s)\n    --- PASS: TestC09RejectsArchiveFixtures/path-0 (0.00s)\n    --- PASS: TestC09RejectsArchiveFixtures/path-1 (0.00s)\n    --- PASS: TestC09RejectsArchiveFixtures/path-2 (0.00s)\n    --- PASS: TestC09RejectsArchiveFixtures/path-3 (0.00s)\n    --- PASS: TestC09RejectsArchiveFixtures/path-4 (0.00s)\n    --- PASS: TestC09RejectsArchiveFixtures/path-5 (0.00s)\n    --- PASS: TestC09RejectsArchiveFixtures/path-6 (0.00s)\n    --- PASS: TestC09RejectsArchiveFixtures/symlink (0.00s)\n    --- PASS: TestC09RejectsArchiveFixtures/duplicate (0.00s)\n    --- PASS: TestC09RejectsArchiveFixtures/duplicate-manifest (0.00s)\n    --- PASS: TestC09RejectsArchiveFixtures/missing-manifest (0.00s)\n    --- PASS: TestC09RejectsArchiveFixtures/malformed-manifest (0.00s)\n    --- PASS: TestC09RejectsArchiveFixtures/unsupported-version (0.00s)\n    --- PASS: TestC09RejectsArchiveFixtures/modified-byte (0.00s)\n    --- PASS: TestC09RejectsArchiveFixtures/missing-file (0.00s)\n    --- PASS: TestC09RejectsArchiveFixtures/too-many-entries (0.00s)\n    --- PASS: TestC09RejectsArchiveFixtures/bomb (0.00s)\n    --- PASS: TestC09RejectsArchiveFixtures/malformed (0.00s)\n    --- PASS: TestC09RejectsArchiveFixtures/truncated (0.00s)\n    --- PASS: TestC09RejectsArchiveFixtures/symlink-directory (0.00s)\n=== RUN   TestC09BoundsActualBytesAndChecksums\n--- PASS: TestC09BoundsActualBytesAndChecksums (0.01s)\n=== RUN   TestC09SourceStaysInert\n--- PASS: TestC09SourceStaysInert (0.00s)\n=== RUN   TestC09InterruptedReadsPreservePriorStore\n--- PASS: TestC09InterruptedReadsPreservePriorStore (0.15s)\n=== RUN   TestC09ReadHelper\n--- PASS: TestC09ReadHelper (0.00s)\n=== RUN   TestC10ValidatesAndPreservesOriginalBytes\n--- PASS: TestC10ValidatesAndPreservesOriginalBytes (0.02s)\n=== RUN   TestC10RejectsInvalidFixtures\n=== RUN   TestC10RejectsInvalidFixtures/malformed\n=== RUN   TestC10RejectsInvalidFixtures/duplicate-header\n=== RUN   TestC10RejectsInvalidFixtures/nested-duplicate\n=== RUN   TestC10RejectsInvalidFixtures/trailing-value\n=== RUN   TestC10RejectsInvalidFixtures/null\n=== RUN   TestC10RejectsInvalidFixtures/array\n=== RUN   TestC10RejectsInvalidFixtures/wrong-format\n=== RUN   TestC10RejectsInvalidFixtures/older-version\n=== RUN   TestC10RejectsInvalidFixtures/future-version\n=== RUN   TestC10RejectsInvalidFixtures/numeric-version\n=== RUN   TestC10RejectsInvalidFixtures/null-version\n=== RUN   TestC10RejectsInvalidFixtures/missing-version\n=== RUN   TestC10RejectsInvalidFixtures/unknown-property\n=== RUN   TestC10RejectsInvalidFixtures/bad-version\n=== RUN   TestC10RejectsInvalidFixtures/bad-license\n=== RUN   TestC10RejectsInvalidFixtures/bad-signature\n=== RUN   TestC10RejectsInvalidFixtures/bad-crypto-family\n=== RUN   TestC10RejectsInvalidFixtures/missing-component-name\n=== RUN   TestC10RejectsInvalidFixtures/fractional-large-integer\n--- PASS: TestC10RejectsInvalidFixtures (0.00s)\n    --- PASS: TestC10RejectsInvalidFixtures/malformed (0.00s)\n    --- PASS: TestC10RejectsInvalidFixtures/duplicate-header (0.00s)\n    --- PASS: TestC10RejectsInvalidFixtures/nested-duplicate (0.00s)\n    --- PASS: TestC10RejectsInvalidFixtures/trailing-value (0.00s)\n    --- PASS: TestC10RejectsInvalidFixtures/null (0.00s)\n    --- PASS: TestC10RejectsInvalidFixtures/array (0.00s)\n    --- PASS: TestC10RejectsInvalidFixtures/wrong-format (0.00s)\n    --- PASS: TestC10RejectsInvalidFixtures/older-version (0.00s)\n    --- PASS: TestC10RejectsInvalidFixtures/future-version (0.00s)\n    --- PASS: TestC10RejectsInvalidFixtures/numeric-version (0.00s)\n    --- PASS: TestC10RejectsInvalidFixtures/null-version (0.00s)\n    --- PASS: TestC10RejectsInvalidFixtures/missing-version (0.00s)\n    --- PASS: TestC10RejectsInvalidFixtures/unknown-property (0.00s)\n    --- PASS: TestC10RejectsInvalidFixtures/bad-version (0.00s)\n    --- PASS: TestC10RejectsInvalidFixtures/bad-license (0.00s)\n    --- PASS: TestC10RejectsInvalidFixtures/bad-signature (0.00s)\n    --- PASS: TestC10RejectsInvalidFixtures/bad-crypto-family (0.00s)\n    --- PASS: TestC10RejectsInvalidFixtures/missing-component-name (0.00s)\n    --- PASS: TestC10RejectsInvalidFixtures/fractional-large-integer (0.00s)\n=== RUN   TestC10LimitsStrictUTF8AndInertInput\n--- PASS: TestC10LimitsStrictUTF8AndInertInput (0.00s)\n=== RUN   TestC10NeverLoadsDocumentURLs\n--- PASS: TestC10NeverLoadsDocumentURLs (0.00s)\n=== RUN   TestC10EmbeddedSchemaPins\n--- PASS: TestC10EmbeddedSchemaPins (0.00s)\n=== RUN   TestC08ReadsVersionedManifestAndRealFiles\n--- PASS: TestC08ReadsVersionedManifestAndRealFiles (0.00s)\n=== RUN   TestC08RejectsManifestAndFileNegatives\n=== RUN   TestC08RejectsManifestAndFileNegatives/missing-evidence-file\n=== RUN   TestC08RejectsManifestAndFileNegatives/duplicate-path\n=== RUN   TestC08RejectsManifestAndFileNegatives/declared-size-mismatch\n=== RUN   TestC08RejectsManifestAndFileNegatives/modified-byte\n=== RUN   TestC08RejectsManifestAndFileNegatives/missing-evidence-reference\n=== RUN   TestC08RejectsManifestAndFileNegatives/trusted-claim\n=== RUN   TestC08RejectsManifestAndFileNegatives/unknown-signer-claim\n=== RUN   TestC08RejectsManifestAndFileNegatives/unsupported-expiry-claim\n--- PASS: TestC08RejectsManifestAndFileNegatives (0.00s)\n    --- PASS: TestC08RejectsManifestAndFileNegatives/missing-evidence-file (0.00s)\n    --- PASS: TestC08RejectsManifestAndFileNegatives/duplicate-path (0.00s)\n    --- PASS: TestC08RejectsManifestAndFileNegatives/declared-size-mismatch (0.00s)\n    --- PASS: TestC08RejectsManifestAndFileNegatives/modified-byte (0.00s)\n    --- PASS: TestC08RejectsManifestAndFileNegatives/missing-evidence-reference (0.00s)\n    --- PASS: TestC08RejectsManifestAndFileNegatives/trusted-claim (0.00s)\n    --- PASS: TestC08RejectsManifestAndFileNegatives/unknown-signer-claim (0.00s)\n    --- PASS: TestC08RejectsManifestAndFileNegatives/unsupported-expiry-claim (0.00s)\n=== RUN   TestC08RejectsUnavailableFileSource\n--- PASS: TestC08RejectsUnavailableFileSource (0.00s)\n=== RUN   TestC08ReplayStaysUnverifiedAndDoesNotChangeFiles\n--- PASS: TestC08ReplayStaysUnverifiedAndDoesNotChangeFiles (0.00s)\n=== RUN   TestC05CommitRestartReplayAndConflict\n--- PASS: TestC05CommitRestartReplayAndConflict (0.10s)\n=== RUN   TestC05SingleWriterAndCorruptReferences\n--- PASS: TestC05SingleWriterAndCorruptReferences (0.08s)\n=== RUN   TestC05RejectsInvalidBytesPathsAndInputBinding\n=== RUN   TestC05RejectsInvalidBytesPathsAndInputBinding/digest\n=== RUN   TestC05RejectsInvalidBytesPathsAndInputBinding/size\n=== RUN   TestC05RejectsInvalidBytesPathsAndInputBinding/path\n=== RUN   TestC05RejectsInvalidBytesPathsAndInputBinding/binding\n=== RUN   TestC05RejectsInvalidBytesPathsAndInputBinding/extra\n=== RUN   TestC05RejectsInvalidBytesPathsAndInputBinding/cancel\n--- PASS: TestC05RejectsInvalidBytesPathsAndInputBinding (0.15s)\n    --- PASS: TestC05RejectsInvalidBytesPathsAndInputBinding/digest (0.04s)\n    --- PASS: TestC05RejectsInvalidBytesPathsAndInputBinding/size (0.03s)\n    --- PASS: TestC05RejectsInvalidBytesPathsAndInputBinding/path (0.03s)\n    --- PASS: TestC05RejectsInvalidBytesPathsAndInputBinding/binding (0.03s)\n    --- PASS: TestC05RejectsInvalidBytesPathsAndInputBinding/extra (0.02s)\n    --- PASS: TestC05RejectsInvalidBytesPathsAndInputBinding/cancel (0.01s)\n=== RUN   TestC07EvidenceEnvelopeBindsSubjectToolConfigurationAndArtifact\n--- PASS: TestC07EvidenceEnvelopeBindsSubjectToolConfigurationAndArtifact (0.00s)\n=== RUN   TestC07EnvelopeRejectsInvalidFixtures\n=== RUN   TestC07EnvelopeRejectsInvalidFixtures/missing-subject\n=== RUN   TestC07EnvelopeRejectsInvalidFixtures/bad-subject-digest\n=== RUN   TestC07EnvelopeRejectsInvalidFixtures/missing-tool\n=== RUN   TestC07EnvelopeRejectsInvalidFixtures/missing-tool-version\n=== RUN   TestC07EnvelopeRejectsInvalidFixtures/blank-tool-version\n=== RUN   TestC07EnvelopeRejectsInvalidFixtures/bad-configuration-digest\n=== RUN   TestC07EnvelopeRejectsInvalidFixtures/missing-configuration-digest\n=== RUN   TestC07EnvelopeRejectsInvalidFixtures/missing-artifact\n=== RUN   TestC07EnvelopeRejectsInvalidFixtures/bad-artifact-digest\n=== RUN   TestC07EnvelopeRejectsInvalidFixtures/unsupported-version\n=== RUN   TestC07EnvelopeRejectsInvalidFixtures/unknown-member\n=== RUN   TestC07EnvelopeRejectsInvalidFixtures/duplicate-member\n=== RUN   TestC07EnvelopeRejectsInvalidFixtures/malformed-json\n--- PASS: TestC07EnvelopeRejectsInvalidFixtures (0.00s)\n    --- PASS: TestC07EnvelopeRejectsInvalidFixtures/missing-subject (0.00s)\n    --- PASS: TestC07EnvelopeRejectsInvalidFixtures/bad-subject-digest (0.00s)\n    --- PASS: TestC07EnvelopeRejectsInvalidFixtures/missing-tool (0.00s)\n    --- PASS: TestC07EnvelopeRejectsInvalidFixtures/missing-tool-version (0.00s)\n    --- PASS: TestC07EnvelopeRejectsInvalidFixtures/blank-tool-version (0.00s)\n    --- PASS: TestC07EnvelopeRejectsInvalidFixtures/bad-configuration-digest (0.00s)\n    --- PASS: TestC07EnvelopeRejectsInvalidFixtures/missing-configuration-digest (0.00s)\n    --- PASS: TestC07EnvelopeRejectsInvalidFixtures/missing-artifact (0.00s)\n    --- PASS: TestC07EnvelopeRejectsInvalidFixtures/bad-artifact-digest (0.00s)\n    --- PASS: TestC07EnvelopeRejectsInvalidFixtures/unsupported-version (0.00s)\n    --- PASS: TestC07EnvelopeRejectsInvalidFixtures/unknown-member (0.00s)\n    --- PASS: TestC07EnvelopeRejectsInvalidFixtures/duplicate-member (0.00s)\n    --- PASS: TestC07EnvelopeRejectsInvalidFixtures/malformed-json (0.00s)\n=== RUN   TestC07EnvelopeReloadPreservesBindings\n--- PASS: TestC07EnvelopeReloadPreservesBindings (0.00s)\nPASS\nok  \tattestara/tests\t0.541s\n"
+    },
+    {
+      "command": "PATH=/tmp/attestara-c02/toolbin:/tmp/attestara-c02/go-source/go-022c8636110ebac86a9b88724cda168ed713c21f/bin:$PATH GOTOOLCHAIN=local GOPROXY=off GOSUMDB=sum.golang.org go vet ./...",
+      "cwd": "/home/amirreza/Desktop/Projects/Attestara",
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "command": "PATH=/tmp/attestara-c02/toolbin:/tmp/attestara-c02/go-source/go-022c8636110ebac86a9b88724cda168ed713c21f/bin:$PATH GOTOOLCHAIN=local GOPROXY=off GOSUMDB=sum.golang.org go build ./...",
+      "cwd": "/home/amirreza/Desktop/Projects/Attestara",
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "command": "PATH=/tmp/attestara-c02/toolbin:/tmp/attestara-c02/go-source/go-022c8636110ebac86a9b88724cda168ed713c21f/bin:$PATH GOTOOLCHAIN=local GOPROXY=off GOSUMDB=sum.golang.org node scripts/verify-engine-tests.mjs",
+      "cwd": "/home/amirreza/Desktop/Projects/Attestara",
+      "exit_code": 0,
+      "output": "./cmd/attestara: required tests discovered\n./internal/contracts: required tests discovered\n./internal/storage: required tests discovered\n./tests: required tests discovered\n"
+    },
+    {
+      "command": "PATH=/tmp/attestara-c02/toolbin:/tmp/attestara-c02/go-source/go-022c8636110ebac86a9b88724cda168ed713c21f/bin:$PATH GOTOOLCHAIN=local GOPROXY=off GOSUMDB=sum.golang.org npm run check",
+      "cwd": "/home/amirreza/Desktop/Projects/Attestara",
+      "exit_code": 0,
+      "output": "\n> @parsa-emami/attestara-web@0.0.1 check\n> npm run validate:plan && npm run build && npm test\n\n\n> @parsa-emami/attestara-web@0.0.1 validate:plan\n> node scripts/roadmap.mjs validate\n\nValidated 40 detailed tasks, resources, references and progress; no runtime capability inferred.\n\n> @parsa-emami/attestara-web@0.0.1 build\n> npm run prepare:web && npm run typecheck && vite build --config apps/web/vite.config.ts\n\n\n> @parsa-emami/attestara-web@0.0.1 prepare:web\n> node scripts/generate-web-data.mjs\n\n\n> @parsa-emami/attestara-web@0.0.1 typecheck\n> tsc -p tsconfig.json\n\nvite v8.3.4 building client environment for production...\ntransforming...\n✓ 19 modules transformed.\nrendering chunks...\ncomputing gzip size...\ndist/web/index.html                   0.79 kB │ gzip:  0.47 kB\ndist/web/assets/index-CDX5XU5l.css    4.36 kB │ gzip:  1.62 kB\ndist/web/assets/index-BzWMctKB.js   242.47 kB │ gzip: 76.33 kB\n\n✓ built in 109ms\n\n> @parsa-emami/attestara-web@0.0.1 test\n> node --test tests/web/*.test.mjs tests/contracts/*.test.mjs\n\n✔ C04 versioned schemas and synthetic concrete artifacts preserve product requirements (7.888214ms)\n✔ C04 Node entry exercises actual Go validators, including hostile/version/size/cancellation cases (377.469815ms)\n✔ C04 fresh engine test processes reproduce immutable fixture expectations after restart (287.422487ms)\n✔ engine discovery requires every representative test in each real Go package (2.987589ms)\n✔ planning validator accepts current and historical evidence result fields (69.631236ms)\n✔ public configuration fails closed on engine flags, external endpoints, unknown keys and project mismatch (0.503183ms)\n✔ preview rejects hostile structure, excessive UTF-8 size and excessive complexity (1.130609ms)\n✔ HTTP isolation, cache rules, health semantics, methods, traversal and symlink containment (74.760889ms)\n✔ generated project and runtime identity agree with exactly forty original product tasks (0.845695ms)\n✔ C03 rejects malformed health fixtures without asserting product readiness (6.548492ms)\n✔ C03 setup invalidates stale output and fails explicitly for missing/mismatched Go or partial build (12.962001ms)\n✔ C03 real engine health, method boundaries, shutdown and restart (80.87637ms)\n✔ C03 occupied web port cleans up engine; crash stops web; cancellation stops engine (68.34734ms)\n✔ C03 actual npm start handles terminal signals and engine crash without orphans (498.710452ms)\n✔ C03 same-origin boundary rejects unavailable, malformed, redirected and oversized upstream health (1514.383252ms)\n✔ setup validates toolchain/options and stops at the first failed prerequisite (9.085878ms)\n✔ roadmap rejects absent resources, escaping paths and unproved completion (16.492047ms)\n✔ C01 accepts its synthetic reference contract without executing the engine (19.457195ms)\n✔ C01 rejects missing actions, results, invariants and fixture references (38.037626ms)\n✔ C01 rejects absent provenance or license and invalid fixture JSON (19.030285ms)\n✔ C01 rejects missing expected outputs and incorrect domain digests (14.059759ms)\n✔ C01 rejects path escapes, unsupported versions and false engine claims (30.637889ms)\n✔ C01 rejects symlinks leaving the fixture directory (5.89609ms)\n✔ C02 validates pinned resources offline without requiring optional providers or a product engine (57.630796ms)\n✔ C02 rejects mutable pins, missing authority/license, removed prerequisites and unsupported mandatory platforms (187.569433ms)\n✔ C02 rejects tampered checksum evidence, dependency locks, notices and escaping snapshot paths (86.34039ms)\n✔ C02 verifies artifact bytes before accepting them and rejects a one-byte mutation (14.393525ms)\n✔ C02 compares pins with separately published checksums and fails on absent required artifacts (37.069202ms)\nℹ tests 28\nℹ suites 0\nℹ pass 28\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 2278.127091\n"
+    },
+    {
+      "command": "PATH=/tmp/attestara-c02/toolbin:/tmp/attestara-c02/go-source/go-022c8636110ebac86a9b88724cda168ed713c21f/bin:$PATH GOTOOLCHAIN=local GOPROXY=off GOSUMDB=sum.golang.org node --version",
+      "cwd": "/home/amirreza/Desktop/Projects/Attestara",
+      "exit_code": 0,
+      "output": "v24.19.0\n"
+    },
+    {
+      "command": "PATH=/tmp/attestara-c02/toolbin:/tmp/attestara-c02/go-source/go-022c8636110ebac86a9b88724cda168ed713c21f/bin:$PATH GOTOOLCHAIN=local GOPROXY=off GOSUMDB=sum.golang.org npm --version",
+      "cwd": "/home/amirreza/Desktop/Projects/Attestara",
+      "exit_code": 0,
+      "output": "11.9.0\n"
+    },
+    {
+      "command": "PATH=/tmp/attestara-c02/toolbin:/tmp/attestara-c02/go-source/go-022c8636110ebac86a9b88724cda168ed713c21f/bin:$PATH GOTOOLCHAIN=local GOPROXY=off GOSUMDB=sum.golang.org go test -race ./tests -run C10 -count=1",
+      "cwd": "/home/amirreza/Desktop/Projects/Attestara",
+      "exit_code": 0,
+      "output": "ok  \tattestara/tests\t1.161s\n"
+    },
+    {
+      "command": "PATH=/tmp/attestara-c02/toolbin:/tmp/attestara-c02/go-source/go-022c8636110ebac86a9b88724cda168ed713c21f/bin:$PATH GOTOOLCHAIN=local GOPROXY=off GOSUMDB=sum.golang.org python3 scripts/validate_repo.py",
+      "cwd": "/home/amirreza/Desktop/Projects/Attestara",
+      "exit_code": 0,
+      "output": "VALIDATION PASSED\nChecked 144 JSON files and repository contract invariants.\n"
+    },
+    {
+      "command": "PATH=/tmp/attestara-c02/toolbin:/tmp/attestara-c02/go-source/go-022c8636110ebac86a9b88724cda168ed713c21f/bin:$PATH GOTOOLCHAIN=local GOPROXY=off GOSUMDB=sum.golang.org git diff --check",
+      "cwd": "/home/amirreza/Desktop/Projects/Attestara",
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "command": "PATH=/tmp/attestara-c02/toolbin:/tmp/attestara-c02/go-source/go-022c8636110ebac86a9b88724cda168ed713c21f/bin:$PATH GOTOOLCHAIN=local GOPROXY=off GOSUMDB=sum.golang.org npm run check",
+      "cwd": "/home/amirreza/Desktop/Projects/Attestara",
+      "exit_code": 0,
+      "output": "\n> @parsa-emami/attestara-web@0.0.1 check\n> npm run validate:plan && npm run build && npm test\n\n\n> @parsa-emami/attestara-web@0.0.1 validate:plan\n> node scripts/roadmap.mjs validate\n\nValidated 40 detailed tasks, resources, references and progress; no runtime capability inferred.\n\n> @parsa-emami/attestara-web@0.0.1 build\n> npm run prepare:web && npm run typecheck && vite build --config apps/web/vite.config.ts\n\n\n> @parsa-emami/attestara-web@0.0.1 prepare:web\n> node scripts/generate-web-data.mjs\n\n\n> @parsa-emami/attestara-web@0.0.1 typecheck\n> tsc -p tsconfig.json\n\nvite v8.3.4 building client environment for production...\ntransforming...\n✓ 19 modules transformed.\nrendering chunks...\ncomputing gzip size...\ndist/web/index.html                   0.79 kB │ gzip:  0.46 kB\ndist/web/assets/index-CDX5XU5l.css    4.36 kB │ gzip:  1.62 kB\ndist/web/assets/index-CNlh--AJ.js   242.47 kB │ gzip: 76.33 kB\n\n✓ built in 100ms\n\n> @parsa-emami/attestara-web@0.0.1 test\n> node --test tests/web/*.test.mjs tests/contracts/*.test.mjs\n\n✔ C04 versioned schemas and synthetic concrete artifacts preserve product requirements (7.216435ms)\n✔ C04 Node entry exercises actual Go validators, including hostile/version/size/cancellation cases (358.754888ms)\n✔ C04 fresh engine test processes reproduce immutable fixture expectations after restart (283.55627ms)\n✔ engine discovery requires every representative test in each real Go package (2.248574ms)\n✔ planning validator accepts current and historical evidence result fields (61.285063ms)\n✔ public configuration fails closed on engine flags, external endpoints, unknown keys and project mismatch (0.484338ms)\n✔ preview rejects hostile structure, excessive UTF-8 size and excessive complexity (1.043176ms)\n✔ HTTP isolation, cache rules, health semantics, methods, traversal and symlink containment (72.414972ms)\n✔ generated project and runtime identity agree with exactly forty original product tasks (0.932468ms)\n✔ C03 rejects malformed health fixtures without asserting product readiness (6.409053ms)\n✔ C03 setup invalidates stale output and fails explicitly for missing/mismatched Go or partial build (11.739443ms)\n✔ C03 real engine health, method boundaries, shutdown and restart (77.979371ms)\n✔ C03 occupied web port cleans up engine; crash stops web; cancellation stops engine (63.728642ms)\n✔ C03 actual npm start handles terminal signals and engine crash without orphans (481.310686ms)\n✔ C03 same-origin boundary rejects unavailable, malformed, redirected and oversized upstream health (1515.574785ms)\n✔ setup validates toolchain/options and stops at the first failed prerequisite (6.875406ms)\n✔ roadmap rejects absent resources, escaping paths and unproved completion (14.433131ms)\n✔ C01 accepts its synthetic reference contract without executing the engine (16.629377ms)\n✔ C01 rejects missing actions, results, invariants and fixture references (31.225364ms)\n✔ C01 rejects absent provenance or license and invalid fixture JSON (15.865145ms)\n✔ C01 rejects missing expected outputs and incorrect domain digests (10.277893ms)\n✔ C01 rejects path escapes, unsupported versions and false engine claims (33.929642ms)\n✔ C01 rejects symlinks leaving the fixture directory (5.682049ms)\n✔ C02 validates pinned resources offline without requiring optional providers or a product engine (51.649703ms)\n✔ C02 rejects mutable pins, missing authority/license, removed prerequisites and unsupported mandatory platforms (189.570599ms)\n✔ C02 rejects tampered checksum evidence, dependency locks, notices and escaping snapshot paths (87.597999ms)\n✔ C02 verifies artifact bytes before accepting them and rejects a one-byte mutation (15.255993ms)\n✔ C02 compares pins with separately published checksums and fails on absent required artifacts (34.879552ms)\nℹ tests 28\nℹ suites 0\nℹ pass 28\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 2245.517796\n"
+    },
+    {
+      "command": "PATH=/tmp/attestara-c02/toolbin:/tmp/attestara-c02/go-source/go-022c8636110ebac86a9b88724cda168ed713c21f/bin:$PATH GOTOOLCHAIN=local GOPROXY=off GOSUMDB=sum.golang.org npm run plan -- next",
+      "cwd": "/home/amirreza/Desktop/Projects/Attestara",
+      "exit_code": 0,
+      "output": "\n> @parsa-emami/attestara-web@0.0.1 plan\n> node scripts/roadmap.mjs next\n\n{\n  \"task\": {\n    \"id\": \"C11\",\n    \"stage\": \"domain\",\n    \"title\": \"feat(sbom): add spdx import adapter\",\n    \"status\": \"planned\",\n    \"depends_on\": [\n      \"C10\"\n    ],\n    \"requirements\": [\n      \"F05\"\n    ],\n    \"deliverables\": [\n      \"internal/adapters/spdx.go\",\n      \"tests/spdx_test.go\"\n    ],\n    \"verification\": [\n      \"npm run validate:plan — All task/dependency/resource/reference/evidence metadata validates; no runtime capability inferred.\",\n      \"go test ./... — C03 creates this engine test command in the same commit; C06 adds CI/integration collection. Pass the actual C11 acceptance and negative cases on the selected engine; shell-only tests cannot certify this task.\"\n    ],\n    \"acceptance\": [\n      \"Relationships and package IDs survive normalized round trip for documented subset.\"\n    ],\n    \"evidence_path\": \"docs/evidence/C11.json\",\n    \"rollback\": \"Revert the isolated source change when no incompatible data was accepted. Otherwise retain the latest valid bytes/export and compatible reader, and use tested forward repair; never overwrite newer accepted state with an old backup.\",\n    \"scope\": \"Attestara complete open-source local web profile\",\n    \"task_file\": \"plans/commits/C11.md\",\n    \"read_before\": [\n      \"AGENTS.md\",\n      \"docs/agents/EXECUTION_CONTRACT.md\",\n      \"docs/architecture/ADR-0003-open-source-local-first.md\",\n      \"docs/product/REFERENCE_WORKFLOW.md\",\n      \"plans/project-state.json\"\n    ],\n    \"before\": \"Entry requirement: verified C10 evidence. Preserve its demonstrated behavior; inspect actual source and any recorded blockers before editing.\",\n    \"after\": \"Relationships and package IDs survive normalized round trip for documented subset.\",\n    \"resources\": {\n      \"hardware\": {\n        \"vcpu\": 2,\n        \"ram_mib\": 2048,\n        \"free_disk_mib\": 10240,\n        \"measurement\": \"Unmeasured planning target; C28 must verify or reduce it.\"\n      },\n      \"providers\": [\n        \"optional local OPA and Syft/Grype report ingestion\"\n      ],\n      \"toolchain\": \"Go engine plus locked Node/TypeScript web tools; exact engine/provider pins and source-build steps resolved at C02.\",\n      \"upstream\": [\n        \"https://cyclonedx.org/specification/overview/\",\n        \"https://spdx.dev/specifications/\",\n        \"https://www.openpolicyagent.org/docs/\",\n        \"https://nodejs.org/docs/latest-v24.x/api/\"\n      ],\n      \"fixture\": {\n        \"path\": \"tests/fixtures/attestara/C11/\",\n        \"status\": \"planned; implement positive, negative and expected-output fixtures in this task\",\n        \"provenance\": \"repository-authored synthetic data or explicitly licensed upstream data\"\n      },\n      \"licenses\": \"Apache-2.0 project source; pin and inventory every shipped upstream library/provider/grammar/rule/dataset license. Unknown/restricted required resources block release.\"\n    },\n    \"negative_cases\": [\n      \"Malformed, unsupported-version, oversized or traversal/symlink input is rejected before a visible authoritative commit.\",\n      \"Interrupt and repeat the import; prior valid data is preserved and incomplete work cannot look complete.\",\n      \"No user source execution\"\n    ],\n    \"implementation_steps\": [\n      \"Inspect the actual implementation, source/locks and verified dependencies for C11; preserve accepted existing behavior.\",\n      \"Define the versioned positive and negative release-evidence fixtures and expected error/result semantics under tests/fixtures/attestara/C11/.\",\n      \"Implement: Relationships and package IDs survive normalized round trip for documented subset.\",\n      \"Change the listed exact targets and wire the actual typed outcome into the supported browser/engine workflow. Keep domain facts, validation, storage/provider adapters and UI separate.\",\n      \"Add regression/integration coverage for every acceptance and negative case; real storage/provider/security boundaries cannot be verified only with mocks.\",\n      \"Run the labeled verification commands; record exact source, fixture license/hash, tool/provider versions, command exits and observed results in docs/evidence/C11.json. Update progress only when the whole task is genuinely verified.\"\n    ],\n    \"verification_commands\": [\n      {\n        \"command\": \"npm run validate:plan\",\n        \"available_now\": true,\n        \"introduced_by\": \"web-foundation\",\n        \"expected\": \"All task/dependency/resource/reference/evidence metadata validates; no runtime capability inferred.\"\n      },\n      {\n        \"command\": \"go test ./...\",\n        \"available_now\": false,\n        \"introduced_by\": \"C03\",\n        \"expected\": \"C03 creates this engine test command in the same commit; C06 adds CI/integration collection. Pass the actual C11 acceptance and negative cases on the selected engine; shell-only tests cannot certify this task.\"\n      }\n    ],\n    \"stop_conditions\": [\n      \"Do not modify database schemas, migrations, .env files or Dockerfiles. Use the compatible local port in ADR-0003; if unavoidable, mark that exact task blocked and continue independent authorized work.\",\n      \"Do not invent versions, licenses, test results, provider success, source identities or deployment/release evidence.\",\n      \"Do not substitute a generic JSON preview, successful placeholder endpoint, static example or mocked authority for required product behavior.\"\n    ]\n  },\n  \"progress\": {\n    \"id\": \"C11\",\n    \"status\": \"planned\",\n    \"evidence\": [],\n    \"source_identity\": null,\n    \"notes\": \"\"\n  }\n}\n"
+    },
+    {
+      "command": "PATH=/tmp/attestara-c02/toolbin:/tmp/attestara-c02/go-source/go-022c8636110ebac86a9b88724cda168ed713c21f/bin:$PATH GOTOOLCHAIN=local GOPROXY=off GOSUMDB=sum.golang.org node scripts/verify-resources.mjs",
+      "cwd": "/home/amirreza/Desktop/Projects/Attestara",
+      "exit_code": 0,
+      "output": "{\n  \"resources\": 8,\n  \"artifactChecks\": [],\n  \"optionalAbsent\": [],\n  \"engineExecutionVerified\": false\n}\n"
+    },
+    {
+      "command": "PATH=/tmp/attestara-c02/toolbin:/tmp/attestara-c02/go-source/go-022c8636110ebac86a9b88724cda168ed713c21f/bin:$PATH GOTOOLCHAIN=local GOPROXY=off GOSUMDB=sum.golang.org python3 scripts/plan.py validate",
+      "cwd": "/home/amirreza/Desktop/Projects/Attestara",
+      "exit_code": 0,
+      "output": "PLAN VALIDATION PASSED — 40 intents, coverage and progress checked; no application runtime tests performed\n"
+    },
+    {
+      "command": "PATH=/tmp/attestara-c02/toolbin:/tmp/attestara-c02/go-source/go-022c8636110ebac86a9b88724cda168ed713c21f/bin:$PATH GOTOOLCHAIN=local GOPROXY=off GOSUMDB=sum.golang.org python3 scripts/validate_repo.py",
+      "cwd": "/home/amirreza/Desktop/Projects/Attestara",
+      "exit_code": 0,
+      "output": "VALIDATION PASSED\nChecked 145 JSON files and repository contract invariants.\n"
+    },
+    {
+      "command": "PATH=/tmp/attestara-c02/toolbin:/tmp/attestara-c02/go-source/go-022c8636110ebac86a9b88724cda168ed713c21f/bin:$PATH GOTOOLCHAIN=local GOPROXY=off GOSUMDB=sum.golang.org gofmt -l internal/adapters/cyclonedx.go tests/cyclonedx_test.go",
+      "cwd": "/home/amirreza/Desktop/Projects/Attestara",
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "command": "PATH=/tmp/attestara-c02/toolbin:/tmp/attestara-c02/go-source/go-022c8636110ebac86a9b88724cda168ed713c21f/bin:$PATH GOTOOLCHAIN=local GOPROXY=off GOSUMDB=sum.golang.org git diff --check",
+      "cwd": "/home/amirreza/Desktop/Projects/Attestara",
+      "exit_code": 0,
+      "output": ""
+    }
+  ],
+  "development_attempts": [
+    {
+      "command": "/tmp/attestara-c02/go-source/go-022c8636110ebac86a9b88724cda168ed713c21f/bin/go test ./tests -run C10 -count=1",
+      "exit_code": 1,
+      "result": "Expected RED: package attestara/internal/adapters did not exist before implementation."
+    },
+    {
+      "command": "GOTOOLCHAIN=local GOPROXY=off /tmp/attestara-c02/go-source/go-022c8636110ebac86a9b88724cda168ed713c21f/bin/go get github.com/santhosh-tekuri/jsonschema/v6@v6.0.3",
+      "exit_code": 1,
+      "result": "Missing cached x/text v0.14.0; retried successfully with command-local public checksum-verified GOPROXY. No environment file changed."
+    }
+  ],
+  "results": {
+    "c10_top_level_tests": 5,
+    "negative_fixture_cases": 19,
+    "web_contract_tests": 28,
+    "go_tests": "All actual Go suites passed, including unchanged C04-C09 contract/archive/store recovery regressions.",
+    "race": "C10 tests passed under the Go race detector; no load/concurrency capacity claim.",
+    "typecheck_build": "npm run check ran TypeScript typecheck, production web build and 28 Node tests; go build and go vet passed.",
+    "lint": "No npm lint script exists; Go vet and diff whitespace checks were run.",
+    "passed": true
+  },
+  "negative_case_mapping": {
+    "malformed_schema_version_size": "C10 rejects malformed/duplicate/trailing/invalid-UTF8 JSON, non-object inputs, format/version errors, invalid nested schema data and >100 MiB input with an empty result and safe contracts.Error.",
+    "traversal_symlink": "C10 accepts bytes, not paths. It does not open or follow document resource paths. Full Go regression run passed C09 traversal/symlink/ZIP expansion rejection.",
+    "repeat_interruption": "C10 repeated decoding preserves exact bytes and independent result storage; persistent-import interruption is outside owner-approved scope. The unchanged C09 interrupted-read/prior-real-store regression and C05 recovery tests passed.",
+    "no_execution_network": "Source-text sentinel remained absent. An actual loopback HTTP trap received zero requests for document schema/ref URLs; file/relative refs were rejected as invalid BOM content."
+  },
+  "security_review": "Untrusted byte boundary uses existing 100 MiB cap and strict JSON v2 parsing; exact supported version admission precedes fixed-schema validation. Only embedded resources can resolve schema references. Errors contain no raw input or upstream detail. Raw result is cloned. A syntactically valid signature remains unverified; no new authorization surface or protected file change.",
+  "changed_paths": [
+    "THIRD_PARTY_NOTICES.md",
+    "apps/web/src/generated/project.json",
+    "docs/ROADMAP_FA.md",
+    "docs/agents/SESSION_HANDOFF.json",
+    "docs/engineering/resources/golang-x-text-LICENSE.txt",
+    "docs/engineering/resources/golang-x-text-PATENTS.txt",
+    "docs/engineering/resources/jsonschema-v6-LICENSE.txt",
+    "docs/engineering/toolchain-lock.json",
+    "docs/evidence/C10.json",
+    "go.mod",
+    "go.sum",
+    "internal/adapters/cyclonedx.go",
+    "internal/adapters/schemas/bom-1.7.schema.json",
+    "internal/adapters/schemas/cryptography-defs.schema.json",
+    "internal/adapters/schemas/jsf-0.82.schema.json",
+    "internal/adapters/schemas/provenance.json",
+    "internal/adapters/schemas/spdx.schema.json",
+    "plans/commits/C10.md",
+    "plans/progress.json",
+    "plans/project-state.json",
+    "plans/requirements.json",
+    "plans/roadmap.json",
+    "scripts/verify-engine-tests.mjs",
+    "tests/cyclonedx_test.go",
+    "tests/fixtures/attestara/C10/expected.json",
+    "tests/fixtures/attestara/C10/negative.json",
+    "tests/fixtures/attestara/C10/positive.json",
+    "tests/fixtures/attestara/C10/provenance.json"
+  ],
+  "protected_paths_changed": [],
+  "limits": [
+    "Library-only; no endpoint/browser workflow or authoritative commit.",
+    "No cryptographic signature or producer trust verification.",
+    "C28 hardware capacity and C30 full workflow/restart/restore remain unverified."
+  ],
+  "passed": true,
+  "dependency_acquisition": {
+    "command": "GOTOOLCHAIN=local GOPROXY='https://proxy.golang.org|direct' GOSUMDB=sum.golang.org /tmp/attestara-c02/go-source/go-022c8636110ebac86a9b88724cda168ed713c21f/bin/go get github.com/santhosh-tekuri/jsonschema/v6@v6.0.3",
+    "exit_code": 0,
+    "output": "go: downloading golang.org/x/text v0.14.0\ngo: added github.com/santhosh-tekuri/jsonschema/v6 v6.0.3\ngo: added golang.org/x/text v0.14.0\n",
+    "note": "go mod tidy subsequently resolved regexp2 v1.11.0 for upstream test metadata; it is absent from adapter imports and linked runtime."
+  },
+  "final_source_recheck": {
+    "source_identity": "sha256:b7dfa8173887d20d324ed87c8b04c22b4bb704da6a0437f1b19a9c736767b318",
+    "source_files": 104,
+    "changed_files": 28,
+    "all_changes_accounted_for": true
+  }
+}

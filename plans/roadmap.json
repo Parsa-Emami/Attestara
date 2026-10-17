@@ -918,7 +918,7 @@
       ],
       "verification": [
         "npm run validate:plan — All task/dependency/resource/reference/evidence metadata validates; no runtime capability inferred.",
-        "go test ./... — C03 creates this engine test command in the same commit; C06 adds CI/integration collection. Pass the actual C10 acceptance and negative cases on the selected engine; shell-only tests cannot certify this task."
+        "go test ./... — Available via C03/C06; pass C10 read-only schema/version/byte-preservation cases and existing engine regressions on pinned Go."
       ],
       "acceptance": [
         "Chosen supported schema is pinned; unsupported versions report error rather than lossy conversion."
@@ -969,7 +969,7 @@
         "Inspect the actual implementation, source/locks and verified dependencies for C10; preserve accepted existing behavior.",
         "Define the versioned positive and negative release-evidence fixtures and expected error/result semantics under tests/fixtures/attestara/C10/.",
         "Implement: Chosen supported schema is pinned; unsupported versions report error rather than lossy conversion.",
-        "Change the listed exact targets and wire the actual typed outcome into the supported browser/engine workflow. Keep domain facts, validation, storage/provider adapters and UI separate.",
+        "Owner-approved read-only library scope: DecodeCycloneDX([]byte) returns a typed header and independent original bytes after strict JSON/version admission and full validation against the C02-pinned embedded CycloneDX 1.7 Draft 7 schemas. Use jsonschema/v6 v6.0.3 with offline-only reference resolution. No API/UI, normalization, authoritative commit or source execution; persistent import interruption/recovery belongs to a task with that workflow. Existing C09/C05 regressions remain required.",
         "Add regression/integration coverage for every acceptance and negative case; real storage/provider/security boundaries cannot be verified only with mocks.",
         "Run the labeled verification commands; record exact source, fixture license/hash, tool/provider versions, command exits and observed results in docs/evidence/C10.json. Update progress only when the whole task is genuinely verified."
       ],
@@ -982,9 +982,9 @@
         },
         {
           "command": "go test ./...",
-          "available_now": false,
+          "available_now": true,
           "introduced_by": "C03",
-          "expected": "C03 creates this engine test command in the same commit; C06 adds CI/integration collection. Pass the actual C10 acceptance and negative cases on the selected engine; shell-only tests cannot certify this task."
+          "expected": "Available via C03/C06; pass C10 read-only schema/version/byte-preservation cases and existing engine regressions on pinned Go."
         }
       ],
       "stop_conditions": [

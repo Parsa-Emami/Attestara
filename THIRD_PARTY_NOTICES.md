@@ -87,7 +87,18 @@ The exact URLs, SHA-256 pins, integrity evidence, license texts and source-build
 | OPA | 1.21.2 | Optional local policy provider; Rego v1 | Apache-2.0; retain license, applicable NOTICE and modification notices |
 | Syft | 1.54.1 | Optional local report producer | Apache-2.0; retain license, applicable NOTICE and modification notices |
 | Grype | 0.120.1 | Optional local report producer; no vulnerability DB is required by C02 | Apache-2.0; retain license, applicable NOTICE and modification notices |
-| CycloneDX | 1.7 format, specification source tag 1.7.2 | Normative format reference, not an implemented adapter | Apache-2.0; retain license, copyright and applicable notices |
+| CycloneDX | 1.7 format, specification source tag 1.7.2 | C02 normative reference; C10 embeds the four unchanged JSON schema files | Apache-2.0; retain license, copyright and applicable notices |
 | SPDX | 3.0 | Normative specification reference, not an implemented adapter | Community-Spec-1.0 and pre-existing CC-BY-3.0 portions; preserve SPDX attribution, notices and terms. These specification terms are not a software-source license |
 
 The SPDX source snapshot is a specification reference; no SPDX-licensed implementation is incorporated into the Apache-2.0 engine. Repository-authored C01/C02 synthetic fixtures are Apache-2.0. No external rules, datasets or container images are shipped by C02. Existing MPL-2.0 web dependencies retain their file-level source and notice obligations; the existing lockfile is unchanged.
+
+## C10 Go adapter dependencies
+
+`go.mod` and `go.sum` pin the read-only validator and its runtime dependency. The four unchanged CycloneDX schema files and their SHA-256 pins are in `internal/adapters/schemas/`; `provenance.json` binds them to C02 source commit `349314a9d7671d7d2ca5b711a725f49a73979da6` (specification release 1.7.2, BOM format 1.7). The upstream JSF schema credits Anders Rundgren/OpenKeyStore and declares Apache-2.0; the embedded SPDX license enumeration is the CycloneDX Apache-2.0 schema, not the separately pinned SPDX specification source.
+
+| Module | Version | Role | License / retained text |
+|---|---|---|---|
+| `github.com/santhosh-tekuri/jsonschema/v6` | v6.0.3 | Draft 7 validation; official tag source commit `b0fc661f4939578bc429f408c18202573dbafcc4` | Apache-2.0; `docs/engineering/resources/jsonschema-v6-LICENSE.txt` |
+| `golang.org/x/text` | v0.14.0 | Validator runtime localization | BSD-3-Clause; `docs/engineering/resources/golang-x-text-LICENSE.txt` and `golang-x-text-PATENTS.txt` |
+
+The validator's upstream test dependency `github.com/dlclark/regexp2` v1.11.0 appears only in module checksum resolution; it is not imported or linked by this adapter. C10 uses Go's standard regexp engine. Schema validation never establishes signature or signer trust. Complete distribution packaging remains C31.

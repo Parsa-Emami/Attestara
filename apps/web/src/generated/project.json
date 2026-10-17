@@ -131,7 +131,7 @@
       "id": "C10",
       "title": "feat(sbom): import supported cyclonedx schema",
       "stage": "domain",
-      "status": "planned",
+      "status": "verified",
       "acceptance": [
         "Chosen supported schema is pinned; unsupported versions report error rather than lossy conversion."
       ],

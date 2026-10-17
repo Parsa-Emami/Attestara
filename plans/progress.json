@@ -87,10 +87,12 @@
     },
     {
       "id": "C10",
-      "status": "planned",
-      "evidence": [],
-      "source_identity": null,
-      "notes": ""
+      "status": "verified",
+      "evidence": [
+        "docs/evidence/C10.json"
+      ],
+      "source_identity": "sha256:b7dfa8173887d20d324ed87c8b04c22b4bb704da6a0437f1b19a9c736767b318",
+      "notes": "Owner-approved read-only CycloneDX JSON 1.7 adapter: strict bounded JSON, full C02-pinned offline schema validation, version rejection, independent original bytes and safe typed errors verified. No API/UI, authoritative import, execution or signer trust; persistent import interruption/recovery explicitly deferred."
     },
     {
       "id": "C11",

@@ -1,0 +1,6 @@
+{
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.7",
+  "preserve_original_bytes": true,
+  "establishes_trust": false
+}

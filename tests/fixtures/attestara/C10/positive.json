@@ -1,0 +1,55 @@
+{
+  "$schema": "https://untrusted.invalid/never-fetch.json",
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.7",
+  "version": 9007199254740993,
+  "metadata": {
+    "component": {
+      "type": "application",
+      "name": "c10-synthetic",
+      "version": "1.0.0"
+    }
+  },
+  "components": [
+    {
+      "type": "library",
+      "bom-ref": "library-a",
+      "name": "synthetic-library",
+      "version": "1.0.0",
+      "purl": "pkg:generic/synthetic-library@1.0.0",
+      "licenses": [
+        {
+          "license": {
+            "id": "Apache-2.0"
+          }
+        }
+      ]
+    },
+    {
+      "type": "cryptographic-asset",
+      "name": "synthetic-aes",
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "algorithmFamily": "AES"
+        }
+      }
+    }
+  ],
+  "dependencies": [
+    {
+      "ref": "library-a",
+      "dependsOn": []
+    }
+  ],
+  "signature": {
+    "algorithm": "RS256",
+    "value": "synthetic-not-a-verified-signature"
+  },
+  "properties": [
+    {
+      "name": "source-description",
+      "value": "#!/bin/sh; inert data only"
+    }
+  ]
+}
