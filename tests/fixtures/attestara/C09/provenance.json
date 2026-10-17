@@ -1,0 +1,6 @@
+{
+  "license": "Apache-2.0",
+  "provenance": "Repository-authored synthetic C09 ZIPs, using repository-authored C08 subject/evidence/policy bytes. No user/customer data or external resources.",
+  "generation": "ZIP Deflate; negative.json binds each archive to its expected typed error. bomb.zip contains an actual 100 MiB + 1 repetitive-byte member; it is not executable.",
+  "scope": "Read-only ZIP validation; no cryptographic trust, persistence, API or UI."
+}

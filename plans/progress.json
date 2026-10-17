@@ -78,10 +78,12 @@
     },
     {
       "id": "C09",
-      "status": "planned",
-      "evidence": [],
-      "source_identity": null,
-      "notes": ""
+      "status": "verified",
+      "evidence": [
+        "docs/evidence/C09.json"
+      ],
+      "source_identity": "sha256:f3a498c3ee51ecba7c66ae4fa4eca14f020c9193ce9eb4c35bbf7b9d4c7e1949",
+      "notes": "Owner-approved read-only ZIP library composes C08: root manifest, actual byte/checksum/size validation, traversal/symlink/duplicate/oversize/bomb rejection, SIGKILL/repeat and unchanged real prior C05 store verified. No HTTP/UI, extraction, execution, persistence or signer trust."
     },
     {
       "id": "C10",

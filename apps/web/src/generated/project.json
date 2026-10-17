@@ -119,7 +119,7 @@
       "id": "C09",
       "title": "feat(archives): safely read bounded evidence archives",
       "stage": "domain",
-      "status": "planned",
+      "status": "verified",
       "acceptance": [
         "Traversal, symlink and decompression bomb fixtures are rejected."
       ],

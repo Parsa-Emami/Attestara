@@ -1,0 +1,125 @@
+{
+  "schema_version": "1",
+  "cases": [
+    {
+      "id": "path-0",
+      "archive": "path-0.zip",
+      "expected_code": "invalid_input",
+      "expected_field": "archive.path"
+    },
+    {
+      "id": "path-1",
+      "archive": "path-1.zip",
+      "expected_code": "invalid_input",
+      "expected_field": "archive.path"
+    },
+    {
+      "id": "path-2",
+      "archive": "path-2.zip",
+      "expected_code": "invalid_input",
+      "expected_field": "archive.path"
+    },
+    {
+      "id": "path-3",
+      "archive": "path-3.zip",
+      "expected_code": "invalid_input",
+      "expected_field": "archive.path"
+    },
+    {
+      "id": "path-4",
+      "archive": "path-4.zip",
+      "expected_code": "invalid_input",
+      "expected_field": "archive.path"
+    },
+    {
+      "id": "path-5",
+      "archive": "path-5.zip",
+      "expected_code": "invalid_input",
+      "expected_field": "archive.path"
+    },
+    {
+      "id": "path-6",
+      "archive": "path-6.zip",
+      "expected_code": "invalid_input",
+      "expected_field": "archive.path"
+    },
+    {
+      "id": "symlink",
+      "archive": "symlink.zip",
+      "expected_code": "invalid_input",
+      "expected_field": "archive.path"
+    },
+    {
+      "id": "duplicate",
+      "archive": "duplicate.zip",
+      "expected_code": "invalid_input",
+      "expected_field": "archive.path"
+    },
+    {
+      "id": "duplicate-manifest",
+      "archive": "duplicate-manifest.zip",
+      "expected_code": "invalid_input",
+      "expected_field": "archive.path"
+    },
+    {
+      "id": "missing-manifest",
+      "archive": "missing-manifest.zip",
+      "expected_code": "input_unavailable",
+      "expected_field": "manifest.json"
+    },
+    {
+      "id": "malformed-manifest",
+      "archive": "malformed-manifest.zip",
+      "expected_code": "invalid_json",
+      "expected_field": "$"
+    },
+    {
+      "id": "unsupported-version",
+      "archive": "unsupported-version.zip",
+      "expected_code": "unsupported_version",
+      "expected_field": "schema_version"
+    },
+    {
+      "id": "modified-byte",
+      "archive": "modified-byte.zip",
+      "expected_code": "invalid_input",
+      "expected_field": "files.digest"
+    },
+    {
+      "id": "missing-file",
+      "archive": "missing-file.zip",
+      "expected_code": "input_unavailable",
+      "expected_field": "files.path"
+    },
+    {
+      "id": "too-many-entries",
+      "archive": "too-many-entries.zip",
+      "expected_code": "limit_exceeded",
+      "expected_field": "archive.entries"
+    },
+    {
+      "id": "bomb",
+      "archive": "bomb.zip",
+      "expected_code": "limit_exceeded",
+      "expected_field": "archive.size_bytes"
+    },
+    {
+      "id": "malformed",
+      "archive": "malformed.zip",
+      "expected_code": "invalid_input",
+      "expected_field": "archive"
+    },
+    {
+      "id": "truncated",
+      "archive": "truncated.zip",
+      "expected_code": "invalid_input",
+      "expected_field": "archive"
+    },
+    {
+      "id": "symlink-directory",
+      "archive": "symlink-directory.zip",
+      "expected_code": "invalid_input",
+      "expected_field": "archive.path"
+    }
+  ]
+}

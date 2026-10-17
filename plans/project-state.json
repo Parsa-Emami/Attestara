@@ -1,6 +1,6 @@
 {
   "project": "Attestara",
-  "reviewed_commit": "ac110c6c48cec7ad005027284c478697d9aca61a",
+  "reviewed_commit": "1107f58e874f2c3e8ce26f597729546f1d5fe3f8",
   "readiness": "WEB_FOUNDATION",
   "core_ready": false,
   "implemented": [
@@ -12,10 +12,11 @@
     "internal single-writer local authoritative file repository with atomic durable commit, replay and tested crash/ENOSPC recovery",
     "dedicated pinned engine CI and explicit Go test discovery; C03-C05 build/vet/tests and web regressions verified locally on an isolated clean candidate checkout",
     "versioned per-artifact evidence envelopes bound to subject, producer tool/version and independent configuration SHA-256 digests",
-    "C08 typed Go bundle reader validates actual manifest file sizes and SHA-256 bytes; it returns unverified input only"
+    "C08 typed Go bundle reader validates actual manifest file sizes and SHA-256 bytes; it returns unverified input only",
+    "C09 read-only bounded ZIP reader composes C08; unsafe/duplicate paths, symlinks, corrupt members and oversized expansion rejected without extraction or authority changes"
   ],
-  "engine": "Go lifecycle/health, v1 typed release-evidence validators, recoverable local file repository, versioned per-artifact evidence envelopes and a typed manifest reader verifying actual file bytes are implemented; API, policy execution, cryptographic trust, revision authority and full workflow pending",
-  "next_task": "C09",
+  "engine": "Go lifecycle/health, v1 typed release-evidence validation, recoverable local file repository, per-artifact evidence envelopes, typed manifest reader and bounded read-only ZIP reader implemented; domain API, policy execution, cryptographic trust, revision authority and full workflow pending",
+  "next_task": "C10",
   "next_command": "npm run plan -- next",
   "full_product_endpoint": "C30 locally usable; C40 full published OSS v1"
 }
