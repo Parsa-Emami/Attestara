@@ -37,7 +37,7 @@ def validate():
                     if Path(path).is_absolute() or '..' in Path(path).parts: errors.append(s['id']+': unsafe evidence path');continue
                     try:
                         e=read(path)
-                        if e.get('planning_template') or e.get('passed') is not True or not e.get('commands') or not e.get('results'): errors.append(s['id']+': incomplete evidence')
+                        if e.get('planning_template') or e.get('passed') is not True or not e.get('commands') or not (e.get('results') or e.get('observed_results')): errors.append(s['id']+': incomplete evidence')
                         if e.get('commit_id')!=s['id'] or e.get('source_identity')!=s['source_identity']: errors.append(s['id']+': evidence identity mismatch')
                     except Exception as ex: errors.append(s['id']+': unreadable evidence '+str(ex))
         if (ROOT/'plans/web-roadmap.json').is_file():
