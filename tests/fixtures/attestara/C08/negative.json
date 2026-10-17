@@ -1,0 +1,56 @@
+{
+  "cases": [
+    {
+      "id": "missing-evidence-file",
+      "mutation": "remove_file",
+      "file": "evidence.txt",
+      "expected_code": "input_unavailable",
+      "expected_field": "files.path"
+    },
+    {
+      "id": "duplicate-path",
+      "mutation": "duplicate_path",
+      "expected_code": "invalid_input",
+      "expected_field": "files.path"
+    },
+    {
+      "id": "declared-size-mismatch",
+      "mutation": "size_plus_one",
+      "file": "evidence.txt",
+      "expected_code": "invalid_input",
+      "expected_field": "files.size_bytes"
+    },
+    {
+      "id": "modified-byte",
+      "mutation": "modify_byte",
+      "file": "evidence.txt",
+      "expected_code": "invalid_input",
+      "expected_field": "files.digest"
+    },
+    {
+      "id": "missing-evidence-reference",
+      "mutation": "remove_digest_file",
+      "field": "evidence_digest",
+      "expected_code": "invalid_input",
+      "expected_field": "files"
+    },
+    {
+      "id": "trusted-claim",
+      "mutation": "trusted",
+      "expected_code": "invalid_input",
+      "expected_field": "verification"
+    },
+    {
+      "id": "unknown-signer-claim",
+      "mutation": "add_signer",
+      "expected_code": "invalid_input",
+      "expected_field": "$"
+    },
+    {
+      "id": "unsupported-expiry-claim",
+      "mutation": "add_expiry",
+      "expected_code": "invalid_input",
+      "expected_field": "$"
+    }
+  ]
+}

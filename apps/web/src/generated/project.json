@@ -107,7 +107,7 @@
       "id": "C08",
       "title": "feat(bundle): validate portable evidence manifest",
       "stage": "domain",
-      "status": "planned",
+      "status": "verified",
       "acceptance": [
         "Missing files, duplicate paths and declared size mismatch reject bundle."
       ],

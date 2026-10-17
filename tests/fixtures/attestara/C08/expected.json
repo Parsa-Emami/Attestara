@@ -1,0 +1,22 @@
+{
+  "schema_version": "1",
+  "release_id": "c08-synthetic-release",
+  "verification": "unverified",
+  "files": [
+    {
+      "path": "subject.txt",
+      "digest": "sha256:932b3d53fd10fa5bf895eb4fffecc08ecc73f193165eb3a5ff7c1502138881d9",
+      "size_bytes": 41
+    },
+    {
+      "path": "evidence.txt",
+      "digest": "sha256:09c28470bdbce4baaa27d223d41a584823b06a183bcf5dbe226fccf42d7b55bf",
+      "size_bytes": 34
+    },
+    {
+      "path": "policy.txt",
+      "digest": "sha256:f5ec11ee33d80cc73968513cd2baec7c5ca347dd78369bd3ed0c29e3d0bb288f",
+      "size_bytes": 53
+    }
+  ]
+}

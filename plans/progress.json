@@ -69,10 +69,12 @@
     },
     {
       "id": "C08",
-      "status": "planned",
-      "evidence": [],
-      "source_identity": null,
-      "notes": ""
+      "status": "verified",
+      "evidence": [
+        "docs/evidence/C08.json"
+      ],
+      "source_identity": "sha256:3b5c4a08bbe5547b9257569649f69643b65975fba44c022c54e6d3a65290f0b9",
+      "notes": "Verified C08 manifest parsing and actual file size/SHA-256 checks with positive and negative fixtures. Reader remains unverified and has no persistence, signer trust or revision authority."
     },
     {
       "id": "C09",

@@ -1,0 +1,5 @@
+{
+  "license": "Apache-2.0",
+  "provenance": "Repository-authored synthetic C08 fixture data; no user/customer data or upstream material.",
+  "scope": "Tests local manifest byte/path/size/digest validation only. It does not verify signatures or revisions and never executes fixture bytes."
+}

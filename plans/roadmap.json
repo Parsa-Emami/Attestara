@@ -751,7 +751,7 @@
         "plans/project-state.json"
       ],
       "before": "Entry requirement: verified C07 evidence. Preserve its demonstrated behavior; inspect actual source and any recorded blockers before editing.",
-      "after": "Missing files, duplicate paths and declared size mismatch reject bundle.",
+      "after": "Missing files, duplicate paths, declared size mismatch and modified bytes reject the bundle; valid output remains typed and unverified.",
       "resources": {
         "hardware": {
           "vcpu": 2,
@@ -777,16 +777,16 @@
         "licenses": "Apache-2.0 project source; pin and inventory every shipped upstream library/provider/grammar/rule/dataset license. Unknown/restricted required resources block release."
       },
       "negative_cases": [
-        "One modified byte, missing evidence or a wrong/untrusted signer must not produce trusted success.",
-        "An expired/stale/replayed revision cannot replace the last valid accepted authority.",
+        "One modified byte, missing evidence or a wrong/untrusted signer must not produce trusted success; unsupported signer claims are rejected.",
+        "Expired/stale/replayed revision data cannot replace authority; the C08 reader has no persistent authority and always returns unverified input.",
         "No user source execution"
       ],
       "implementation_steps": [
         "Inspect the actual implementation, source/locks and verified dependencies for C08; preserve accepted existing behavior.",
         "Define the versioned positive and negative release-evidence fixtures and expected error/result semantics under tests/fixtures/attestara/C08/.",
-        "Implement: Missing files, duplicate paths and declared size mismatch reject bundle.",
-        "Change the listed exact targets and wire the actual typed outcome into the supported browser/engine workflow. Keep domain facts, validation, storage/provider adapters and UI separate.",
-        "Add regression/integration coverage for every acceptance and negative case; real storage/provider/security boundaries cannot be verified only with mocks.",
+        "Implement: Missing files, duplicate paths, declared size mismatch and modified bytes reject bundle.",
+        "Wire the typed result into the Go engine library over the existing C04 v1 input and fs.FS; do not add API/UI or signer/revision authority.",
+        "Add real-filesystem regressions for all acceptance/negative cases; preserve C04/C07 behavior and prove the reader has no persistent authority side effects.",
         "Run the labeled verification commands; record exact source, fixture license/hash, tool/provider versions, command exits and observed results in docs/evidence/C08.json. Update progress only when the whole task is genuinely verified."
       ],
       "verification_commands": [

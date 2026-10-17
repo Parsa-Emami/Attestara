@@ -11,10 +11,11 @@
     "v1 typed release-evidence contracts and real Go byte-input validators",
     "internal single-writer local authoritative file repository with atomic durable commit, replay and tested crash/ENOSPC recovery",
     "dedicated pinned engine CI and explicit Go test discovery; C03-C05 build/vet/tests and web regressions verified locally on an isolated clean candidate checkout",
-    "versioned per-artifact evidence envelopes bound to subject, producer tool/version and independent configuration SHA-256 digests"
+    "versioned per-artifact evidence envelopes bound to subject, producer tool/version and independent configuration SHA-256 digests",
+    "C08 typed Go bundle reader validates actual manifest file sizes and SHA-256 bytes; it returns unverified input only"
   ],
-  "engine": "Go lifecycle/health, v1 typed release-evidence validators, recoverable local file repository and versioned per-artifact evidence envelopes implemented; domain API, policy execution, cryptographic trust and full workflow pending",
-  "next_task": "C08",
+  "engine": "Go lifecycle/health, v1 typed release-evidence validators, recoverable local file repository, versioned per-artifact evidence envelopes and a typed manifest reader verifying actual file bytes are implemented; API, policy execution, cryptographic trust, revision authority and full workflow pending",
+  "next_task": "C09",
   "next_command": "npm run plan -- next",
   "full_product_endpoint": "C30 locally usable; C40 full published OSS v1"
 }
