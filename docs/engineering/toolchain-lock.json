@@ -1,6 +1,6 @@
 {
-  "verified_on": "2026-10-15",
-  "scope": "web foundation only",
+  "verified_on": "2026-10-17",
+  "scope": "C02 resource inventory and integrity only; product engine execution unverified",
   "runtime": {
     "node": "24.19.0",
     "npm": "11.9.0"
@@ -23,6 +23,396 @@
     "https://react.dev/",
     "https://playwright.dev/docs/intro"
   ],
-  "lockfile": "package-lock.json",
-  "engine_toolchain": "pending project-specific C02 evidence"
+  "lockfile": {
+    "path": "package-lock.json",
+    "sha256": "2512e1850692f4fe46cebd1b04ac9c33a2ca3269fbf6800f1a026e6fdc8b6570"
+  },
+  "engine_toolchain": "Go 1.27.2 from pinned official source; C03 creates the product engine",
+  "schema_version": 1,
+  "profile": "linux-x64",
+  "resources": [
+    {
+      "id": "go",
+      "version": "1.27.2",
+      "required": true,
+      "platform": "linux-x64",
+      "source_url": "https://go.dev/dl/#go1.27.2",
+      "license": {
+        "expression": "BSD-3-Clause",
+        "url": "https://raw.githubusercontent.com/golang/go/022c8636110ebac86a9b88724cda168ed713c21f/LICENSE",
+        "path": "docs/engineering/resources/go-LICENSE.txt",
+        "sha256": "911f8f5782931320f5b8d1160a76365b83aea6447ee6c04fa6d5591467db9dad"
+      },
+      "redistribution": "Retain upstream copyright, license and required notices; see the pinned license text. No license of the Attestara source is changed.",
+      "artifact": {
+        "url": "https://codeload.github.com/golang/go/tar.gz/022c8636110ebac86a9b88724cda168ed713c21f",
+        "filename": "go-source.tar.gz",
+        "sha256": "67e7cc3698341f50a19a0c36610d08945cdf841ea82c90fd576ae69ba3df9be5"
+      },
+      "integrity": {
+        "format": "git-commit",
+        "source_commit": "022c8636110ebac86a9b88724cda168ed713c21f",
+        "url": "https://api.github.com/repos/golang/go/commits/go1.27.2",
+        "path": "docs/engineering/resources/go-source-commit.json",
+        "sha256": "a6efe55f86fb13d6c06f1209762d402c5176ac414f73fa45d98775d96cb6c179"
+      },
+      "source_build": {
+        "source_commit": "022c8636110ebac86a9b88724cda168ed713c21f",
+        "archive": {
+          "url": "https://codeload.github.com/golang/go/tar.gz/022c8636110ebac86a9b88724cda168ed713c21f",
+          "filename": "go-source.tar.gz",
+          "sha256": "67e7cc3698341f50a19a0c36610d08945cdf841ea82c90fd576ae69ba3df9be5"
+        },
+        "recipe_url": "https://go.dev/doc/install/source",
+        "commands": [
+          "cd src && GOROOT_BOOTSTRAP=/path/to/go1.26.2 GOMAXPROCS=2 ./make.bash"
+        ],
+        "verification": "Built successfully from the pinned official source on Linux x86_64. See docs/evidence/C02.json for exact commands, bootstrap/module verification and observed build metadata."
+      },
+      "prebuilt_alternative": {
+        "url": "https://go.dev/dl/go1.27.2.linux-amd64.tar.gz",
+        "sha256": "ecbadb99091a3f46e31f5f934b068b1864eafa7995211b39eaddf76996045fe5",
+        "availability": "HTTP 404 observed on 2026-10-17; use the pinned source-build route",
+        "official_metadata": {
+          "url": "https://go.dev/dl/?mode=json",
+          "path": "docs/engineering/resources/go-release.json",
+          "sha256": "1c4adcd4a38044b2ee040eb1a640c06f8d76b3afa59fd117f5fb633ba6651f78"
+        }
+      }
+    },
+    {
+      "id": "node",
+      "version": "24.19.0",
+      "required": true,
+      "platform": "linux-x64",
+      "source_url": "https://nodejs.org/dist/v24.19.0/",
+      "license": {
+        "expression": "MIT",
+        "url": "https://raw.githubusercontent.com/nodejs/node/v24.19.0/LICENSE",
+        "path": "docs/engineering/resources/node-LICENSE.txt",
+        "sha256": "148eacf7863ef4329224a29398623077200a27194aa075569faf4a0a85566ca5"
+      },
+      "redistribution": "Node source is MIT; bundled dependencies retain their own licenses and notices. Preserve the complete pinned Node LICENSE, including all bundled terms, when redistributing.",
+      "artifact": {
+        "url": "https://nodejs.org/dist/v24.19.0/node-v24.19.0-linux-x64.tar.xz",
+        "filename": "node-v24.19.0-linux-x64.tar.xz",
+        "sha256": "14b342e71204f811bde6153be8e04b62aef63c236fef92b55f9c83154b409647"
+      },
+      "integrity": {
+        "format": "sha256sum",
+        "url": "https://nodejs.org/dist/v24.19.0/SHASUMS256.txt",
+        "path": "docs/engineering/resources/node-SHASUMS256.txt",
+        "sha256": "be0629ee2bcd8e40bb856abdd3407f0762101b76bd60a36b8867f637733631c0"
+      },
+      "source_build": {
+        "archive": {
+          "url": "https://nodejs.org/dist/v24.19.0/node-v24.19.0.tar.xz",
+          "filename": "node-v24.19.0.tar.xz",
+          "sha256": "f6d95e10a0431ee1067fc6aabe9f762908b4716dd35324e1ddb4b1466b76659f"
+        },
+        "recipe_url": "https://github.com/nodejs/node/blob/v24.19.0/BUILDING.md",
+        "commands": [
+          "./configure",
+          "make -j2"
+        ],
+        "verification": "Official pinned BUILDING.md is the source-build recipe; no new Node build claimed."
+      }
+    },
+    {
+      "id": "npm",
+      "version": "11.9.0",
+      "required": true,
+      "platform": "linux-x64",
+      "source_url": "https://github.com/npm/cli/releases/tag/v11.9.0",
+      "license": {
+        "expression": "Artistic-2.0",
+        "url": "https://raw.githubusercontent.com/npm/cli/v11.9.0/LICENSE",
+        "path": "docs/engineering/resources/npm-LICENSE.txt",
+        "sha256": "7610d223851f421d315df5e77974f1c68a04b97e02060e5bbbcf13d95e3ca257"
+      },
+      "redistribution": "Retain upstream copyright, license and required notices; see the pinned license text. No license of the Attestara source is changed.",
+      "artifact": {
+        "url": "https://registry.npmjs.org/npm/-/npm-11.9.0.tgz",
+        "filename": "npm-11.9.0.tgz",
+        "sha256": "5a172e3228e59d44cb9f44d5e83977178323bba3cc506016cae8e40b92ad418f",
+        "integrity": "sha512-BBZoU926FCypj4b7V7ElinxsWcy4Kss88UG3ejFYmKyq7Uc5XnT34Me2nEhgCOaL5qY4HvGu5aI92C4OYd7NaA=="
+      },
+      "integrity": {
+        "format": "npm-dist",
+        "url": "https://registry.npmjs.org/npm/11.9.0",
+        "path": "docs/engineering/resources/npm-release.json",
+        "sha256": "975251ac27257208a5b4e5915468a15c057bd743f4c4910ccfb87ce806599f21"
+      },
+      "source_build": {
+        "recipe_url": "https://github.com/npm/cli/tree/v11.9.0",
+        "commands": [
+          "node bin/npm-cli.js --version"
+        ],
+        "verification": "npm is distributed as JavaScript source; the integrity-checked tarball is directly runnable."
+      }
+    },
+    {
+      "id": "opa",
+      "version": "1.21.2",
+      "required": false,
+      "platform": "linux-x64",
+      "source_url": "https://github.com/open-policy-agent/opa/releases/tag/v1.21.2",
+      "license": {
+        "expression": "Apache-2.0",
+        "url": "https://raw.githubusercontent.com/open-policy-agent/opa/3f7474e6b3c631821d8aac25ca444f7e75a56483/LICENSE",
+        "path": "docs/engineering/resources/opa-LICENSE.txt",
+        "sha256": "c6596eb7be8581c18be736c846fb9173b69eccf6ef94c5135893ec56bd92ba08"
+      },
+      "redistribution": "Retain upstream copyright, license and required notices; see the pinned license text. No license of the Attestara source is changed.",
+      "artifact": {
+        "url": "https://github.com/open-policy-agent/opa/releases/download/v1.21.2/opa_linux_amd64_static",
+        "filename": "opa_linux_amd64_static",
+        "sha256": "830ab11f61ffec760b5e19db0d7ad02bf037e13f5ef4d665faeaf17632177527"
+      },
+      "integrity": {
+        "format": "sha256sum",
+        "url": "https://github.com/open-policy-agent/opa/releases/download/v1.21.2/opa_linux_amd64_static.sha256",
+        "path": "docs/engineering/resources/opa-checksums.txt",
+        "sha256": "aac977f0019bc8410f116cfcea76cb9ad6291912c95aca4866d0a16e532bfd0c"
+      },
+      "source_build": {
+        "source_commit": "3f7474e6b3c631821d8aac25ca444f7e75a56483",
+        "archive": {
+          "url": "https://codeload.github.com/open-policy-agent/opa/tar.gz/3f7474e6b3c631821d8aac25ca444f7e75a56483",
+          "filename": "opa-source.tar.gz",
+          "sha256": "6a8f2e7b69807ab9174f591a3700f79450e0b16b4baa47dfc7ba69b0b8dc4474"
+        },
+        "recipe": {
+          "url": "https://raw.githubusercontent.com/open-policy-agent/opa/3f7474e6b3c631821d8aac25ca444f7e75a56483/Makefile",
+          "path": "docs/engineering/resources/opa-BUILD.txt",
+          "sha256": "87af5bc5aabacaa305fc511a46edbd5bcc20cea09f7f8a11966161b27f5007e1"
+        },
+        "commands": [
+          "GOTOOLCHAIN=local GOPROXY='https://proxy.golang.org|direct' GOSUMDB=sum.golang.org go build -mod=readonly -trimpath -o opa ."
+        ],
+        "verification": "Built successfully from the pinned official source on Linux x86_64. See docs/evidence/C02.json for exact commands, bootstrap/module verification and observed build metadata.",
+        "commit_metadata": {
+          "url": "https://api.github.com/repos/open-policy-agent/opa/commits/3f7474e6b3c631821d8aac25ca444f7e75a56483",
+          "path": "docs/engineering/resources/opa-source-commit.json",
+          "sha256": "53ed44b9f7a5d37e3f5290cfe72286168eb30351160ecf162d8d4746b51b041b"
+        },
+        "dependency_locks": {
+          "go.mod": "379d2ce9dd49d847ef065efe11ecae8c9e0d8433f537e7881a11c3a53a9032df",
+          "go.sum": "acd78167b4af5b166a7c4302180618c0c744e974000f58319e05db16f5db9adf"
+        }
+      },
+      "language_version": "Rego v1"
+    },
+    {
+      "id": "syft",
+      "version": "1.54.1",
+      "required": false,
+      "platform": "linux-x64",
+      "source_url": "https://github.com/anchore/syft/releases/tag/v1.54.1",
+      "license": {
+        "expression": "Apache-2.0",
+        "url": "https://raw.githubusercontent.com/anchore/syft/b254e6d92f28c3868a755f62fb3ca8f26e9fee76/LICENSE",
+        "path": "docs/engineering/resources/syft-LICENSE.txt",
+        "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+      },
+      "redistribution": "Retain upstream copyright, license and required notices; see the pinned license text. No license of the Attestara source is changed.",
+      "artifact": {
+        "url": "https://github.com/anchore/syft/releases/download/v1.54.1/syft_1.54.1_linux_amd64.tar.gz",
+        "filename": "syft_1.54.1_linux_amd64.tar.gz",
+        "sha256": "c069905b391cc4c20a5ba65ad5c10be2a7ba074f8ea6ad203e24d14e303dad47"
+      },
+      "integrity": {
+        "format": "sha256sum",
+        "url": "https://github.com/anchore/syft/releases/download/v1.54.1/syft_1.54.1_checksums.txt",
+        "path": "docs/engineering/resources/syft-checksums.txt",
+        "sha256": "7577f0d0b3fb16f65a2e56b413862f69aa5eaa2379d5760cb73d691ca7986059"
+      },
+      "source_build": {
+        "source_commit": "b254e6d92f28c3868a755f62fb3ca8f26e9fee76",
+        "archive": {
+          "url": "https://codeload.github.com/anchore/syft/tar.gz/b254e6d92f28c3868a755f62fb3ca8f26e9fee76",
+          "filename": "syft-source.tar.gz",
+          "sha256": "193f9c9fc0616bf21e6a232c1e927aaf3779f70806eb6ee1a532dd857d1188ef"
+        },
+        "recipe": {
+          "url": "https://raw.githubusercontent.com/anchore/syft/b254e6d92f28c3868a755f62fb3ca8f26e9fee76/Makefile",
+          "path": "docs/engineering/resources/syft-BUILD.txt",
+          "sha256": "963f44ffb06018daed25acf04f73f9b27ac0666eb05a35f750906dc2c3e685f7"
+        },
+        "commands": [
+          "GOTOOLCHAIN=local GOPROXY='https://proxy.golang.org|direct' GOSUMDB=sum.golang.org go build -mod=readonly -trimpath -o syft ./cmd/syft"
+        ],
+        "verification": "Built successfully from the pinned official source on Linux x86_64. See docs/evidence/C02.json for exact commands, bootstrap/module verification and observed build metadata.",
+        "commit_metadata": {
+          "url": "https://api.github.com/repos/anchore/syft/commits/b254e6d92f28c3868a755f62fb3ca8f26e9fee76",
+          "path": "docs/engineering/resources/syft-source-commit.json",
+          "sha256": "c8687dc5f31f0f3d5a8eeedcda146106c5ef93920b2e27180fe67cb733c19a67"
+        },
+        "dependency_locks": {
+          "go.mod": "db082e509448c46d177f85db3be749f37caa6dbf3501f4dbe5dcf630609d2c37",
+          "go.sum": "16a498d84fdb1d6f9e9779189c37d0613751d46b6499472d29bb39ab970e81e6"
+        },
+        "observed_transport": "Command-local public module proxy, with goproxy.cn mirror and direct VCS fallback; upstream go.sum and sum.golang.org verification retained. Not an application runtime prerequisite."
+      }
+    },
+    {
+      "id": "grype",
+      "version": "0.120.1",
+      "required": false,
+      "platform": "linux-x64",
+      "source_url": "https://github.com/anchore/grype/releases/tag/v0.120.1",
+      "license": {
+        "expression": "Apache-2.0",
+        "url": "https://raw.githubusercontent.com/anchore/grype/6f8d854af29d3a3086b11a84afa51554a2a245fe/LICENSE",
+        "path": "docs/engineering/resources/grype-LICENSE.txt",
+        "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+      },
+      "redistribution": "Retain upstream copyright, license and required notices; see the pinned license text. No license of the Attestara source is changed.",
+      "artifact": {
+        "url": "https://github.com/anchore/grype/releases/download/v0.120.1/grype_0.120.1_linux_amd64.tar.gz",
+        "filename": "grype_0.120.1_linux_amd64.tar.gz",
+        "sha256": "0a9ee97ef5ae2ee953b0a80098105052e846cdbe319a57d808b519c33cd1343d"
+      },
+      "integrity": {
+        "format": "sha256sum",
+        "url": "https://github.com/anchore/grype/releases/download/v0.120.1/grype_0.120.1_checksums.txt",
+        "path": "docs/engineering/resources/grype-checksums.txt",
+        "sha256": "c25b6095265b44fd9bbb9dbe76aca8daa394c5f0490793d2b52b16be4f5b71b1"
+      },
+      "source_build": {
+        "source_commit": "6f8d854af29d3a3086b11a84afa51554a2a245fe",
+        "archive": {
+          "url": "https://codeload.github.com/anchore/grype/tar.gz/6f8d854af29d3a3086b11a84afa51554a2a245fe",
+          "filename": "grype-source.tar.gz",
+          "sha256": "238f5623555bed2190d8db85c3f48c8d50b13d230644ada3a9756acc702eec37"
+        },
+        "recipe": {
+          "url": "https://raw.githubusercontent.com/anchore/grype/6f8d854af29d3a3086b11a84afa51554a2a245fe/Makefile",
+          "path": "docs/engineering/resources/grype-BUILD.txt",
+          "sha256": "93dd0c96ae398c1655bb20c253e8d15fca59bf81a833bdabceb99a594a00cd16"
+        },
+        "commands": [
+          "GOTOOLCHAIN=local GOPROXY='https://proxy.golang.org|direct' GOSUMDB=sum.golang.org go build -mod=readonly -trimpath -o grype ./cmd/grype"
+        ],
+        "verification": "Built successfully from the pinned official source on Linux x86_64. See docs/evidence/C02.json for exact commands, bootstrap/module verification and observed build metadata.",
+        "commit_metadata": {
+          "url": "https://api.github.com/repos/anchore/grype/commits/6f8d854af29d3a3086b11a84afa51554a2a245fe",
+          "path": "docs/engineering/resources/grype-source-commit.json",
+          "sha256": "c198268b06361359b75a3e1ddfc0f9362ed985c6b4787596a1dc5fd59a97d6b0"
+        },
+        "dependency_locks": {
+          "go.mod": "a04f0eacf450d360591a3684c1fe5cb14c2274197c518209957d5e4bb2554120",
+          "go.sum": "f99cc9d2351c0247045b3c7b3f4720e71c3c4b175359e3a18eee3d395bd23cd1"
+        },
+        "observed_transport": "Command-local public module proxy, with goproxy.cn mirror and direct VCS fallback; upstream go.sum and sum.golang.org verification retained. Not an application runtime prerequisite."
+      }
+    },
+    {
+      "id": "cyclonedx",
+      "version": "1.7",
+      "required": false,
+      "platform": "linux-x64",
+      "source_url": "https://github.com/CycloneDX/specification/tree/349314a9d7671d7d2ca5b711a725f49a73979da6",
+      "license": {
+        "expression": "Apache-2.0",
+        "url": "https://raw.githubusercontent.com/CycloneDX/specification/349314a9d7671d7d2ca5b711a725f49a73979da6/LICENSE",
+        "path": "docs/engineering/resources/cyclonedx-LICENSE.txt",
+        "sha256": "6c29f22a4a7385285c6f579ec9f33c5e989f00739d6b257243a0b082ec9447ae"
+      },
+      "redistribution": "Retain upstream copyright, license and required notices; see the pinned license text. No license of the Attestara source is changed.",
+      "artifact": {
+        "url": "https://codeload.github.com/CycloneDX/specification/tar.gz/349314a9d7671d7d2ca5b711a725f49a73979da6",
+        "filename": "cyclonedx-source.tar.gz",
+        "sha256": "f290a268c2364ebe6f584c4fd2f4f8de16385cc18f8e7530e450eb0436890822"
+      },
+      "integrity": {
+        "format": "git-commit",
+        "source_commit": "349314a9d7671d7d2ca5b711a725f49a73979da6",
+        "url": "https://api.github.com/repos/CycloneDX/specification/commits/349314a9d7671d7d2ca5b711a725f49a73979da6",
+        "path": "docs/engineering/resources/cyclonedx-source-commit.json",
+        "sha256": "c4c774d511c23f37b1c49736e8ca4e8710654a9f764451579f517496a3e2ace4"
+      },
+      "source_build": {
+        "not_applicable": "Normative specification source, not executable code. Adapters and schema validation are later tasks."
+      },
+      "source_release": "1.7.2"
+    },
+    {
+      "id": "spdx",
+      "version": "3.0",
+      "required": false,
+      "platform": "linux-x64",
+      "source_url": "https://github.com/spdx/spdx-spec/tree/f148837fa65ea5ce88c65531480404453c15fd26",
+      "license": {
+        "expression": "Community-Spec-1.0 AND CC-BY-3.0",
+        "url": "https://raw.githubusercontent.com/spdx/spdx-spec/f148837fa65ea5ce88c65531480404453c15fd26/LICENSE",
+        "path": "docs/engineering/resources/spdx-LICENSE.txt",
+        "sha256": "8b9e88199429dc9fc3c87604bdb9008c640829a3b5f6b8bd40ba3d0e8b5ca987"
+      },
+      "redistribution": "Retain upstream copyright, license and required notices; see the pinned license text. No license of the Attestara source is changed.",
+      "artifact": {
+        "url": "https://codeload.github.com/spdx/spdx-spec/tar.gz/f148837fa65ea5ce88c65531480404453c15fd26",
+        "filename": "spdx-source.tar.gz",
+        "sha256": "245c87a5b0020479878b9c812a4122c088db589cb45a7f52e578428d79fc29fa"
+      },
+      "integrity": {
+        "format": "git-commit",
+        "source_commit": "f148837fa65ea5ce88c65531480404453c15fd26",
+        "url": "https://api.github.com/repos/spdx/spdx-spec/commits/f148837fa65ea5ce88c65531480404453c15fd26",
+        "path": "docs/engineering/resources/spdx-source-commit.json",
+        "sha256": "3389274871f728e4fad5125fd2a4302cda5468594fab1e871bbd31fecb554c24"
+      },
+      "source_build": {
+        "not_applicable": "Normative specification source, not executable code. Adapters and schema validation are later tasks."
+      }
+    }
+  ],
+  "not_applicable": {
+    "container_images": "The supported local profile uses native tools, not container images. No image or Dockerfile is introduced.",
+    "policy_rules": "No upstream rule bundle is shipped or selected. Product policy semantics belong to C14/C15, not this resource task.",
+    "external_datasets": "No external dataset is required; current C01/C02 fixtures are repository-authored synthetic Apache-2.0 data.",
+    "go_module": "No product Go module exists before C03. C03 introduces the real go.mod/go.sum; no fictitious dependency lock is created here."
+  },
+  "fixtures": [
+    {
+      "path": "tests/fixtures/attestara/C01/expected.json",
+      "sha256": "7858012f6dde9429581295a6195e200ec225e242ffb15a92a15cd15de08fefd9",
+      "provenance": "repository-authored synthetic expected results",
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "tests/fixtures/attestara/C01/negative.json",
+      "sha256": "6eba6240a1cf2376d5d9d72e291dee7a101c2aab2ed13a18ee18e61da9344b4e",
+      "provenance": "repository-authored synthetic data",
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "tests/fixtures/attestara/C01/positive.json",
+      "sha256": "91ed2a6fb5baf75736d12f172cc01a58774b7190a5af4791291bde1bcbaeded6",
+      "provenance": "repository-authored synthetic data",
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "tests/fixtures/attestara/C02/expected.json",
+      "sha256": "a1e714fbeb5141c6bdc86e16a541f2e16b0c763598d5d202fe363a114c79106f",
+      "provenance": "repository-authored synthetic data",
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "tests/fixtures/attestara/C02/negative.json",
+      "sha256": "6e20b23f57981243a2ec00ac5eb2a8d227fe82dbe5652d9c8f0d9a196a91ab77",
+      "provenance": "repository-authored synthetic data",
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "tests/fixtures/attestara/C02/positive.json",
+      "sha256": "1fd14b761e1b94b4d2aa3443c4272d4ea5e0957e7c15aec90296faee60692329",
+      "provenance": "repository-authored synthetic data",
+      "license": "Apache-2.0"
+    }
+  ],
+  "notices": {
+    "path": "THIRD_PARTY_NOTICES.md",
+    "sha256": "72f1e683572933b741278a95dbac0669c02722d685d3ebfd0fdf4b411304c85e"
+  }
 }

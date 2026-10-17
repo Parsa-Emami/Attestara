@@ -5,3 +5,6 @@
 *.gif binary
 *.pdf binary
 *.zip binary
+
+docs/engineering/resources/node-LICENSE.txt -diff
+docs/engineering/resources/opa-LICENSE.txt -diff

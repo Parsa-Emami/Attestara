@@ -75,10 +75,19 @@ Updated 2026-10-16. These current web facts come from the committed npm lockfile
 | `typescript` | 7.0.2 | Apache-2.0 |
 | `vite` | 8.3.4 | MIT |
 
-## Planned engine resources
+## C02 pinned local resources
 
-- https://cyclonedx.org/specification/overview/
-- https://spdx.dev/specifications/
-- https://www.openpolicyagent.org/docs/
+The exact URLs, SHA-256 pins, integrity evidence, license texts and source-build routes are in `docs/engineering/toolchain-lock.json`. Its `resources/` snapshots retain the upstream notices for these references. This does not certify a complete C31 distribution or execute the product engine.
 
-Resolve exact pins and licenses at C02; upstream resources are not claimed installed by this document.
+| Resource | Version | Role | License / obligations |
+|---|---|---|---|
+| Go | 1.27.2 | Required C03 build toolchain, official source route | BSD-3-Clause; retain copyright, conditions and disclaimer |
+| Node.js | 24.19.0 | Required existing web toolchain | MIT with bundled third-party notices; retain the complete upstream LICENSE |
+| npm | 11.9.0 | Required existing package manager | Artistic-2.0; retain notices and follow source/modification/distribution terms |
+| OPA | 1.21.2 | Optional local policy provider; Rego v1 | Apache-2.0; retain license, applicable NOTICE and modification notices |
+| Syft | 1.54.1 | Optional local report producer | Apache-2.0; retain license, applicable NOTICE and modification notices |
+| Grype | 0.120.1 | Optional local report producer; no vulnerability DB is required by C02 | Apache-2.0; retain license, applicable NOTICE and modification notices |
+| CycloneDX | 1.7 format, specification source tag 1.7.2 | Normative format reference, not an implemented adapter | Apache-2.0; retain license, copyright and applicable notices |
+| SPDX | 3.0 | Normative specification reference, not an implemented adapter | Community-Spec-1.0 and pre-existing CC-BY-3.0 portions; preserve SPDX attribution, notices and terms. These specification terms are not a software-source license |
+
+The SPDX source snapshot is a specification reference; no SPDX-licensed implementation is incorporated into the Apache-2.0 engine. Repository-authored C01/C02 synthetic fixtures are Apache-2.0. No external rules, datasets or container images are shipped by C02. Existing MPL-2.0 web dependencies retain their file-level source and notice obligations; the existing lockfile is unchanged.

@@ -13,10 +13,10 @@
     },
     {
       "id": "C02",
-      "status": "planned",
-      "evidence": [],
-      "source_identity": null,
-      "notes": ""
+      "status": "verified",
+      "evidence": ["docs/evidence/C02.json"],
+      "source_identity": "sha256:808579389f692bc13d969ddb76c30dcccf46a96eaa40657d52ef016191d741f6",
+      "notes": "Eight exact source/artifact/license pins, offline and downloaded-byte validation, five C02 regressions, actual version probes and upstream Go/provider source builds verified. No product engine execution."
     },
     {
       "id": "C03",

@@ -1,0 +1,1 @@
+830ab11f61ffec760b5e19db0d7ad02bf037e13f5ef4d665faeaf17632177527  opa_linux_amd64_static

@@ -1,0 +1,477 @@
+{
+  "planning_template": false,
+  "commit_id": "C02",
+  "date": "2026-10-17",
+  "base_commit": "04732c9496ee0a4637a69adcab1b4fdabe24737e",
+  "source_identity": "sha256:808579389f692bc13d969ddb76c30dcccf46a96eaa40657d52ef016191d741f6",
+  "source_files": {
+    ".nvmrc": "7e8a2fa94951112b894a3dbe3d05efef5e9263741fa49125f0a70f40fedab4cc",
+    "LICENSE": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+    "THIRD_PARTY_NOTICES.md": "72f1e683572933b741278a95dbac0669c02722d685d3ebfd0fdf4b411304c85e",
+    "docs/ROADMAP_FA.md": "fa6dbbe49383fadf519e4978748718aaa6b54704c9bdd66a1bb44ac37da1aab8",
+    "docs/engineering/RESOURCE_LOCK.md": "335707abd862b8d72ce9cc2e57edb42c94f9e7d46c74e105595a0481fe4767c6",
+    "docs/engineering/resources/cyclonedx-LICENSE.txt": "6c29f22a4a7385285c6f579ec9f33c5e989f00739d6b257243a0b082ec9447ae",
+    "docs/engineering/resources/cyclonedx-source-commit.json": "c4c774d511c23f37b1c49736e8ca4e8710654a9f764451579f517496a3e2ace4",
+    "docs/engineering/resources/go-LICENSE.txt": "911f8f5782931320f5b8d1160a76365b83aea6447ee6c04fa6d5591467db9dad",
+    "docs/engineering/resources/go-release.json": "1c4adcd4a38044b2ee040eb1a640c06f8d76b3afa59fd117f5fb633ba6651f78",
+    "docs/engineering/resources/go-source-commit.json": "a6efe55f86fb13d6c06f1209762d402c5176ac414f73fa45d98775d96cb6c179",
+    "docs/engineering/resources/grype-BUILD.txt": "93dd0c96ae398c1655bb20c253e8d15fca59bf81a833bdabceb99a594a00cd16",
+    "docs/engineering/resources/grype-LICENSE.txt": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+    "docs/engineering/resources/grype-checksums.txt": "c25b6095265b44fd9bbb9dbe76aca8daa394c5f0490793d2b52b16be4f5b71b1",
+    "docs/engineering/resources/grype-source-commit.json": "c198268b06361359b75a3e1ddfc0f9362ed985c6b4787596a1dc5fd59a97d6b0",
+    "docs/engineering/resources/node-LICENSE.txt": "148eacf7863ef4329224a29398623077200a27194aa075569faf4a0a85566ca5",
+    "docs/engineering/resources/node-SHASUMS256.txt": "be0629ee2bcd8e40bb856abdd3407f0762101b76bd60a36b8867f637733631c0",
+    "docs/engineering/resources/npm-LICENSE.txt": "7610d223851f421d315df5e77974f1c68a04b97e02060e5bbbcf13d95e3ca257",
+    "docs/engineering/resources/npm-release.json": "975251ac27257208a5b4e5915468a15c057bd743f4c4910ccfb87ce806599f21",
+    "docs/engineering/resources/opa-BUILD.txt": "87af5bc5aabacaa305fc511a46edbd5bcc20cea09f7f8a11966161b27f5007e1",
+    "docs/engineering/resources/opa-LICENSE.txt": "c6596eb7be8581c18be736c846fb9173b69eccf6ef94c5135893ec56bd92ba08",
+    "docs/engineering/resources/opa-checksums.txt": "aac977f0019bc8410f116cfcea76cb9ad6291912c95aca4866d0a16e532bfd0c",
+    "docs/engineering/resources/opa-source-commit.json": "53ed44b9f7a5d37e3f5290cfe72286168eb30351160ecf162d8d4746b51b041b",
+    "docs/engineering/resources/spdx-LICENSE.txt": "8b9e88199429dc9fc3c87604bdb9008c640829a3b5f6b8bd40ba3d0e8b5ca987",
+    "docs/engineering/resources/spdx-source-commit.json": "3389274871f728e4fad5125fd2a4302cda5468594fab1e871bbd31fecb554c24",
+    "docs/engineering/resources/syft-BUILD.txt": "963f44ffb06018daed25acf04f73f9b27ac0666eb05a35f750906dc2c3e685f7",
+    "docs/engineering/resources/syft-LICENSE.txt": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+    "docs/engineering/resources/syft-checksums.txt": "7577f0d0b3fb16f65a2e56b413862f69aa5eaa2379d5760cb73d691ca7986059",
+    "docs/engineering/resources/syft-source-commit.json": "c8687dc5f31f0f3d5a8eeedcda146106c5ef93920b2e27180fe67cb733c19a67",
+    "docs/engineering/toolchain-lock.json": "c5bc42adcf849f4898b50723378dfe3889da6ddbea945bb4a4146db54b40d1c0",
+    "ops/runtime-requirements.json": "4081d28248495e83e4615e50dd6d00d0e4686f0ba2677d2016a252d575c0d243",
+    "package-lock.json": "2512e1850692f4fe46cebd1b04ac9c33a2ca3269fbf6800f1a026e6fdc8b6570",
+    "package.json": "65ab10c00831ccb329a13b1e9b8b06d273191cda8bded07556e0c9be6ed2e4ca",
+    "scripts/verify-resources.mjs": "0302badd296cc5465cac57aae459eafc9dbc4ee5a4b860ccd88fdb2eac2aafa2",
+    "tests/fixtures/attestara/C01/expected.json": "7858012f6dde9429581295a6195e200ec225e242ffb15a92a15cd15de08fefd9",
+    "tests/fixtures/attestara/C01/negative.json": "6eba6240a1cf2376d5d9d72e291dee7a101c2aab2ed13a18ee18e61da9344b4e",
+    "tests/fixtures/attestara/C01/positive.json": "91ed2a6fb5baf75736d12f172cc01a58774b7190a5af4791291bde1bcbaeded6",
+    "tests/fixtures/attestara/C02/expected.json": "a1e714fbeb5141c6bdc86e16a541f2e16b0c763598d5d202fe363a114c79106f",
+    "tests/fixtures/attestara/C02/negative.json": "6e20b23f57981243a2ec00ac5eb2a8d227fe82dbe5652d9c8f0d9a196a91ab77",
+    "tests/fixtures/attestara/C02/positive.json": "1fd14b761e1b94b4d2aa3443c4272d4ea5e0957e7c15aec90296faee60692329",
+    "tests/web/resource-lock.test.mjs": "92b43279260a0c24bfc414dd3416944da2fd393f943bde45cd6fb2c7a252e97b"
+  },
+  "source_identity_algorithm": "SHA-256 of sorted UTF-8 relative path, NUL, raw SHA-256 file digest, concatenated for each source file",
+  "source_identity_scope": "C02 implementation, resource snapshots, fixture inputs and manifests listed in source_files; mutable evidence/progress/handoff/project-state/requirements/generated web projections excluded",
+  "environment": {
+    "node": "v24.19.0",
+    "npm": "11.9.0",
+    "go": "go1.27.2 linux/amd64 (built from official source)",
+    "go_bootstrap": "go1.26.2 linux/amd64, pre-existing /usr/local/go",
+    "hardware": "Linux x86_64; no minimum CPU/RAM/disk capacity claim; C28 target remains unmeasured",
+    "global_toolchain_changed": false
+  },
+  "resource_lock": "docs/engineering/toolchain-lock.json",
+  "fixtures": [
+    {
+      "path": "tests/fixtures/attestara/C01/expected.json",
+      "sha256": "7858012f6dde9429581295a6195e200ec225e242ffb15a92a15cd15de08fefd9",
+      "provenance": "repository-authored synthetic expected results",
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "tests/fixtures/attestara/C01/negative.json",
+      "sha256": "6eba6240a1cf2376d5d9d72e291dee7a101c2aab2ed13a18ee18e61da9344b4e",
+      "provenance": "repository-authored synthetic data",
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "tests/fixtures/attestara/C01/positive.json",
+      "sha256": "91ed2a6fb5baf75736d12f172cc01a58774b7190a5af4791291bde1bcbaeded6",
+      "provenance": "repository-authored synthetic data",
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "tests/fixtures/attestara/C02/expected.json",
+      "sha256": "a1e714fbeb5141c6bdc86e16a541f2e16b0c763598d5d202fe363a114c79106f",
+      "provenance": "repository-authored synthetic data",
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "tests/fixtures/attestara/C02/negative.json",
+      "sha256": "6e20b23f57981243a2ec00ac5eb2a8d227fe82dbe5652d9c8f0d9a196a91ab77",
+      "provenance": "repository-authored synthetic data",
+      "license": "Apache-2.0"
+    },
+    {
+      "path": "tests/fixtures/attestara/C02/positive.json",
+      "sha256": "1fd14b761e1b94b4d2aa3443c4272d4ea5e0957e7c15aec90296faee60692329",
+      "provenance": "repository-authored synthetic data",
+      "license": "Apache-2.0"
+    }
+  ],
+  "source_archive_tree_verification": [
+    {
+      "id": "go",
+      "command": "git -c core.autocrlf=false add -f --all && git write-tree",
+      "exit_code": 0,
+      "source_commit": "022c8636110ebac86a9b88724cda168ed713c21f",
+      "expected_tree": "a2409750556ae73b4831625055df5a289e947f69",
+      "actual_tree": "a2409750556ae73b4831625055df5a289e947f69",
+      "directory": "/tmp/attestara-c02/go-proof/go-022c8636110ebac86a9b88724cda168ed713c21f"
+    },
+    {
+      "id": "opa",
+      "command": "git -c core.autocrlf=false add -f --all && git write-tree",
+      "exit_code": 0,
+      "source_commit": "3f7474e6b3c631821d8aac25ca444f7e75a56483",
+      "expected_tree": "1153bce6f53705c3ade355714c13de1e31b7eb95",
+      "actual_tree": "1153bce6f53705c3ade355714c13de1e31b7eb95",
+      "directory": "/tmp/attestara-c02/opa-proof/opa-3f7474e6b3c631821d8aac25ca444f7e75a56483"
+    },
+    {
+      "id": "syft",
+      "command": "git -c core.autocrlf=false add -f --all && git write-tree",
+      "exit_code": 0,
+      "source_commit": "b254e6d92f28c3868a755f62fb3ca8f26e9fee76",
+      "expected_tree": "0cfd9ff8da70b68dfb276d91e2f2ef19af673ef7",
+      "actual_tree": "0cfd9ff8da70b68dfb276d91e2f2ef19af673ef7",
+      "directory": "/tmp/attestara-c02/syft-proof/syft-b254e6d92f28c3868a755f62fb3ca8f26e9fee76"
+    },
+    {
+      "id": "grype",
+      "command": "git -c core.autocrlf=false add -f --all && git write-tree",
+      "exit_code": 0,
+      "source_commit": "6f8d854af29d3a3086b11a84afa51554a2a245fe",
+      "expected_tree": "9f92229914599ff41a7f014599236fb339d23fed",
+      "actual_tree": "9f92229914599ff41a7f014599236fb339d23fed",
+      "directory": "/tmp/attestara-c02/grype-proof/grype-6f8d854af29d3a3086b11a84afa51554a2a245fe"
+    },
+    {
+      "id": "cyclonedx",
+      "command": "git -c core.autocrlf=false add -f --all && git write-tree",
+      "exit_code": 0,
+      "source_commit": "349314a9d7671d7d2ca5b711a725f49a73979da6",
+      "expected_tree": "ebb9e47dca73e486ab9ac00fbc8c54cfa9bfba5d",
+      "actual_tree": "ebb9e47dca73e486ab9ac00fbc8c54cfa9bfba5d",
+      "directory": "/tmp/attestara-c02/cyclonedx-proof/specification-349314a9d7671d7d2ca5b711a725f49a73979da6"
+    },
+    {
+      "id": "spdx",
+      "command": "git -c core.autocrlf=false add -f --all && git write-tree",
+      "exit_code": 0,
+      "source_commit": "f148837fa65ea5ce88c65531480404453c15fd26",
+      "expected_tree": "3f3cc1b36a38e45bee50be07679ed629024b8521",
+      "actual_tree": "3f3cc1b36a38e45bee50be07679ed629024b8521",
+      "directory": "/tmp/attestara-c02/spdx-proof/spdx-spec-f148837fa65ea5ce88c65531480404453c15fd26"
+    }
+  ],
+  "built_artifacts": {
+    "/tmp/attestara-c02/go-source/go-022c8636110ebac86a9b88724cda168ed713c21f/bin/go": {
+      "sha256": "548d3c32f83fa81152f543eb1526be7884cfe0526eb5e9ce29d3eca14786e7e0",
+      "size_bytes": 17164055
+    },
+    "/tmp/attestara-c02/opa-source-built": {
+      "sha256": "0b8f8c603f4dd78ed039b29fc0738ea6fde1481ce064e08bf918ce12b180bd36",
+      "size_bytes": 60239690
+    },
+    "/tmp/attestara-c02/syft-source-built": {
+      "sha256": "ee5880d109314bdf3135b950b38943c453c04b9d55821c455baafcc51a9e3fcf",
+      "size_bytes": 120572656
+    },
+    "/tmp/attestara-c02/grype-source-built": {
+      "sha256": "ee3a7814249ee03df51e90ba99493fdbb88bf03f44ac76f041ab4efcc27c21af",
+      "size_bytes": 125470792
+    },
+    "/usr/local/go/bin/go": {
+      "sha256": "1a0f01bdb35c622c78bdc49f26f85dda53f9d7955f453f63c4c023b0dc7c754d",
+      "size_bytes": 15405555
+    }
+  },
+  "changed_paths": [
+    "THIRD_PARTY_NOTICES.md",
+    "apps/web/src/generated/project.json",
+    "docs/ROADMAP_FA.md",
+    "docs/agents/SESSION_HANDOFF.json",
+    "docs/engineering/RESOURCE_LOCK.md",
+    "docs/engineering/resources/cyclonedx-LICENSE.txt",
+    "docs/engineering/resources/cyclonedx-source-commit.json",
+    "docs/engineering/resources/go-LICENSE.txt",
+    "docs/engineering/resources/go-release.json",
+    "docs/engineering/resources/go-source-commit.json",
+    "docs/engineering/resources/grype-BUILD.txt",
+    "docs/engineering/resources/grype-LICENSE.txt",
+    "docs/engineering/resources/grype-checksums.txt",
+    "docs/engineering/resources/grype-source-commit.json",
+    "docs/engineering/resources/node-LICENSE.txt",
+    "docs/engineering/resources/node-SHASUMS256.txt",
+    "docs/engineering/resources/npm-LICENSE.txt",
+    "docs/engineering/resources/npm-release.json",
+    "docs/engineering/resources/opa-BUILD.txt",
+    "docs/engineering/resources/opa-LICENSE.txt",
+    "docs/engineering/resources/opa-checksums.txt",
+    "docs/engineering/resources/opa-source-commit.json",
+    "docs/engineering/resources/spdx-LICENSE.txt",
+    "docs/engineering/resources/spdx-source-commit.json",
+    "docs/engineering/resources/syft-BUILD.txt",
+    "docs/engineering/resources/syft-LICENSE.txt",
+    "docs/engineering/resources/syft-checksums.txt",
+    "docs/engineering/resources/syft-source-commit.json",
+    "docs/engineering/toolchain-lock.json",
+    "docs/evidence/C02.json",
+    "ops/runtime-requirements.json",
+    "plans/progress.json",
+    "plans/project-state.json",
+    "plans/requirements.json",
+    "scripts/verify-resources.mjs",
+    "tests/fixtures/attestara/C02/expected.json",
+    "tests/fixtures/attestara/C02/negative.json",
+    "tests/fixtures/attestara/C02/positive.json",
+    "tests/web/resource-lock.test.mjs"
+  ],
+  "commands": [
+    {
+      "command": "node scripts/verify-resources.mjs",
+      "cwd": "/home/amirreza/Desktop/Projects/Attestara",
+      "exit_code": 0,
+      "output": "{\n  \"resources\": 8,\n  \"artifactChecks\": [],\n  \"optionalAbsent\": [],\n  \"engineExecutionVerified\": false\n}\n"
+    },
+    {
+      "command": "node scripts/verify-resources.mjs --artifacts /tmp/attestara-c02",
+      "cwd": "/home/amirreza/Desktop/Projects/Attestara",
+      "exit_code": 0,
+      "output": "{\n  \"resources\": 8,\n  \"artifactChecks\": [\n    \"go\",\n    \"node\",\n    \"npm\",\n    \"opa\",\n    \"syft\",\n    \"grype\",\n    \"cyclonedx\",\n    \"spdx\"\n  ],\n  \"optionalAbsent\": [],\n  \"engineExecutionVerified\": false\n}\n"
+    },
+    {
+      "command": "node --check scripts/verify-resources.mjs",
+      "cwd": "/home/amirreza/Desktop/Projects/Attestara",
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "command": "npm run check",
+      "cwd": "/home/amirreza/Desktop/Projects/Attestara",
+      "exit_code": 0,
+      "output": "\n> @parsa-emami/attestara-web@0.0.1 check\n> npm run validate:plan && npm run build && npm test\n\n\n> @parsa-emami/attestara-web@0.0.1 validate:plan\n> node scripts/roadmap.mjs validate\n\nValidated 40 detailed tasks, resources, references and progress; no runtime capability inferred.\n\n> @parsa-emami/attestara-web@0.0.1 build\n> npm run prepare:web && npm run typecheck && vite build --config apps/web/vite.config.ts\n\n\n> @parsa-emami/attestara-web@0.0.1 prepare:web\n> node scripts/generate-web-data.mjs\n\n\n> @parsa-emami/attestara-web@0.0.1 typecheck\n> tsc -p tsconfig.json\n\nvite v8.3.4 building client environment for production...\ntransforming...\n\u2713 18 modules transformed.\nrendering chunks...\ncomputing gzip size...\ndist/web/index.html                   0.79 kB \u2502 gzip:  0.46 kB\ndist/web/assets/index-CDX5XU5l.css    4.36 kB \u2502 gzip:  1.62 kB\ndist/web/assets/index-Cvmc4nob.js   241.32 kB \u2502 gzip: 75.95 kB\n\n\u2713 built in 107ms\n\n> @parsa-emami/attestara-web@0.0.1 test\n> node --test tests/web/*.test.mjs\n\n\u2714 public configuration fails closed on engine flags, external endpoints, unknown keys and project mismatch (1.159695ms)\n\u2714 preview rejects hostile structure, excessive UTF-8 size and excessive complexity (1.346219ms)\n\u2714 HTTP isolation, cache rules, health semantics, methods, traversal and symlink containment (76.330089ms)\n\u2714 generated project and runtime identity agree with exactly forty original product tasks (1.091548ms)\n\u2714 setup validates toolchain/options and stops at the first failed install (1.171477ms)\n\u2714 roadmap rejects absent resources, escaping paths and unproved completion (17.395358ms)\n\u2714 C01 accepts its synthetic reference contract without executing the engine (14.136171ms)\n\u2714 C01 rejects missing actions, results, invariants and fixture references (30.598793ms)\n\u2714 C01 rejects absent provenance or license and invalid fixture JSON (19.863391ms)\n\u2714 C01 rejects missing expected outputs and incorrect domain digests (12.06461ms)\n\u2714 C01 rejects path escapes, unsupported versions and false engine claims (27.331722ms)\n\u2714 C01 rejects symlinks leaving the fixture directory (5.065968ms)\n\u2714 C02 validates pinned resources offline without requiring optional providers or a product engine (42.977894ms)\n\u2714 C02 rejects mutable pins, missing authority/license, removed prerequisites and unsupported mandatory platforms (165.561554ms)\n\u2714 C02 rejects tampered checksum evidence, dependency locks, notices and escaping snapshot paths (77.443778ms)\n\u2714 C02 verifies artifact bytes before accepting them and rejects a one-byte mutation (10.23118ms)\n\u2714 C02 compares pins with separately published checksums and fails on absent required artifacts (27.023842ms)\n\u2139 tests 17\n\u2139 suites 0\n\u2139 pass 17\n\u2139 fail 0\n\u2139 cancelled 0\n\u2139 skipped 0\n\u2139 todo 0\n\u2139 duration_ms 384.521683\n"
+    },
+    {
+      "command": "python3 scripts/validate_repo.py",
+      "cwd": "/home/amirreza/Desktop/Projects/Attestara",
+      "exit_code": 0,
+      "output": "VALIDATION PASSED\nChecked 94 JSON files and repository contract invariants.\n"
+    },
+    {
+      "command": "python3 -m unittest discover -s tests/engineering -p test_*.py -v",
+      "cwd": "/home/amirreza/Desktop/Projects/Attestara",
+      "exit_code": 0,
+      "output": "test_action_and_source_updates_keep_old_proofs_bound_to_their_real_tree (test_ci_source.CiSourceTest.test_action_and_source_updates_keep_old_proofs_bound_to_their_real_tree) ... ok\ntest_corrupted_recorded_manifest_cannot_be_relabelled_as_history (test_ci_source.CiSourceTest.test_corrupted_recorded_manifest_cannot_be_relabelled_as_history) ... ok\ntest_dirty_workflow_is_rejected_even_if_old_evidence_is_valid (test_ci_source.CiSourceTest.test_dirty_workflow_is_rejected_even_if_old_evidence_is_valid) ... ok\ntest_forged_evidence_identity_is_rejected (test_ci_source.CiSourceTest.test_forged_evidence_identity_is_rejected) ... ok\ntest_shallow_history_fails_with_an_actionable_message (test_ci_source.CiSourceTest.test_shallow_history_fails_with_an_actionable_message) ... ok\ntest_untracked_source_is_not_silently_omitted (test_ci_source.CiSourceTest.test_untracked_source_is_not_silently_omitted) ... ok\n\n----------------------------------------------------------------------\nRan 6 tests in 0.282s\n\nOK\n"
+    },
+    {
+      "command": "git diff --check",
+      "cwd": "/home/amirreza/Desktop/Projects/Attestara",
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "id": "node",
+      "command": "node --version",
+      "exit_code": 0,
+      "output": "v24.19.0\n"
+    },
+    {
+      "id": "npm",
+      "command": "npm --version",
+      "exit_code": 0,
+      "output": "11.9.0\n"
+    },
+    {
+      "id": "go",
+      "command": "/tmp/attestara-c02/go-source/go-022c8636110ebac86a9b88724cda168ed713c21f/bin/go version",
+      "exit_code": 0,
+      "output": "go version go1.27.2 linux/amd64\n"
+    },
+    {
+      "id": "opa-release",
+      "command": "/tmp/attestara-c02/opa_linux_amd64_static version",
+      "exit_code": 0,
+      "output": "Version: 1.21.2\nBuild Commit: 3f7474e6b3c631821d8aac25ca444f7e75a56483-dirty\nBuild Timestamp: 2026-10-12T13:42:18Z\nBuild Hostname: \nGo Version: go1.27.2\nPlatform: linux/amd64\nRego Version: v1\nWebAssembly: available\n"
+    },
+    {
+      "id": "syft-release",
+      "command": "/tmp/attestara-c02/syft-extracted/syft version",
+      "exit_code": 0,
+      "output": "Application:   syft\nVersion:       1.54.1\nBuildDate:     2026-10-06T15:32:19Z\nGitCommit:     b254e6d92f28c3868a755f62fb3ca8f26e9fee76\nGitDescription: v1.54.1\nPlatform:      linux/amd64\nGoVersion:     go1.26.8\nCompiler:      gc\nSchemaVersion: 16.1.11\n"
+    },
+    {
+      "id": "grype-release",
+      "command": "/tmp/attestara-c02/grype-extracted/grype version",
+      "exit_code": 0,
+      "output": "Application:         grype\nVersion:             0.120.1\nBuildDate:           2026-10-06T20:41:29Z\nGitCommit:           6f8d854af29d3a3086b11a84afa51554a2a245fe\nGitDescription:      v0.120.1\nPlatform:            linux/amd64\nGoVersion:           go1.26.8\nCompiler:            gc\nSyft Version:        v1.54.1\nSupported DB Schema: 6\n"
+    },
+    {
+      "id": "opa-source",
+      "command": "/tmp/attestara-c02/opa-source-built version",
+      "exit_code": 0,
+      "output": "Version: 1.21.2\nBuild Commit: -dirty\nBuild Timestamp: \nBuild Hostname: \nGo Version: go1.27.2\nPlatform: linux/amd64\nRego Version: v1\nWebAssembly: unavailable\n"
+    },
+    {
+      "id": "syft-source",
+      "command": "/tmp/attestara-c02/syft-source-built version",
+      "exit_code": 0,
+      "output": "Application:   syft\nVersion:       [not provided]\nBuildDate:     [not provided]\nGitCommit:     [not provided]\nGitDescription: [not provided]\nPlatform:      linux/amd64\nGoVersion:     go1.27.2\nCompiler:      gc\nSchemaVersion: 16.1.11\n"
+    },
+    {
+      "id": "grype-source",
+      "command": "/tmp/attestara-c02/grype-source-built version",
+      "exit_code": 0,
+      "output": "Application:         grype\nVersion:             [not provided]\nBuildDate:           [not provided]\nGitCommit:           [not provided]\nGitDescription:      [not provided]\nPlatform:            linux/amd64\nGoVersion:           go1.27.2\nCompiler:            gc\nSyft Version:        v1.54.1\nSupported DB Schema: 6\n"
+    },
+    {
+      "id": "opa-modules",
+      "command": "GOTOOLCHAIN=local GOPROXY='https://proxy.golang.org|https://goproxy.cn|direct' GOSUMDB=sum.golang.org /tmp/attestara-c02/go-source/go-022c8636110ebac86a9b88724cda168ed713c21f/bin/go mod verify",
+      "cwd": "/tmp/attestara-c02/opa-proof/opa-3f7474e6b3c631821d8aac25ca444f7e75a56483",
+      "exit_code": 0,
+      "output": "all modules verified\n"
+    },
+    {
+      "id": "syft-modules",
+      "command": "GOTOOLCHAIN=local GOPROXY='https://proxy.golang.org|https://goproxy.cn|direct' GOSUMDB=sum.golang.org /tmp/attestara-c02/go-source/go-022c8636110ebac86a9b88724cda168ed713c21f/bin/go mod verify",
+      "cwd": "/tmp/attestara-c02/syft-proof/syft-b254e6d92f28c3868a755f62fb3ca8f26e9fee76",
+      "exit_code": 0,
+      "output": "all modules verified\n"
+    },
+    {
+      "id": "grype-modules",
+      "command": "GOTOOLCHAIN=local GOPROXY='https://proxy.golang.org|https://goproxy.cn|direct' GOSUMDB=sum.golang.org /tmp/attestara-c02/go-source/go-022c8636110ebac86a9b88724cda168ed713c21f/bin/go mod verify",
+      "cwd": "/tmp/attestara-c02/grype-proof/grype-6f8d854af29d3a3086b11a84afa51554a2a245fe",
+      "exit_code": 0,
+      "output": "all modules verified\n"
+    },
+    {
+      "command": "PATH=/tmp/attestara-c02/toolbin:$PATH npm ci --ignore-scripts",
+      "exit_code": 0,
+      "output": "\nadded 28 packages in 738ms\n\n9 packages are looking for funding\n  run `npm fund` for details\n"
+    },
+    {
+      "command": "GOROOT_BOOTSTRAP=/usr/local/go GOMAXPROCS=2 bash ./make.bash",
+      "cwd": "/tmp/attestara-c02/go-source/go-022c8636110ebac86a9b88724cda168ed713c21f/src",
+      "exit_code": 0,
+      "output": "Building Go cmd/dist using /usr/local/go. (go1.26.2 linux/amd64)\nBuilding Go toolchain1 using /usr/local/go.\nBuilding Go bootstrap cmd/go (go_bootstrap) using Go toolchain1.\nBuilding Go toolchain2 using go_bootstrap and Go toolchain1.\nBuilding Go toolchain3 using go_bootstrap and Go toolchain2.\nBuilding packages and commands for linux/amd64.\n---\nInstalled Go for linux/amd64 in /tmp/attestara-c02/go-source/go-022c8636110ebac86a9b88724cda168ed713c21f\nInstalled commands in /tmp/attestara-c02/go-source/go-022c8636110ebac86a9b88724cda168ed713c21f/bin\n*** You need to add /tmp/attestara-c02/go-source/go-022c8636110ebac86a9b88724cda168ed713c21f/bin to your PATH.\n"
+    },
+    {
+      "command": "GOTOOLCHAIN=local GOPROXY='https://proxy.golang.org|direct' GOSUMDB=sum.golang.org GOMAXPROCS=2 /tmp/attestara-c02/go-source/go-022c8636110ebac86a9b88724cda168ed713c21f/bin/go build -mod=readonly -trimpath -o /tmp/attestara-c02/opa-source-built .",
+      "cwd": "/tmp/attestara-c02/opa-proof/opa-3f7474e6b3c631821d8aac25ca444f7e75a56483",
+      "exit_code": 0,
+      "output": "go: downloading github.com/klauspost/compress v1.20.0\n"
+    },
+    {
+      "command": "GOTOOLCHAIN=local GOPROXY='https://proxy.golang.org|https://goproxy.cn|direct' GOSUMDB=sum.golang.org GOMAXPROCS=2 /tmp/attestara-c02/go-source/go-022c8636110ebac86a9b88724cda168ed713c21f/bin/go build -mod=readonly -trimpath -o /tmp/attestara-c02/syft-source-built ./cmd/syft",
+      "cwd": "/tmp/attestara-c02/syft-proof/syft-b254e6d92f28c3868a755f62fb3ca8f26e9fee76",
+      "exit_code": 0,
+      "output": "go: downloading modernc.org/sqlite v1.59.0\ngo: downloading google.golang.org/api v0.294.0\ngo: downloading cloud.google.com/go/auth/oauth2adapt v0.2.8\ngo: downloading go.opentelemetry.io/contrib/instrumentation/google.golang.org/grpc/otelgrpc v0.71.0\n"
+    },
+    {
+      "command": "GOTOOLCHAIN=local GOPROXY='https://proxy.golang.org|https://goproxy.cn|direct' GOSUMDB=sum.golang.org GOMAXPROCS=2 /tmp/attestara-c02/go-source/go-022c8636110ebac86a9b88724cda168ed713c21f/bin/go build -mod=readonly -trimpath -o /tmp/attestara-c02/grype-source-built ./cmd/grype",
+      "cwd": "/tmp/attestara-c02/grype-proof/grype-6f8d854af29d3a3086b11a84afa51554a2a245fe",
+      "exit_code": 0,
+      "output": "go: downloading modernc.org/sqlite v1.59.0\ngo: downloading modernc.org/libc v1.75.7\ngo: downloading modernc.org/mathutil v1.7.1\ngo: downloading modernc.org/memory v1.12.1\ngo: downloading google.golang.org/api v0.294.0\ngo: downloading github.com/remyoudompheng/bigfft v0.0.0-20230129092748-24d4a6f8daec\ngo: downloading cloud.google.com/go/auth/oauth2adapt v0.2.8\ngo: downloading go.opentelemetry.io/contrib/instrumentation/google.golang.org/grpc/otelgrpc v0.71.0\n"
+    },
+    {
+      "command": "python3 /tmp/attestara-c02-source-proof.py",
+      "exit_code": 0,
+      "output": "go 022c8636110ebac86a9b88724cda168ed713c21f a2409750556ae73b4831625055df5a289e947f69 MATCH\nopa 3f7474e6b3c631821d8aac25ca444f7e75a56483 1153bce6f53705c3ade355714c13de1e31b7eb95 MATCH\nsyft b254e6d92f28c3868a755f62fb3ca8f26e9fee76 0cfd9ff8da70b68dfb276d91e2f2ef19af673ef7 MATCH\ngrype 6f8d854af29d3a3086b11a84afa51554a2a245fe 9f92229914599ff41a7f014599236fb339d23fed MATCH\ncyclonedx 349314a9d7671d7d2ca5b711a725f49a73979da6 ebb9e47dca73e486ab9ac00fbc8c54cfa9bfba5d MATCH\nspdx f148837fa65ea5ce88c65531480404453c15fd26 3f3cc1b36a38e45bee50be07679ed629024b8521 MATCH\n"
+    },
+    {
+      "command": "PATH=/tmp/attestara-c02/toolbin:$PATH npx --no-install playwright test --config /tmp/attestara-c02/browser.config.ts",
+      "exit_code": 0,
+      "output": "  \u2713  1 tests/browser/workspace.spec.ts:2:1 \u203a workspace, local preview, navigation and roadmap filters work (371ms)\n  \u2713  2 tests/browser/workspace.spec.ts:24:1 \u203a configuration failure blocks workspace startup (99ms)\n\n  2 passed (1.1s)\n",
+      "warning": "Existing NO_COLOR/FORCE_COLOR environment emitted a warning; no browser page errors were observed."
+    },
+    {
+      "command": "PATH=/tmp/attestara-c02/toolbin:$PATH npm audit --json",
+      "exit_code": 0,
+      "output": "{\n  \"auditReportVersion\": 2,\n  \"vulnerabilities\": {},\n  \"metadata\": {\n    \"vulnerabilities\": {\n      \"info\": 0,\n      \"low\": 0,\n      \"moderate\": 0,\n      \"high\": 0,\n      \"critical\": 0,\n      \"total\": 0\n    },\n    \"dependencies\": {\n      \"prod\": 4,\n      \"dev\": 67,\n      \"optional\": 47,\n      \"peer\": 0,\n      \"peerOptional\": 0,\n      \"total\": 70\n    }\n  }\n}\n"
+    },
+    {
+      "command": "npm run validate:plan",
+      "cwd": "/home/amirreza/Desktop/Projects/Attestara",
+      "exit_code": 0,
+      "output": "\n> @parsa-emami/attestara-web@0.0.1 validate:plan\n> node scripts/roadmap.mjs validate\n\nValidated 40 detailed tasks, resources, references and progress; no runtime capability inferred.\n"
+    },
+    {
+      "command": "npm run build",
+      "cwd": "/home/amirreza/Desktop/Projects/Attestara",
+      "exit_code": 0,
+      "output": "\n> @parsa-emami/attestara-web@0.0.1 build\n> npm run prepare:web && npm run typecheck && vite build --config apps/web/vite.config.ts\n\n\n> @parsa-emami/attestara-web@0.0.1 prepare:web\n> node scripts/generate-web-data.mjs\n\n\n> @parsa-emami/attestara-web@0.0.1 typecheck\n> tsc -p tsconfig.json\n\nvite v8.3.4 building client environment for production...\ntransforming...\n\u2713 18 modules transformed.\nrendering chunks...\ncomputing gzip size...\ndist/web/index.html                   0.79 kB \u2502 gzip:  0.47 kB\ndist/web/assets/index-CDX5XU5l.css    4.36 kB \u2502 gzip:  1.62 kB\ndist/web/assets/index-B1h7VJzO.js   241.31 kB \u2502 gzip: 75.95 kB\n\n\u2713 built in 98ms\n"
+    },
+    {
+      "command": "npx --no-install playwright test --config /tmp/attestara-c02/browser.config.ts",
+      "cwd": "/home/amirreza/Desktop/Projects/Attestara",
+      "exit_code": 0,
+      "output": "[WebServer] (node:623360) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.\n[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)\n\nRunning 2 tests using 1 worker\n\n(node:623374) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.\n(Use `node --trace-warnings ...` to show where the warning was created)\n  \u2713  1 tests/browser/workspace.spec.ts:2:1 \u203a workspace, local preview, navigation and roadmap filters work (359ms)\n  \u2713  2 tests/browser/workspace.spec.ts:24:1 \u203a configuration failure blocks workspace startup (91ms)\n\n  2 passed (1.0s)\n"
+    },
+    {
+      "command": "npm run plan -- next",
+      "cwd": "/home/amirreza/Desktop/Projects/Attestara",
+      "exit_code": 0,
+      "output": "\n> @parsa-emami/attestara-web@0.0.1 plan\n> node scripts/roadmap.mjs next\n\n{\n  \"task\": {\n    \"id\": \"C03\",\n    \"stage\": \"foundation\",\n    \"title\": \"feat(runtime): implement unified local engine setup and launch\",\n    \"status\": \"planned\",\n    \"depends_on\": [\n      \"C02\"\n    ],\n    \"requirements\": [\n      \"N03\"\n    ],\n    \"deliverables\": [\n      \"docs/engineering/BOOTSTRAP_EVIDENCE.md\",\n      \"go.mod\",\n      \"go.sum\",\n      \"cmd/attestara/main.go\",\n      \"package.json\",\n      \"package-lock.json\",\n      \"apps/web/src/main.tsx\",\n      \"docs/engineering/WEB_RUNBOOK.md\",\n      \"scripts/start-local.mjs\",\n      \"scripts/oss-bootstrap.mjs\",\n      \"docs/engineering/ENGINE_LAUNCH.md\",\n      \"tests/web/local-launch.test.mjs\"\n    ],\n    \"verification\": [\n      \"npm run validate:plan \u2014 All task/dependency/resource/reference/evidence metadata validates; no runtime capability inferred.\",\n      \"go test ./... \u2014 C03 creates this engine test command in the same commit; C06 adds CI/integration collection. Pass the actual C03 acceptance and negative cases on the selected engine; shell-only tests cannot certify this task.\",\n      \"npm run test:browser \u2014 Existing shell regressions pass; add and pass this task's actual domain browser workflow before certification.\"\n    ],\n    \"acceptance\": [\n      \"npm run setup prepares the actual selected local engine and npm start supervises the web workspace and loopback engine with clean shutdown. Minimal health does not imply completed business features; no second undocumented terminal is required.\"\n    ],\n    \"evidence_path\": \"docs/evidence/C03.json\",\n    \"rollback\": \"Revert the isolated source change when no incompatible data was accepted. Otherwise retain the latest valid bytes/export and compatible reader, and use tested forward repair; never overwrite newer accepted state with an old backup.\",\n    \"scope\": \"Attestara complete open-source local web profile\",\n    \"task_file\": \"plans/commits/C03.md\",\n    \"read_before\": [\n      \"AGENTS.md\",\n      \"docs/agents/EXECUTION_CONTRACT.md\",\n      \"docs/architecture/ADR-0003-open-source-local-first.md\",\n      \"docs/product/REFERENCE_WORKFLOW.md\",\n      \"plans/project-state.json\"\n    ],\n    \"before\": \"Entry requirement: verified C02 evidence. Preserve its demonstrated behavior; inspect actual source and any recorded blockers before editing.\",\n    \"after\": \"npm run setup prepares the actual selected local engine and npm start supervises the web workspace and loopback engine with clean shutdown. Minimal health does not imply completed business features; no second undocumented terminal is required.\",\n    \"resources\": {\n      \"hardware\": {\n        \"vcpu\": 2,\n        \"ram_mib\": 2048,\n        \"free_disk_mib\": 10240,\n        \"measurement\": \"Unmeasured planning target; C28 must verify or reduce it.\"\n      },\n      \"providers\": [\n        \"optional local OPA and Syft/Grype report ingestion\"\n      ],\n      \"toolchain\": \"Go engine plus locked Node/TypeScript web tools; exact engine/provider pins and source-build steps resolved at C02.\",\n      \"upstream\": [\n        \"https://cyclonedx.org/specification/overview/\",\n        \"https://spdx.dev/specifications/\",\n        \"https://www.openpolicyagent.org/docs/\",\n        \"https://nodejs.org/docs/latest-v24.x/api/\"\n      ],\n      \"fixture\": {\n        \"path\": \"tests/fixtures/attestara/C03/\",\n        \"status\": \"planned; implement positive, negative and expected-output fixtures in this task\",\n        \"provenance\": \"repository-authored synthetic data or explicitly licensed upstream data\"\n      },\n      \"licenses\": \"Apache-2.0 project source; pin and inventory every shipped upstream library/provider/grammar/rule/dataset license. Unknown/restricted required resources block release.\"\n    },\n    \"negative_cases\": [\n      \"Missing prerequisites, malformed fixtures or unavailable required providers produce an explicit error rather than placeholder success.\",\n      \"Repeat after restart and verify the declared invariant and documented recovery outcome.\",\n      \"No user source execution\"\n    ],\n    \"implementation_steps\": [\n      \"Inspect the actual implementation, source/locks and verified dependencies for C03; preserve accepted existing behavior.\",\n      \"Define the versioned positive and negative release-evidence fixtures and expected error/result semantics under tests/fixtures/attestara/C03/.\",\n      \"Implement: npm run setup prepares the actual selected local engine and npm start supervises the web workspace and loopback engine with clean shutdown. Minimal health does not imply completed business features; no second undocumented terminal is required.\",\n      \"Create the first engine smoke-test command in this same commit, with a real version/health response and clean startup/shutdown or worker termination. Test missing tool/provider, occupied port where relevant, child/worker crash, cancellation and partial-setup failure; do not wait for C06 to add these tests.\",\n      \"Change the listed exact targets and wire the actual typed outcome into the supported browser/engine workflow. Keep domain facts, validation, storage/provider adapters and UI separate.\",\n      \"Add regression/integration coverage for every acceptance and negative case; real storage/provider/security boundaries cannot be verified only with mocks.\",\n      \"Run the labeled verification commands; record exact source, fixture license/hash, tool/provider versions, command exits and observed results in docs/evidence/C03.json. Update progress only when the whole task is genuinely verified.\"\n    ],\n    \"verification_commands\": [\n      {\n        \"command\": \"npm run validate:plan\",\n        \"available_now\": true,\n        \"introduced_by\": \"web-foundation\",\n        \"expected\": \"All task/dependency/resource/reference/evidence metadata validates; no runtime capability inferred.\"\n      },\n      {\n        \"command\": \"go test ./...\",\n        \"available_now\": false,\n        \"introduced_by\": \"C03\",\n        \"expected\": \"C03 creates this engine test command in the same commit; C06 adds CI/integration collection. Pass the actual C03 acceptance and negative cases on the selected engine; shell-only tests cannot certify this task.\"\n      },\n      {\n        \"command\": \"npm run test:browser\",\n        \"available_now\": true,\n        \"expected\": \"Existing shell regressions pass; add and pass this task's actual domain browser workflow before certification.\",\n        \"introduced_by\": \"web-foundation\"\n      }\n    ],\n    \"stop_conditions\": [\n      \"Do not modify database schemas, migrations, .env files or Dockerfiles. Use the compatible local port in ADR-0003; if unavoidable, mark that exact task blocked and continue independent authorized work.\",\n      \"Do not invent versions, licenses, test results, provider success, source identities or deployment/release evidence.\",\n      \"Do not substitute a generic JSON preview, successful placeholder endpoint, static example or mocked authority for required product behavior.\"\n    ]\n  },\n  \"progress\": {\n    \"id\": \"C03\",\n    \"status\": \"in_progress\",\n    \"evidence\": [],\n    \"source_identity\": null,\n    \"notes\": \"Web foundation implemented in W01-W05. Remaining domain/runtime acceptance and earlier prerequisite evidence still pending.\"\n  }\n}\n"
+    },
+    {
+      "command": "git diff --check",
+      "cwd": "/home/amirreza/Desktop/Projects/Attestara",
+      "exit_code": 0,
+      "output": ""
+    }
+  ],
+  "diagnostic_attempts": [
+    {
+      "command": "Download https://go.dev/dl/go1.27.2.linux-amd64.tar.gz and https://go.dev/dl/go1.27.2.src.tar.gz",
+      "result": "HTTP 404 from the official redirect destinations; binary/source fallback was the pinned official Git commit and a successful source build."
+    },
+    {
+      "command": "GOPROXY=https://proxy.golang.org GOSUMDB=sum.golang.org GOTOOLCHAIN=go1.27.2 go version",
+      "exit_code": 1,
+      "output": "go: downloading go1.27.2 (linux/amd64)\ngo: download go1.27.2: golang.org/toolchain@v0.0.1-go1.27.2.linux-amd64: reading https://proxy.golang.org/golang.org/toolchain/@v/v0.0.1-go1.27.2.linux-amd64.zip: 403 Forbidden\n"
+    },
+    {
+      "command": "Source builds with only GOPROXY=https://proxy.golang.org, then public proxy with direct VCS fallback",
+      "exit_code": 1,
+      "result": "Some dependency archives, google.golang.org discovery and GitLab modernc source requests returned HTTP 403. OPA succeeded with direct VCS fallback; Syft/Grype succeeded with the documented command-local goproxy.cn mirror and original upstream go.sum plus GOSUMDB validation retained."
+    },
+    {
+      "command": "PATH=/tmp/attestara-c02/toolbin:$PATH npm run test:browser",
+      "exit_code": 1,
+      "output": "Error: http://127.0.0.1:4173/readyz is already used, make sure that nothing is running on the port/url or set reuseExistingServer:true in config.webServer.",
+      "resolution": "Existing process preserved. Same two tracked tests passed using an isolated temporary configuration on port 4174."
+    },
+    {
+      "command": "node --test tests/web/resource-lock.test.mjs (initial RED)",
+      "exit_code": 1,
+      "result": "ERR_MODULE_NOT_FOUND for the not-yet-created scripts/verify-resources.mjs; later focused and full regressions passed."
+    }
+  ],
+  "results": {
+    "resources": 8,
+    "c02_regression_tests": 5,
+    "all_web_tests": 17,
+    "python_ci_source_tests": 6,
+    "browser_tests": 2,
+    "typecheck": "passed within npm run check",
+    "build": "passed within npm run check",
+    "lint": "No lint script is declared; node --check passed for the added validator. No linter/dependency was introduced.",
+    "npm_audit_reported_vulnerabilities": 0,
+    "npm_lock_changed": false,
+    "source_builds": [
+      "Go 1.27.2",
+      "OPA pinned source",
+      "Syft pinned source",
+      "Grype pinned source"
+    ],
+    "domain_workflow_executed": false,
+    "market_validation": "not performed"
+  },
+  "observed_limitations": [
+    "The ordinary Go download endpoints were unavailable; the verified official-source build route worked.",
+    "Only Linux x86_64 has C02 tool/probe evidence. Minimum hardware capacity remains unmeasured.",
+    "Syft/Grype source builds used a checksum-verified optional download mirror; this is not a required application runtime service.",
+    "Default Syft/Grype source builds omit release CLI version metadata; source identities and lockfiles remain pinned. OPA default source build lacks WebAssembly while the release binary reports it available. No bit-for-bit or feature-identical rebuild is claimed.",
+    "The Grype source tree includes its quality-test gitlink identity; that external test submodule was not initialized, and no upstream test-suite execution is claimed.",
+    "Existing Node source-build instructions were inspected at the pinned official version; Node was run from the independently checksum-verified release, not rebuilt here.",
+    "C02 proves resource pins/integrity and source-build routes, not an Attestara engine, policy decision, durability, signature trust or full release compliance."
+  ],
+  "audit_trail": {
+    "purpose": "Historical acquisition/tree-proof scripts retained as text for audit, not updater entrypoints",
+    "acquisition_script": "import urllib.request,json,hashlib,pathlib,concurrent.futures,subprocess,tarfile\nroot=pathlib.Path('/home/amirreza/Desktop/Projects/Attestara')\nwork=pathlib.Path('/tmp/attestara-c02'); work.mkdir(exist_ok=True)\nout=root/'docs/engineering/resources'; out.mkdir(parents=True,exist_ok=True)\ndef fetch(url):\n for attempt in range(3):\n  try: return urllib.request.urlopen(urllib.request.Request(url,headers={'User-Agent':'Attestara-C02-resource-verification'}),timeout=50).read()\n  except Exception:\n   if attempt==2: raise\ndef sha(b): return hashlib.sha256(b).hexdigest()\ndef snapshot(name,url):\n b=fetch(url); p=out/name;p.write_bytes(b)\n return {'url':url,'path':str(p.relative_to(root)),'sha256':sha(b)},b\ndef download(name,url,expected=None):\n p=work/name\n if not p.exists(): p.write_bytes(fetch(url))\n b=p.read_bytes(); actual=sha(b)\n if expected and actual!=expected: raise ValueError(name+' CHECKSUM MISMATCH '+actual)\n print(name,actual,len(b),flush=True)\n return {'url':url,'filename':name,'sha256':actual}\ndef record(id,version,required,source,license,licenseurl,artifact,integrity,build):\n lic,_=snapshot(id+'-LICENSE.txt',licenseurl)\n return {'id':id,'version':version,'required':required,'platform':'linux-x64','source_url':source,'license':{'expression':license,**lic},'redistribution':'Retain upstream copyright, license and required notices; see the pinned license text. No license of the Attestara source is changed.','artifact':artifact,'integrity':integrity,'source_build':build}\ndef provider(id,repo):\n rel=json.loads(fetch('https://api.github.com/repos/'+repo+'/releases/latest'))\n tag=rel['tag_name'];v=tag.removeprefix('v');commit=json.loads(fetch(f'https://api.github.com/repos/{repo}/commits/{tag}'))['sha']\n name='opa_linux_amd64_static' if id=='opa' else f'{id}_{v}_linux_amd64.tar.gz'\n asset=next(x for x in rel['assets'] if x['name']==name)\n checksumname=name+'.sha256' if id=='opa' else f'{id}_{v}_checksums.txt'\n checksumasset=next(x for x in rel['assets'] if x['name']==checksumname)\n integ,b=snapshot(id+'-checksums.txt',checksumasset['browser_download_url'])\n expected=asset['digest'].split(':')[1]\n if not any(expected in line and name in line for line in b.decode().splitlines()): raise ValueError('published checksums disagree '+id)\n artifact=download(name,asset['browser_download_url'],expected)\n source=download(id+'-source.tar.gz',f'https://codeload.github.com/{repo}/tar.gz/{commit}')\n recipe,rb=snapshot(id+'-BUILD.txt',f'https://raw.githubusercontent.com/{repo}/{commit}/Makefile')\n build={'source_commit':commit,'archive':source,'recipe':recipe,'commands':['GOTOOLCHAIN=local go build -mod=readonly -trimpath -o '+id+' '+('.' if id=='opa' else './cmd/'+id)],'verification':'Recipe inspected at the pinned source; actual build result is recorded in C02 evidence.'}\n return record(id,v,False,rel['html_url'],'Apache-2.0',f'https://raw.githubusercontent.com/{repo}/{commit}/LICENSE',artifact,{'format':'sha256sum',**integ},build)\ndef go():\n metadata,b=snapshot('go-release.json','https://go.dev/dl/?mode=json')\n release=json.loads(b)[0];v=release['version'];f=next(x for x in release['files'] if x['filename']==v+'.linux-amd64.tar.gz')\n commitmeta,commitbytes=snapshot('go-source-commit.json','https://api.github.com/repos/golang/go/commits/'+v)\n commit=json.loads(commitbytes)['sha']\n artifact=download('go-source.tar.gz','https://codeload.github.com/golang/go/tar.gz/'+commit)\n build={'source_commit':commit,'archive':artifact,'recipe_url':'https://go.dev/doc/install/source','commands':['cd src && GOROOT_BOOTSTRAP=/path/to/go1.26.2 GOMAXPROCS=2 ./make.bash'],'verification':'Pinned official source archive; actual build result is recorded in C02 evidence.'}\n resource=record('go',v.removeprefix('go'),True,'https://go.dev/dl/#'+v,'BSD-3-Clause',f'https://raw.githubusercontent.com/golang/go/{commit}/LICENSE',artifact,{'format':'git-commit','source_commit':commit,**commitmeta},build)\n resource['prebuilt_alternative']={'url':'https://go.dev/dl/'+f['filename'],'sha256':f['sha256'],'availability':'HTTP 404 observed on 2026-10-17; use the pinned source-build route','official_metadata':metadata}\n return resource\ndef node():\n v='24.19.0';name=f'node-v{v}-linux-x64.tar.xz';base=f'https://nodejs.org/dist/v{v}/'\n meta,b=snapshot('node-SHASUMS256.txt',base+'SHASUMS256.txt');expected=next(l.split()[0] for l in b.decode().splitlines() if l.split()[-1]==name)\n artifact=download(name,base+name,expected)\n srcname=f'node-v{v}.tar.xz';srcsha=next(l.split()[0] for l in b.decode().splitlines() if l.split()[-1]==srcname)\n build={'archive':{'url':base+srcname,'filename':srcname,'sha256':srcsha},'recipe_url':f'https://github.com/nodejs/node/blob/v{v}/BUILDING.md','commands':['./configure','make -j2'],'verification':'Official pinned BUILDING.md is the source-build recipe; no new Node build claimed.'}\n return record('node',v,True,base,'MIT AND bundled notices',f'https://raw.githubusercontent.com/nodejs/node/v{v}/LICENSE',artifact,{'format':'sha256sum',**meta},build)\ndef npm():\n meta,b=snapshot('npm-release.json','https://registry.npmjs.org/npm/11.9.0');d=json.loads(b)\n artifact=download('npm-11.9.0.tgz',d['dist']['tarball']);artifact['integrity']=d['dist']['integrity']\n import base64\n if 'sha512-'+base64.b64encode(hashlib.sha512((work/artifact['filename']).read_bytes()).digest()).decode()!=artifact['integrity']: raise ValueError('npm SRI mismatch')\n return record('npm','11.9.0',True,'https://github.com/npm/cli/releases/tag/v11.9.0','Artistic-2.0', 'https://raw.githubusercontent.com/npm/cli/v11.9.0/LICENSE',artifact,{'format':'npm-dist',**meta},{'recipe_url':'https://github.com/npm/cli/tree/v11.9.0','commands':['node bin/npm-cli.js --version'],'verification':'npm is distributed as JavaScript source; the integrity-checked tarball is directly runnable.'})\ndef spec(id,repo,version,commit,license):\n meta,b=snapshot(id+'-REFERENCE.md',f'https://raw.githubusercontent.com/{repo}/{commit}/README.md')\n artifact=download(id+'-source.tar.gz',f'https://codeload.github.com/{repo}/tar.gz/{commit}')\n return record(id,version,False,f'https://github.com/{repo}/tree/{commit}',license,f'https://raw.githubusercontent.com/{repo}/{commit}/LICENSE',artifact,{'format':'pinned-source','source_commit':commit,**meta},{'not_applicable':'Normative specification source, not executable code. Adapters and schema validation are later tasks.'})\ntasks=[go,node,npm,lambda:provider('opa','open-policy-agent/opa'),lambda:provider('syft','anchore/syft'),lambda:provider('grype','anchore/grype'),lambda:spec('cyclonedx','CycloneDX/specification','1.7','349314a9d7671d7d2ca5b711a725f49a73979da6','Apache-2.0'),lambda:spec('spdx','spdx/spdx-spec','3.0','f148837fa65ea5ce88c65531480404453c15fd26','Community-Spec-1.0 AND CC-BY-3.0')]\nwith concurrent.futures.ThreadPoolExecutor(max_workers=8) as pool:\n resources=list(pool.map(lambda f:f(),tasks))\n(work/'resources.json').write_text(json.dumps(resources,indent=2)+'\\n')\nprint('COLLECTION COMPLETE',flush=True)\n",
+    "source_tree_script": "import pathlib,json,tarfile,subprocess,urllib.request,hashlib\nr=pathlib.Path('/home/amirreza/Desktop/Projects/Attestara');w=pathlib.Path('/tmp/attestara-c02');lock=json.loads((r/'docs/engineering/toolchain-lock.json').read_text());results=[]\nfor resource in lock['resources']:\n if resource['id'] in ['node','npm']: continue\n id=resource['id'];build=resource['source_build'];commit=build.get('source_commit',resource['integrity'].get('source_commit'));arc=build.get('archive',resource['artifact']);url=arc['url'];repo=url.split('codeload.github.com/')[1].split('/tar.gz/')[0]\n api='https://api.github.com/repos/'+repo+'/commits/'+commit\n b=urllib.request.urlopen(api,timeout=30).read();d=json.loads(b)\n meta={'url':api,'path':'docs/engineering/resources/'+id+'-source-commit.json','sha256':hashlib.sha256(b).hexdigest()};(r/meta['path']).write_bytes(b)\n if id in ['cyclonedx','spdx']:resource['integrity']['commit_metadata']=meta\n elif id!='go':build['commit_metadata']=meta\n dst=w/(id+'-proof');dst.mkdir(exist_ok=True)\n if not any(dst.iterdir()):\n  with tarfile.open(w/arc['filename']) as t:t.extractall(dst,filter='tar')\n src=next(dst.iterdir());subprocess.run(['git','init','-q'],cwd=src,check=True);subprocess.run(['git','-c','core.autocrlf=false','add','-f','--all'],cwd=src,check=True)\n treeinfo=json.load(urllib.request.urlopen('https://api.github.com/repos/'+repo+'/git/trees/'+commit+'?recursive=1'))\n for item in treeinfo['tree']:\n  if item['type']=='commit': subprocess.run(['git','update-index','--add','--cacheinfo','160000,'+item['sha']+','+item['path']],cwd=src,check=True)\n tree=subprocess.check_output(['git','write-tree'],cwd=src,text=True).strip();expected=d['commit']['tree']['sha'];assert tree==expected,(id,tree,expected)\n results.append({'id':id,'command':'git -c core.autocrlf=false add -f --all && git write-tree','exit_code':0,'source_commit':commit,'expected_tree':expected,'actual_tree':tree,'directory':str(src)});print(id,commit,tree,'MATCH',flush=True)\n(r/'docs/engineering/toolchain-lock.json').write_text(json.dumps(lock,indent=2)+'\\n');(w/'source-proof.json').write_text(json.dumps(results,indent=2)+'\\n')\n",
+    "browser_config": "import config from '/home/amirreza/Desktop/Projects/Attestara/playwright.config.ts';\nexport default {\n  ...config,\n  testDir: '/home/amirreza/Desktop/Projects/Attestara/tests/browser',\n  use: { ...config.use, baseURL: 'http://127.0.0.1:4174' },\n  webServer: { ...config.webServer, command: 'node scripts/serve-web.mjs --port 4174', cwd: '/home/amirreza/Desktop/Projects/Attestara', url: 'http://127.0.0.1:4174/readyz' },\n};\n"
+  },
+  "protected_paths_changed": [],
+  "rollback_or_recovery_observation": "Only source/metadata and disposable temporary tool builds were created. No user domain data or durable product state was modified.",
+  "passed": true,
+  "post_update_verification": "Source inventory hashes match the final implementation; plan proof validates and selects C03. Final generated roadmap is rebuilt and its two browser regressions pass."
+}

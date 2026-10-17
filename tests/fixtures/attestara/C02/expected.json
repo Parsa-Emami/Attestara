@@ -1,0 +1,10 @@
+{
+  "provenance": "repository-authored synthetic data",
+  "license": "Apache-2.0",
+  "kind": "expected-output",
+  "sha256": "8d064b5572a0b017e0530e2adc0ddd05b52c896ca9fdcff4b6bbaf6e369abe3d",
+  "valid_lock": "accepted",
+  "modified_artifact": "checksum mismatch",
+  "optional_provider_absent": "allowed",
+  "required_toolchain_absent": "explicit failure"
+}

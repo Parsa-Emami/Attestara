@@ -1,0 +1,70 @@
+{
+  "provenance": "repository-authored synthetic data",
+  "license": "Apache-2.0",
+  "kind": "negative",
+  "cases": [
+    {
+      "field": "version",
+      "value": "latest",
+      "error": "version"
+    },
+    {
+      "field": "source_url",
+      "value": "https://example.invalid/go",
+      "error": "source"
+    },
+    {
+      "field": "license",
+      "value": null,
+      "error": "license"
+    },
+    {
+      "field": "required",
+      "value": false,
+      "error": "prerequisite"
+    },
+    {
+      "field": "platform",
+      "value": "windows-x64",
+      "error": "platform"
+    },
+    {
+      "field": "remove-go",
+      "value": null,
+      "error": "resource"
+    },
+    {
+      "field": "version",
+      "value": "1.27.2-rc1",
+      "error": "version"
+    },
+    {
+      "field": "redistribution",
+      "value": "",
+      "error": "license"
+    },
+    {
+      "field": "artifact",
+      "value": {
+        "filename": "go.tar.gz",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "url": "https://github.com/golang/go/releases/download/latest/go.tar.gz"
+      },
+      "error": "mutable"
+    },
+    {
+      "field": "artifact",
+      "value": {
+        "filename": "go.tar.gz",
+        "sha256": "",
+        "url": "https://codeload.github.com/golang/go/tar.gz/fake"
+      },
+      "error": "pin"
+    },
+    {
+      "field": "integrity",
+      "value": null,
+      "error": "integrity"
+    }
+  ]
+}

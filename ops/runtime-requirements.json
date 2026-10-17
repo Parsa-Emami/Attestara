@@ -23,5 +23,18 @@
   "full_engine_platform_target": "Linux x86_64; other platforms need their own installed evidence",
   "paid_or_cloud_account_required": false,
   "owned_domain_required": false,
-  "versions": "Web versions are locked now; resolve exact engine/provider pins from official sources at C02."
+  "versions": "Exact artifact/source/grammar versions, hashes, licenses and source-build routes are in docs/engineering/toolchain-lock.json. Go is required to build the C03 engine; OPA and Syft/Grype remain optional.",
+  "resource_profile": "linux-x64",
+  "toolchain_lock": "docs/engineering/toolchain-lock.json",
+  "required_tools": [
+    "node",
+    "npm",
+    "go"
+  ],
+  "optional_tools": [
+    "opa",
+    "syft",
+    "grype"
+  ],
+  "privileges": "Ordinary local user; no root, Docker daemon, cloud credentials or provider account is required. Tools execute locally only when explicitly selected."
 }
