@@ -1,0 +1,7 @@
+{
+  "schema_version": 1,
+  "license": "Apache-2.0",
+  "author": "Attestara repository",
+  "source": "Repository-authored synthetic storage scenarios; exact C04 source artifacts reused without alteration. No customer data or external provider.",
+  "disk_full": "Injected ENOSPC at individual write/sync/publication boundaries with a real temporary filesystem. No physical volume was filled."
+}

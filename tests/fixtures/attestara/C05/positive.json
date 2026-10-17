@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "operation_id": "synthetic-c05-operation-1",
+  "input_fixture": "../C04/input.valid.json",
+  "result_fixture": "../C04/result.valid.json",
+  "artifacts": [
+    "subject.txt",
+    "sbom.cdx.json",
+    "policy.rego"
+  ]
+}

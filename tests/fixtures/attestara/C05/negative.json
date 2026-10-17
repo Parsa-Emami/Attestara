@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "invalid_cases": [
+    "digest",
+    "size",
+    "path",
+    "binding",
+    "extra",
+    "cancel"
+  ],
+  "io_failure_phases": [
+    "object.write",
+    "object.sync",
+    "object.publish",
+    "objects.sync",
+    "staging.sync",
+    "manifest.write",
+    "manifest.sync",
+    "manifest.publish",
+    "directory.sync",
+    "committed"
+  ],
+  "crash_phases": [
+    "object.write",
+    "objects.ready",
+    "manifest.sync",
+    "manifest.publish",
+    "directory.sync",
+    "committed"
+  ],
+  "corrupt_cases": [
+    "version",
+    "truncated",
+    "checksum",
+    "duplicate",
+    "unknown-field",
+    "missing-manifest",
+    "missing-object",
+    "changed-object",
+    "symlink",
+    "hardlink",
+    "unknown-object",
+    "forged-orphan"
+  ]
+}

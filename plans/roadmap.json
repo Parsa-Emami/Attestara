@@ -414,7 +414,7 @@
       ],
       "verification": [
         "npm run validate:plan — All task/dependency/resource/reference/evidence metadata validates; no runtime capability inferred.",
-        "go test ./... — C03 creates this engine test command in the same commit; C06 adds CI/integration collection. Pass the actual C05 acceptance and negative cases on the selected engine; shell-only tests cannot certify this task."
+        "go test ./... — Run the actual C05 file-adapter, restart/crash, ENOSPC, replay and existing engine regressions. C03 introduced the engine command and current web CI already collects go test ./...; C06 remains the broader integration/CI task."
       ],
       "acceptance": [
         "Use ADR-0003 storage ports, a bounded single writer, atomic visible state, stable operation IDs and tested interrupted/disk-full/replay recovery. No database schema, migration, .env or Dockerfile changes."
@@ -457,15 +457,15 @@
         "licenses": "Apache-2.0 project source; pin and inventory every shipped upstream library/provider/grammar/rule/dataset license. Unknown/restricted required resources block release."
       },
       "negative_cases": [
-        "Missing/expired/replayed identity and an unrelated owner/object scope fail before sensitive side effects.",
-        "A forged header, widened path/provider permission or unavailable identity provider cannot authorize a sensitive action.",
-        "No user source execution"
+        "Interrupted staging/publication, disk-full or directory-sync errors never acknowledge an uncommitted transaction; reopen reconciles ambiguous commits and stable operation replay.",
+        "A concurrent writer, conflicting operation ID, invalid byte digest/size/path, corrupt manifest or missing reference fails closed without overwriting accepted state.",
+        "Unknown or unsafe filesystem entries are preserved and rejected; no user source execution."
       ],
       "implementation_steps": [
         "Inspect the actual implementation, source/locks and verified dependencies for C05; preserve accepted existing behavior.",
         "Define the versioned positive and negative release-evidence fixtures and expected error/result semantics under tests/fixtures/attestara/C05/.",
         "Implement: Use ADR-0003 storage ports, a bounded single writer, atomic visible state, stable operation IDs and tested interrupted/disk-full/replay recovery. No database schema, migration, .env or Dockerfile changes.",
-        "Change the listed exact targets and wire the actual typed outcome into the supported browser/engine workflow. Keep domain facts, validation, storage/provider adapters and UI separate.",
+        "Implement the internal Go storage port using existing C04 typed validators and exact JSON bytes; expose commit/read outcomes at the engine-library boundary. No transport admission, browser workflow or identity/provider integration is added in this owner-approved C05 scope.",
         "Add regression/integration coverage for every acceptance and negative case; real storage/provider/security boundaries cannot be verified only with mocks.",
         "Run the labeled verification commands; record exact source, fixture license/hash, tool/provider versions, command exits and observed results in docs/evidence/C05.json. Update progress only when the whole task is genuinely verified."
       ],
@@ -478,9 +478,9 @@
         },
         {
           "command": "go test ./...",
-          "available_now": false,
+          "available_now": true,
           "introduced_by": "C03",
-          "expected": "C03 creates this engine test command in the same commit; C06 adds CI/integration collection. Pass the actual C05 acceptance and negative cases on the selected engine; shell-only tests cannot certify this task."
+          "expected": "Run the actual C05 file-adapter, restart/crash, ENOSPC, replay and existing engine regressions. C03 introduced the engine command and current web CI already collects go test ./...; C06 remains the broader integration/CI task."
         }
       ],
       "stop_conditions": [

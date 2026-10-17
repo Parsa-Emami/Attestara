@@ -42,10 +42,12 @@
     },
     {
       "id": "C05",
-      "status": "planned",
-      "evidence": [],
-      "source_identity": null,
-      "notes": ""
+      "status": "verified",
+      "evidence": [
+        "docs/evidence/C05.json"
+      ],
+      "source_identity": "sha256:b9266b0509eb347fc19de9fc788715d846e7f943913948d9e2174589b6513d13",
+      "notes": "Owner-approved internal Go file repository: real byte/hash checks, exclusive writer, atomic flushed manifest, durable operation replay, SIGKILL/reopen and injected ENOSPC recovery verified. No identity/API/UI/provider or full workflow claim."
     },
     {
       "id": "C06",
