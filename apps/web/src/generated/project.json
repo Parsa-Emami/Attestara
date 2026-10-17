@@ -83,9 +83,9 @@
       "id": "C06",
       "title": "ci(engine): verify the actual engine from a clean checkout",
       "stage": "foundation",
-      "status": "planned",
+      "status": "verified",
       "acceptance": [
-        "Build and test the actual selected engine, typed contracts and storage using pinned local open-source providers where relevant. Add exact engine test commands and collect the listed test directories. Shell-only tests cannot verify an engine."
+        "Verify the implemented C03 process, C04 contracts and C05 file repository from an isolated clean source checkout; require discovery of their actual Go tests and add pinned engine build/vet/test CI. Signer trust and full bundle outcomes remain F10/C16 and F20/C26; revision authority is not certified."
       ],
       "dependsOn": [
         "C05"

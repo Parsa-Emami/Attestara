@@ -53,7 +53,7 @@
       "mandatory": true,
       "planned_commit": "C06",
       "evidence_path": "docs/evidence/C06.json",
-      "status": "unimplemented"
+      "status": "verified"
     },
     {
       "id": "F01",

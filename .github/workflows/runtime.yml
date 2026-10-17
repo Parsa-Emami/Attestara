@@ -1,0 +1,64 @@
+name: engine-runtime
+on:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+concurrency:
+  group: runtime-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+        with:
+          node-version-file: .nvmrc
+      - uses: actions/setup-go@924ae3a1cded613372ab5595356fb5720e22ba16
+        with:
+          go-version: '1.26.2'
+          cache: false
+      - name: Build locked Go toolchain from verified C02 source
+        shell: bash
+        run: |
+          set -euo pipefail
+          bootstrap_root=$(GOTOOLCHAIN=local go env GOROOT)
+          source_dir="$RUNNER_TEMP/attestara-go"
+          mkdir -p "$source_dir"
+          node --input-type=module - "$source_dir/go-source.tar.gz" <<'NODE'
+          import { readFileSync, writeFileSync } from 'node:fs';
+          import { createHash } from 'node:crypto';
+          const resource = JSON.parse(readFileSync('docs/engineering/toolchain-lock.json')).resources.find(item => item.id === 'go');
+          const response = await fetch(resource.artifact.url, { signal: AbortSignal.timeout(120000) });
+          if (!response.ok) throw new Error('Locked Go source download failed: ' + response.status);
+          const bytes = Buffer.from(await response.arrayBuffer());
+          if (createHash('sha256').update(bytes).digest('hex') !== resource.artifact.sha256) throw new Error('Go source checksum mismatch');
+          writeFileSync(process.argv[2], bytes);
+          NODE
+          tar -xzf "$source_dir/go-source.tar.gz" --strip-components=1 -C "$source_dir"
+          (cd "$source_dir/src" && GOROOT_BOOTSTRAP="$bootstrap_root" GOMAXPROCS=2 ./make.bash)
+          GOTOOLCHAIN=local "$source_dir/bin/go" version
+          expected_version=$(node --input-type=module -e "import {readFileSync} from 'node:fs'; console.log(JSON.parse(readFileSync('docs/engineering/toolchain-lock.json')).resources.find(r => r.id === 'go').version)")
+          test "$(GOTOOLCHAIN=local "$source_dir/bin/go" env GOVERSION)" = "go$expected_version"
+          echo "$source_dir/bin" >> "$GITHUB_PATH"
+      - name: Require implemented engine test suites
+        run: node scripts/verify-engine-tests.mjs
+        env:
+          GOTOOLCHAIN: local
+      - name: Build actual engine packages
+        run: go build ./...
+        env:
+          GOTOOLCHAIN: local
+      - name: Vet engine packages
+        run: go vet ./...
+        env:
+          GOTOOLCHAIN: local
+      - name: Run actual engine, contract and storage tests
+        run: go test -count=1 -v ./...
+        env:
+          GOTOOLCHAIN: local
