@@ -1,0 +1,14 @@
+{
+  "schema_version": "1",
+  "status": "failed",
+  "input_digest": "sha256:9b353ef4e5e36c70181c35c4bbc1359385e719fec3e4e09bad65348a9c639564",
+  "engine_version": "0.0.1",
+  "warnings": [
+    "Contract validation does not execute policy or verify signatures."
+  ],
+  "error": {
+    "code": "dependency_unavailable",
+    "field": "policy",
+    "message": "Required policy provider is unavailable."
+  }
+}

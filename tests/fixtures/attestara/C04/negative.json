@@ -1,0 +1,966 @@
+{
+  "license": "Apache-2.0",
+  "provenance": "repository-authored synthetic contract mutations",
+  "cases": [
+    {
+      "id": "input-version-0",
+      "target": "input",
+      "value": {
+        "schema_version": "0",
+        "release_id": "attestara-c04-release",
+        "owner": "synthetic Attestara maintainer",
+        "subject_digest": "sha256:49317372e0291e58af6c914df5d5121eea1bf5993ee2aeb503375e2cc6d3608c",
+        "source_revision": "synthetic-revision-1",
+        "tool": "repository-authored-sbom",
+        "tool_version": "1",
+        "evidence_digest": "sha256:55761b9f1b1f365a584540c0396fc6c669393bedd08d0736977461369345c9ab",
+        "policy_digest": "sha256:52f2452badde5b273ce44fb4663e08868116d8a1151544048021d8634b83483e",
+        "verification": "unverified",
+        "files": [
+          {
+            "path": "subject.txt",
+            "digest": "sha256:49317372e0291e58af6c914df5d5121eea1bf5993ee2aeb503375e2cc6d3608c",
+            "size_bytes": 22,
+            "media_type": "text/plain"
+          },
+          {
+            "path": "sbom.cdx.json",
+            "digest": "sha256:55761b9f1b1f365a584540c0396fc6c669393bedd08d0736977461369345c9ab",
+            "size_bytes": 232,
+            "media_type": "application/vnd.cyclonedx+json"
+          },
+          {
+            "path": "policy.rego",
+            "digest": "sha256:52f2452badde5b273ce44fb4663e08868116d8a1151544048021d8634b83483e",
+            "size_bytes": 94,
+            "media_type": "text/plain"
+          }
+        ]
+      },
+      "expected_code": "unsupported_version"
+    },
+    {
+      "id": "input-version-2",
+      "target": "input",
+      "value": {
+        "schema_version": "2",
+        "release_id": "attestara-c04-release",
+        "owner": "synthetic Attestara maintainer",
+        "subject_digest": "sha256:49317372e0291e58af6c914df5d5121eea1bf5993ee2aeb503375e2cc6d3608c",
+        "source_revision": "synthetic-revision-1",
+        "tool": "repository-authored-sbom",
+        "tool_version": "1",
+        "evidence_digest": "sha256:55761b9f1b1f365a584540c0396fc6c669393bedd08d0736977461369345c9ab",
+        "policy_digest": "sha256:52f2452badde5b273ce44fb4663e08868116d8a1151544048021d8634b83483e",
+        "verification": "unverified",
+        "files": [
+          {
+            "path": "subject.txt",
+            "digest": "sha256:49317372e0291e58af6c914df5d5121eea1bf5993ee2aeb503375e2cc6d3608c",
+            "size_bytes": 22,
+            "media_type": "text/plain"
+          },
+          {
+            "path": "sbom.cdx.json",
+            "digest": "sha256:55761b9f1b1f365a584540c0396fc6c669393bedd08d0736977461369345c9ab",
+            "size_bytes": 232,
+            "media_type": "application/vnd.cyclonedx+json"
+          },
+          {
+            "path": "policy.rego",
+            "digest": "sha256:52f2452badde5b273ce44fb4663e08868116d8a1151544048021d8634b83483e",
+            "size_bytes": 94,
+            "media_type": "text/plain"
+          }
+        ]
+      },
+      "expected_code": "unsupported_version"
+    },
+    {
+      "id": "input-unknown-field",
+      "target": "input",
+      "value": {
+        "schema_version": "1",
+        "release_id": "attestara-c04-release",
+        "owner": "synthetic Attestara maintainer",
+        "subject_digest": "sha256:49317372e0291e58af6c914df5d5121eea1bf5993ee2aeb503375e2cc6d3608c",
+        "source_revision": "synthetic-revision-1",
+        "tool": "repository-authored-sbom",
+        "tool_version": "1",
+        "evidence_digest": "sha256:55761b9f1b1f365a584540c0396fc6c669393bedd08d0736977461369345c9ab",
+        "policy_digest": "sha256:52f2452badde5b273ce44fb4663e08868116d8a1151544048021d8634b83483e",
+        "verification": "unverified",
+        "files": [
+          {
+            "path": "subject.txt",
+            "digest": "sha256:49317372e0291e58af6c914df5d5121eea1bf5993ee2aeb503375e2cc6d3608c",
+            "size_bytes": 22,
+            "media_type": "text/plain"
+          },
+          {
+            "path": "sbom.cdx.json",
+            "digest": "sha256:55761b9f1b1f365a584540c0396fc6c669393bedd08d0736977461369345c9ab",
+            "size_bytes": 232,
+            "media_type": "application/vnd.cyclonedx+json"
+          },
+          {
+            "path": "policy.rego",
+            "digest": "sha256:52f2452badde5b273ce44fb4663e08868116d8a1151544048021d8634b83483e",
+            "size_bytes": 94,
+            "media_type": "text/plain"
+          }
+        ],
+        "extra": "ignored?"
+      },
+      "expected_code": "invalid_input"
+    },
+    {
+      "id": "input-bad-digest",
+      "target": "input",
+      "value": {
+        "schema_version": "1",
+        "release_id": "attestara-c04-release",
+        "owner": "synthetic Attestara maintainer",
+        "subject_digest": "sha256:AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "source_revision": "synthetic-revision-1",
+        "tool": "repository-authored-sbom",
+        "tool_version": "1",
+        "evidence_digest": "sha256:55761b9f1b1f365a584540c0396fc6c669393bedd08d0736977461369345c9ab",
+        "policy_digest": "sha256:52f2452badde5b273ce44fb4663e08868116d8a1151544048021d8634b83483e",
+        "verification": "unverified",
+        "files": [
+          {
+            "path": "subject.txt",
+            "digest": "sha256:49317372e0291e58af6c914df5d5121eea1bf5993ee2aeb503375e2cc6d3608c",
+            "size_bytes": 22,
+            "media_type": "text/plain"
+          },
+          {
+            "path": "sbom.cdx.json",
+            "digest": "sha256:55761b9f1b1f365a584540c0396fc6c669393bedd08d0736977461369345c9ab",
+            "size_bytes": 232,
+            "media_type": "application/vnd.cyclonedx+json"
+          },
+          {
+            "path": "policy.rego",
+            "digest": "sha256:52f2452badde5b273ce44fb4663e08868116d8a1151544048021d8634b83483e",
+            "size_bytes": 94,
+            "media_type": "text/plain"
+          }
+        ]
+      },
+      "expected_code": "invalid_input"
+    },
+    {
+      "id": "result-version-0",
+      "target": "result",
+      "value": {
+        "schema_version": "0",
+        "status": "unverified",
+        "input_digest": "sha256:9b353ef4e5e36c70181c35c4bbc1359385e719fec3e4e09bad65348a9c639564",
+        "engine_version": "0.0.1",
+        "result": {
+          "subject_digest": "sha256:49317372e0291e58af6c914df5d5121eea1bf5993ee2aeb503375e2cc6d3608c",
+          "evidence_digest": "sha256:55761b9f1b1f365a584540c0396fc6c669393bedd08d0736977461369345c9ab",
+          "policy_digest": "sha256:52f2452badde5b273ce44fb4663e08868116d8a1151544048021d8634b83483e",
+          "policy_decision": "unknown",
+          "verification": "unverified"
+        },
+        "warnings": [
+          "Contract validation does not execute policy or verify signatures."
+        ]
+      },
+      "expected_code": "unsupported_version"
+    },
+    {
+      "id": "result-version-2",
+      "target": "result",
+      "value": {
+        "schema_version": "2",
+        "status": "unverified",
+        "input_digest": "sha256:9b353ef4e5e36c70181c35c4bbc1359385e719fec3e4e09bad65348a9c639564",
+        "engine_version": "0.0.1",
+        "result": {
+          "subject_digest": "sha256:49317372e0291e58af6c914df5d5121eea1bf5993ee2aeb503375e2cc6d3608c",
+          "evidence_digest": "sha256:55761b9f1b1f365a584540c0396fc6c669393bedd08d0736977461369345c9ab",
+          "policy_digest": "sha256:52f2452badde5b273ce44fb4663e08868116d8a1151544048021d8634b83483e",
+          "policy_decision": "unknown",
+          "verification": "unverified"
+        },
+        "warnings": [
+          "Contract validation does not execute policy or verify signatures."
+        ]
+      },
+      "expected_code": "unsupported_version"
+    },
+    {
+      "id": "result-unknown-field",
+      "target": "result",
+      "value": {
+        "schema_version": "1",
+        "status": "unverified",
+        "input_digest": "sha256:9b353ef4e5e36c70181c35c4bbc1359385e719fec3e4e09bad65348a9c639564",
+        "engine_version": "0.0.1",
+        "result": {
+          "subject_digest": "sha256:49317372e0291e58af6c914df5d5121eea1bf5993ee2aeb503375e2cc6d3608c",
+          "evidence_digest": "sha256:55761b9f1b1f365a584540c0396fc6c669393bedd08d0736977461369345c9ab",
+          "policy_digest": "sha256:52f2452badde5b273ce44fb4663e08868116d8a1151544048021d8634b83483e",
+          "policy_decision": "unknown",
+          "verification": "unverified"
+        },
+        "warnings": [
+          "Contract validation does not execute policy or verify signatures."
+        ],
+        "extra": "ignored?"
+      },
+      "expected_code": "invalid_input"
+    },
+    {
+      "id": "result-bad-digest",
+      "target": "result",
+      "value": {
+        "schema_version": "1",
+        "status": "unverified",
+        "input_digest": "sha256:AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "engine_version": "0.0.1",
+        "result": {
+          "subject_digest": "sha256:49317372e0291e58af6c914df5d5121eea1bf5993ee2aeb503375e2cc6d3608c",
+          "evidence_digest": "sha256:55761b9f1b1f365a584540c0396fc6c669393bedd08d0736977461369345c9ab",
+          "policy_digest": "sha256:52f2452badde5b273ce44fb4663e08868116d8a1151544048021d8634b83483e",
+          "policy_decision": "unknown",
+          "verification": "unverified"
+        },
+        "warnings": [
+          "Contract validation does not execute policy or verify signatures."
+        ]
+      },
+      "expected_code": "invalid_input"
+    },
+    {
+      "id": "missing-evidence_digest",
+      "target": "input",
+      "value": {
+        "schema_version": "1",
+        "release_id": "attestara-c04-release",
+        "owner": "synthetic Attestara maintainer",
+        "subject_digest": "sha256:49317372e0291e58af6c914df5d5121eea1bf5993ee2aeb503375e2cc6d3608c",
+        "source_revision": "synthetic-revision-1",
+        "tool": "repository-authored-sbom",
+        "tool_version": "1",
+        "policy_digest": "sha256:52f2452badde5b273ce44fb4663e08868116d8a1151544048021d8634b83483e",
+        "verification": "unverified",
+        "files": [
+          {
+            "path": "subject.txt",
+            "digest": "sha256:49317372e0291e58af6c914df5d5121eea1bf5993ee2aeb503375e2cc6d3608c",
+            "size_bytes": 22,
+            "media_type": "text/plain"
+          },
+          {
+            "path": "sbom.cdx.json",
+            "digest": "sha256:55761b9f1b1f365a584540c0396fc6c669393bedd08d0736977461369345c9ab",
+            "size_bytes": 232,
+            "media_type": "application/vnd.cyclonedx+json"
+          },
+          {
+            "path": "policy.rego",
+            "digest": "sha256:52f2452badde5b273ce44fb4663e08868116d8a1151544048021d8634b83483e",
+            "size_bytes": 94,
+            "media_type": "text/plain"
+          }
+        ]
+      },
+      "expected_code": "invalid_input"
+    },
+    {
+      "id": "missing-source_revision",
+      "target": "input",
+      "value": {
+        "schema_version": "1",
+        "release_id": "attestara-c04-release",
+        "owner": "synthetic Attestara maintainer",
+        "subject_digest": "sha256:49317372e0291e58af6c914df5d5121eea1bf5993ee2aeb503375e2cc6d3608c",
+        "tool": "repository-authored-sbom",
+        "tool_version": "1",
+        "evidence_digest": "sha256:55761b9f1b1f365a584540c0396fc6c669393bedd08d0736977461369345c9ab",
+        "policy_digest": "sha256:52f2452badde5b273ce44fb4663e08868116d8a1151544048021d8634b83483e",
+        "verification": "unverified",
+        "files": [
+          {
+            "path": "subject.txt",
+            "digest": "sha256:49317372e0291e58af6c914df5d5121eea1bf5993ee2aeb503375e2cc6d3608c",
+            "size_bytes": 22,
+            "media_type": "text/plain"
+          },
+          {
+            "path": "sbom.cdx.json",
+            "digest": "sha256:55761b9f1b1f365a584540c0396fc6c669393bedd08d0736977461369345c9ab",
+            "size_bytes": 232,
+            "media_type": "application/vnd.cyclonedx+json"
+          },
+          {
+            "path": "policy.rego",
+            "digest": "sha256:52f2452badde5b273ce44fb4663e08868116d8a1151544048021d8634b83483e",
+            "size_bytes": 94,
+            "media_type": "text/plain"
+          }
+        ]
+      },
+      "expected_code": "invalid_input"
+    },
+    {
+      "id": "missing-tool_version",
+      "target": "input",
+      "value": {
+        "schema_version": "1",
+        "release_id": "attestara-c04-release",
+        "owner": "synthetic Attestara maintainer",
+        "subject_digest": "sha256:49317372e0291e58af6c914df5d5121eea1bf5993ee2aeb503375e2cc6d3608c",
+        "source_revision": "synthetic-revision-1",
+        "tool": "repository-authored-sbom",
+        "evidence_digest": "sha256:55761b9f1b1f365a584540c0396fc6c669393bedd08d0736977461369345c9ab",
+        "policy_digest": "sha256:52f2452badde5b273ce44fb4663e08868116d8a1151544048021d8634b83483e",
+        "verification": "unverified",
+        "files": [
+          {
+            "path": "subject.txt",
+            "digest": "sha256:49317372e0291e58af6c914df5d5121eea1bf5993ee2aeb503375e2cc6d3608c",
+            "size_bytes": 22,
+            "media_type": "text/plain"
+          },
+          {
+            "path": "sbom.cdx.json",
+            "digest": "sha256:55761b9f1b1f365a584540c0396fc6c669393bedd08d0736977461369345c9ab",
+            "size_bytes": 232,
+            "media_type": "application/vnd.cyclonedx+json"
+          },
+          {
+            "path": "policy.rego",
+            "digest": "sha256:52f2452badde5b273ce44fb4663e08868116d8a1151544048021d8634b83483e",
+            "size_bytes": 94,
+            "media_type": "text/plain"
+          }
+        ]
+      },
+      "expected_code": "invalid_input"
+    },
+    {
+      "id": "unsafe-path-11",
+      "target": "input",
+      "value": {
+        "schema_version": "1",
+        "release_id": "attestara-c04-release",
+        "owner": "synthetic Attestara maintainer",
+        "subject_digest": "sha256:49317372e0291e58af6c914df5d5121eea1bf5993ee2aeb503375e2cc6d3608c",
+        "source_revision": "synthetic-revision-1",
+        "tool": "repository-authored-sbom",
+        "tool_version": "1",
+        "evidence_digest": "sha256:55761b9f1b1f365a584540c0396fc6c669393bedd08d0736977461369345c9ab",
+        "policy_digest": "sha256:52f2452badde5b273ce44fb4663e08868116d8a1151544048021d8634b83483e",
+        "verification": "unverified",
+        "files": [
+          {
+            "path": "../outside",
+            "digest": "sha256:49317372e0291e58af6c914df5d5121eea1bf5993ee2aeb503375e2cc6d3608c",
+            "size_bytes": 22,
+            "media_type": "text/plain"
+          },
+          {
+            "path": "sbom.cdx.json",
+            "digest": "sha256:55761b9f1b1f365a584540c0396fc6c669393bedd08d0736977461369345c9ab",
+            "size_bytes": 232,
+            "media_type": "application/vnd.cyclonedx+json"
+          },
+          {
+            "path": "policy.rego",
+            "digest": "sha256:52f2452badde5b273ce44fb4663e08868116d8a1151544048021d8634b83483e",
+            "size_bytes": 94,
+            "media_type": "text/plain"
+          }
+        ]
+      },
+      "expected_code": "invalid_input"
+    },
+    {
+      "id": "unsafe-path-12",
+      "target": "input",
+      "value": {
+        "schema_version": "1",
+        "release_id": "attestara-c04-release",
+        "owner": "synthetic Attestara maintainer",
+        "subject_digest": "sha256:49317372e0291e58af6c914df5d5121eea1bf5993ee2aeb503375e2cc6d3608c",
+        "source_revision": "synthetic-revision-1",
+        "tool": "repository-authored-sbom",
+        "tool_version": "1",
+        "evidence_digest": "sha256:55761b9f1b1f365a584540c0396fc6c669393bedd08d0736977461369345c9ab",
+        "policy_digest": "sha256:52f2452badde5b273ce44fb4663e08868116d8a1151544048021d8634b83483e",
+        "verification": "unverified",
+        "files": [
+          {
+            "path": "/etc/passwd",
+            "digest": "sha256:49317372e0291e58af6c914df5d5121eea1bf5993ee2aeb503375e2cc6d3608c",
+            "size_bytes": 22,
+            "media_type": "text/plain"
+          },
+          {
+            "path": "sbom.cdx.json",
+            "digest": "sha256:55761b9f1b1f365a584540c0396fc6c669393bedd08d0736977461369345c9ab",
+            "size_bytes": 232,
+            "media_type": "application/vnd.cyclonedx+json"
+          },
+          {
+            "path": "policy.rego",
+            "digest": "sha256:52f2452badde5b273ce44fb4663e08868116d8a1151544048021d8634b83483e",
+            "size_bytes": 94,
+            "media_type": "text/plain"
+          }
+        ]
+      },
+      "expected_code": "invalid_input"
+    },
+    {
+      "id": "unsafe-path-13",
+      "target": "input",
+      "value": {
+        "schema_version": "1",
+        "release_id": "attestara-c04-release",
+        "owner": "synthetic Attestara maintainer",
+        "subject_digest": "sha256:49317372e0291e58af6c914df5d5121eea1bf5993ee2aeb503375e2cc6d3608c",
+        "source_revision": "synthetic-revision-1",
+        "tool": "repository-authored-sbom",
+        "tool_version": "1",
+        "evidence_digest": "sha256:55761b9f1b1f365a584540c0396fc6c669393bedd08d0736977461369345c9ab",
+        "policy_digest": "sha256:52f2452badde5b273ce44fb4663e08868116d8a1151544048021d8634b83483e",
+        "verification": "unverified",
+        "files": [
+          {
+            "path": "C:/secret",
+            "digest": "sha256:49317372e0291e58af6c914df5d5121eea1bf5993ee2aeb503375e2cc6d3608c",
+            "size_bytes": 22,
+            "media_type": "text/plain"
+          },
+          {
+            "path": "sbom.cdx.json",
+            "digest": "sha256:55761b9f1b1f365a584540c0396fc6c669393bedd08d0736977461369345c9ab",
+            "size_bytes": 232,
+            "media_type": "application/vnd.cyclonedx+json"
+          },
+          {
+            "path": "policy.rego",
+            "digest": "sha256:52f2452badde5b273ce44fb4663e08868116d8a1151544048021d8634b83483e",
+            "size_bytes": 94,
+            "media_type": "text/plain"
+          }
+        ]
+      },
+      "expected_code": "invalid_input"
+    },
+    {
+      "id": "unsafe-path-14",
+      "target": "input",
+      "value": {
+        "schema_version": "1",
+        "release_id": "attestara-c04-release",
+        "owner": "synthetic Attestara maintainer",
+        "subject_digest": "sha256:49317372e0291e58af6c914df5d5121eea1bf5993ee2aeb503375e2cc6d3608c",
+        "source_revision": "synthetic-revision-1",
+        "tool": "repository-authored-sbom",
+        "tool_version": "1",
+        "evidence_digest": "sha256:55761b9f1b1f365a584540c0396fc6c669393bedd08d0736977461369345c9ab",
+        "policy_digest": "sha256:52f2452badde5b273ce44fb4663e08868116d8a1151544048021d8634b83483e",
+        "verification": "unverified",
+        "files": [
+          {
+            "path": "a\\b",
+            "digest": "sha256:49317372e0291e58af6c914df5d5121eea1bf5993ee2aeb503375e2cc6d3608c",
+            "size_bytes": 22,
+            "media_type": "text/plain"
+          },
+          {
+            "path": "sbom.cdx.json",
+            "digest": "sha256:55761b9f1b1f365a584540c0396fc6c669393bedd08d0736977461369345c9ab",
+            "size_bytes": 232,
+            "media_type": "application/vnd.cyclonedx+json"
+          },
+          {
+            "path": "policy.rego",
+            "digest": "sha256:52f2452badde5b273ce44fb4663e08868116d8a1151544048021d8634b83483e",
+            "size_bytes": 94,
+            "media_type": "text/plain"
+          }
+        ]
+      },
+      "expected_code": "invalid_input"
+    },
+    {
+      "id": "unsafe-path-15",
+      "target": "input",
+      "value": {
+        "schema_version": "1",
+        "release_id": "attestara-c04-release",
+        "owner": "synthetic Attestara maintainer",
+        "subject_digest": "sha256:49317372e0291e58af6c914df5d5121eea1bf5993ee2aeb503375e2cc6d3608c",
+        "source_revision": "synthetic-revision-1",
+        "tool": "repository-authored-sbom",
+        "tool_version": "1",
+        "evidence_digest": "sha256:55761b9f1b1f365a584540c0396fc6c669393bedd08d0736977461369345c9ab",
+        "policy_digest": "sha256:52f2452badde5b273ce44fb4663e08868116d8a1151544048021d8634b83483e",
+        "verification": "unverified",
+        "files": [
+          {
+            "path": "a//b",
+            "digest": "sha256:49317372e0291e58af6c914df5d5121eea1bf5993ee2aeb503375e2cc6d3608c",
+            "size_bytes": 22,
+            "media_type": "text/plain"
+          },
+          {
+            "path": "sbom.cdx.json",
+            "digest": "sha256:55761b9f1b1f365a584540c0396fc6c669393bedd08d0736977461369345c9ab",
+            "size_bytes": 232,
+            "media_type": "application/vnd.cyclonedx+json"
+          },
+          {
+            "path": "policy.rego",
+            "digest": "sha256:52f2452badde5b273ce44fb4663e08868116d8a1151544048021d8634b83483e",
+            "size_bytes": 94,
+            "media_type": "text/plain"
+          }
+        ]
+      },
+      "expected_code": "invalid_input"
+    },
+    {
+      "id": "unsafe-path-16",
+      "target": "input",
+      "value": {
+        "schema_version": "1",
+        "release_id": "attestara-c04-release",
+        "owner": "synthetic Attestara maintainer",
+        "subject_digest": "sha256:49317372e0291e58af6c914df5d5121eea1bf5993ee2aeb503375e2cc6d3608c",
+        "source_revision": "synthetic-revision-1",
+        "tool": "repository-authored-sbom",
+        "tool_version": "1",
+        "evidence_digest": "sha256:55761b9f1b1f365a584540c0396fc6c669393bedd08d0736977461369345c9ab",
+        "policy_digest": "sha256:52f2452badde5b273ce44fb4663e08868116d8a1151544048021d8634b83483e",
+        "verification": "unverified",
+        "files": [
+          {
+            "path": "a/./b",
+            "digest": "sha256:49317372e0291e58af6c914df5d5121eea1bf5993ee2aeb503375e2cc6d3608c",
+            "size_bytes": 22,
+            "media_type": "text/plain"
+          },
+          {
+            "path": "sbom.cdx.json",
+            "digest": "sha256:55761b9f1b1f365a584540c0396fc6c669393bedd08d0736977461369345c9ab",
+            "size_bytes": 232,
+            "media_type": "application/vnd.cyclonedx+json"
+          },
+          {
+            "path": "policy.rego",
+            "digest": "sha256:52f2452badde5b273ce44fb4663e08868116d8a1151544048021d8634b83483e",
+            "size_bytes": 94,
+            "media_type": "text/plain"
+          }
+        ]
+      },
+      "expected_code": "invalid_input"
+    },
+    {
+      "id": "unsafe-path-17",
+      "target": "input",
+      "value": {
+        "schema_version": "1",
+        "release_id": "attestara-c04-release",
+        "owner": "synthetic Attestara maintainer",
+        "subject_digest": "sha256:49317372e0291e58af6c914df5d5121eea1bf5993ee2aeb503375e2cc6d3608c",
+        "source_revision": "synthetic-revision-1",
+        "tool": "repository-authored-sbom",
+        "tool_version": "1",
+        "evidence_digest": "sha256:55761b9f1b1f365a584540c0396fc6c669393bedd08d0736977461369345c9ab",
+        "policy_digest": "sha256:52f2452badde5b273ce44fb4663e08868116d8a1151544048021d8634b83483e",
+        "verification": "unverified",
+        "files": [
+          {
+            "path": "a/../b",
+            "digest": "sha256:49317372e0291e58af6c914df5d5121eea1bf5993ee2aeb503375e2cc6d3608c",
+            "size_bytes": 22,
+            "media_type": "text/plain"
+          },
+          {
+            "path": "sbom.cdx.json",
+            "digest": "sha256:55761b9f1b1f365a584540c0396fc6c669393bedd08d0736977461369345c9ab",
+            "size_bytes": 232,
+            "media_type": "application/vnd.cyclonedx+json"
+          },
+          {
+            "path": "policy.rego",
+            "digest": "sha256:52f2452badde5b273ce44fb4663e08868116d8a1151544048021d8634b83483e",
+            "size_bytes": 94,
+            "media_type": "text/plain"
+          }
+        ]
+      },
+      "expected_code": "invalid_input"
+    },
+    {
+      "id": "unsafe-path-18",
+      "target": "input",
+      "value": {
+        "schema_version": "1",
+        "release_id": "attestara-c04-release",
+        "owner": "synthetic Attestara maintainer",
+        "subject_digest": "sha256:49317372e0291e58af6c914df5d5121eea1bf5993ee2aeb503375e2cc6d3608c",
+        "source_revision": "synthetic-revision-1",
+        "tool": "repository-authored-sbom",
+        "tool_version": "1",
+        "evidence_digest": "sha256:55761b9f1b1f365a584540c0396fc6c669393bedd08d0736977461369345c9ab",
+        "policy_digest": "sha256:52f2452badde5b273ce44fb4663e08868116d8a1151544048021d8634b83483e",
+        "verification": "unverified",
+        "files": [
+          {
+            "path": "https://example.invalid/source",
+            "digest": "sha256:49317372e0291e58af6c914df5d5121eea1bf5993ee2aeb503375e2cc6d3608c",
+            "size_bytes": 22,
+            "media_type": "text/plain"
+          },
+          {
+            "path": "sbom.cdx.json",
+            "digest": "sha256:55761b9f1b1f365a584540c0396fc6c669393bedd08d0736977461369345c9ab",
+            "size_bytes": 232,
+            "media_type": "application/vnd.cyclonedx+json"
+          },
+          {
+            "path": "policy.rego",
+            "digest": "sha256:52f2452badde5b273ce44fb4663e08868116d8a1151544048021d8634b83483e",
+            "size_bytes": 94,
+            "media_type": "text/plain"
+          }
+        ]
+      },
+      "expected_code": "invalid_input"
+    },
+    {
+      "id": "caller-trust",
+      "target": "input",
+      "value": {
+        "schema_version": "1",
+        "release_id": "attestara-c04-release",
+        "owner": "synthetic Attestara maintainer",
+        "subject_digest": "sha256:49317372e0291e58af6c914df5d5121eea1bf5993ee2aeb503375e2cc6d3608c",
+        "source_revision": "synthetic-revision-1",
+        "tool": "repository-authored-sbom",
+        "tool_version": "1",
+        "evidence_digest": "sha256:55761b9f1b1f365a584540c0396fc6c669393bedd08d0736977461369345c9ab",
+        "policy_digest": "sha256:52f2452badde5b273ce44fb4663e08868116d8a1151544048021d8634b83483e",
+        "verification": "trusted",
+        "files": [
+          {
+            "path": "subject.txt",
+            "digest": "sha256:49317372e0291e58af6c914df5d5121eea1bf5993ee2aeb503375e2cc6d3608c",
+            "size_bytes": 22,
+            "media_type": "text/plain"
+          },
+          {
+            "path": "sbom.cdx.json",
+            "digest": "sha256:55761b9f1b1f365a584540c0396fc6c669393bedd08d0736977461369345c9ab",
+            "size_bytes": 232,
+            "media_type": "application/vnd.cyclonedx+json"
+          },
+          {
+            "path": "policy.rego",
+            "digest": "sha256:52f2452badde5b273ce44fb4663e08868116d8a1151544048021d8634b83483e",
+            "size_bytes": 94,
+            "media_type": "text/plain"
+          }
+        ]
+      },
+      "expected_code": "invalid_input"
+    },
+    {
+      "id": "bundle-over-limit",
+      "target": "input",
+      "value": {
+        "schema_version": "1",
+        "release_id": "attestara-c04-release",
+        "owner": "synthetic Attestara maintainer",
+        "subject_digest": "sha256:49317372e0291e58af6c914df5d5121eea1bf5993ee2aeb503375e2cc6d3608c",
+        "source_revision": "synthetic-revision-1",
+        "tool": "repository-authored-sbom",
+        "tool_version": "1",
+        "evidence_digest": "sha256:55761b9f1b1f365a584540c0396fc6c669393bedd08d0736977461369345c9ab",
+        "policy_digest": "sha256:52f2452badde5b273ce44fb4663e08868116d8a1151544048021d8634b83483e",
+        "verification": "unverified",
+        "files": [
+          {
+            "path": "subject.txt",
+            "digest": "sha256:49317372e0291e58af6c914df5d5121eea1bf5993ee2aeb503375e2cc6d3608c",
+            "size_bytes": 104857601,
+            "media_type": "text/plain"
+          },
+          {
+            "path": "sbom.cdx.json",
+            "digest": "sha256:55761b9f1b1f365a584540c0396fc6c669393bedd08d0736977461369345c9ab",
+            "size_bytes": 232,
+            "media_type": "application/vnd.cyclonedx+json"
+          },
+          {
+            "path": "policy.rego",
+            "digest": "sha256:52f2452badde5b273ce44fb4663e08868116d8a1151544048021d8634b83483e",
+            "size_bytes": 94,
+            "media_type": "text/plain"
+          }
+        ]
+      },
+      "expected_code": "limit_exceeded"
+    },
+    {
+      "id": "negative-size",
+      "target": "input",
+      "value": {
+        "schema_version": "1",
+        "release_id": "attestara-c04-release",
+        "owner": "synthetic Attestara maintainer",
+        "subject_digest": "sha256:49317372e0291e58af6c914df5d5121eea1bf5993ee2aeb503375e2cc6d3608c",
+        "source_revision": "synthetic-revision-1",
+        "tool": "repository-authored-sbom",
+        "tool_version": "1",
+        "evidence_digest": "sha256:55761b9f1b1f365a584540c0396fc6c669393bedd08d0736977461369345c9ab",
+        "policy_digest": "sha256:52f2452badde5b273ce44fb4663e08868116d8a1151544048021d8634b83483e",
+        "verification": "unverified",
+        "files": [
+          {
+            "path": "subject.txt",
+            "digest": "sha256:49317372e0291e58af6c914df5d5121eea1bf5993ee2aeb503375e2cc6d3608c",
+            "size_bytes": -1,
+            "media_type": "text/plain"
+          },
+          {
+            "path": "sbom.cdx.json",
+            "digest": "sha256:55761b9f1b1f365a584540c0396fc6c669393bedd08d0736977461369345c9ab",
+            "size_bytes": 232,
+            "media_type": "application/vnd.cyclonedx+json"
+          },
+          {
+            "path": "policy.rego",
+            "digest": "sha256:52f2452badde5b273ce44fb4663e08868116d8a1151544048021d8634b83483e",
+            "size_bytes": 94,
+            "media_type": "text/plain"
+          }
+        ]
+      },
+      "expected_code": "invalid_input"
+    },
+    {
+      "id": "missing-size",
+      "target": "input",
+      "value": {
+        "schema_version": "1",
+        "release_id": "attestara-c04-release",
+        "owner": "synthetic Attestara maintainer",
+        "subject_digest": "sha256:49317372e0291e58af6c914df5d5121eea1bf5993ee2aeb503375e2cc6d3608c",
+        "source_revision": "synthetic-revision-1",
+        "tool": "repository-authored-sbom",
+        "tool_version": "1",
+        "evidence_digest": "sha256:55761b9f1b1f365a584540c0396fc6c669393bedd08d0736977461369345c9ab",
+        "policy_digest": "sha256:52f2452badde5b273ce44fb4663e08868116d8a1151544048021d8634b83483e",
+        "verification": "unverified",
+        "files": [
+          {
+            "path": "subject.txt",
+            "digest": "sha256:49317372e0291e58af6c914df5d5121eea1bf5993ee2aeb503375e2cc6d3608c",
+            "media_type": "text/plain"
+          },
+          {
+            "path": "sbom.cdx.json",
+            "digest": "sha256:55761b9f1b1f365a584540c0396fc6c669393bedd08d0736977461369345c9ab",
+            "size_bytes": 232,
+            "media_type": "application/vnd.cyclonedx+json"
+          },
+          {
+            "path": "policy.rego",
+            "digest": "sha256:52f2452badde5b273ce44fb4663e08868116d8a1151544048021d8634b83483e",
+            "size_bytes": 94,
+            "media_type": "text/plain"
+          }
+        ]
+      },
+      "expected_code": "invalid_input"
+    },
+    {
+      "id": "missing-policy-file",
+      "target": "input",
+      "value": {
+        "schema_version": "1",
+        "release_id": "attestara-c04-release",
+        "owner": "synthetic Attestara maintainer",
+        "subject_digest": "sha256:49317372e0291e58af6c914df5d5121eea1bf5993ee2aeb503375e2cc6d3608c",
+        "source_revision": "synthetic-revision-1",
+        "tool": "repository-authored-sbom",
+        "tool_version": "1",
+        "evidence_digest": "sha256:55761b9f1b1f365a584540c0396fc6c669393bedd08d0736977461369345c9ab",
+        "policy_digest": "sha256:52f2452badde5b273ce44fb4663e08868116d8a1151544048021d8634b83483e",
+        "verification": "unverified",
+        "files": [
+          {
+            "path": "subject.txt",
+            "digest": "sha256:49317372e0291e58af6c914df5d5121eea1bf5993ee2aeb503375e2cc6d3608c",
+            "size_bytes": 22,
+            "media_type": "text/plain"
+          },
+          {
+            "path": "sbom.cdx.json",
+            "digest": "sha256:55761b9f1b1f365a584540c0396fc6c669393bedd08d0736977461369345c9ab",
+            "size_bytes": 232,
+            "media_type": "application/vnd.cyclonedx+json"
+          }
+        ]
+      },
+      "expected_code": "invalid_input"
+    },
+    {
+      "id": "duplicate-path",
+      "target": "input",
+      "value": {
+        "schema_version": "1",
+        "release_id": "attestara-c04-release",
+        "owner": "synthetic Attestara maintainer",
+        "subject_digest": "sha256:49317372e0291e58af6c914df5d5121eea1bf5993ee2aeb503375e2cc6d3608c",
+        "source_revision": "synthetic-revision-1",
+        "tool": "repository-authored-sbom",
+        "tool_version": "1",
+        "evidence_digest": "sha256:55761b9f1b1f365a584540c0396fc6c669393bedd08d0736977461369345c9ab",
+        "policy_digest": "sha256:52f2452badde5b273ce44fb4663e08868116d8a1151544048021d8634b83483e",
+        "verification": "unverified",
+        "files": [
+          {
+            "path": "subject.txt",
+            "digest": "sha256:49317372e0291e58af6c914df5d5121eea1bf5993ee2aeb503375e2cc6d3608c",
+            "size_bytes": 22,
+            "media_type": "text/plain"
+          },
+          {
+            "path": "sbom.cdx.json",
+            "digest": "sha256:55761b9f1b1f365a584540c0396fc6c669393bedd08d0736977461369345c9ab",
+            "size_bytes": 232,
+            "media_type": "application/vnd.cyclonedx+json"
+          },
+          {
+            "path": "policy.rego",
+            "digest": "sha256:52f2452badde5b273ce44fb4663e08868116d8a1151544048021d8634b83483e",
+            "size_bytes": 94,
+            "media_type": "text/plain"
+          },
+          {
+            "path": "subject.txt",
+            "digest": "sha256:49317372e0291e58af6c914df5d5121eea1bf5993ee2aeb503375e2cc6d3608c",
+            "size_bytes": 22,
+            "media_type": "text/plain"
+          }
+        ]
+      },
+      "expected_code": "invalid_input"
+    },
+    {
+      "id": "unproved-trusted-result",
+      "target": "result",
+      "value": {
+        "schema_version": "1",
+        "status": "unverified",
+        "input_digest": "sha256:9b353ef4e5e36c70181c35c4bbc1359385e719fec3e4e09bad65348a9c639564",
+        "engine_version": "0.0.1",
+        "result": {
+          "subject_digest": "sha256:49317372e0291e58af6c914df5d5121eea1bf5993ee2aeb503375e2cc6d3608c",
+          "evidence_digest": "sha256:55761b9f1b1f365a584540c0396fc6c669393bedd08d0736977461369345c9ab",
+          "policy_digest": "sha256:52f2452badde5b273ce44fb4663e08868116d8a1151544048021d8634b83483e",
+          "policy_decision": "unknown",
+          "verification": "trusted"
+        },
+        "warnings": [
+          "Contract validation does not execute policy or verify signatures."
+        ]
+      },
+      "expected_code": "invalid_input"
+    },
+    {
+      "id": "complete-with-unknown-policy",
+      "target": "result",
+      "value": {
+        "schema_version": "1",
+        "status": "complete",
+        "input_digest": "sha256:9b353ef4e5e36c70181c35c4bbc1359385e719fec3e4e09bad65348a9c639564",
+        "engine_version": "0.0.1",
+        "result": {
+          "subject_digest": "sha256:49317372e0291e58af6c914df5d5121eea1bf5993ee2aeb503375e2cc6d3608c",
+          "evidence_digest": "sha256:55761b9f1b1f365a584540c0396fc6c669393bedd08d0736977461369345c9ab",
+          "policy_digest": "sha256:52f2452badde5b273ce44fb4663e08868116d8a1151544048021d8634b83483e",
+          "policy_decision": "unknown",
+          "verification": "unverified"
+        },
+        "warnings": [
+          "Contract validation does not execute policy or verify signatures."
+        ]
+      },
+      "expected_code": "invalid_input"
+    },
+    {
+      "id": "failed-without-error",
+      "target": "result",
+      "value": {
+        "schema_version": "1",
+        "status": "failed",
+        "input_digest": "sha256:9b353ef4e5e36c70181c35c4bbc1359385e719fec3e4e09bad65348a9c639564",
+        "engine_version": "0.0.1",
+        "warnings": [
+          "Contract validation does not execute policy or verify signatures."
+        ]
+      },
+      "expected_code": "invalid_input"
+    },
+    {
+      "id": "success-with-error",
+      "target": "result",
+      "value": {
+        "schema_version": "1",
+        "status": "unverified",
+        "input_digest": "sha256:9b353ef4e5e36c70181c35c4bbc1359385e719fec3e4e09bad65348a9c639564",
+        "engine_version": "0.0.1",
+        "result": {
+          "subject_digest": "sha256:49317372e0291e58af6c914df5d5121eea1bf5993ee2aeb503375e2cc6d3608c",
+          "evidence_digest": "sha256:55761b9f1b1f365a584540c0396fc6c669393bedd08d0736977461369345c9ab",
+          "policy_digest": "sha256:52f2452badde5b273ce44fb4663e08868116d8a1151544048021d8634b83483e",
+          "policy_decision": "unknown",
+          "verification": "unverified"
+        },
+        "warnings": [
+          "Contract validation does not execute policy or verify signatures."
+        ],
+        "error": {
+          "code": "dependency_unavailable",
+          "field": "policy",
+          "message": "Required policy provider is unavailable."
+        }
+      },
+      "expected_code": "invalid_input"
+    },
+    {
+      "id": "unknown-error-code",
+      "target": "result",
+      "value": {
+        "schema_version": "1",
+        "status": "failed",
+        "input_digest": "sha256:9b353ef4e5e36c70181c35c4bbc1359385e719fec3e4e09bad65348a9c639564",
+        "engine_version": "0.0.1",
+        "warnings": [
+          "Contract validation does not execute policy or verify signatures."
+        ],
+        "error": {
+          "code": "all_good",
+          "field": "policy",
+          "message": "Required policy provider is unavailable."
+        }
+      },
+      "expected_code": "invalid_input"
+    }
+  ]
+}

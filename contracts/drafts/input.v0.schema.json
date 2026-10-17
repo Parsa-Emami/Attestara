@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:parsa:attestara:input:0",
+  "title": "release-evidence planning draft",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "subject_digest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "source_revision": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 4096
+    },
+    "tool": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 4096
+    },
+    "tool_version": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 4096
+    },
+    "evidence_digest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "policy_digest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "verification": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 4096
+    }
+  },
+  "required": [
+    "subject_digest",
+    "source_revision",
+    "tool",
+    "tool_version",
+    "evidence_digest",
+    "policy_digest",
+    "verification"
+  ]
+}

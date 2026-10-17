@@ -1,11 +1,12 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "Attestara result planning draft",
+  "$id": "urn:parsa:attestara:result:1",
+  "title": "Attestara typed result v1",
   "type": "object",
   "additionalProperties": false,
   "properties": {
     "schema_version": {
-      "const": "0"
+      "const": "1"
     },
     "status": {
       "enum": [
@@ -17,19 +18,95 @@
     },
     "input_digest": {
       "type": "string",
-      "pattern": "^[a-f0-9]{64}$"
+      "pattern": "^sha256:[a-f0-9]{64}$"
     },
     "engine_version": {
-      "type": "string"
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 4096,
+      "pattern": "\\S"
     },
     "result": {
-      "type": "object"
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "subject_digest": {
+          "type": "string",
+          "pattern": "^sha256:[a-f0-9]{64}$"
+        },
+        "evidence_digest": {
+          "type": "string",
+          "pattern": "^sha256:[a-f0-9]{64}$"
+        },
+        "policy_digest": {
+          "type": "string",
+          "pattern": "^sha256:[a-f0-9]{64}$"
+        },
+        "policy_decision": {
+          "enum": [
+            "allow",
+            "deny",
+            "unknown"
+          ]
+        },
+        "verification": {
+          "enum": [
+            "unverified",
+            "rejected"
+          ]
+        }
+      },
+      "required": [
+        "subject_digest",
+        "evidence_digest",
+        "policy_digest",
+        "policy_decision",
+        "verification"
+      ]
     },
     "warnings": {
       "type": "array",
       "items": {
-        "type": "string"
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 4096,
+        "pattern": "\\S"
       }
+    },
+    "error": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "code": {
+          "enum": [
+            "invalid_json",
+            "invalid_input",
+            "unsupported_version",
+            "limit_exceeded",
+            "cancelled",
+            "deadline_exceeded",
+            "input_unavailable",
+            "dependency_unavailable"
+          ]
+        },
+        "field": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4096,
+          "pattern": "\\S"
+        },
+        "message": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4096,
+          "pattern": "\\S"
+        }
+      },
+      "required": [
+        "code",
+        "field",
+        "message"
+      ]
     }
   },
   "required": [
@@ -37,7 +114,88 @@
     "status",
     "input_digest",
     "engine_version",
-    "result",
     "warnings"
-  ]
+  ],
+  "oneOf": [
+    {
+      "properties": {
+        "status": {
+          "const": "failed"
+        }
+      },
+      "required": [
+        "error"
+      ],
+      "not": {
+        "required": [
+          "result"
+        ]
+      }
+    },
+    {
+      "properties": {
+        "status": {
+          "enum": [
+            "complete",
+            "partial",
+            "unverified"
+          ]
+        }
+      },
+      "required": [
+        "result"
+      ],
+      "not": {
+        "required": [
+          "error"
+        ]
+      }
+    }
+  ],
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "complete"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "result": {
+            "properties": {
+              "policy_decision": {
+                "enum": [
+                  "allow",
+                  "deny"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "unverified"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "result": {
+            "properties": {
+              "verification": {
+                "const": "unverified"
+              }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "$comment": "Shape validation is not execution, authenticity proof or evidence-byte verification. trusted is not accepted by C04. input_digest hashes the exact input JSON bytes; no JSON canonicalization is implied."
 }

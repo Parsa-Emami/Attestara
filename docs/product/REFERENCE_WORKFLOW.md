@@ -1,10 +1,10 @@
 # Attestara: reference workflow
 
-Execution status: unimplemented. This document and `tests/scenarios/clone-to-value.json` define C01 acceptance only; no engine, provider, verifier, viewer or durable restore has passed this workflow. The current web application is a bounded JSON structure preview.
+Execution status: unimplemented. This document and `tests/scenarios/clone-to-value.json` define C01 acceptance only; no complete engine, provider, verifier, viewer or durable restore has passed this workflow. The current web application is a bounded JSON structure preview.
 
 ## Synthetic release and ownership
 
-The repository owns the Apache-2.0 synthetic fixture descriptions under `tests/fixtures/attestara/C01/`. `positive.json` identifies one release, its synthetic maintainer, source revision, subject bytes, a CycloneDX JSON SBOM description, and the subject/evidence/policy SHA-256 digests. `negative.json` describes deliberate mutations. `expected.json` records the portable passport fields and one observable outcome per scenario action. The SBOM and policy byte strings are labels for this specification; C04 must provide concrete domain artifacts before an engine run can be claimed. No customer data, secret, user source execution or external account is involved.
+The repository owns the Apache-2.0 synthetic fixture descriptions under `tests/fixtures/attestara/C01/`. `positive.json` identifies one release, its synthetic maintainer, source revision, subject bytes, a CycloneDX JSON SBOM description, and the subject/evidence/policy SHA-256 digests. `negative.json` describes deliberate mutations. `expected.json` records the portable passport fields and one observable outcome per scenario action. The SBOM and policy byte strings are labels for this specification; C04 now supplies separate concrete synthetic artifacts and real Go contract validators under `tests/fixtures/attestara/C04/`; it does not execute this workflow, evaluate policy or establish authenticity. No customer data, secret, user source execution or external account is involved.
 
 ## Bounded workflow
 

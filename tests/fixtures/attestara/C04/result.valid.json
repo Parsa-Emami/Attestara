@@ -1,0 +1,16 @@
+{
+  "schema_version": "1",
+  "status": "unverified",
+  "input_digest": "sha256:9b353ef4e5e36c70181c35c4bbc1359385e719fec3e4e09bad65348a9c639564",
+  "engine_version": "0.0.1",
+  "result": {
+    "subject_digest": "sha256:49317372e0291e58af6c914df5d5121eea1bf5993ee2aeb503375e2cc6d3608c",
+    "evidence_digest": "sha256:55761b9f1b1f365a584540c0396fc6c669393bedd08d0736977461369345c9ab",
+    "policy_digest": "sha256:52f2452badde5b273ce44fb4663e08868116d8a1151544048021d8634b83483e",
+    "policy_decision": "unknown",
+    "verification": "unverified"
+  },
+  "warnings": [
+    "Contract validation does not execute policy or verify signatures."
+  ]
+}

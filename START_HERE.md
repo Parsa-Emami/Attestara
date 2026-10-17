@@ -1,6 +1,6 @@
 # Continue Attestara
 
-Current: web workspace plus unified local Go process health; full domain workflow pending.
+Current: web workspace, unified local Go process health, and v1 typed release-evidence validation library; full domain workflow pending.
 
 Use the pinned Linux x86_64 Node/npm/Go prerequisites in docs/engineering/CLONE_TO_RUN.md.
 

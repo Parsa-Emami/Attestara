@@ -320,7 +320,7 @@
       ],
       "verification": [
         "npm run validate:plan — All task/dependency/resource/reference/evidence metadata validates; no runtime capability inferred.",
-        "go test ./... — C03 creates this engine test command in the same commit; C06 adds CI/integration collection. Pass the actual C04 acceptance and negative cases on the selected engine; shell-only tests cannot certify this task."
+        "go test ./... — Available from verified C03. Exercise actual C04 Go validators and negative cases; C06 extends CI/integration collection."
       ],
       "acceptance": [
         "Implement exact typed domain inputs, output/error codes, size/time/cancellation limits and positive/negative compatibility fixtures. Generic nested JSON is not a domain contract. No database schema change is allowed."
@@ -385,9 +385,9 @@
         },
         {
           "command": "go test ./...",
-          "available_now": false,
+          "available_now": true,
           "introduced_by": "C03",
-          "expected": "C03 creates this engine test command in the same commit; C06 adds CI/integration collection. Pass the actual C04 acceptance and negative cases on the selected engine; shell-only tests cannot certify this task."
+          "expected": "Available from verified C03. Exercise actual C04 Go validators and negative cases; C06 extends CI/integration collection."
         }
       ],
       "stop_conditions": [

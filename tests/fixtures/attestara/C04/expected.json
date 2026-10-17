@@ -1,0 +1,10 @@
+{
+  "license": "Apache-2.0",
+  "provenance": "repository-authored synthetic expectations",
+  "schema_version": "1",
+  "input_digest": "sha256:9b353ef4e5e36c70181c35c4bbc1359385e719fec3e4e09bad65348a9c639564",
+  "verification": "unverified",
+  "policy_decision": "unknown",
+  "required_providers": [],
+  "restart_invariant": "Fresh Go test processes decode the same immutable input/result bytes identically; no storage/restore claim."
+}

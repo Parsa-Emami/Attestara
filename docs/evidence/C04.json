@@ -1,0 +1,325 @@
+{
+  "planning_template": false,
+  "commit_id": "C04",
+  "date": "2026-10-17",
+  "base_commit": "9c6a788fdd92744a172f8d7b193c8d8d8320a265",
+  "worktree_committed": false,
+  "source_identity": "sha256:67be1b99121ece597a6db11ee5d818898ab6daa81ea2791e6c2c47b168a3e9ce",
+  "source_files": {
+    ".github/workflows/web.yml": "c012a49b7fa86163e742328a42224e845876f0974631f2ad659fc34fd781a33b",
+    "AGENTS.md": "3d960f81acd556c153142cc58c43d30d6dc69d0e3bbb5620384384b0db5894b5",
+    "README.md": "2f2fdc96bad9d3c1ac0b61a35e820f066bd765f3eeee2a021a5cb72a3a33eab0",
+    "START_HERE.md": "8bd004813fa1559172308c7fcdbe37ef36a9d59bac22254065950abe3d3bbac6",
+    "apps/web/public/runtime-config.json": "89453f411cc050355d2c411f6227962fdc7e4e72606d88a4b74b08c9b2dc1895",
+    "apps/web/src/lib/engine-health.mjs": "0a6881da808306bed40d26c899bb7f0dc3574aada4e074c0df367ec5eaa5981b",
+    "apps/web/src/lib/preview.mjs": "1f77b4b7e2b1f517e665a32d82cf096cb8e3233d9e0f54191b31cbc750ea1ff7",
+    "apps/web/src/lib/runtime-config.mjs": "c4b6912b5d55a02e381629d3e9f9c2d7756c08a8ccb7f211a18007cc505868e0",
+    "apps/web/src/main.tsx": "e2c66253518e0b3eecb7b500e824e649e48c0ba719b588b7fa04d35a2e59e948",
+    "apps/web/src/styles.css": "a5d617f7a9f247f2f1690e03546b68e1bcb4711914f66b2986eb4264c517c1f2",
+    "apps/web/src/tokens.css": "dee5512be211028d79d79905f485e2ea4d14b1be01dc54314d324f27c23c1088",
+    "apps/web/vite.config.ts": "eadc7e238337a9eced0b5ace1af2438ab2208cd6cdcaf146692c6e4fa98a7673",
+    "cmd/attestara/main.go": "a53718b430ef1b2e6cf86dd43f6ed9bf711996c964d71ad94377cc94b10cb05f",
+    "cmd/attestara/main_test.go": "c3a67d986191af14b87068c2966901563b114c6612b59cf44641d82af2237c4f",
+    "contracts/README.md": "461955bbefe3e9d094f06583a31b718b807d4ab5367f372f4cff23a9a3f55877",
+    "contracts/drafts/input.v0.schema.json": "1bbd51067d49052142bcb28a28a5537934913f912ed62048699ceafcc6a33c92",
+    "contracts/drafts/result.v0.schema.json": "09f49caf8e678399299aef013ddecc1bfe59836c7f2af30de7b0dd91914be5fc",
+    "contracts/input.schema.json": "cfb5f6eb3357eec99eacb1870d68d2949e63fa1106ba3d80d8f38f924bae90fd",
+    "contracts/result.schema.json": "98e506f3ebf03253bbec7e7847f968d5b4835dc17f7ef71d3f42b4484a29a2c9",
+    "docs/ROADMAP_FA.md": "d18e2bf2cf68e190c4fac5205a45731d8ceeae8e8c296b975f0aa8fb8a8c8363",
+    "docs/agents/EXECUTION_CONTRACT.md": "36e1f025a7035f09c38ddee5eec61b48a29419cf85b74da4ec493482cd28a018",
+    "docs/architecture/ADR-0003-open-source-local-first.md": "61a7dd7dc3eb546fe9329883da3c370535fede8ec45026dc5bce5b1d29f0be4d",
+    "docs/engineering/BOOTSTRAP_EVIDENCE.md": "76c19a09747422fcdf73c75747835fb6a39f6e405aa119cba12e81cda932a05d",
+    "docs/engineering/CLONE_TO_RUN.md": "c832d23ad0d474adeddc67563862c271c20b59ac4d77ea7841066f4b4e915a92",
+    "docs/engineering/ENGINE_LAUNCH.md": "dafd71dc823c30a71a3aa5b358cdf1aa3ab3d6021a32119919074d2587756d53",
+    "docs/engineering/WEB_RUNBOOK.md": "7cde49a05f47a466b90725847f78963455509aaf56a0956ccca4b1b4d76ff4e0",
+    "docs/engineering/toolchain-lock.json": "c5bc42adcf849f4898b50723378dfe3889da6ddbea945bb4a4146db54b40d1c0",
+    "docs/product/REFERENCE_WORKFLOW.md": "0d52cff0bcb48a7930dab841edcbabbb57cc966b76c6bb74b6917e5d81989ff0",
+    "go.mod": "ca8608db6238d3e9ff87f4d05029b4005e5bf4789fd837670645519a03904125",
+    "internal/contracts/contracts.go": "344401636f7e323b81ea20e8fa684b9601cf27c2a8c799007eecb1a8791562e7",
+    "internal/contracts/contracts_test.go": "76cb9fde371861bfef50e792c421b7dc1f76b92b729391bd9d2924218a7d3fd8",
+    "ops/runtime-requirements.json": "c5d3371262254b4cb556e37505a8b275e1d26161f5222e59d7524a8f10c4f39b",
+    "ops/web/brand.json": "d09ad8c5cf012eb1f529057f355c2013e1725692ec9bb5f4ea0ee58d974988f1",
+    "ops/web/runtime-config.json": "89453f411cc050355d2c411f6227962fdc7e4e72606d88a4b74b08c9b2dc1895",
+    "package-lock.json": "2512e1850692f4fe46cebd1b04ac9c33a2ca3269fbf6800f1a026e6fdc8b6570",
+    "package.json": "3b9149893c03b02de1a1921409c360e7bc660aedd63ae0fc7fa3584e9550f74d",
+    "plans/commits/C04.md": "1b639c1cbb80152eacb12feaac0dc51daa832a89aceae4ae2b5604f23e97c8da",
+    "plans/roadmap.json": "4a62a50ed504d07724e73f2ef7ceb7890dffa3f9f83a0b78df8c034ea61dd341",
+    "playwright.config.ts": "81562c1b0e661459ace8510aa3072f2599b6e0f2f9c0b2d85db7a174b3be6b16",
+    "product/project.json": "75b22e6969e7f373481e4eedee668628604e9175d562043cf3d17fa19d7abece",
+    "scripts/clone-smoke.mjs": "8c73a930df6c3d3b47aad3917602720967af2539e8422ec735c1181d799d9221",
+    "scripts/generate-web-data.mjs": "393cdb897b7bafa1ab803d3a9e387decda7a6960f05fc0a64b3590ce79c3cb38",
+    "scripts/oss-bootstrap.mjs": "9c9ca25229f072f5b910776771d6bff1c3f2676cb2a978ffa0f4dedc71062b28",
+    "scripts/package-web.mjs": "12340a7b6bce1282464f800e17ea9542ed127aa7a74ddd56f935ce1e64304579",
+    "scripts/roadmap.mjs": "893adafcdd54fae69fcdcdad9c58297532fcd8aedb2f75878a26d0b0c4b7285e",
+    "scripts/serve-web.mjs": "b91fcc97b3b8e85e2e90d2f173700dd3493996ce415a1fb956b0c50bb9ef505f",
+    "scripts/start-local.mjs": "c4f5535bd78467192128ecf13a36cbeab301c068c697714b43f7d34e95ea6b68",
+    "scripts/verify-resources.mjs": "0302badd296cc5465cac57aae459eafc9dbc4ee5a4b860ccd88fdb2eac2aafa2",
+    "tests/browser/workspace.spec.ts": "0050a6157ce14fbf6b6069052538eb261d1b9f401c99bda55db7fcfc7d2d93db",
+    "tests/contracts/domain-contracts.test.mjs": "51eecb310930e3dee62feef00464e1434f2c621084829435b94c2c8b1378b62c",
+    "tests/fixtures/attestara/C03/expected.json": "4874a44c183448e606023e356b125b31d559910117d5f725d18a90edce435dae",
+    "tests/fixtures/attestara/C03/negative.json": "55d04af372a63d3992509e03f2a3d6522ff758dd326499438eb4ce8808813844",
+    "tests/fixtures/attestara/C03/positive.json": "d9585f785cde6d6170c72277ac7393e6e4f7ae48ec35e1a005c3e7d2686fb075",
+    "tests/fixtures/attestara/C04/expected.json": "e841165a4130ed17cb05f9a0fdc0c84321b40d9491ad7a8ce18ea0f58cb210a8",
+    "tests/fixtures/attestara/C04/input.valid.json": "9b353ef4e5e36c70181c35c4bbc1359385e719fec3e4e09bad65348a9c639564",
+    "tests/fixtures/attestara/C04/negative.json": "c69e9f0e719798032f480830cc4337c8d07aff659e1ed8471fd7c1b5b3414cbd",
+    "tests/fixtures/attestara/C04/policy.rego": "52f2452badde5b273ce44fb4663e08868116d8a1151544048021d8634b83483e",
+    "tests/fixtures/attestara/C04/provenance.json": "bf3f702e67541a44033e52d4cc7baf0d32b3027c0a8eb7b070209c94a6a49c85",
+    "tests/fixtures/attestara/C04/result.failed.json": "5467e50ae995f2bde9dbbd2bb7573a5e382f894084e349cdfd8fcfa47ad638f5",
+    "tests/fixtures/attestara/C04/result.valid.json": "c7de3f027722b154e2439e37107b9d689a51f5625427af3ddf82fb63d16496d0",
+    "tests/fixtures/attestara/C04/sbom.cdx.json": "55761b9f1b1f365a584540c0396fc6c669393bedd08d0736977461369345c9ab",
+    "tests/fixtures/attestara/C04/subject.txt": "49317372e0291e58af6c914df5d5121eea1bf5993ee2aeb503375e2cc6d3608c",
+    "tests/web/foundation.test.mjs": "e25d40f1309d2664481066362e6645678ad04957ddf17439c62fae60830707c3",
+    "tests/web/local-launch.test.mjs": "9908d0ea3e44c0644ae21f881fd0d3f4c705fd867cb71022ef0bf55b2840a6cb",
+    "tests/web/oss-tooling.test.mjs": "d0190c9e9b037302fbb6d046ffc785d87a4d210f4788de710d4e22017d7c6554",
+    "tests/web/reference-contract.test.mjs": "cb11b1aeaea953877d90e519a365194c117d35f0872f27997653f9a07a8175ae",
+    "tests/web/resource-lock.test.mjs": "92b43279260a0c24bfc414dd3416944da2fd393f943bde45cd6fb2c7a252e97b",
+    "tsconfig.json": "190adb87c356c813083ccc9a5fe0bea7618324210ab3af0ace64f68525ab6986"
+  },
+  "source_identity_algorithm": "SHA-256 of sorted UTF-8 relative path, NUL, raw SHA-256 file digest, concatenated for each listed source file",
+  "source_identity_scope": "C04 changed implementation/contracts/docs/fixtures and listed unchanged C03/runtime/toolchain/product inputs. Evidence, progress, requirements, project-state, session handoff and generated web projection excluded to avoid self-reference; dependencies, build and cache outputs excluded.",
+  "changed_paths": [
+    "START_HERE.md",
+    "apps/web/src/generated/project.json",
+    "contracts/README.md",
+    "contracts/drafts/input.v0.schema.json",
+    "contracts/drafts/result.v0.schema.json",
+    "contracts/input.schema.json",
+    "contracts/result.schema.json",
+    "docs/ROADMAP_FA.md",
+    "docs/agents/SESSION_HANDOFF.json",
+    "docs/evidence/C04.json",
+    "docs/product/REFERENCE_WORKFLOW.md",
+    "internal/contracts/contracts.go",
+    "internal/contracts/contracts_test.go",
+    "package.json",
+    "plans/commits/C04.md",
+    "plans/progress.json",
+    "plans/project-state.json",
+    "plans/requirements.json",
+    "plans/roadmap.json",
+    "tests/contracts/domain-contracts.test.mjs",
+    "tests/fixtures/attestara/C04/expected.json",
+    "tests/fixtures/attestara/C04/input.valid.json",
+    "tests/fixtures/attestara/C04/negative.json",
+    "tests/fixtures/attestara/C04/policy.rego",
+    "tests/fixtures/attestara/C04/provenance.json",
+    "tests/fixtures/attestara/C04/result.failed.json",
+    "tests/fixtures/attestara/C04/result.valid.json",
+    "tests/fixtures/attestara/C04/sbom.cdx.json",
+    "tests/fixtures/attestara/C04/subject.txt"
+  ],
+  "approved_scope": "Real Go library boundary only; no new CLI/HTTP/browser admission. Restart means repeat immutable fixture validation in new Go test processes, not persistence/restore.",
+  "environment": {
+    "tools": {
+      "node": {
+        "path": "/tmp/attestara-c02/node-extracted/node-v24.19.0-linux-x64/bin/node",
+        "sha256": "bc17c508ffeed0ec622934f9b7fa72f8e78da65350e63c3eceb56fa688aa5e12",
+        "version": "v24.19.0"
+      },
+      "npm": {
+        "path": "/tmp/attestara-c02/npm-extracted/package/bin/npm-cli.js",
+        "sha256": "8e5f6f3429f8cdbe693cdc29904e9d5a7b127a494bd15c804bd54c7403bfcbe7",
+        "version": "11.9.0"
+      },
+      "go": {
+        "path": "/tmp/attestara-c02/go-source/go-022c8636110ebac86a9b88724cda168ed713c21f/bin/go",
+        "sha256": "548d3c32f83fa81152f543eb1526be7884cfe0526eb5e9ce29d3eca14786e7e0",
+        "version": "go version go1.27.2 linux/amd64"
+      }
+    },
+    "command_environment": "Command-local PATH prefixed with the existing verified C02 toolbin and source-built Go bin; no global toolchain change.",
+    "hardware": {
+      "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.39",
+      "logical_cpus": 16,
+      "free_disk_bytes": 125418434560,
+      "minimum_profile_verified": false
+    },
+    "python_schema_validation": {
+      "tool": "jsonschema",
+      "version": "4.26.0",
+      "usage": "preinstalled test-only independent schema proof; no shipped runtime dependency"
+    }
+  },
+  "fixtures": [
+    {
+      "path": "tests/fixtures/attestara/C04/expected.json",
+      "sha256": "e841165a4130ed17cb05f9a0fdc0c84321b40d9491ad7a8ce18ea0f58cb210a8",
+      "license": "Apache-2.0",
+      "provenance": "repository-authored synthetic C04 artifacts, mutations and expected results"
+    },
+    {
+      "path": "tests/fixtures/attestara/C04/input.valid.json",
+      "sha256": "9b353ef4e5e36c70181c35c4bbc1359385e719fec3e4e09bad65348a9c639564",
+      "license": "Apache-2.0",
+      "provenance": "repository-authored synthetic C04 artifacts, mutations and expected results"
+    },
+    {
+      "path": "tests/fixtures/attestara/C04/negative.json",
+      "sha256": "c69e9f0e719798032f480830cc4337c8d07aff659e1ed8471fd7c1b5b3414cbd",
+      "license": "Apache-2.0",
+      "provenance": "repository-authored synthetic C04 artifacts, mutations and expected results"
+    },
+    {
+      "path": "tests/fixtures/attestara/C04/policy.rego",
+      "sha256": "52f2452badde5b273ce44fb4663e08868116d8a1151544048021d8634b83483e",
+      "license": "Apache-2.0",
+      "provenance": "repository-authored synthetic C04 artifacts, mutations and expected results"
+    },
+    {
+      "path": "tests/fixtures/attestara/C04/provenance.json",
+      "sha256": "bf3f702e67541a44033e52d4cc7baf0d32b3027c0a8eb7b070209c94a6a49c85",
+      "license": "Apache-2.0",
+      "provenance": "repository-authored synthetic C04 artifacts, mutations and expected results"
+    },
+    {
+      "path": "tests/fixtures/attestara/C04/result.failed.json",
+      "sha256": "5467e50ae995f2bde9dbbd2bb7573a5e382f894084e349cdfd8fcfa47ad638f5",
+      "license": "Apache-2.0",
+      "provenance": "repository-authored synthetic C04 artifacts, mutations and expected results"
+    },
+    {
+      "path": "tests/fixtures/attestara/C04/result.valid.json",
+      "sha256": "c7de3f027722b154e2439e37107b9d689a51f5625427af3ddf82fb63d16496d0",
+      "license": "Apache-2.0",
+      "provenance": "repository-authored synthetic C04 artifacts, mutations and expected results"
+    },
+    {
+      "path": "tests/fixtures/attestara/C04/sbom.cdx.json",
+      "sha256": "55761b9f1b1f365a584540c0396fc6c669393bedd08d0736977461369345c9ab",
+      "license": "Apache-2.0",
+      "provenance": "repository-authored synthetic C04 artifacts, mutations and expected results"
+    },
+    {
+      "path": "tests/fixtures/attestara/C04/subject.txt",
+      "sha256": "49317372e0291e58af6c914df5d5121eea1bf5993ee2aeb503375e2cc6d3608c",
+      "license": "Apache-2.0",
+      "provenance": "repository-authored synthetic C04 artifacts, mutations and expected results"
+    }
+  ],
+  "commands": [
+    {
+      "command": "node --test tests/contracts/domain-contracts.test.mjs",
+      "cwd": "/home/amirreza/Desktop/Projects/Attestara",
+      "exit_code": 0,
+      "output": "✔ C04 versioned schemas and synthetic concrete artifacts preserve product requirements (5.609107ms)\n✔ C04 Node entry exercises actual Go validators, including hostile/version/size/cancellation cases (372.847628ms)\n✔ C04 fresh engine test processes reproduce immutable fixture expectations after restart (267.435655ms)\nℹ tests 3\nℹ suites 0\nℹ pass 3\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 692.979256\n"
+    },
+    {
+      "command": "go test ./...",
+      "cwd": "/home/amirreza/Desktop/Projects/Attestara",
+      "exit_code": 0,
+      "output": "ok  \tattestara/cmd/attestara\t(cached)\nok  \tattestara/internal/contracts\t0.179s\n"
+    },
+    {
+      "command": "go vet ./...",
+      "cwd": "/home/amirreza/Desktop/Projects/Attestara",
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "command": "node --check tests/contracts/domain-contracts.test.mjs",
+      "cwd": "/home/amirreza/Desktop/Projects/Attestara",
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "command": "gofmt -l internal/contracts/contracts.go internal/contracts/contracts_test.go",
+      "cwd": "/home/amirreza/Desktop/Projects/Attestara",
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "command": "npm run check",
+      "cwd": "/home/amirreza/Desktop/Projects/Attestara",
+      "exit_code": 0,
+      "output": "\n> @parsa-emami/attestara-web@0.0.1 check\n> npm run validate:plan && npm run build && npm test\n\n\n> @parsa-emami/attestara-web@0.0.1 validate:plan\n> node scripts/roadmap.mjs validate\n\nValidated 40 detailed tasks, resources, references and progress; no runtime capability inferred.\n\n> @parsa-emami/attestara-web@0.0.1 build\n> npm run prepare:web && npm run typecheck && vite build --config apps/web/vite.config.ts\n\n\n> @parsa-emami/attestara-web@0.0.1 prepare:web\n> node scripts/generate-web-data.mjs\n\n\n> @parsa-emami/attestara-web@0.0.1 typecheck\n> tsc -p tsconfig.json\n\nvite v8.3.4 building client environment for production...\ntransforming...\n✓ 19 modules transformed.\nrendering chunks...\ncomputing gzip size...\ndist/web/index.html                   0.79 kB │ gzip:  0.47 kB\ndist/web/assets/index-CDX5XU5l.css    4.36 kB │ gzip:  1.62 kB\ndist/web/assets/index-BjxdVkR9.js   242.41 kB │ gzip: 76.29 kB\n\n✓ built in 100ms\n\n> @parsa-emami/attestara-web@0.0.1 test\n> node --test tests/web/*.test.mjs tests/contracts/*.test.mjs\n\n✔ C04 versioned schemas and synthetic concrete artifacts preserve product requirements (6.792671ms)\n✔ C04 Node entry exercises actual Go validators, including hostile/version/size/cancellation cases (356.386434ms)\n✔ C04 fresh engine test processes reproduce immutable fixture expectations after restart (292.888009ms)\n✔ public configuration fails closed on engine flags, external endpoints, unknown keys and project mismatch (1.269655ms)\n✔ preview rejects hostile structure, excessive UTF-8 size and excessive complexity (1.228779ms)\n✔ HTTP isolation, cache rules, health semantics, methods, traversal and symlink containment (79.404125ms)\n✔ generated project and runtime identity agree with exactly forty original product tasks (1.173053ms)\n✔ C03 rejects malformed health fixtures without asserting product readiness (5.718563ms)\n✔ C03 setup invalidates stale output and fails explicitly for missing/mismatched Go or partial build (11.795128ms)\n✔ C03 real engine health, method boundaries, shutdown and restart (83.102223ms)\n✔ C03 occupied web port cleans up engine; crash stops web; cancellation stops engine (66.352948ms)\n✔ C03 actual npm start handles terminal signals and engine crash without orphans (492.856291ms)\n✔ C03 same-origin boundary rejects unavailable, malformed, redirected and oversized upstream health (1515.440927ms)\n✔ setup validates toolchain/options and stops at the first failed prerequisite (5.6797ms)\n✔ roadmap rejects absent resources, escaping paths and unproved completion (16.286124ms)\n✔ C01 accepts its synthetic reference contract without executing the engine (15.829536ms)\n✔ C01 rejects missing actions, results, invariants and fixture references (35.984699ms)\n✔ C01 rejects absent provenance or license and invalid fixture JSON (17.09257ms)\n✔ C01 rejects missing expected outputs and incorrect domain digests (13.859065ms)\n✔ C01 rejects path escapes, unsupported versions and false engine claims (33.614878ms)\n✔ C01 rejects symlinks leaving the fixture directory (4.831576ms)\n✔ C02 validates pinned resources offline without requiring optional providers or a product engine (52.255535ms)\n✔ C02 rejects mutable pins, missing authority/license, removed prerequisites and unsupported mandatory platforms (163.077091ms)\n✔ C02 rejects tampered checksum evidence, dependency locks, notices and escaping snapshot paths (82.78697ms)\n✔ C02 verifies artifact bytes before accepting them and rejects a one-byte mutation (11.842587ms)\n✔ C02 compares pins with separately published checksums and fails on absent required artifacts (29.736422ms)\nℹ tests 26\nℹ suites 0\nℹ pass 26\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 2250.306427\n"
+    },
+    {
+      "command": "python3 -W ignore::DeprecationWarning /tmp/attestara-c04-schema-check.py",
+      "cwd": "/home/amirreza/Desktop/Projects/Attestara",
+      "exit_code": 0,
+      "output": "Draft202012 schemas valid; 3 positive fixtures and 30 negative fixtures checked (2 require Go cross-field invariants).\nSynthetic SBOM validates against C02-pinned CycloneDX 1.7 source; bom schema sha256:73308edec3ab2d38bfffd993e96a042b594314143b6971a6e9ed98bbb6bd76ce\nValidation tool: jsonschema 4.26.0; test-only preinstalled Python library, no runtime dependency added.\nAll 44 recorded C03 source hashes match HEAD before C04 changes.\nBoth archived draft schemas exactly match pre-C04 bytes.\n"
+    },
+    {
+      "command": "npm run validate:plan",
+      "cwd": "/home/amirreza/Desktop/Projects/Attestara",
+      "exit_code": 0,
+      "output": "\n> @parsa-emami/attestara-web@0.0.1 validate:plan\n> node scripts/roadmap.mjs validate\n\nValidated 40 detailed tasks, resources, references and progress; no runtime capability inferred.\n"
+    },
+    {
+      "command": "npm run plan -- next",
+      "cwd": "/home/amirreza/Desktop/Projects/Attestara",
+      "exit_code": 0,
+      "output": "\n> @parsa-emami/attestara-web@0.0.1 plan\n> node scripts/roadmap.mjs next\n\n{\n  \"task\": {\n    \"id\": \"C05\",\n    \"stage\": \"foundation\",\n    \"title\": \"feat(storage): prove recoverable local authoritative writes\",\n    \"status\": \"planned\",\n    \"depends_on\": [\n      \"C04\"\n    ],\n    \"requirements\": [\n      \"N05\"\n    ],\n    \"deliverables\": [\n      \"docs/architecture/STORAGE_PROOF.md\",\n      \"internal/storage/adapter.go\",\n      \"tests/storage_test.go\"\n    ],\n    \"verification\": [\n      \"npm run validate:plan — All task/dependency/resource/reference/evidence metadata validates; no runtime capability inferred.\",\n      \"go test ./... — C03 creates this engine test command in the same commit; C06 adds CI/integration collection. Pass the actual C05 acceptance and negative cases on the selected engine; shell-only tests cannot certify this task.\"\n    ],\n    \"acceptance\": [\n      \"Use ADR-0003 storage ports, a bounded single writer, atomic visible state, stable operation IDs and tested interrupted/disk-full/replay recovery. No database schema, migration, .env or Dockerfile changes.\"\n    ],\n    \"evidence_path\": \"docs/evidence/C05.json\",\n    \"rollback\": \"Revert the isolated source change when no incompatible data was accepted. Otherwise retain the latest valid bytes/export and compatible reader, and use tested forward repair; never overwrite newer accepted state with an old backup.\",\n    \"scope\": \"Attestara complete open-source local web profile\",\n    \"task_file\": \"plans/commits/C05.md\",\n    \"read_before\": [\n      \"AGENTS.md\",\n      \"docs/agents/EXECUTION_CONTRACT.md\",\n      \"docs/architecture/ADR-0003-open-source-local-first.md\",\n      \"docs/product/REFERENCE_WORKFLOW.md\",\n      \"plans/project-state.json\"\n    ],\n    \"before\": \"Entry requirement: verified C04 evidence. Preserve its demonstrated behavior; inspect actual source and any recorded blockers before editing.\",\n    \"after\": \"Use ADR-0003 storage ports, a bounded single writer, atomic visible state, stable operation IDs and tested interrupted/disk-full/replay recovery. No database schema, migration, .env or Dockerfile changes.\",\n    \"resources\": {\n      \"hardware\": {\n        \"vcpu\": 2,\n        \"ram_mib\": 2048,\n        \"free_disk_mib\": 10240,\n        \"measurement\": \"Unmeasured planning target; C28 must verify or reduce it.\"\n      },\n      \"providers\": [\n        \"optional local OPA and Syft/Grype report ingestion\"\n      ],\n      \"toolchain\": \"Go engine plus locked Node/TypeScript web tools; exact engine/provider pins and source-build steps resolved at C02.\",\n      \"upstream\": [\n        \"https://cyclonedx.org/specification/overview/\",\n        \"https://spdx.dev/specifications/\",\n        \"https://www.openpolicyagent.org/docs/\",\n        \"https://nodejs.org/docs/latest-v24.x/api/\"\n      ],\n      \"fixture\": {\n        \"path\": \"tests/fixtures/attestara/C05/\",\n        \"status\": \"planned; implement positive, negative and expected-output fixtures in this task\",\n        \"provenance\": \"repository-authored synthetic data or explicitly licensed upstream data\"\n      },\n      \"licenses\": \"Apache-2.0 project source; pin and inventory every shipped upstream library/provider/grammar/rule/dataset license. Unknown/restricted required resources block release.\"\n    },\n    \"negative_cases\": [\n      \"Missing/expired/replayed identity and an unrelated owner/object scope fail before sensitive side effects.\",\n      \"A forged header, widened path/provider permission or unavailable identity provider cannot authorize a sensitive action.\",\n      \"No user source execution\"\n    ],\n    \"implementation_steps\": [\n      \"Inspect the actual implementation, source/locks and verified dependencies for C05; preserve accepted existing behavior.\",\n      \"Define the versioned positive and negative release-evidence fixtures and expected error/result semantics under tests/fixtures/attestara/C05/.\",\n      \"Implement: Use ADR-0003 storage ports, a bounded single writer, atomic visible state, stable operation IDs and tested interrupted/disk-full/replay recovery. No database schema, migration, .env or Dockerfile changes.\",\n      \"Change the listed exact targets and wire the actual typed outcome into the supported browser/engine workflow. Keep domain facts, validation, storage/provider adapters and UI separate.\",\n      \"Add regression/integration coverage for every acceptance and negative case; real storage/provider/security boundaries cannot be verified only with mocks.\",\n      \"Run the labeled verification commands; record exact source, fixture license/hash, tool/provider versions, command exits and observed results in docs/evidence/C05.json. Update progress only when the whole task is genuinely verified.\"\n    ],\n    \"verification_commands\": [\n      {\n        \"command\": \"npm run validate:plan\",\n        \"available_now\": true,\n        \"introduced_by\": \"web-foundation\",\n        \"expected\": \"All task/dependency/resource/reference/evidence metadata validates; no runtime capability inferred.\"\n      },\n      {\n        \"command\": \"go test ./...\",\n        \"available_now\": false,\n        \"introduced_by\": \"C03\",\n        \"expected\": \"C03 creates this engine test command in the same commit; C06 adds CI/integration collection. Pass the actual C05 acceptance and negative cases on the selected engine; shell-only tests cannot certify this task.\"\n      }\n    ],\n    \"stop_conditions\": [\n      \"Do not modify database schemas, migrations, .env files or Dockerfiles. Use the compatible local port in ADR-0003; if unavoidable, mark that exact task blocked and continue independent authorized work.\",\n      \"Do not invent versions, licenses, test results, provider success, source identities or deployment/release evidence.\",\n      \"Do not substitute a generic JSON preview, successful placeholder endpoint, static example or mocked authority for required product behavior.\"\n    ]\n  },\n  \"progress\": {\n    \"id\": \"C05\",\n    \"status\": \"planned\",\n    \"evidence\": [],\n    \"source_identity\": null,\n    \"notes\": \"\"\n  }\n}\n"
+    },
+    {
+      "command": "python3 scripts/validate_repo.py",
+      "cwd": "/home/amirreza/Desktop/Projects/Attestara",
+      "exit_code": 0,
+      "output": "VALIDATION PASSED\nChecked 113 JSON files and repository contract invariants.\n"
+    },
+    {
+      "command": "git diff --check",
+      "cwd": "/home/amirreza/Desktop/Projects/Attestara",
+      "exit_code": 0,
+      "output": ""
+    }
+  ],
+  "supplemental_verification_script": {
+    "path": "/tmp/attestara-c04-schema-check.py",
+    "sha256": "f64397e31b4c97aaca5dab45b44ccff0f3982d3a8d712554b8a656db72d5ba64",
+    "source": "from pathlib import Path\nimport json,hashlib,subprocess,importlib.metadata,warnings\nfrom jsonschema import Draft202012Validator,Draft7Validator,RefResolver\nr=Path.cwd();f=r/'tests/fixtures/attestara/C04'\nschemas={n:json.loads((r/'contracts'/f'{n}.schema.json').read_text()) for n in ['input','result']}\nfor s in schemas.values():Draft202012Validator.check_schema(s)\nfor name,target in [('input.valid.json','input'),('result.valid.json','result'),('result.failed.json','result')]:Draft202012Validator(schemas[target]).validate(json.loads((f/name).read_text()))\nextra={'missing-policy-file','duplicate-path'}\nfor case in json.loads((f/'negative.json').read_text())['cases']:\n errors=list(Draft202012Validator(schemas[case['target']]).iter_errors(case['value']))\n assert bool(errors)==(case['id'] not in extra),case['id']\nsource=Path('/tmp/attestara-c02/cyclonedx-proof/specification-349314a9d7671d7d2ca5b711a725f49a73979da6/schema/bom-1.7.schema.json')\nschema=json.loads(source.read_text());Draft7Validator(schema,resolver=RefResolver(source.as_uri(),schema)).validate(json.loads((f/'sbom.cdx.json').read_text()))\nprint('Draft202012 schemas valid; 3 positive fixtures and '+str(len(json.loads((f/'negative.json').read_text())['cases']))+' negative fixtures checked (2 require Go cross-field invariants).')\nprint('Synthetic SBOM validates against C02-pinned CycloneDX 1.7 source; bom schema sha256:'+hashlib.sha256(source.read_bytes()).hexdigest())\nprint('Validation tool: jsonschema '+importlib.metadata.version('jsonschema')+'; test-only preinstalled Python library, no runtime dependency added.')\nproof=json.loads((r/'docs/evidence/C03.json').read_text()); mismatches=[]\nfor path,want in proof['source_files'].items():\n b=subprocess.check_output(['git','show','HEAD:'+path]);\n if hashlib.sha256(b).hexdigest()!=want:mismatches.append(path)\nassert not mismatches,mismatches\nprint('All '+str(len(proof['source_files']))+' recorded C03 source hashes match HEAD before C04 changes.')\nfor n in ['input','result']:\n old=subprocess.check_output(['git','show','HEAD:contracts/'+n+'.schema.json']);assert old==(r/'contracts/drafts'/f'{n}.v0.schema.json').read_bytes()\nprint('Both archived draft schemas exactly match pre-C04 bytes.')\n"
+  },
+  "dependency_proof": "All 44 recorded C03 source hashes matched the base HEAD. Both v0 draft schema archives matched pre-C04 bytes exactly.",
+  "results": {
+    "go": "Actual Go validator tests and existing C03 process tests pass.",
+    "node": "26 tests pass, zero failures/skips; Node contract entry invokes real Go tests.",
+    "typecheck": "tsc passes through npm run check/build.",
+    "build": "Vite production build passes through npm run check.",
+    "quality": "go vet, gofmt check and Node syntax check pass; no standalone npm lint script exists.",
+    "schema": "Both Draft 2020-12 schemas, 3 positive documents and 30 negative documents checked; duplicate paths and missing manifest digest membership require Go cross-field checks. Concrete synthetic SBOM validates against pinned CycloneDX 1.7 schema source.",
+    "restart": "Two additional fresh Go test processes repeat full input/result/negative fixture expectations. No server restart/storage/restore claim.",
+    "security": "Rejects caller-supplied trusted, malformed/unknown/duplicate keys, unsafe paths, missing evidence references and limit violations. Source/tool text remains inert; decoder errors do not echo input secrets. File count is checked using streaming SkipValue before allocating the typed manifest slice; a 50,000-null hostile manifest is regression-tested."
+  },
+  "negative_case_boundaries": {
+    "missing_prerequisites": "Required manifest fields and referenced digest entries are rejected when absent.",
+    "required_providers": "None for approved library boundary. dependency_unavailable is exercised only as a typed failure document; no live provider execution is claimed.",
+    "restart_recovery": "Fresh-process deterministic decoding only; durable recovery is C05.",
+    "no_user_source_execution": "The byte-input library has no file/network/shell calls; inert tool text is regression-tested."
+  },
+  "limitations": [
+    "Metadata/shape validation does not verify actual artifact bytes, evaluate policy, validate signatures, authenticate owner labels or prove input/result association.",
+    "trusted results are withheld pending a proven cryptographic trust contract.",
+    "Cancellation is cooperative around bounded JSON decoding, not mid-call hard preemption.",
+    "Minimum 2 vCPU/2 GiB profile remains unmeasured C28 work.",
+    "Browser checks and live providers were not run; this task adds no browser/HTTP/provider behavior.",
+    "Draft 0 is preserved as historical schema bytes and explicitly rejected; no automatic migration is provided."
+  ],
+  "protected_paths_changed": [],
+  "passed": true,
+  "current_core_ready": false,
+  "next_task": "C05",
+  "development_checks": [
+    {
+      "phase": "red before implementation",
+      "command": "go test ./internal/contracts",
+      "exit_code": 1,
+      "output_excerpt": "undefined: Error; undefined: DecodeInput; undefined: DecodeResult; FAIL attestara/internal/contracts [build failed]",
+      "result": "Expected: required library APIs did not exist before implementation."
+    },
+    {
+      "phase": "toolchain preflight",
+      "command": "go version (system Go)",
+      "exit_code": 1,
+      "result": "System Go attempted to fetch go1.27.2 from nexus.doctordaraei.com; DNS resolution failed. All verification instead used the already source-built and C02-verified Go binary."
+    }
+  ],
+  "final_review": {
+    "source_hashes_match": true,
+    "changed_path_inventory_matches": true,
+    "tracked_and_untracked_whitespace_checks": "passed",
+    "protected_paths_changed": [],
+    "node_tests": 26,
+    "node_failures": 0,
+    "node_skips": 0
+  }
+}

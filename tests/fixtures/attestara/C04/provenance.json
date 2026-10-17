@@ -1,0 +1,9 @@
+{
+  "license": "Apache-2.0",
+  "provenance": "All C04 data and artifacts are repository-authored synthetic examples. CycloneDX 1.7 is a format identifier, not an imported library. The Rego file is inert input; C04 does not execute OPA.",
+  "files": [
+    "subject.txt",
+    "sbom.cdx.json",
+    "policy.rego"
+  ]
+}

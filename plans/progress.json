@@ -33,10 +33,12 @@
     },
     {
       "id": "C04",
-      "status": "planned",
-      "evidence": [],
-      "source_identity": null,
-      "notes": ""
+      "status": "verified",
+      "evidence": [
+        "docs/evidence/C04.json"
+      ],
+      "source_identity": "sha256:67be1b99121ece597a6db11ee5d818898ab6daa81ea2791e6c2c47b168a3e9ce",
+      "notes": "Approved library-only scope: typed v1 input/result contracts, real Go validators, positive/negative/concrete artifacts, byte/file/time/cancellation limits and fresh-process fixture repeatability verified. No domain API, policy/cryptographic execution or durability claim."
     },
     {
       "id": "C05",

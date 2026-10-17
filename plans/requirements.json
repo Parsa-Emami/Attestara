@@ -35,7 +35,7 @@
       "mandatory": true,
       "planned_commit": "C04",
       "evidence_path": "docs/evidence/C04.json",
-      "status": "unimplemented"
+      "status": "verified"
     },
     {
       "id": "N05",
