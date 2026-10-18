@@ -5,6 +5,7 @@ import { readFile } from 'node:fs/promises';
 const fixture = new URL('../../../tests/fixtures/attestara/C21/positive.json', import.meta.url);
 const negative = JSON.parse(await readFile(new URL('../../../tests/fixtures/attestara/C21/negative.json', import.meta.url), 'utf8'));
 const expected = JSON.parse(await readFile(new URL('../../../tests/fixtures/attestara/C21/expected.json', import.meta.url), 'utf8'));
+const redaction = JSON.parse(await readFile(new URL('../../../tests/fixtures/attestara/C25/cases.json', import.meta.url), 'utf8'));
 
 test('C21 synthetic fixture hashes match their provenance', async () => {
   const root = new URL('../../../tests/fixtures/attestara/C21/', import.meta.url);
@@ -29,6 +30,19 @@ test('local C19 passport shows policy and evidence without uploading its bytes',
   await page.setViewportSize({ width: 360, height: 800 });
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   expect(requests).toEqual([]);
+});
+
+test('viewer presents the C25 public redaction marker without exposing source text', async ({ page }) => {
+  const passport = JSON.parse(await readFile(fixture, 'utf8'));
+  const sensitive = redaction.cases.find((entry: { id: string }) => entry.id === 'bearer');
+  expect(sensitive).toBeTruthy();
+  passport.release_id = sensitive.expected;
+  passport.source_revision = sensitive.expected;
+  await page.goto('/#passport');
+  await page.getByLabel('Choose passport file').setInputFiles({ name: 'redacted.json', mimeType: 'application/json', buffer: Buffer.from(JSON.stringify(passport)) });
+  await expect(page.getByRole('heading', { name: '[REDACTED]' })).toBeVisible();
+  await expect(page.getByText(sensitive.value)).toHaveCount(0);
+  await expect(page.getByRole('table')).toBeVisible();
 });
 
 test('invalid, unsupported and oversized passports show an error', async ({ page }) => {

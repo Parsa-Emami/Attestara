@@ -313,7 +313,7 @@
       "id": "C25",
       "title": "feat(privacy): redact report source and credentials",
       "stage": "domain",
-      "status": "planned",
+      "status": "verified",
       "acceptance": [
         "Public passport excludes credentials, local paths and confidential source snippets by default."
       ],

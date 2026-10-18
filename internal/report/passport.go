@@ -109,6 +109,7 @@ func GeneratePassport(parent context.Context, input contracts.Input, result cont
 		EvidenceReferences: refs,
 		Warnings:           slices.Clone(validatedResult.Warnings),
 	}
+	passport = redactPassport(passport)
 	payload, err := json.Marshal(passport, json.FormatNilSliceAsNull(true))
 	if err != nil {
 		return fail("invalid_input", "passport")

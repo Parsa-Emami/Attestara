@@ -222,10 +222,12 @@
     },
     {
       "id": "C25",
-      "status": "planned",
-      "evidence": [],
-      "source_identity": null,
-      "notes": ""
+      "status": "verified",
+      "evidence": [
+        "docs/evidence/C25.json"
+      ],
+      "source_identity": "sha256:a9f4f9dcf048bb53978dcba3c18f7a674d38dfaf6c7f7805a090bc3e719502be",
+      "notes": "New C19 passports redact recognizable credentials and local paths from public text and replace non-C18 warnings before canonical digest calculation. Version-1 shape and existing verify/export input behavior remain unchanged; arbitrary unmarked secrets cannot be detected."
     },
     {
       "id": "C26",

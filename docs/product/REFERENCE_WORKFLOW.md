@@ -90,3 +90,13 @@ checks the complete ZIP with `bundle.ReadArchive` before publishing a new file.
 The offline reader rejects absent or modified members after export. This proves
 portable file integrity for the exported inputs only; passport binding, signer
 trust and durable revision/replay authority remain separate obligations.
+
+C25 redacts recognizable credentials and local paths from free-text release
+identifiers when generating a new public passport. Public warnings retain only
+the stable C18 reason codes; other warning text becomes `[REDACTED]`. The C19
+passport shape and digest rule remain unchanged: the digest covers the redacted
+output. Manifest evidence paths remain validated relative paths, and raw source
+or scanner report bytes are not projected into the passport. Existing passports
+passed to `verify` or `export` are not rewritten. This bounded redaction cannot
+identify arbitrary unmarked secret values in release identifiers; operators
+must keep credentials out of source metadata and raw reports.

@@ -236,8 +236,12 @@ func TestC19FailedEvaluationAndSourceSentinelStayInert(t *testing.T) {
 	marker := filepath.Join(t.TempDir(), "executed")
 	input, result = c19Build(t, "pass", true, false, decision.Fresh)
 	result.Warnings = []string{"touch " + marker}
-	if _, err := report.GeneratePassport(context.Background(), input, result); err != nil {
+	passport, err := report.GeneratePassport(context.Background(), input, result)
+	if err != nil {
 		t.Fatal(err)
+	}
+	if !reflect.DeepEqual(passport.Warnings, []string{"[REDACTED]"}) {
+		t.Fatal("free-text warning reached the public passport", passport.Warnings)
 	}
 	if _, err := os.Stat(marker); !os.IsNotExist(err) {
 		t.Fatal("source-like warning executed", err)

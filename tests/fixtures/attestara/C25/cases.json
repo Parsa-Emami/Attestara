@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "license": "Apache-2.0",
+  "provenance": "repository-authored synthetic values; no real credentials or source",
+  "cases": [
+    { "id": "ordinary-label", "value": "synthetic-c14-1", "expected": "synthetic-c14-1" },
+    { "id": "bearer", "value": "Bearer synthetic-token-value", "expected": "[REDACTED]" },
+    { "id": "quoted-bearer", "value": "Bearer \"synthetic-token-value\"", "expected": "[REDACTED]" },
+    { "id": "basic", "value": "Basic c3ludGhldGljOnNlY3JldA==", "expected": "[REDACTED]" },
+    { "id": "password-assignment", "value": "password=synthetic-secret-value", "expected": "[REDACTED]" },
+    { "id": "token-assignment", "value": "token: 'synthetic-token-value'", "expected": "[REDACTED]" },
+    { "id": "url-userinfo", "value": "https://demo:synthetic-password@localhost/release", "expected": "[REDACTED]localhost/release" },
+    { "id": "posix-path", "value": "/home/synthetic/private/source.go", "expected": "[REDACTED]" },
+    { "id": "file-uri", "value": "file:///home/synthetic/private/source.go", "expected": "[REDACTED]" },
+    { "id": "quoted-posix-path", "value": "\"/home/synthetic/private source.go\"", "expected": "[REDACTED]" },
+    { "id": "windows-path", "value": "C:\\Users\\synthetic\\private.go", "expected": "[REDACTED]" },
+    { "id": "windows-forward-path", "value": "C:/Users/synthetic/private.go", "expected": "[REDACTED]" },
+    { "id": "unc-path", "value": "\\\\synthetic-host\\private\\source.go", "expected": "[REDACTED]" },
+    { "id": "source-like-text", "value": "<script>synthetic-source</script>", "expected": "[REDACTED]" }
+  ]
+}

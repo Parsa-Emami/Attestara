@@ -1,33 +1,38 @@
 {
   "date": "2026-10-18",
-  "task": "C24",
-  "base_commit": "3e9fc38af70ee844152d422023a464ec8c40ca4f",
+  "task": "C25",
+  "base_commit": "78b6cf95535b31954a9d38a5170e156fd6b0f2ab",
   "worktree_committed": true,
-  "final_source_identity": "sha256:8f8389990d52473e3fc71a2850d00ccd62f517cb4b438773c96c0ec7ddde76ff",
-  "source_identity_scope": "541 tracked/nonignored source, tests, configs, locks and documentation files; excludes docs/evidence/, plans/progress.json, plans/requirements.json, plans/project-state.json, docs/agents/SESSION_HANDOFF.json, apps/web/src/generated/project.json and SHA256SUMS.txt. Ignored dependency/build/cache outputs excluded by git.",
+  "final_source_identity": "sha256:a9f4f9dcf048bb53978dcba3c18f7a674d38dfaf6c7f7805a090bc3e719502be",
+  "source_identity_scope": "544 tracked/nonignored source, tests, configs, locks and documentation files; excludes docs/evidence/, plans/progress.json, plans/requirements.json, plans/project-state.json, docs/agents/SESSION_HANDOFF.json, apps/web/src/generated/project.json and SHA256SUMS.txt. Ignored dependency/build/cache outputs excluded by git.",
   "changed_paths": [
     "apps/web/src/generated/project.json",
+    "apps/web/tests/passport.spec.ts",
     "docs/ROADMAP_FA.md",
     "docs/agents/SESSION_HANDOFF.json",
-    "docs/evidence/C24.json",
-    "docs/integrations/syft-grype.md",
+    "docs/evidence/C25.json",
+    "docs/product/REFERENCE_WORKFLOW.md",
+    "internal/report/passport.go",
+    "internal/report/redact.go",
     "plans/progress.json",
     "plans/project-state.json",
     "plans/requirements.json",
-    "tests/fixtures/adapter-manifest.json"
+    "tests/fixtures/attestara/C25/cases.json",
+    "tests/passport_test.go",
+    "tests/redact_test.go"
   ],
-  "validation_results": "docs/evidence/C24.json",
+  "validation_results": "docs/evidence/C25.json",
   "protected_paths_changed": [],
   "current_core_ready": false,
   "blockers": [
-    "C30 still requires the full clean-host core workflow, restart and restore proof."
+    "C26 still requires distinct bundle trust outcomes; C30 still requires the full clean-host workflow, restart and restore proof."
   ],
   "deferred_obligations": [
-    "No real Syft/Grype scan or live database was run; C24 evidence is documentation/fixture-only.",
-    "C25 still owns public-passport redaction; C26 still owns distinct bundle trust outcomes.",
+    "C25 cannot identify arbitrary unmarked secrets in release identifiers; operators must keep credentials out of source metadata.",
+    "C25 does not rewrite existing passports passed to verify/export.",
     "No remote CI, push, or publication was performed."
   ],
-  "next_task": "C25",
+  "next_task": "C26",
   "next_command": "npm run plan -- next",
-  "continuation": "C24 is verified for its approved documentation and synthetic-manifest scope. No scanner or database was invoked; the manual local workflow is not an Attestara runtime integration or trust proof. Continue with C25."
+  "continuation": "C25 public-passport redaction and browser/Go regressions are verified on the working tree. Continue with C26 bundle trust outcomes; C30 full local workflow remains unproved."
 }
