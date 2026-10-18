@@ -50,8 +50,10 @@ test('keyboard navigation, live status and narrow reflow remain usable', async (
   await expect(page.getByRole('link', { name: 'Skip to content' })).toBeFocused();
   await page.keyboard.press('Enter');
   await expect(page.locator('main#content')).toBeFocused();
-  await page.getByLabel('Choose JSON file').focus();
+  await page.getByRole('link', { name: 'Roadmap', exact: true }).focus();
+  await page.keyboard.press('Tab');
   await expect(page.getByLabel('Choose JSON file')).toBeFocused();
+  await expect(page.locator('.file-button')).toHaveCSS('outline-style', 'solid');
   await expect(page.getByLabel('Availability')).toHaveAttribute('aria-live', 'polite');
   await page.getByRole('link', { name: 'Roadmap', exact: true }).click();
   await page.getByLabel('Search tasks').fill('no-such-task');
