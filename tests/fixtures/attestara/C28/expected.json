@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "license": "Apache-2.0",
+  "policy_decision": "pass",
+  "verification": "unverified",
+  "passport_fixture": "C20/expected.json",
+  "over_limit_exit_code": 2,
+  "repeat_passport_equal": true,
+  "export_archive_nonempty": true
+}

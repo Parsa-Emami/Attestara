@@ -1,42 +1,45 @@
 {
   "date": "2026-10-18",
-  "task": "C27",
-  "base_commit": "88c1917aea11fac6f0e7226cd2eba3e399c1c2a6",
+  "task": "C28",
+  "base_commit": "c8ee4eeaa47f7ef68137c426df78c6a6f09104a3",
   "worktree_committed": false,
-  "final_source_identity": "sha256:7247cf649825085933b6147119969018244c8e39eab71bd04d42c1dd3706c455",
-  "source_identity_scope": "555 tracked/nonignored source, test, config, lock and documentation files; excludes docs/evidence/, plans/progress.json, plans/requirements.json, plans/project-state.json, docs/agents/SESSION_HANDOFF.json, apps/web/src/generated/project.json and SHA256SUMS.txt. Ignored dependency/build/cache files excluded by git.",
+  "final_source_identity": "sha256:53513a68abba41305eb6489df9fd0a54311a3f3150463da4afa4aaf42395a715",
+  "source_identity_scope": "Tracked and nonignored source, test, config, lock and documentation files; excludes docs/evidence/, plans/progress.json, plans/requirements.json, plans/project-state.json, docs/agents/SESSION_HANDOFF.json, apps/web/src/generated/project.json and SHA256SUMS.txt.",
   "changed_paths": [
     "apps/web/src/generated/project.json",
-    "docs/ROADMAP_FA.md",
     "docs/agents/SESSION_HANDOFF.json",
-    "docs/evidence/C27.json",
-    "docs/product/REFERENCE_WORKFLOW.md",
-    "docs/security/THREAT_MODEL.md",
-    "plans/commits/C27.md",
+    "docs/engineering/CLONE_TO_RUN.md",
+    "docs/ROADMAP_FA.md",
+    "docs/evidence/C28.json",
+    "docs/evidence/C28-go-test.log",
+    "docs/evidence/C28-go-vet.log",
+    "docs/evidence/C28-npm-check.log",
+    "docs/evidence/C28-plan-validation.log",
+    "docs/evidence/C28-go-test-card.log",
+    "docs/evidence/performance.json",
     "plans/progress.json",
     "plans/project-state.json",
     "plans/requirements.json",
-    "plans/roadmap.json",
-    "tests/browser/security.spec.ts",
-    "tests/fixtures/attestara/C27/README.md",
-    "tests/fixtures/attestara/C27/cases.json",
-    "tests/fixtures/attestara/C27/passport.json",
-    "tests/fixtures/attestara/C27/provenance.json",
-    "tests/release/security-matrix.md"
+    "scripts/benchmark-local.mjs",
+    "tests/fixtures/attestara/C28/README.md",
+    "tests/fixtures/attestara/C28/expected.json",
+    "tests/fixtures/attestara/C28/negative.json",
+    "tests/fixtures/attestara/C28/positive.json",
+    "tests/scenarios/target-workload.json",
+    "tests/web/benchmark-local.test.mjs"
   ],
-  "validation_results": "docs/evidence/C27.json",
+  "validation_results": "docs/evidence/C28.json",
   "protected_paths_changed": [],
   "current_core_ready": false,
   "blockers": [
-    "Private/multi-user/remote-sensitive profiles unsupported pending explicit identity/object/provider authorization contract and genuine tests.",
-    "C28 target/overload resources, C29 readiness and C30 full clean-host workflow/restart/restore remain unproved."
+    "Representative Grype peak memory and the complete C30 engine workflow remain unmeasured; C28 proves only the selected local CLI workload under the stated profile.",
+    "Private/multi-user/remote-sensitive profiles remain unsupported pending explicit identity/object/provider authorization contract and genuine tests."
   ],
   "deferred_obligations": [
-    "Identity/object/provider authorization cases are unsupported/not passed; HTTP denials are method/path evidence only.",
-    "Standalone browser-spec typecheck lacks Node declarations; app typecheck and actual browser execution passed.",
-    "No remote CI, commit, push or publication."
+    "C29 must prove storage/provider readiness separately; C30 must measure and restore the full workflow. The C28 CLI result cannot certify those tasks or optional Grype capacity.",
+    "No C30 clean-host full workflow, remote CI, commit, push or publication was performed."
   ],
-  "next_task": "C28",
+  "next_task": "C29",
   "next_command": "npm run plan -- next",
-  "continuation": "Owner-approved enabled-local C27 tests and threat model verified with real Chromium/HTTP and full Go/pinned OPA regressions. Continue C28 measured target/overload workloads; C30 usability and private authorization remain unproved."
+  "continuation": "C28 verifies the selected local CLI workload under 2 vCPU/2048 MiB and an isolated temporary filesystem with at least 10240 MiB initially free. The benchmark covers a 100 MiB valid input, one-byte-over-limit rejection, cancellation, fresh-process repeat and two-process saturation. Continue C29 readiness; C30 full workflow and optional Grype capacity remain separate."
 }

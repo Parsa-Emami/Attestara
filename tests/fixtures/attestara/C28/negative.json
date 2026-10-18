@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "license": "Apache-2.0",
+  "cases": [
+    { "id": "input-over-limit", "expected_exit_code": 2, "expected_stdout": "" },
+    { "id": "cancel-evaluation", "expected": "nonzero exit or SIGINT without a passing passport" },
+    { "id": "missing-prerequisite", "expected": "benchmark fails before measurement" },
+    { "id": "malformed-scenario", "expected": "benchmark fails before measurement" }
+  ]
+}

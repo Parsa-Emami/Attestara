@@ -249,10 +249,10 @@
     },
     {
       "id": "C28",
-      "status": "planned",
-      "evidence": [],
-      "source_identity": null,
-      "notes": ""
+      "status": "verified",
+      "evidence": ["docs/evidence/C28.json"],
+      "source_identity": "sha256:53513a68abba41305eb6489df9fd0a54311a3f3150463da4afa4aaf42395a715",
+      "notes": "Measured the owner-selected existing CLI workload: real evaluate/verify/ZIP export and 100 MiB versus 100 MiB+1 input under a 2 vCPU/2048 MiB cgroup with at least 10240 MiB initially free in an isolated temporary filesystem. Cancellation, two-process saturation and fresh-process repeat passed. This does not certify representative Grype memory, complete engine workflow or C30 product hardware support."
     },
     {
       "id": "C29",

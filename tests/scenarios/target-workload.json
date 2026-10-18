@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "license": "Apache-2.0",
+  "target_input_bytes": 104857600,
+  "over_limit_input_bytes": 104857601,
+  "concurrent_processes": 2,
+  "fixtures": {
+    "input": "C14/input.json",
+    "policy": "C14/rule.json",
+    "evidence": "C14/evidence.json",
+    "expected_passport": "C20/expected.json",
+    "export_manifest": "C23/manifest.json",
+    "export_files": "C23"
+  }
+}

@@ -1,0 +1,13 @@
+ok  	attestara/cmd/attestara	(cached)
+ok  	attestara/internal/adapters	(cached)
+?   	attestara/internal/bundle	[no test files]
+ok  	attestara/internal/contracts	(cached)
+?   	attestara/internal/decision	[no test files]
+?   	attestara/internal/evidence	[no test files]
+?   	attestara/internal/export	[no test files]
+ok  	attestara/internal/licensecatalog	(cached)
+?   	attestara/internal/policy	[no test files]
+?   	attestara/internal/report	[no test files]
+ok  	attestara/internal/storage	(cached)
+?   	attestara/internal/verify	[no test files]
+ok  	attestara/tests	(cached)

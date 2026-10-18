@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "license": "Apache-2.0",
+  "cases": [
+    "evaluate padded valid C14 input at the existing byte ceiling",
+    "verify the produced C20 passport in a separate process",
+    "export the existing C23 manifest and confined files to a new ZIP",
+    "repeat after all CLI processes exit and compare typed passport output"
+  ]
+}

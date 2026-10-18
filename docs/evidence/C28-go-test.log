@@ -1,0 +1,13 @@
+ok  	attestara/cmd/attestara	0.007s
+ok  	attestara/internal/adapters	0.062s
+?   	attestara/internal/bundle	[no test files]
+ok  	attestara/internal/contracts	0.191s
+?   	attestara/internal/decision	[no test files]
+?   	attestara/internal/evidence	[no test files]
+?   	attestara/internal/export	[no test files]
+ok  	attestara/internal/licensecatalog	0.002s
+?   	attestara/internal/policy	[no test files]
+?   	attestara/internal/report	[no test files]
+ok  	attestara/internal/storage	4.861s
+?   	attestara/internal/verify	[no test files]
+ok  	attestara/tests	2.789s

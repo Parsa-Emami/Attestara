@@ -1,0 +1,170 @@
+{
+  "schema_version": 1,
+  "task": "C28",
+  "source_identity": "sha256:53513a68abba41305eb6489df9fd0a54311a3f3150463da4afa4aaf42395a715",
+  "source_files": 562,
+  "scenario_sha256": "sha256:e4cc877525d40d122e6d50a88f81d566b354aef9c73804561b632e0ac157bb85",
+  "fixtures": {
+    "input": {
+      "sha256": "sha256:c97379825e6424ec7caf770836f5f65a56f7d0dcfc92586ab5b95e38866ee5d1",
+      "path": "C14/input.json"
+    },
+    "policy": {
+      "sha256": "sha256:a8bff7c6201d8eacba9acf62cee9f3d2f50ceb1af9327340c464abc848068446",
+      "path": "C14/rule.json"
+    },
+    "evidence": {
+      "sha256": "sha256:f4eef926e346ce1feac1114ab917dc53928001104bab21cb7e88948a9f1ca193",
+      "path": "C14/evidence.json"
+    },
+    "expected_passport": {
+      "sha256": "sha256:2b141585ef223d12056d644c22dd936e18867aa64696a0ca27273fbd6d7ac3d0",
+      "path": "C20/expected.json"
+    },
+    "export_manifest": {
+      "sha256": "sha256:b4be01339816463cd2be73d4aaf1136fdba7c629dc90dba6daf2c62792c1fdc0",
+      "path": "C23/manifest.json"
+    },
+    "export_files": {
+      "path": "C23",
+      "files": {
+        "README.md": "sha256:8fbbd8302181374a227260edde9e52df791e701dbcdd89f94181cc9e17d28a2b",
+        "evidence.txt": "sha256:09c28470bdbce4baaa27d223d41a584823b06a183bcf5dbe226fccf42d7b55bf",
+        "expected.json": "sha256:ec605f18f74786800d68bb966978c91df7b8c81431c1310be91dc627653a5ef0",
+        "manifest.json": "sha256:b4be01339816463cd2be73d4aaf1136fdba7c629dc90dba6daf2c62792c1fdc0",
+        "negative.json": "sha256:bfd73ed98a0ca4fd98edde5bbd008c313eb3f7231ebd499b5c96e187fd68b7c9",
+        "policy.txt": "sha256:f5ec11ee33d80cc73968513cd2baec7c5ca347dd78369bd3ed0c29e3d0bb288f",
+        "provenance.json": "sha256:3ba5da4a54d7af941496fedad36a74d347a1b9173cb3f4a3cd5fe9748e130f6f",
+        "subject.txt": "sha256:932b3d53fd10fa5bf895eb4fffecc08ecc73f193165eb3a5ff7c1502138881d9"
+      }
+    },
+    "C28": {
+      "README.md": "sha256:61caa89784a127e28b2ebddbd45f6810e151c41851e0c7225ec7c8f151f384b1",
+      "positive.json": "sha256:87442d74acc8c427639a091226ac870cdf4a8f6de261f566d9131d5df20af924",
+      "negative.json": "sha256:94e8083ea543becbb5b2d50fedb9fd0f515f2f93c62938008cadcebaefdeda73",
+      "expected.json": "sha256:847b931613e6e9ab3933bb359b9368f5dd9498f6b7aad29ebe9d17845b701af1"
+    }
+  },
+  "toolchain": {
+    "go": "go version go1.27.2 linux/amd64",
+    "npm": "11.9.0",
+    "node": "v24.19.0"
+  },
+  "environment": {
+    "platform": "linux",
+    "arch": "x64",
+    "kernel": "7.0.0-38-generic",
+    "logical_cpus": 16,
+    "host_memory_bytes": 32863944704,
+    "cgroup": {
+      "available": true,
+      "cpu_quota": 2,
+      "memory_limit_bytes": 2147483648,
+      "memory_peak_bytes": 902098944
+    },
+    "disk_initial_free_bytes": 10738028544,
+    "free_disk_bytes": 10402598912,
+    "disk_limit_bytes": 10738466816
+  },
+  "cpu_memory_profile_verified": true,
+  "disk_profile_verified": true,
+  "target_profile_verified": true,
+  "target_profile_note": "CLI workload measured on a filesystem with at least 10 GiB initially free and at most 10 GiB plus 1 MiB total; this is not a complete engine or provider measurement.",
+  "target": {
+    "input_bytes": 104857600,
+    "runs": [
+      {
+        "evaluation": {
+          "exit_code": 0,
+          "wall_ms": 387.246326,
+          "cpu_user_seconds": 0.31,
+          "cpu_system_seconds": 0.14,
+          "max_rss_kib": 258880
+        },
+        "verification": {
+          "exit_code": 0,
+          "wall_ms": 8.735471,
+          "cpu_user_seconds": 0,
+          "cpu_system_seconds": 0,
+          "max_rss_kib": 11200
+        },
+        "export": {
+          "exit_code": 0,
+          "wall_ms": 9.778063,
+          "cpu_user_seconds": 0,
+          "cpu_system_seconds": 0,
+          "max_rss_kib": 12676,
+          "zip_bytes": 1037,
+          "zip_sha256": "sha256:697436c8faf111f51e0c076b707e237625d40bc99db4bf2f7818431828a34e1a"
+        },
+        "passport_sha256": "sha256:1a82c86b5a2455e4a56d73687ee8befbd6b27dcebc57c4d020ed6e1e1c03e915"
+      },
+      {
+        "evaluation": {
+          "exit_code": 0,
+          "wall_ms": 382.334162,
+          "cpu_user_seconds": 0.32,
+          "cpu_system_seconds": 0.14,
+          "max_rss_kib": 258880
+        },
+        "verification": {
+          "exit_code": 0,
+          "wall_ms": 7.993252,
+          "cpu_user_seconds": 0,
+          "cpu_system_seconds": 0,
+          "max_rss_kib": 11140
+        },
+        "export": {
+          "exit_code": 0,
+          "wall_ms": 9.050841,
+          "cpu_user_seconds": 0,
+          "cpu_system_seconds": 0,
+          "max_rss_kib": 12732,
+          "zip_bytes": 1037,
+          "zip_sha256": "sha256:697436c8faf111f51e0c076b707e237625d40bc99db4bf2f7818431828a34e1a"
+        },
+        "passport_sha256": "sha256:1a82c86b5a2455e4a56d73687ee8befbd6b27dcebc57c4d020ed6e1e1c03e915"
+      }
+    ],
+    "peak_temporary_file_bytes": 221989192
+  },
+  "over_limit": {
+    "input_bytes": 104857601,
+    "exit_code": 2,
+    "wall_ms": 8.510941,
+    "cpu_user_seconds": 0,
+    "cpu_system_seconds": 0,
+    "max_rss_kib": 10884,
+    "stdout_empty": true
+  },
+  "cancellation": {
+    "exit_code": 3,
+    "signal": null,
+    "wall_ms": 153.601704,
+    "stdout_empty": true
+  },
+  "saturation": {
+    "concurrent_processes": 2,
+    "wall_ms": 495.79707,
+    "runs": [
+      {
+        "exit_code": 0,
+        "wall_ms": 492.355579,
+        "cpu_user_seconds": 0.34,
+        "cpu_system_seconds": 0.15,
+        "max_rss_kib": 259204
+      },
+      {
+        "exit_code": 0,
+        "wall_ms": 485.401922,
+        "cpu_user_seconds": 0.35,
+        "cpu_system_seconds": 0.14,
+        "max_rss_kib": 258816
+      }
+    ]
+  },
+  "providers": {
+    "required": [],
+    "executed": []
+  }
+}
