@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "license": "Apache-2.0",
+  "provenance": "Repository-authored synthetic C29 expectations; no external provider or authoritative storage is initialized.",
+  "started": {"web":"ready","engine":"process_healthy","storage":"not_integrated","providers":"not_integrated","requiredProviders":[]},
+  "failed": {"web":"not_ready","engine":"unavailable","storage":"not_integrated","providers":"not_integrated","requiredProviders":[]},
+  "sentinels": ["C29_SECRET_SENTINEL", "C29_CREDENTIAL_SENTINEL", "/private/C29_PATH_SENTINEL"],
+  "maxLineBytes": 1024,
+  "maxEventsPerRun": 2
+}

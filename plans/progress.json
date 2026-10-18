@@ -256,10 +256,12 @@
     },
     {
       "id": "C29",
-      "status": "planned",
-      "evidence": [],
-      "source_identity": null,
-      "notes": ""
+      "status": "verified",
+      "evidence": [
+        "docs/evidence/C29.json"
+      ],
+      "source_identity": "sha256:fac593dd7bbd6a0a7d7f5bfe85a294f2775e8b5d9e497c3fb5df6cf62695d9e5",
+      "notes": "Owner-approved C29 scope: real web/Go process health and bounded allowlisted local lifecycle diagnostics; storage/providers explicitly not_integrated and requiredProviders empty. Real Go restart/crash and hostile child-output boundaries verified. No authoritative storage/provider readiness, domain admission or C30 full-workflow claim."
     },
     {
       "id": "C30",

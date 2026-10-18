@@ -2,8 +2,30 @@ import http from 'node:http';
 import { readFile, realpath, stat } from 'node:fs/promises';
 import { resolve, relative, extname, isAbsolute } from 'node:path';
 import { pathToFileURL } from 'node:url';
+import { randomUUID } from 'node:crypto';
 import { validateRuntimeConfig } from '../apps/web/src/lib/runtime-config.mjs';
 import { validateEngineHealth } from '../apps/web/src/lib/engine-health.mjs';
+
+// Only fixed states enter diagnostics; raw errors, child output and request data never do.
+export function runtimeDiagnostic(entryPoint, event, runId) {
+  const ready = event === 'started';
+  return {
+    schemaVersion: 1, service: entryPoint === 'local' ? 'attestara-local' : 'attestara-web',
+    entryPoint, runId, event, coreReady: false,
+    readiness: {
+      web: ready ? 'ready' : 'not_ready',
+      engine: entryPoint === 'web' ? 'not_configured' : ready ? 'process_healthy' : 'unavailable',
+      storage: 'not_integrated', providers: 'not_integrated', requiredProviders: [],
+    },
+  };
+}
+
+export async function probeWebAssets(root) {
+  const publicRoot = resolve(root);
+  const index = await realpath(resolve(publicRoot, 'index.html'));
+  const diff = relative(publicRoot, index);
+  if (diff === '..' || diff.startsWith('../') || isAbsolute(diff) || !(await stat(index)).isFile()) throw new Error('Web assets unavailable.');
+}
 
 export function validateEngineURL(value) {
   const url = new URL(value);
@@ -54,7 +76,7 @@ export function createWebServer({ root, config, projectId, engineURL }) {
     } catch { send(400, '{"error":"invalid_path"}'); return; }
     if (path === '/healthz') { send(200, '{"status":"ok","scope":"web-shell"}'); return; }
     if (path === '/readyz') {
-      try { await stat(resolve(publicRoot, 'index.html')); send(200, '{"status":"ready","scope":"web-shell","engineReady":false}'); }
+      try { await probeWebAssets(publicRoot); send(200, '{"status":"ready","scope":"web-shell","engineReady":false}'); }
       catch { send(503, '{"status":"not_ready","scope":"web-shell"}'); }
       return;
     }
@@ -92,16 +114,29 @@ export function webOptions(args) {
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1])).href) {
-  const options = webOptions(process.argv.slice(2));
-  const product = JSON.parse(await readFile(new URL('../ops/web/brand.json', import.meta.url), 'utf8'));
-  const config = JSON.parse(await readFile(resolve(options.config), 'utf8'));
-  await stat(resolve(options.root, 'index.html'));
-  const server = createWebServer({ root: options.root, config, projectId: product.slug });
-  server.maxRequestsPerSocket = 1000;
-  server.on('error', error => { console.error(error.message); process.exitCode = 1; });
-  server.listen(+options.port, options.host, () => console.log(JSON.stringify({ service: product.slug + '-web', host: options.host, port: +options.port, engineReady: false })));
-  for (const signal of ['SIGINT', 'SIGTERM']) process.once(signal, () => {
-    server.close(() => process.exit(0));
-    setTimeout(() => { server.closeAllConnections(); process.exit(1); }, 10000).unref();
-  });
+  const runId = randomUUID();
+  try {
+    const options = webOptions(process.argv.slice(2));
+    const product = JSON.parse(await readFile(new URL('../ops/web/brand.json', import.meta.url), 'utf8'));
+    const config = JSON.parse(await readFile(resolve(options.config), 'utf8'));
+    await probeWebAssets(options.root);
+    const server = createWebServer({ root: options.root, config, projectId: product.slug });
+    server.maxRequestsPerSocket = 1000;
+    let finished = false;
+    const finish = (event, code) => {
+      if (finished) return;
+      finished = true;
+      (code ? console.error : console.log)(JSON.stringify(runtimeDiagnostic('web', event, runId)));
+      process.exitCode = code;
+    };
+    server.once('error', () => { finish(server.listening ? 'runtime_failed' : 'startup_failed', 1); server.closeAllConnections(); server.close(); });
+    server.listen(+options.port, options.host, () => console.log(JSON.stringify({ ...runtimeDiagnostic('web', 'started', runId), host: options.host, port: options.port, engineReady: false })));
+    let stopping = false;
+    for (const signal of ['SIGINT', 'SIGTERM']) process.once(signal, () => {
+      if (stopping) return;
+      stopping = true;
+      server.close(() => { finish('stopped', 0); process.exit(0); });
+      setTimeout(() => { finish('runtime_failed', 1); server.closeAllConnections(); process.exit(1); }, 10000).unref();
+    });
+  } catch { console.error(JSON.stringify(runtimeDiagnostic('web', 'startup_failed', runId))); process.exitCode = 1; }
 }

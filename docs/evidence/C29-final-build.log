@@ -1,0 +1,22 @@
+
+> @parsa-emami/attestara-web@0.0.1 build
+> npm run prepare:web && npm run typecheck && vite build --config apps/web/vite.config.ts
+
+
+> @parsa-emami/attestara-web@0.0.1 prepare:web
+> node scripts/generate-web-data.mjs
+
+
+> @parsa-emami/attestara-web@0.0.1 typecheck
+> tsc -p tsconfig.json
+
+vite v8.3.4 building client environment for production...
+transforming...
+✓ 20 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/web/index.html                   0.79 kB │ gzip:  0.46 kB
+dist/web/assets/index-CiHsYJnA.css    5.05 kB │ gzip:  1.81 kB
+dist/web/assets/index-DA-FSrxI.js   249.28 kB │ gzip: 77.88 kB
+
+✓ built in 120ms

@@ -23,6 +23,10 @@ Web `/healthz` and `/readyz` retain their web-only meaning and `engineReady:fals
 
 SIGINT/SIGTERM close the web listener and terminate the Go child. Go allows up to three seconds for HTTP shutdown; the supervisor force-stops a child still present after four seconds and reports failure. Unexpected engine exit or a web-listener failure closes the whole runtime with a nonzero exit. An occupied web port also terminates the engine before returning failure. Restart repeats the same process-health contract; C03 owns no durable product data to restore.
 
+C29 adds bounded version-1 local lifecycle diagnostics with a per-launch run ID.
+See [Local readiness and diagnostics](../../ops/diagnostics.md) for component
+states, sanitized failure events and the remaining C30 integration obligations.
+
 ## Local evidence CLI (C20)
 
 The built engine also accepts `evaluate`, `verify` and `export` subcommands; the
