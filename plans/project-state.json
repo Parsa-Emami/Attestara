@@ -1,6 +1,6 @@
 {
   "project": "Attestara",
-  "reviewed_commit": "10015f127ce309ab83d6d436bd212a475f4bf9e8",
+  "reviewed_commit": "b05f46f2ee086d8457bce5415c5931ab85962c21",
   "readiness": "WEB_FOUNDATION",
   "core_ready": false,
   "implemented": [
@@ -21,10 +21,11 @@
     "C14 internal Go evidence_present predicate yields pass/fail/unknown bound to actual rule/fact bytes and evidence references; result v2 persists through C05 with v1 read compatibility and real crash/replay/quota regressions",
     "C15 internal optional OPA 1.21.2 CLI adapter executes only exact C04 policy over C14 facts; safe typed failures, bounded process/output and exact v2 bindings with real provider/reopen/fresh-process proof",
     "C16 internal stateless Go Ed25519 verification over exact C08 manifest bytes, with independent cryptographic validity and configured signer/key membership; Trusted() requires both, actual referenced files still require C08 validation",
-    "C17 stateless internal Go comparison of existing C07 envelope and C08 manifest subject digests; SubjectBound only, independently of actual file integrity and issuer/signer trust"
+    "C17 stateless internal Go comparison of existing C07 envelope and C08 manifest subject digests; SubjectBound only, independently of actual file integrity and issuer/signer trust",
+    "C18 stateless internal v2 decision explanation using caller-supplied freshness: missing/stale are unknown, policy fail stays distinct, stable reason codes reuse warnings; no age policy, trust promotion or stateful acceptance"
   ],
-  "engine": "Go lifecycle/health, v1 typed release-evidence validation, recoverable local file repository, per-artifact evidence envelopes, typed manifest reader and bounded read-only ZIP reader implemented; domain API, general external policy execution, end-to-end bundle trust, revision authority and full workflow pending; read-only CycloneDX JSON 1.7, SPDX 3.0.0 subset and Grype JSON adapters implemented; C13 license expression recognition/review only, without compliance or release-rule decisions; C14 bounded first-party rule evaluation and v2 result persistence implemented, without producer authenticity or full workflow; C15 fixed-policy local OPA execution implemented, without arbitrary Rego or domain API/UI; C16 stateless signature assessment implemented, without expiry/revision/replay authority or CLI/viewer integration; C17 stateless subject-digest claim binding implemented, without issuer policy, builder/source authenticity or revision authority",
-  "next_task": "C18",
+  "engine": "Go lifecycle/health, v1 typed release-evidence validation, recoverable local file repository, per-artifact evidence envelopes, typed manifest reader and bounded read-only ZIP reader implemented; domain API, general external policy execution, end-to-end bundle trust, revision authority and full workflow pending; read-only CycloneDX JSON 1.7, SPDX 3.0.0 subset and Grype JSON adapters implemented; C13 license expression recognition/review only, without compliance or release-rule decisions; C14 bounded first-party rule evaluation and v2 result persistence implemented, without producer authenticity or full workflow; C15 fixed-policy local OPA execution implemented, without arbitrary Rego or domain API/UI; C16 stateless signature assessment implemented, without expiry/revision/replay authority or CLI/viewer integration; C17 stateless subject-digest claim binding implemented, without issuer policy, builder/source authenticity or revision authority; C18 internal caller-classified freshness/reason composition implemented, without automatic expiry determination, stateful authority or report/CLI/viewer integration",
+  "next_task": "C19",
   "next_command": "npm run plan -- next",
   "full_product_endpoint": "C30 locally usable; C40 full published OSS v1"
 }

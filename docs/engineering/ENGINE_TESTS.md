@@ -91,3 +91,15 @@ decoders, cancellation, input immutability, inert source and fixture hashes.
 Real C08 missing-file and C16 untrusted-signer checks demonstrate that subject
 binding alone certifies neither integrity nor authenticity. C17 has no authority
 state; it does not certify expiry/revision/replay acceptance.
+
+## C18 decision reasons
+
+Six mandatory C18 tests cover versioned decision/reason fixtures, invalid results
+and freshness, cancellation, real C12 zero-findings/C14 pass composition, actual
+malformed-parser and missing-OPA failures, unchanged digest/trust bindings,
+independent nested ownership and fresh-process repetition. Stale always yields
+unknown; complete becomes partial when demoted. Existing warning order and
+reason-code idempotency are checked. No external provider is required by C18.
+Freshness is caller-supplied; no age-policy, persistence or revision authority
+claim is made. The existing full suite additionally exercises real pinned OPA
+when ATTESTARA_TEST_OPA is configured.

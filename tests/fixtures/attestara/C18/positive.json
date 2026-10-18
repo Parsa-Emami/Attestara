@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "cases": [
+    {"id": "fresh-pass", "policy": "pass", "freshness": "fresh"},
+    {"id": "fresh-fail", "policy": "fail", "freshness": "fresh"},
+    {"id": "fresh-unknown", "policy": "unknown", "freshness": "fresh"},
+    {"id": "missing", "policy": "missing", "freshness": "fresh"},
+    {"id": "stale-pass", "policy": "pass", "freshness": "stale"},
+    {"id": "stale-fail", "policy": "fail", "freshness": "stale"},
+    {"id": "stale-missing", "policy": "missing", "freshness": "stale"},
+    {"id": "complete-stale", "policy": "complete", "freshness": "stale"}
+  ]
+}

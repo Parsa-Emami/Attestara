@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "license": "Apache-2.0",
+  "origin": "Repository-authored synthetic C18 fixtures; no scanner executed.",
+  "files": {
+    "README.md": "sha256:27bce21a3fcb460b52a29c54e66e83160784b59119c2ccbee940866a712e903a",
+    "expected.json": "sha256:4e657bc20b7fa7f26d4960970eb8f95b85f0997220e9d0fc52f053b2027ffb98",
+    "grype.empty.json": "sha256:e570aca5670ee257ed69e54a19f18bff25f6546ec96688c7e077b6ca6a201d5f",
+    "negative.json": "sha256:93edd76246c44477ce89f0945b43f81d274222e6fbf2efe767bbb42e539ab4d1",
+    "positive.json": "sha256:aa9ec710286acd5ddf54018fd5a36f592bd5021e69143fabe26485e7783abb5f"
+  }
+}

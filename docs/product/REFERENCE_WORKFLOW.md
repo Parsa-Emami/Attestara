@@ -56,3 +56,12 @@ remain independent. Builder/source assertions stay unverified without issuer
 policy. No new provenance format, authority state, CLI or viewer is added;
 freshness/replay authority remains mandatory in the first stateful workflow,
 including C20. Future C18/C19 decisions/passports can compose these independent assessments.
+
+C18 adds stateless internal decision.Explain over existing v2 evaluation results.
+Caller-classified stale evidence always yields unknown, even with a zero-findings
+C12 report and C14 pass. Existing warnings carry evidence_missing, evidence_stale
+and policy_failed reasons. Missing references stay unknown; raw parser/provider
+failures retain their typed errors. No age threshold or authenticity is inferred.
+The caller owns freshness classification; C19-C21 provide subsequent passport,
+CLI and viewer composition. Stateful freshness/revision authority remains required
+by the first stateful acceptance workflow, including C20.

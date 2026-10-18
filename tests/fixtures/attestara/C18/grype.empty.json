@@ -1,0 +1,12 @@
+{
+  "matches": [],
+  "descriptor": {
+    "name": "grype",
+    "version": "synthetic-fixture-only",
+    "timestamp": "2026-10-17T12:00:00Z",
+    "db": {
+      "status": {"built": "2026-01-01T00:00:00Z", "valid": true},
+      "providers": {"nvd": {"captured": "2026-01-01T00:00:00Z"}}
+    }
+  }
+}

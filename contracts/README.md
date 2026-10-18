@@ -230,3 +230,32 @@ bundle verified. The function does no I/O or authority acceptance. Trust-key
 changes apply on the next call; there is no TOFU/cache. C04/C15 result schemas,
 policy decisions and C05 storage are unchanged. Expiry/revision/replay acceptance
 requires a future stateful workflow.
+
+## C18 internal decision reasons
+
+`decision.Explain(ctx, result, decision.Fresh|decision.Stale)` accepts the existing
+`contracts.Result` v2 and returns a separately owned v2 result. Freshness is an
+independent caller classification, never inferred from reported database validity,
+scanner findings, timestamps or an implicit maximum age. Unsupported freshness or
+invalid results return an empty result and safe `contracts.Error`. V1 reading
+remains available through DecodeResult; Explain deliberately consumes v2 only.
+
+The existing warnings array carries stable reason codes. Empty evidence references
+yield unknown with `evidence_missing`; stale always yields unknown with
+`evidence_stale`, including a prior fail. Fresh policy fail adds `policy_failed`.
+Missing plus stale records both in that order. Existing warnings retain their
+order; generated codes are appended once. Available evidence with an unknown
+policy fact retains unknown without inventing its cause. A complete result
+demoted to unknown becomes partial, preserving the existing validator invariant.
+Failed evaluation envelopes retain their typed error and never acquire a policy
+outcome. Raw parser/provider Go errors must be handled before calling Explain.
+
+Input/result/rule digests, references and authenticity are preserved. Validation
+and independent ownership reuse JSON serialization plus DecodeResult, with the
+existing 100 MiB serialized-result limit on both input and explained output, and
+cooperative context deadline. Typed
+input serialization/parsing is synchronous; callers must not mutate inputs during
+the call. Existing warning contents are preserved, not redacted or authenticated.
+There is no new wire schema, persistence or stateful expiry/revision acceptance.
+Raw C14/C15 evaluators remain unchanged; C19-C21 consume this composition layer
+for passport, CLI and viewer integration.

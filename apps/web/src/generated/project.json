@@ -227,7 +227,7 @@
       "id": "C18",
       "title": "feat(decisions): explain missing stale or failed evidence",
       "stage": "domain",
-      "status": "planned",
+      "status": "verified",
       "acceptance": [
         "Expired evidence cannot become pass merely because a scanner found zero findings."
       ],

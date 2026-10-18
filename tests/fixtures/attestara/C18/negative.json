@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "cases": [
+    {
+      "mutation": "empty-freshness",
+      "code": "invalid_input"
+    },
+    {
+      "mutation": "unsupported-freshness",
+      "code": "invalid_input"
+    },
+    {
+      "mutation": "missing-result",
+      "code": "invalid_input"
+    },
+    {
+      "mutation": "unsupported-result",
+      "code": "unsupported_version"
+    },
+    {
+      "mutation": "v1-result",
+      "code": "unsupported_version"
+    },
+    {
+      "mutation": "bad-decision",
+      "code": "invalid_input"
+    },
+    {
+      "mutation": "missing-references",
+      "code": "invalid_input"
+    },
+    {
+      "mutation": "bad-digest",
+      "code": "invalid_input"
+    },
+    {
+      "mutation": "failed-without-error",
+      "code": "invalid_input"
+    },
+    {
+      "mutation": "cancelled",
+      "code": "cancelled"
+    },
+    {
+      "mutation": "deadline",
+      "code": "deadline_exceeded"
+    },
+    {
+      "mutation": "nil-warnings",
+      "code": "invalid_input"
+    },
+    {
+      "mutation": "invalid-utf8",
+      "code": "invalid_input"
+    },
+    {
+      "mutation": "output-limit",
+      "code": "limit_exceeded"
+    }
+  ]
+}

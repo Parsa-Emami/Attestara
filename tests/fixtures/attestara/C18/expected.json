@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "cases": {
+    "fresh-pass": {"decision": "pass", "status": "unverified", "warnings": []},
+    "fresh-fail": {"decision": "fail", "status": "unverified", "warnings": ["policy_failed"]},
+    "fresh-unknown": {"decision": "unknown", "status": "unverified", "warnings": []},
+    "missing": {"decision": "unknown", "status": "unverified", "warnings": ["evidence_missing"]},
+    "stale-pass": {"decision": "unknown", "status": "unverified", "warnings": ["evidence_stale"]},
+    "stale-fail": {"decision": "unknown", "status": "unverified", "warnings": ["evidence_stale"]},
+    "stale-missing": {"decision": "unknown", "status": "unverified", "warnings": ["evidence_missing", "evidence_stale"]},
+    "complete-stale": {"decision": "unknown", "status": "partial", "warnings": ["evidence_stale"]}
+  }
+}

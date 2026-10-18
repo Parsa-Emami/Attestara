@@ -159,10 +159,12 @@
     },
     {
       "id": "C18",
-      "status": "planned",
-      "evidence": [],
-      "source_identity": null,
-      "notes": ""
+      "status": "verified",
+      "evidence": [
+        "docs/evidence/C18.json"
+      ],
+      "source_identity": "sha256:e9dc166afa959614c991c1bc86d711ff7ab9e18cc9c5aebe6ba11cc9f60426be",
+      "notes": "Owner-approved stateless result-v2 explanation using caller-supplied fresh/stale: missing/stale yield unknown with stable warnings, fresh policy failure remains fail; real C12/C14 composition, actual parser/provider failures, validation limits, independent ownership and fresh-process repeat verified. No automatic expiry policy, stateful authority, API/UI or full-workflow claim."
     },
     {
       "id": "C19",
