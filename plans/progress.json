@@ -240,10 +240,12 @@
     },
     {
       "id": "C27",
-      "status": "planned",
-      "evidence": [],
-      "source_identity": null,
-      "notes": ""
+      "status": "verified",
+      "evidence": [
+        "docs/evidence/C27.json"
+      ],
+      "source_identity": "sha256:7247cf649825085933b6147119969018244c8e39eab71bd04d42c1dd3706c455",
+      "notes": "Owner-approved C27 coverage of enabled single-operator loopback UI/CLI/import/HTTP boundaries: real Chromium hostile-input/no-network/cancellation tests and real forged-header method/path denials, with existing full Go/OPA/storage regressions. Identity/object/provider authorization is unsupported and not passed; private/multi-user profiles stay blocked pending an explicit contract."
     },
     {
       "id": "C28",

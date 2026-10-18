@@ -1,0 +1,134 @@
+{
+  "schema_version": 1,
+  "preview": {
+    "name": "<svg onload=\"window.__c27Injected=true\">.json",
+    "text": "{\"<img src=\\\"/c27-exfil\\\" onerror=\\\"window.__c27Injected=true\\\"><script>window.__c27Injected=true</script>\": \"inert input\"}",
+    "field": "<img src=\"/c27-exfil\" onerror=\"window.__c27Injected=true\"><script>window.__c27Injected=true</script>"
+  },
+  "preview_negative": [
+    {
+      "id": "prototype-key",
+      "text": "{\"nested\":{\"__proto__\":{\"polluted\":true}}}",
+      "error": "Unsafe document key."
+    },
+    {
+      "id": "constructor-key",
+      "text": "{\"nested\":{\"constructor\":{}}}",
+      "error": "Unsafe document key."
+    }
+  ],
+  "passport_negative": [
+    {
+      "id": "empty",
+      "raw": "",
+      "error": "Passport file is empty."
+    },
+    {
+      "id": "malformed",
+      "raw": "{",
+      "error": "Choose a valid JSON document."
+    },
+    {
+      "id": "oversized",
+      "size_bytes": 1048577,
+      "error": "File exceeds the preview limit."
+    },
+    {
+      "id": "traversal-reference",
+      "patch": {
+        "evidence_references": [
+          {
+            "path": "../private.txt",
+            "digest": "sha256:ecdc32b595e2dc30f73744505e78f4f6888b76c3997098f3f1fdffcb7b7d9cd4"
+          }
+        ]
+      },
+      "error": "Choose a valid version 1 Attestara passport."
+    },
+    {
+      "id": "absolute-reference",
+      "patch": {
+        "evidence_references": [
+          {
+            "path": "/private.txt",
+            "digest": "sha256:ecdc32b595e2dc30f73744505e78f4f6888b76c3997098f3f1fdffcb7b7d9cd4"
+          }
+        ]
+      },
+      "error": "Choose a valid version 1 Attestara passport."
+    },
+    {
+      "id": "forged-trust",
+      "patch": {
+        "verification": "trusted"
+      },
+      "error": "Choose a valid version 1 Attestara passport."
+    },
+    {
+      "id": "unknown-owner-field",
+      "patch": {
+        "owner_id": "another-owner"
+      },
+      "error": "Choose a valid version 1 Attestara passport."
+    },
+    {
+      "id": "unsupported-version",
+      "patch": {
+        "schema_version": "2"
+      },
+      "error": "Choose a version 1 Attestara passport."
+    }
+  ],
+  "http_negative": [
+    {
+      "id": "forged-object-read",
+      "method": "GET",
+      "path": "/api/v1/releases/another-owner",
+      "headers": {
+        "Authorization": "Bearer C27_SYNTHETIC_NOT_A_CREDENTIAL",
+        "X-User-ID": "another-owner",
+        "X-Role": "admin"
+      },
+      "status": 503,
+      "error": "engine_not_integrated"
+    },
+    {
+      "id": "forged-object-write",
+      "method": "POST",
+      "path": "/api/v1/releases/another-owner/import",
+      "headers": {
+        "Authorization": "Bearer C27_SYNTHETIC_NOT_A_CREDENTIAL",
+        "X-Owner-ID": "another-owner"
+      },
+      "status": 405,
+      "error": "method_not_allowed"
+    },
+    {
+      "id": "forged-provider-write",
+      "method": "POST",
+      "path": "/api/v1/providers/opa/run",
+      "headers": {
+        "X-Provider-Permission": "*",
+        "X-Forwarded-User": "admin"
+      },
+      "status": 405,
+      "error": "method_not_allowed"
+    },
+    {
+      "id": "health-is-read-only",
+      "method": "POST",
+      "path": "/api/engine/health",
+      "headers": {
+        "X-Role": "admin"
+      },
+      "status": 405,
+      "error": "method_not_allowed"
+    }
+  ],
+  "unsupported_authorization": [
+    "missing/expired/replayed identity",
+    "unrelated owner/object access",
+    "widened provider authorization",
+    "unavailable identity provider"
+  ]
+}

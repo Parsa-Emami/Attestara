@@ -108,3 +108,14 @@ modified referenced bytes reject a bundle even when its manifest signature is
 valid. This proves the composition in tests, not a new accepted-authority state
 or public CLI/browser verification surface. The C20 digest-only CLI and C21
 unverified viewer boundaries continue; C30 must still prove their full workflow.
+
+C27 adds security regression tests for the enabled single-operator loopback
+profile: hostile JSON/passport text stays inert, invalid or cancelled files
+cannot restore prior claims, selected bytes cause no browser requests, and
+forged headers cannot open disabled object/provider APIs or write through health.
+Existing Go CLI/file/provider/storage regressions remain independent proofs.
+Identity expiry/replay, owner/object grants and identity-provider failure are
+unsupported authorization obligations, not passed tests. Private/multi-user
+profiles remain blocked pending an explicit authorization contract; later C32
+network/private-ingress work alone does not provide it. See
+`../security/THREAT_MODEL.md` and `../../tests/release/security-matrix.md`.

@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "license": "Apache-2.0",
+  "origin": "Repository-authored C27 synthetic attacks and unchanged C21 passport bytes; no real identities or credentials.",
+  "files": {
+    "tests/fixtures/attestara/C27/cases.json": "sha256:5d527fba650f053d7344e7a3b0b397fb8503788362e9984f4aa6123a77e21f45",
+    "tests/fixtures/attestara/C27/passport.json": "sha256:711aacb6cc5e0b4dfca1192af11c7c010a5df2a0ecc7a9f70a19eb214cc0c7ef",
+    "tests/fixtures/attestara/C27/README.md": "sha256:fcd5b7cad64c6518bf06a131e40d6e5300f06b2fd4c38e1fcf49483fcfc420f2",
+    "tests/fixtures/attestara/C21/positive.json": "sha256:2b141585ef223d12056d644c22dd936e18867aa64696a0ca27273fbd6d7ac3d0"
+  }
+}

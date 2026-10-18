@@ -1,40 +1,42 @@
 {
   "date": "2026-10-18",
-  "task": "C26",
-  "base_commit": "f89976e976bdd79ce2a209cf914a697559570c87",
-  "worktree_committed": true,
-  "final_source_identity": "sha256:7f6e749cc76d212d536d97a7e5adeed615573cfb489ba8549170a8b0288e9cf6",
-  "source_identity_scope": "548 tracked/nonignored source, test, config, lock and documentation files; excludes docs/evidence/, plans/progress.json, plans/requirements.json, plans/project-state.json, docs/agents/SESSION_HANDOFF.json, apps/web/src/generated/project.json and SHA256SUMS.txt. Ignored dependency/build/cache files excluded by git.",
+  "task": "C27",
+  "base_commit": "88c1917aea11fac6f0e7226cd2eba3e399c1c2a6",
+  "worktree_committed": false,
+  "final_source_identity": "sha256:7247cf649825085933b6147119969018244c8e39eab71bd04d42c1dd3706c455",
+  "source_identity_scope": "555 tracked/nonignored source, test, config, lock and documentation files; excludes docs/evidence/, plans/progress.json, plans/requirements.json, plans/project-state.json, docs/agents/SESSION_HANDOFF.json, apps/web/src/generated/project.json and SHA256SUMS.txt. Ignored dependency/build/cache files excluded by git.",
   "changed_paths": [
     "apps/web/src/generated/project.json",
     "docs/ROADMAP_FA.md",
     "docs/agents/SESSION_HANDOFF.json",
-    "docs/engineering/ENGINE_TESTS.md",
-    "docs/evidence/C26.json",
-    "docs/evidence/trust-template.md",
+    "docs/evidence/C27.json",
     "docs/product/REFERENCE_WORKFLOW.md",
-    "plans/commits/C26.md",
+    "docs/security/THREAT_MODEL.md",
+    "plans/commits/C27.md",
     "plans/progress.json",
     "plans/project-state.json",
     "plans/requirements.json",
     "plans/roadmap.json",
-    "scripts/verify-engine-tests.mjs",
-    "tests/fixtures/attestara/C26/README.md",
-    "tests/fixtures/attestara/C26/cases.json",
-    "tests/fixtures/attestara/C26/provenance.json",
-    "tests/trust_matrix_test.go"
+    "tests/browser/security.spec.ts",
+    "tests/fixtures/attestara/C27/README.md",
+    "tests/fixtures/attestara/C27/cases.json",
+    "tests/fixtures/attestara/C27/passport.json",
+    "tests/fixtures/attestara/C27/provenance.json",
+    "tests/release/security-matrix.md"
   ],
-  "validation_results": "docs/evidence/C26.json",
+  "validation_results": "docs/evidence/C27.json",
   "protected_paths_changed": [],
   "current_core_ready": false,
   "blockers": [
-    "C30 full browser/CLI workflow, durable revision/freshness/replay authority, clean-host restart and restore remain unproved."
+    "Private/multi-user/remote-sensitive profiles unsupported pending explicit identity/object/provider authorization contract and genuine tests.",
+    "C28 target/overload resources, C29 readiness and C30 full clean-host workflow/restart/restore remain unproved."
   ],
   "deferred_obligations": [
-    "C26 is Go integration tests and evidence only; CLI/viewer input behavior remains unchanged.",
-    "No remote CI, push or publication."
+    "Identity/object/provider authorization cases are unsupported/not passed; HTTP denials are method/path evidence only.",
+    "Standalone browser-spec typecheck lacks Node declarations; app typecheck and actual browser execution passed.",
+    "No remote CI, commit, push or publication."
   ],
-  "next_task": "C27",
+  "next_task": "C28",
   "next_command": "npm run plan -- next",
-  "continuation": "C26 eleven-case bundle trust matrix, signed inert archive and fixture provenance are verified locally with full Go/OPA and web regressions. Continue C27 enabled-surface security tests; full workflow remains C30."
+  "continuation": "Owner-approved enabled-local C27 tests and threat model verified with real Chromium/HTTP and full Go/pinned OPA regressions. Continue C28 measured target/overload workloads; C30 usability and private authorization remain unproved."
 }
