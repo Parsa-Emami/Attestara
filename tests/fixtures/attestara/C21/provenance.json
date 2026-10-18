@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "license": "Apache-2.0",
+  "provenance": "Repository-authored C21 viewer cases; positive.json is an exact copy of the real C20 expected C19 passport.",
+  "files": {
+    "README.md": "sha256:d1053fb6fcb04ea0d0b98f91adc1b6d9832e84688ba727882287ad227064a1e1",
+    "positive.json": "sha256:2b141585ef223d12056d644c22dd936e18867aa64696a0ca27273fbd6d7ac3d0",
+    "negative.json": "sha256:b04308bfeebba423f0b4e0ef5b6c219b13e7fb4050f368e95ad866cbffdccea2",
+    "expected.json": "sha256:51e2a702b1bde003c7488c19549a8c51dc56b1394f2f7a05bc8f972d7069d206"
+  }
+}

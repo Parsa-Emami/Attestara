@@ -265,7 +265,7 @@
       "id": "C21",
       "title": "feat(viewer): render local passport and evidence details",
       "stage": "domain",
-      "status": "planned",
+      "status": "verified",
       "acceptance": [
         "Selected local file is not uploaded; unverified claims are visible."
       ],

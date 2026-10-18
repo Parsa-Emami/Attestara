@@ -1,6 +1,6 @@
 # Continue Attestara
 
-Current: web workspace, unified local Go process health, v1 typed release-evidence validation library, and internal recoverable local file repository; full domain workflow pending.
+Current: web workspace with local C19 passport viewer, unified local Go process health, v1 typed release-evidence validation library, and internal recoverable local file repository; full domain workflow pending.
 
 Use the pinned Linux x86_64 Node/npm/Go prerequisites in docs/engineering/CLONE_TO_RUN.md.
 

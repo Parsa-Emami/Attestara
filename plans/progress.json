@@ -186,10 +186,12 @@
     },
     {
       "id": "C21",
-      "status": "planned",
-      "evidence": [],
-      "source_identity": null,
-      "notes": ""
+      "status": "verified",
+      "evidence": [
+        "docs/evidence/C21.json"
+      ],
+      "source_identity": "sha256:00fca7843f15101d05bd8ab9f2401c26ffdafeb7174bc1285cc09a7e76b925bf",
+      "notes": "Browser-local C19 passport viewer renders typed version-1 policy and evidence claims with explicit unverified assessment. Native file selection, no upload, invalid/oversized input, cancellation, inert HTML-like text, unavailable engine, keyboard use and 360px layout passed browser tests. No passport digest, referenced-byte, signer or revision authority verification. Font updated to prefer local Noto Sans with native system fallback; npm check and 10 browser tests passed after the change."
     },
     {
       "id": "C22",

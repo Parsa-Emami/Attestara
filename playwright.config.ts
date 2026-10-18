@@ -2,7 +2,8 @@ import { defineConfig } from '@playwright/test';
 const port = process.env.WEB_TEST_PORT ?? '4173';
 const baseURL = `http://127.0.0.1:${port}`;
 export default defineConfig({
-  testDir: './tests/browser',
+  testDir: '.',
+  testMatch: ['tests/browser/**/*.spec.ts', 'apps/web/tests/**/*.spec.ts'],
   timeout: 30000,
   use: {
     baseURL, browserName: 'chromium', headless: true,

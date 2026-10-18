@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "license": "Apache-2.0",
+  "malformed_json": "{",
+  "unsupported_version": {"schema_version": "2"},
+  "html_sentinel": "<img src=x onerror=\"window.__attestaraInjected=true\">",
+  "cases": [
+    "empty file",
+    "malformed JSON",
+    "unsupported passport version",
+    "duplicate evidence reference",
+    "unknown policy claim remains unverified",
+    "over 1 MiB preview limit",
+    "cancelled local read",
+    "unavailable engine",
+    "inert HTML-like warning",
+    "no upload",
+    "360px keyboard and layout"
+  ]
+}

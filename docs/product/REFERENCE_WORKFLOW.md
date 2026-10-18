@@ -1,6 +1,6 @@
 # Attestara: reference workflow
 
-Execution status: unimplemented. This document and `tests/scenarios/clone-to-value.json` define C01 acceptance only; no complete engine, provider, verifier, viewer or durable restore has passed this workflow. The current web application is a bounded JSON structure preview.
+Execution status: unimplemented. This document and `tests/scenarios/clone-to-value.json` define C01 acceptance only; no complete engine, provider, verifier/viewer parity or durable restore has passed this workflow. The web application has a bounded JSON structure preview and a browser-local C19 passport viewer.
 
 ## Synthetic release and ownership
 
@@ -76,3 +76,10 @@ non-pass exit code. The commands do not store accepted revisions or prevent repl
 full workflow's subject-byte verification, signer trust and durable
 revision/expiry/replay behavior remain unimplemented and must be specified and
 verified before C30 can certify clone-to-value.
+
+C21 adds a browser-local viewer for version-1 C19 passports. It renders policy,
+verification and evidence-reference claims as inert text; a selected file stays
+in tab memory, with explicit empty, invalid, cancelled and engine-unavailable
+states. The viewer does not check the passport digest or referenced files and
+does not establish signer trust. C22-C26 retain their separate diff, export,
+scanner, privacy and trust obligations.

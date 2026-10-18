@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "release_id": "attestara-c14-release",
+  "viewer_assessment": "Viewer assessment: Unverified",
+  "policy_decision": "Claimed policy decision: pass",
+  "evidence_path": "evidence.json",
+  "verification_limit": "Passport digest, referenced file bytes and signer trust are not checked by the viewer."
+}

@@ -1,0 +1,144 @@
+{
+  "planning_template": false,
+  "commit_id": "C21",
+  "date": "2026-10-18",
+  "base_commit": "723fdcbb050a0fe169dd6c92c431a7cda30a3e45",
+  "worktree_committed": false,
+  "approved_scope": "Browser-local viewer for version-1 C19 passports and evidence references, with explicit unverified claims, bounded inert file reads, cancellation, accessible states and no upload. No database, API, bundle-byte validation, digest verification, signer trust or revision authority.",
+  "source_identity": "sha256:00fca7843f15101d05bd8ab9f2401c26ffdafeb7174bc1285cc09a7e76b925bf",
+  "source_identity_method": "SHA-256 over sorted relative-path + NUL + raw per-file SHA-256 digest records; reproduced the C20 identity at HEAD before measuring C21.",
+  "source_identity_scope": "523 tracked/nonignored source, tests, configs, locks and documentation files; excludes docs/evidence/, plans/progress.json, plans/requirements.json, plans/project-state.json, docs/agents/SESSION_HANDOFF.json, apps/web/src/generated/project.json and SHA256SUMS.txt. Ignored dependency/build/cache outputs excluded by git.",
+  "changed_paths": [
+    "START_HERE.md",
+    "apps/web/src/generated/project.json",
+    "apps/web/src/main.tsx",
+    "apps/web/src/pages/Passport.tsx",
+    "apps/web/src/styles.css",
+    "apps/web/tests/passport.spec.ts",
+    "docs/ROADMAP_FA.md",
+    "docs/agents/SESSION_HANDOFF.json",
+    "docs/engineering/CLONE_TO_RUN.md",
+    "docs/evidence/C21.json",
+    "docs/product/REFERENCE_WORKFLOW.md",
+    "plans/progress.json",
+    "plans/project-state.json",
+    "plans/requirements.json",
+    "playwright.config.ts",
+    "tests/fixtures/attestara/C21/README.md",
+    "tests/fixtures/attestara/C21/expected.json",
+    "tests/fixtures/attestara/C21/negative.json",
+    "tests/fixtures/attestara/C21/positive.json",
+    "tests/fixtures/attestara/C21/provenance.json"
+  ],
+  "tools": {
+    "node": "v24.19.0",
+    "npm": "11.9.0 via npm exec --package=npm@11.9.0",
+    "typescript": "7.0.2",
+    "vite": "8.3.4",
+    "playwright": "1.64.1",
+    "chromium": "156.0.8078.4",
+    "go": "go1.27.2 linux/amd64 at /home/amirreza/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.2.linux-amd64/bin/go",
+    "opa": "1.21.2 at /tmp/attestara-c15-provider/opa; used only by existing Go provider regressions"
+  },
+  "environment": {
+    "GOTOOLCHAIN": "local",
+    "GOSUMDB": "sum.golang.org",
+    "GOPROXY": "https://proxy.golang.org|direct",
+    "ATTESTARA_TEST_OPA": "/tmp/attestara-c15-provider/opa",
+    "WEB_TEST_PORT": "4175; checked free before browser run"
+  },
+  "hardware": {
+    "platform": "Linux 7.0.0-38-generic x86_64",
+    "logical_cpus": 16,
+    "mem_total": "32093688 kB",
+    "free_disk_bytes": 126753804288,
+    "scope": "Host snapshot, not a C28 workload measurement"
+  },
+  "fixtures": {
+    "license": "Apache-2.0",
+    "provenance": "Repository-authored C21 cases; positive.json exactly copies the actual C20 expected C19 passport. A delayed FileReader is simulated only for cancellation timing; native browser file reads cover the other cases.",
+    "sha256": {
+      "C21/README.md": "sha256:d1053fb6fcb04ea0d0b98f91adc1b6d9832e84688ba727882287ad227064a1e1",
+      "C21/expected.json": "sha256:51e2a702b1bde003c7488c19549a8c51dc56b1394f2f7a05bc8f972d7069d206",
+      "C21/negative.json": "sha256:b04308bfeebba423f0b4e0ef5b6c219b13e7fb4050f368e95ad866cbffdccea2",
+      "C21/positive.json": "sha256:2b141585ef223d12056d644c22dd936e18867aa64696a0ca27273fbd6d7ac3d0",
+      "C21/provenance.json": "sha256:6882d9dd7ae2aa4ef06350306a6516f85ee6d53062064d4e2bcf26e8239a18c0"
+    }
+  },
+  "commands": [
+    {
+      "command": "WEB_TEST_PORT=4175 PATH=/home/amirreza/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.2.linux-amd64/bin:$PATH GOTOOLCHAIN=local GOSUMDB=sum.golang.org GOPROXY='https://proxy.golang.org|direct' npm exec --yes --package=npm@11.9.0 -- npm run test:browser",
+      "exit_code": 0,
+      "output": "10 passed: 6 C21 browser tests and 4 existing workspace regressions, including local-only file selection, unverified claims, malformed/unsupported/oversized/duplicate inputs, cancellation, inert HTML-like text, unavailable engine, keyboard access and 360px layout."
+    },
+    {
+      "command": "PATH=/home/amirreza/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.2.linux-amd64/bin:$PATH GOTOOLCHAIN=local GOSUMDB=sum.golang.org GOPROXY='https://proxy.golang.org|direct' ATTESTARA_TEST_OPA=/tmp/attestara-c15-provider/opa go test -count=1 ./...",
+      "exit_code": 0,
+      "output": "All tested Go packages passed, including existing storage, CLI, contracts and provider regressions; packages without tests were reported separately."
+    },
+    {
+      "command": "PATH=/home/amirreza/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.2.linux-amd64/bin:$PATH GOTOOLCHAIN=local GOSUMDB=sum.golang.org GOPROXY='https://proxy.golang.org|direct' ATTESTARA_TEST_OPA=/tmp/attestara-c15-provider/opa go vet ./...",
+      "exit_code": 0,
+      "output": "No diagnostics."
+    },
+    {
+      "command": "PATH=/home/amirreza/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.2.linux-amd64/bin:$PATH GOTOOLCHAIN=local GOSUMDB=sum.golang.org GOPROXY='https://proxy.golang.org|direct' ATTESTARA_TEST_OPA=/tmp/attestara-c15-provider/opa go build ./...",
+      "exit_code": 0,
+      "output": "All Go packages built."
+    },
+    {
+      "command": "PATH=/home/amirreza/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.2.linux-amd64/bin:$PATH GOTOOLCHAIN=local GOSUMDB=sum.golang.org GOPROXY='https://proxy.golang.org|direct' npm exec --yes --package=npm@11.9.0 -- npm run build",
+      "exit_code": 0,
+      "output": "TypeScript typecheck passed; Vite 8.3.4 production build passed with 20 modules transformed."
+    },
+    {
+      "command": "PATH=/home/amirreza/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.2.linux-amd64/bin:$PATH GOTOOLCHAIN=local GOSUMDB=sum.golang.org GOPROXY='https://proxy.golang.org|direct' ATTESTARA_TEST_OPA=/tmp/attestara-c15-provider/opa npm exec --yes --package=npm@11.9.0 -- npm run check",
+      "exit_code": 0,
+      "output": "Validated 40 tasks; TypeScript typecheck passed; Vite production build passed (20 modules); 28 Node tests passed, 0 failed, 0 skipped."
+    },
+    {
+      "command": "npm exec --yes --package=npm@11.9.0 -- npm run validate:plan",
+      "exit_code": 0,
+      "output": "Validated 40 detailed tasks, resources, references and progress."
+    },
+    {
+      "command": "python3 scripts/validate_repo.py",
+      "exit_code": 0,
+      "output": "VALIDATION PASSED; 216 JSON files and repository contract invariants checked."
+    },
+    {
+      "command": "git diff --check",
+      "exit_code": 0,
+      "output": "No whitespace errors."
+    },
+    {
+      "command": "PATH=/home/amirreza/go/pkg/mod/golang.org/toolchain@v0.1.0-go1.27.2.linux-amd64/bin:/home/amirreza/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.2.linux-amd64/bin:$PATH GOTOOLCHAIN=local GOSUMDB=sum.golang.org GOPROXY='https://proxy.golang.org|direct' ATTESTARA_TEST_OPA=/tmp/attestara-c15-provider/opa npm exec --yes --package=npm@11.9.0 -- npm run check",
+      "exit_code": 0,
+      "output": "Roadmap validation passed; TypeScript typecheck and Vite production build passed; all 28 Node tests passed."
+    },
+    {
+      "command": "WEB_TEST_PORT=4175 npm exec --yes --package=npm@11.9.0 -- npm run test:browser",
+      "exit_code": 0,
+      "output": "Playwright passed: 10 tests, including C21 and existing workspace browser tests."
+    }
+  ],
+  "results": {
+    "acceptance": "The actual browser selects a C20-generated C19 passport, displays release, claimed policy and evidence details, and reports viewer assessment as unverified. The C21 test observed no non-GET request after selection; source uses FileReader and contains no upload path.",
+    "negative_cases": "Empty, malformed, unsupported, duplicate-reference and over-limit inputs produce explicit errors. Cancel reading is keyboard-operable and prevents a delayed result from appearing. HTML-like warning text remains inert. Engine 503 is visibly unavailable while local viewing remains usable. The page stays within 360px.",
+    "security": "Bounded parser rejects hostile JSON keys, excessive size and complexity; React text rendering does not execute selected source. No API, database, protected file or new dependency changed.",
+    "regression": "Existing workspace browser tests passed together with C21; complete Go suite, vet and build passed.",
+    "quality": "Pinned npm check passed: roadmap, TypeScript, production build and all 28 Node tests. The repository has no separate lint script; go vet and build passed. After the Noto Sans-first system font stack change, npm check and all 10 browser tests passed; no standalone lint script exists.",
+    "typography": "Body, headings and UI controls retain one shared sans-serif family. Noto Sans is preferred when available, with native UI/system sans-serif fallback; no font asset or network request was added."
+  },
+  "development_attempts": [
+    "Before the page existed, four focused C21 browser tests failed as expected.",
+    "A first npm run check with host GOSUMDB=off failed two nested Go subprocess tests; the pinned Go environment passed.",
+    "After marking progress verified but before writing this evidence file, the Node planning test reported missing docs/evidence/C21.json; final check followed evidence creation."
+  ],
+  "limitations": [
+    "The viewer does not check the C19 passport digest, referenced file bytes, signer identity/trust or durable revision/expiry/replay authority.",
+    "The unavailable engine response and delayed cancellation timing were simulated in browser tests; no provider outage or slow physical disk was exercised.",
+    "No remote CI, clean-host C30 workflow, commit, push or publication was performed."
+  ],
+  "passed": true
+}

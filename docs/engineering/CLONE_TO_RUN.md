@@ -11,7 +11,7 @@ npm run setup
 npm start
 ```
 
-Open http://127.0.0.1:4173. Setup installs the committed web lockfile with lifecycle scripts disabled, stops on errors, builds the workspace and prepares the real Go executable. The unified launcher displays actual engine process health/version. No database, cloud account or domain is required. It previews JSON structure locally and browses the roadmap; it does not implement the full domain product.
+Open http://127.0.0.1:4173. Setup installs the committed web lockfile with lifecycle scripts disabled, stops on errors, builds the workspace and prepares the real Go executable. The unified launcher displays actual engine process health/version. No database, cloud account or domain is required. The workspace previews JSON structure, browses the roadmap and opens a local C19 passport at `#passport`. The viewer renders unverified claims from a browser-selected file without uploading it; it does not check the passport digest, referenced bytes or signer trust. The full domain product remains pending.
 
 `npm run setup -- --check` checks the pinned npm version and shows preparation without changing files. Setup also refuses an npm version other than `package.json`'s `packageManager` pin. `--skip-install` builds using already installed dependencies. `npm run doctor` reports actual web/core state. `npm run release:check` deliberately exits 2 until full evidence is ready. Ctrl+C stops the web server and Go child. Ports can be selected with `npm start -- --port 4301` when running multiple projects.
 
