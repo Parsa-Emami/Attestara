@@ -100,3 +100,11 @@ or scanner report bytes are not projected into the passport. Existing passports
 passed to `verify` or `export` are not rewritten. This bounded redaction cannot
 identify arbitrary unmarked secret values in release identifiers; operators
 must keep credentials out of source metadata and raw reports.
+
+C26 composes the existing real ZIP/file reader and Ed25519 assessment in a
+fixture-driven Go integration matrix. Unsigned, signed but untrusted, tampered
+and complete trusted-manifest cases have distinct raw outcomes. Missing or
+modified referenced bytes reject a bundle even when its manifest signature is
+valid. This proves the composition in tests, not a new accepted-authority state
+or public CLI/browser verification surface. The C20 digest-only CLI and C21
+unverified viewer boundaries continue; C30 must still prove their full workflow.

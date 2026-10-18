@@ -1,6 +1,6 @@
 # Engine verification (C06)
 
-C06 verifies the implemented C03 process, C04 typed byte validators and C05 local file repository. The owner approved this N06 boundary. Cryptographic validity and signer trust remain F10/C16; full tampered/unsigned/untrusted/trusted bundle outcomes remain F20/C26. Revision expiry and authority replacement remain unimplemented. Storage operation replay is not revision authority.
+C06 verifies the implemented C03 process, C04 typed byte validators and C05 local file repository. The owner approved this N06 boundary. Cryptographic validity and signer trust remain F10/C16; C26 now composes real ZIP/file validation and signature assessment in integration tests; this is not CLI/viewer integration. Revision expiry and authority replacement remain unimplemented. Storage operation replay is not revision authority.
 
 ## Toolchain and local commands
 
@@ -122,3 +122,20 @@ malformed inputs, altered and unsupported passports, source-like text that must
 remain inert, and separate policy/input/engine exit codes. It does not test
 bundle-byte integrity, signer trust or persistent revision/expiry/replay
 authority. Those obligations remain open for the full C30 workflow.
+
+## C26 bundle trust matrix
+
+Three mandatory tests cover eleven fixture-driven raw archive/signature outcomes,
+a signed-archive inert source sentinel and SHA-256 fixture provenance. Run
+`go test -count=1 -v ./tests -run '^TestC26'`. Rebuilt ZIP CRCs ensure modified
+subject/evidence/policy bytes fail manifest digests; missing evidence fails even
+with a valid trusted manifest signature. Exact manifest-byte tampering invalidates
+the signature. Unsigned and cryptographically valid untrusted cases remain
+distinct. Complete file integrity plus configured signer/key and valid signature
+is asserted only in the test; the input contract stays unverified.
+
+Full-suite C05/C14 SIGKILL/reopen, replay/lost-ACK, injected ENOSPC and quota tests
+remain required recovery regressions. No writer or revision authority is added.
+No external provider is needed for C26; optional real OPA remains a C15 regression.
+See docs/evidence/trust-template.md for recording requirements. CLI/browser
+integration, freshness/replay authority and full clone-to-value remain unproved.

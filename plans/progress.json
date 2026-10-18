@@ -231,10 +231,12 @@
     },
     {
       "id": "C26",
-      "status": "planned",
-      "evidence": [],
-      "source_identity": null,
-      "notes": ""
+      "status": "verified",
+      "evidence": [
+        "docs/evidence/C26.json"
+      ],
+      "source_identity": "sha256:7f6e749cc76d212d536d97a7e5adeed615573cfb489ba8549170a8b0288e9cf6",
+      "notes": "Owner-approved tests/evidence-only composition of real C09 ZIP/file validation and C16 Ed25519 assessment: eleven distinct raw outcomes, missing/modified-file rejection despite valid signature, inert source and pinned synthetic fixtures. Full Go/OPA and web checks passed locally. No public API/CLI/viewer integration, durable acceptance, freshness or replay authority."
     },
     {
       "id": "C27",

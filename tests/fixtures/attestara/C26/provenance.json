@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "license": "Apache-2.0",
+  "origin": "Repository-authored synthetic C26 scenarios; unchanged C08 files and independently authored C16 Ed25519 signature.",
+  "sha256": {
+    "C26/cases.json": "sha256:83853364bee4ff5d291622bed4d75a82afbc0a72615fc98224b6b8762ab128e4",
+    "C08/positive.json": "sha256:b4be01339816463cd2be73d4aaf1136fdba7c629dc90dba6daf2c62792c1fdc0",
+    "C08/subject.txt": "sha256:932b3d53fd10fa5bf895eb4fffecc08ecc73f193165eb3a5ff7c1502138881d9",
+    "C08/evidence.txt": "sha256:09c28470bdbce4baaa27d223d41a584823b06a183bcf5dbe226fccf42d7b55bf",
+    "C08/policy.txt": "sha256:f5ec11ee33d80cc73968513cd2baec7c5ca347dd78369bd3ed0c29e3d0bb288f",
+    "C16/positive.json": "sha256:cb20f2278f57dca8e050f039e42a8d88db394c647480a7d6c853ebef3e4ef059"
+  }
+}

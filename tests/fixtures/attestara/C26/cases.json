@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "cases": [
+    {
+      "id": "trusted",
+      "mutation": "none",
+      "cryptographic_valid": true,
+      "signer_trusted": true,
+      "bundle_trusted": true
+    },
+    {
+      "id": "unsigned",
+      "mutation": "unsigned",
+      "cryptographic_valid": false,
+      "signer_trusted": false,
+      "bundle_trusted": false
+    },
+    {
+      "id": "signed-untrusted",
+      "mutation": "untrusted",
+      "cryptographic_valid": true,
+      "signer_trusted": false,
+      "bundle_trusted": false
+    },
+    {
+      "id": "wrong-policy-key",
+      "mutation": "wrong-policy-key",
+      "cryptographic_valid": true,
+      "signer_trusted": false,
+      "bundle_trusted": false
+    },
+    {
+      "id": "forged-signature",
+      "mutation": "forged-signature",
+      "cryptographic_valid": false,
+      "signer_trusted": true,
+      "bundle_trusted": false
+    },
+    {
+      "id": "tampered-manifest",
+      "mutation": "manifest-whitespace",
+      "cryptographic_valid": false,
+      "signer_trusted": true,
+      "bundle_trusted": false
+    },
+    {
+      "id": "modified-subject",
+      "mutation": "modified-subject",
+      "archive_code": "invalid_input",
+      "archive_field": "files.digest",
+      "cryptographic_valid": true,
+      "signer_trusted": true,
+      "bundle_trusted": false
+    },
+    {
+      "id": "modified-evidence",
+      "mutation": "modified-evidence",
+      "archive_code": "invalid_input",
+      "archive_field": "files.digest",
+      "cryptographic_valid": true,
+      "signer_trusted": true,
+      "bundle_trusted": false
+    },
+    {
+      "id": "modified-policy",
+      "mutation": "modified-policy",
+      "archive_code": "invalid_input",
+      "archive_field": "files.digest",
+      "cryptographic_valid": true,
+      "signer_trusted": true,
+      "bundle_trusted": false
+    },
+    {
+      "id": "missing-evidence",
+      "mutation": "missing-evidence",
+      "archive_code": "input_unavailable",
+      "archive_field": "files.path",
+      "cryptographic_valid": true,
+      "signer_trusted": true,
+      "bundle_trusted": false
+    },
+    {
+      "id": "malformed-signature",
+      "mutation": "malformed-signature",
+      "signature_code": "invalid_input",
+      "cryptographic_valid": false,
+      "signer_trusted": false,
+      "bundle_trusted": false
+    }
+  ]
+}

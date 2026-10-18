@@ -325,7 +325,7 @@
       "id": "C26",
       "title": "test(trust): exercise forged and incomplete release evidence",
       "stage": "domain",
-      "status": "planned",
+      "status": "verified",
       "acceptance": [
         "Tampered, unsigned, untrusted and trusted bundles produce distinct expected outcomes."
       ],

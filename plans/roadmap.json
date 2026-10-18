@@ -2521,7 +2521,7 @@
         "Inspect the actual implementation, source/locks and verified dependencies for C26; preserve accepted existing behavior.",
         "Define the versioned positive and negative release-evidence fixtures and expected error/result semantics under tests/fixtures/attestara/C26/.",
         "Implement: Tampered, unsigned, untrusted and trusted bundles produce distinct expected outcomes.",
-        "Change the listed exact targets and wire the actual typed outcome into the supported browser/engine workflow. Keep domain facts, validation, storage/provider adapters and UI separate.",
+        "Owner-approved test/evidence scope: compose existing C09 ReadArchive and C16 VerifySignature in real Go integration tests using unchanged C08/C16 fixtures. No public API, CLI, UI, new production trust type or durable acceptance state; full browser workflow remains C30. Rerun existing C05/C14 writer, replay/lost-ACK, ENOSPC and quota regressions.",
         "Add regression/integration coverage for every acceptance and negative case; real storage/provider/security boundaries cannot be verified only with mocks.",
         "Run the labeled verification commands; record exact source, fixture license/hash, tool/provider versions, command exits and observed results in docs/evidence/C26.json. Update progress only when the whole task is genuinely verified."
       ],
