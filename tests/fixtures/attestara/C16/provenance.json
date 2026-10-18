@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "license": "Apache-2.0",
+  "origin": "Repository-authored synthetic data; exact C08/positive.json payload reused without copying. Public fixture-only seed bytes 0..31.",
+  "payload_sha256": "sha256:b4be01339816463cd2be73d4aaf1136fdba7c629dc90dba6daf2c62792c1fdc0",
+  "files": {
+    "README.md": "sha256:db6a64252e395c2c67ef3d08b5c35a4281a1995bd0d56ea8614a779a68d78b8d",
+    "expected.json": "sha256:9178b47cf0cd99170dc1b83892fe6c9d09c00b643a5edc53a1fed2d7d987692b",
+    "negative.json": "sha256:3569977df94e5068af37119e31bc61aa0636c6086d49aabc572f8b49d68ace85",
+    "positive.json": "sha256:cb20f2278f57dca8e050f039e42a8d88db394c647480a7d6c853ebef3e4ef059"
+  }
+}

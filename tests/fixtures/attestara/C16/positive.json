@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "signer_id": "synthetic-c16-maintainer",
+  "payload_fixture": "C08/positive.json",
+  "payload_sha256": "sha256:b4be01339816463cd2be73d4aaf1136fdba7c629dc90dba6daf2c62792c1fdc0",
+  "public_key_hex": "03a107bff3ce10be1d70dd18e74bc09967e4d6309ba50d5f1ddc8664125531b8",
+  "signature_hex": "ae0122122f7cd3e2161db6db68cf7d8f8c1983bf701fc3d26efc61092fdb369d1d9d2344f3d4e3bf271e3853885657ea3dd0e21916638c4e5c2d5d94f7d5470d"
+}

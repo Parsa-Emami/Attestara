@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "cases": [
+    {
+      "id": "trusted",
+      "mutation": "none",
+      "cryptographic_valid": true,
+      "signer_trusted": true,
+      "trusted": true
+    },
+    {
+      "id": "valid-untrusted",
+      "mutation": "empty-policy",
+      "cryptographic_valid": true,
+      "signer_trusted": false,
+      "trusted": false
+    },
+    {
+      "id": "wrong-identity",
+      "mutation": "wrong-identity",
+      "cryptographic_valid": true,
+      "signer_trusted": false,
+      "trusted": false
+    },
+    {
+      "id": "wrong-policy-key",
+      "mutation": "wrong-policy-key",
+      "cryptographic_valid": true,
+      "signer_trusted": false,
+      "trusted": false
+    },
+    {
+      "id": "modified-byte",
+      "mutation": "modified-byte",
+      "cryptographic_valid": false,
+      "signer_trusted": true,
+      "trusted": false
+    },
+    {
+      "id": "invalid-signature",
+      "mutation": "invalid-signature",
+      "cryptographic_valid": false,
+      "signer_trusted": true,
+      "trusted": false
+    },
+    {
+      "id": "wrong-key",
+      "mutation": "wrong-key",
+      "cryptographic_valid": false,
+      "signer_trusted": false,
+      "trusted": false
+    },
+    {
+      "id": "unsigned",
+      "mutation": "unsigned",
+      "cryptographic_valid": false,
+      "signer_trusted": false,
+      "trusted": false
+    }
+  ]
+}

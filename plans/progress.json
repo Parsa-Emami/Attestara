@@ -141,10 +141,12 @@
     },
     {
       "id": "C16",
-      "status": "planned",
-      "evidence": [],
-      "source_identity": null,
-      "notes": ""
+      "status": "verified",
+      "evidence": [
+        "docs/evidence/C16.json"
+      ],
+      "source_identity": "sha256:b6874d611a3c37169848d36fdf34af4ffa6b8b3b1923f88761c28dfac648f656",
+      "notes": "Owner-approved stateless internal Go Ed25519 signature assessment verified: exact C08 manifest bytes, separate cryptographic validity and configured signer/key membership, Trusted() conjunction, real C08 missing/modified-file composition, typed hostile/cancellation cases, input immutability and inert bytes. No CLI/UI, persistence, expiry/revision ordering or replay authority claim."
     },
     {
       "id": "C17",

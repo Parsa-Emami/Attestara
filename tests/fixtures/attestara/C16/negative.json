@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "cases": [
+    {
+      "mutation": "short-key",
+      "code": "invalid_input"
+    },
+    {
+      "mutation": "long-key",
+      "code": "invalid_input"
+    },
+    {
+      "mutation": "short-signature",
+      "code": "invalid_input"
+    },
+    {
+      "mutation": "long-signature",
+      "code": "invalid_input"
+    },
+    {
+      "mutation": "bad-policy-key",
+      "code": "invalid_input"
+    },
+    {
+      "mutation": "empty-signer",
+      "code": "invalid_input"
+    },
+    {
+      "mutation": "invalid-signer-utf8",
+      "code": "invalid_input"
+    },
+    {
+      "mutation": "oversized-signer",
+      "code": "invalid_input"
+    },
+    {
+      "mutation": "missing-manifest",
+      "code": "invalid_json"
+    },
+    {
+      "mutation": "unknown-field",
+      "code": "invalid_input"
+    },
+    {
+      "mutation": "duplicate-field",
+      "code": "invalid_json"
+    },
+    {
+      "mutation": "oversized-manifest",
+      "code": "limit_exceeded"
+    },
+    {
+      "mutation": "cancelled",
+      "code": "cancelled"
+    },
+    {
+      "mutation": "deadline",
+      "code": "deadline_exceeded"
+    }
+  ]
+}

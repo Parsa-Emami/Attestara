@@ -214,3 +214,19 @@ is compatibility checking, not a sandbox. No provider is installed automatically
 bytes, shell fragments and uploaded source are never executed. The HTTP API and
 browser domain workflow remain future work. CLI flags follow the
 [official OPA reference](https://www.openpolicyagent.org/docs/cli#eval).
+
+## C16 internal signature assessment
+
+`verify.VerifySignature(ctx, manifest, signerID, publicKey, signature, policy)`
+validates the existing C04/C08 v1 manifest, then verifies a detached Ed25519
+signature over its exact bytes. No canonicalization or new wire format is added.
+`CryptographicValid` and `SignerTrusted` are independent: the latter means exact
+configured identity/key membership, not an authenticated signature. Use
+`Trusted()` to require both. An absent signature returns an unsigned assessment;
+malformed signed inputs return an empty assessment and safe `contracts.Error`.
+The caller supplies policy independently, must not mutate input slices/maps
+during the call, and must run C08 real-file validation before considering the
+bundle verified. The function does no I/O or authority acceptance. Trust-key
+changes apply on the next call; there is no TOFU/cache. C04/C15 result schemas,
+policy decisions and C05 storage are unchanged. Expiry/revision/replay acceptance
+requires a future stateful workflow.

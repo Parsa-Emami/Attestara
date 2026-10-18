@@ -1470,14 +1470,14 @@
       ],
       "verification": [
         "npm run validate:plan — All task/dependency/resource/reference/evidence metadata validates; no runtime capability inferred.",
-        "go test ./... — C03 creates this engine test command in the same commit; C06 adds CI/integration collection. Pass the actual C16 acceptance and negative cases on the selected engine; shell-only tests cannot certify this task."
+        "go test ./... — Run actual C16 cryptographic and C08 real-file composition tests plus existing Go regressions; no mocked authority proof."
       ],
       "acceptance": [
         "Cryptographic validity and trusted signer identity are separate results; no implicit trust-on-first-use."
       ],
       "evidence_path": "docs/evidence/C16.json",
       "rollback": "Revert the isolated source change when no incompatible data was accepted. Otherwise retain the latest valid bytes/export and compatible reader, and use tested forward repair; never overwrite newer accepted state with an old backup.",
-      "scope": "Attestara complete open-source local web profile",
+      "scope": "Owner-approved stateless internal Go Ed25519 verifier over exact C08 v1 manifest bytes, with caller-supplied trusted signer/key policy.",
       "task_file": "plans/commits/C16.md",
       "read_before": [
         "AGENTS.md",
@@ -1496,34 +1496,33 @@
           "measurement": "Unmeasured planning target; C28 must verify or reduce it."
         },
         "providers": [
-          "optional local OPA and Syft/Grype report ingestion"
+          "Go standard library only; no external signing provider"
         ],
         "toolchain": "Go engine plus locked Node/TypeScript web tools; exact engine/provider pins and source-build steps resolved at C02.",
         "upstream": [
-          "https://cyclonedx.org/specification/overview/",
-          "https://spdx.dev/specifications/",
-          "https://www.openpolicyagent.org/docs/",
-          "https://nodejs.org/docs/latest-v24.x/api/"
+          "https://pkg.go.dev/crypto/ed25519@go1.27.2",
+          "https://pkg.go.dev/encoding/json/v2@go1.27.2"
         ],
         "fixture": {
           "path": "tests/fixtures/attestara/C16/",
-          "status": "planned; implement positive, negative and expected-output fixtures in this task",
+          "status": "Implemented synthetic Ed25519 signatures, expected outcomes, negative cases and SHA-256 provenance; reuses exact C08 manifest.",
           "provenance": "repository-authored synthetic data or explicitly licensed upstream data"
         },
         "licenses": "Apache-2.0 project source; pin and inventory every shipped upstream library/provider/grammar/rule/dataset license. Unknown/restricted required resources block release."
       },
       "negative_cases": [
-        "One modified byte, missing evidence or a wrong/untrusted signer must not produce trusted success.",
-        "An expired/stale/replayed revision cannot replace the last valid accepted authority.",
+        "One modified manifest byte, invalid or absent signature, wrong key or untrusted identity cannot produce Trusted() success; malformed key/signature input fails safely.",
+        "Compose real C08 file validation before treating a signature assessment as bundle verification; missing or modified subject/evidence/policy bytes reject the composition.",
+        "Repeated verification has no authority or input mutation. Expiry, stale/replayed revision acceptance and retention of the last accepted authority are explicitly deferred to the first stateful acceptance workflow; C16 does not certify them.",
         "No user source execution"
       ],
       "implementation_steps": [
-        "Inspect the actual implementation, source/locks and verified dependencies for C16; preserve accepted existing behavior.",
-        "Define the versioned positive and negative release-evidence fixtures and expected error/result semantics under tests/fixtures/attestara/C16/.",
-        "Implement: Cryptographic validity and trusted signer identity are separate results; no implicit trust-on-first-use.",
-        "Change the listed exact targets and wire the actual typed outcome into the supported browser/engine workflow. Keep domain facts, validation, storage/provider adapters and UI separate.",
-        "Add regression/integration coverage for every acceptance and negative case; real storage/provider/security boundaries cannot be verified only with mocks.",
-        "Run the labeled verification commands; record exact source, fixture license/hash, tool/provider versions, command exits and observed results in docs/evidence/C16.json. Update progress only when the whole task is genuinely verified."
+        "Preserve C04/C08/C15 wire contracts and storage; implement only the owner-approved internal stateless Go verifier.",
+        "Create independently signed, repository-authored synthetic C16 fixtures over the exact unchanged C08 v1 manifest bytes, with hashes and Apache-2.0 provenance.",
+        "Expose independent cryptographic validity and configured signer/key membership plus Trusted() requiring both. Verify only Ed25519 using the Go standard library, with safe typed errors and explicit caller trust policy; no trust-on-first-use.",
+        "Validate manifest with C04, compose real C08 file validation in integration tests, and leave CLI/viewer integration to C20/C21. No persistence or new signature wire format.",
+        "Test trusted/untrusted/unsigned/invalid signatures, exact byte binding, hostile inputs, missing/modified actual files, cancellation, input immutability and inert source-like bytes.",
+        "Record exact source/tool/fixture identities and actual successful command results in C16 evidence; update progress and handoff only for this verified stateless scope. Preserve the explicit future authority/freshness/replay obligation."
       ],
       "verification_commands": [
         {
@@ -1534,9 +1533,9 @@
         },
         {
           "command": "go test ./...",
-          "available_now": false,
+          "available_now": true,
           "introduced_by": "C03",
-          "expected": "C03 creates this engine test command in the same commit; C06 adds CI/integration collection. Pass the actual C16 acceptance and negative cases on the selected engine; shell-only tests cannot certify this task."
+          "expected": "Run actual C16 cryptographic and C08 real-file composition tests plus existing Go regressions; no mocked authority proof."
         }
       ],
       "stop_conditions": [

@@ -74,3 +74,12 @@ change does not prove a remote Actions run passed. C15 historical evidence recor
 a separate actual OPA binary identity and execution. C05 reopen and fresh Go/OPA
 process repetition prove the v2 outcome
 stays bound to the same bytes, not new power-loss or full-workflow recovery.
+
+## C16 signature boundary
+
+`go test ./tests -run '^TestC16' -count=1 -v` runs actual Ed25519 verification
+against independently generated synthetic signatures, exact C08 manifest bytes,
+configured signer/key matching, hostile/unsigned inputs, cancellation, real C08
+missing/modified file checks and inert source-like text. Discovery requires all
+five C16 tests. It does not certify expiry/revision/replay authority, CLI/viewer
+integration or the full reference workflow. No external provider is required.

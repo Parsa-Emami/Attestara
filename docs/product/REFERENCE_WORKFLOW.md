@@ -38,3 +38,12 @@ timeout is an explicit failed evaluation and authenticity stays unverified.
 No scanner-specific schema, arbitrary policy execution, HTTP admission or browser
 workflow is added. The C04 policy defaults missing/null facts to false; C14's
 first-party unknown behavior remains unchanged.
+
+C16 adds an internal stateless Ed25519 verifier for exact C08 v1 manifest bytes.
+It returns independent mathematical validity and configured signer/key membership;
+Trusted() requires both. A key supplied with input never grants trust by itself.
+The assessment authenticates only manifest bytes: callers must compose C08
+real-file validation before reporting bundle verification. C04/C15 wire results
+remain unchanged. No expiry/revision ordering, accepted-authority replacement or
+replay state is implemented; those rules remain an explicit obligation of the
+first stateful acceptance workflow. CLI/viewer integration remains C20/C21.

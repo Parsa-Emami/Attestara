@@ -203,7 +203,7 @@
       "id": "C16",
       "title": "feat(signatures): verify with configured trust policy",
       "stage": "domain",
-      "status": "planned",
+      "status": "verified",
       "acceptance": [
         "Cryptographic validity and trusted signer identity are separate results; no implicit trust-on-first-use."
       ],
