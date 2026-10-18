@@ -23,6 +23,27 @@ Web `/healthz` and `/readyz` retain their web-only meaning and `engineReady:fals
 
 SIGINT/SIGTERM close the web listener and terminate the Go child. Go allows up to three seconds for HTTP shutdown; the supervisor force-stops a child still present after four seconds and reports failure. Unexpected engine exit or a web-listener failure closes the whole runtime with a nonzero exit. An occupied web port also terminates the engine before returning failure. Restart repeats the same process-health contract; C03 owns no durable product data to restore.
 
+## Local evidence CLI (C20)
+
+The built engine also accepts `evaluate`, `verify` and `export` subcommands; the
+existing process-health options remain unchanged.
+
+```sh
+dist/engine/attestara evaluate --input input.json --policy rule.json --evidence evidence.json --freshness fresh > passport.json
+dist/engine/attestara verify --passport passport.json
+dist/engine/attestara export --passport passport.json > portable-passport.json
+```
+
+`--evidence` may be omitted; the decision then remains unknown. `--freshness`
+must be explicitly set to `fresh` or `stale`; the CLI does not infer age or
+expiry. Exit codes are 0 for pass/success, 1 for policy fail or unknown, 2 for
+invalid input/version/digest, and 3 for engine or output failure. Non-pass
+results from all three commands still write the typed C19 passport to stdout.
+`verify` checks only
+the passport version and canonical digest. It does not check referenced file
+bytes, signatures, signer trust or revision/replay authority; successful output
+continues to say `verification: unverified`.
+
 The existing web CI now prepares Go and the engine before its engine-dependent web/browser/clone checks. `actions/setup-go@924ae3a1cded613372ab5595356fb5720e22ba16` (official v6 tag, MIT) supplies the C02 Go 1.26.2 bootstrap compiler; the final compiler is built from the C02 source archive after SHA-256 verification. This repairs the existing job's new prerequisite; C06 still owns broader domain integration CI. No remote CI run is implied by a local test result.
 
 Implementation references: [Node 24.19 child processes](https://nodejs.org/download/release/v24.19.0/docs/api/child_process.html#child_processspawncommand-args-options), [Go graceful HTTP shutdown](https://pkg.go.dev/net/http@go1.27.2#Server.Shutdown), [Go signal context](https://pkg.go.dev/os/signal@go1.27.2#NotifyContext). Source-bound commands, versions and fixture hashes are recorded in `docs/evidence/C03.json`.

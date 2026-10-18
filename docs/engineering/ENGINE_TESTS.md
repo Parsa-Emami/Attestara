@@ -20,10 +20,10 @@ The discovery command invokes `go test -list '^Test'` separately for each packag
 | Package | Real behavior exercised |
 | --- | --- |
 | `./internal/licensecatalog` | C13 missing/modified embedded catalog bytes fail closed |
-| `./cmd/attestara` | Health contract, real listener, shutdown, occupied port, invalid launch and refused user source arguments |
+| `./cmd/attestara` | Health contract, real listener, shutdown, occupied port, invalid launch, refused user source arguments and version response |
 | `./internal/contracts` | C04 immutable fixtures, strict JSON, missing evidence, versions, size/deadline/cancellation and inert source bytes |
 | `./internal/storage` | C05 real files, independent process locking/SIGKILL recovery, injected ENOSPC, corruption and private inert bytes |
-| `./tests` | C04/C05 storage integration; C10–C12 inert evidence adapters; C13 SPDX expression recognition, review outcomes, safe errors, shared schema pins and fresh-process repetition |
+| `./tests` | C04/C05 storage integration; C10–C12 inert evidence adapters; C13 SPDX expression recognition, review outcomes, safe errors, shared schema pins and fresh-process repetition; C20 actual CLI process, passport digest, explicit freshness and exit-code cases |
 
 Existing Apache-2.0 repository-authored fixtures under `tests/fixtures/attestara/C04/` and `C05/` are reused unchanged. Their provenance and exact byte hashes are recorded in C06 evidence. No parallel C06 release fixture or production domain behavior is introduced. OPA, Syft and Grype are optional resources unused by these code paths; no provider execution is certified.
 
@@ -113,3 +113,12 @@ pass/fail/unknown and stale projection, C04/C18 binding validation, failed
 provider outcomes, inert source-like warnings and exact C19/C14 fixture hashes.
 The passport remains unsigned and stateless; C08 file-byte validation, C16
 signer trust, and C05 persistence/recovery remain separate boundaries.
+
+## C20 local CLI
+
+The full `./tests` suite builds the actual CLI executable and invokes `evaluate`,
+`verify` and `export`. It checks pass/fail/unknown/stale outcomes, missing and
+malformed inputs, altered and unsupported passports, source-like text that must
+remain inert, and separate policy/input/engine exit codes. It does not test
+bundle-byte integrity, signer trust or persistent revision/expiry/replay
+authority. Those obligations remain open for the full C30 workflow.

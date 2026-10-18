@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "license": "Apache-2.0",
+  "cases": [
+    {"id": "policy-fail", "input_fixture": "C14/input.fail.json", "evidence_fixture": "C14/evidence.fail.json", "decision": "fail", "exit_code": 1},
+    {"id": "policy-unknown", "input_fixture": "C14/input.unknown.json", "evidence_fixture": "C14/evidence.unknown.json", "decision": "unknown", "exit_code": 1},
+    {"id": "missing-evidence", "input_fixture": "C14/input.json", "decision": "unknown", "exit_code": 1},
+    {"id": "stale-evidence", "input_fixture": "C14/input.json", "evidence_fixture": "C14/evidence.json", "freshness": "stale", "decision": "unknown", "warning": "evidence_stale", "exit_code": 1},
+    {"id": "malformed-input", "decision": "reject", "exit_code": 2},
+    {"id": "unsupported-input-version", "decision": "reject", "exit_code": 2},
+    {"id": "invalid-arguments", "decision": "reject", "exit_code": 2},
+    {"id": "modified-passport", "decision": "reject", "exit_code": 2},
+    {"id": "unsupported-passport-version", "decision": "reject", "exit_code": 2},
+    {"id": "malformed-passport-json", "decision": "reject", "exit_code": 2},
+    {"id": "output-failure", "exit_code": 3},
+    {"id": "source-like-input", "execution": "forbidden"}
+  ],
+  "out_of_scope": ["bundle-byte verification", "signer trust", "durable revision acceptance", "expiry policy", "replay prevention"]
+}

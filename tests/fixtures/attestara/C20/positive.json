@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "license": "Apache-2.0",
+  "cases": [
+    {
+      "id": "evaluate-pass",
+      "input_fixture": "C14/input.json",
+      "policy_fixture": "C14/rule.json",
+      "evidence_fixture": "C14/evidence.json",
+      "freshness": "fresh",
+      "expected_passport": "expected.json",
+      "exit_code": 0
+    },
+    {
+      "id": "verify-and-export-passport",
+      "passport_fixture": "expected.json",
+      "exit_code": 0,
+      "verification_claim": "digest-only; signer and bundle trust remain unverified"
+    }
+  ]
+}

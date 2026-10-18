@@ -1607,9 +1607,7 @@
         "licenses": "Apache-2.0 project source; pin and inventory every shipped upstream library/provider/grammar/rule/dataset license. Unknown/restricted required resources block release."
       },
       "negative_cases": [
-        "Valid unequal subject digests return SubjectBound=false without an error; missing, malformed or unsupported inputs return safe typed errors and an empty result.",
-        "Subject binding never grants signer trust or validates actual file bytes; preserve independent C16 trust and C08 file checks.",
-        "Repeated calls preserve input bytes and have no authority state. Expiry, stale/replayed revision acceptance and retention of the last valid authority remain mandatory for the first stateful workflow, including C20.",
+        "Repeated calls preserve input bytes and have no authority state. Expiry, stale/replayed revision acceptance and retention of the last valid authority remain mandatory for a separately scoped stateful workflow before C30; C20 no longer owns it.",
         "No user source execution"
       ],
       "implementation_steps": [
@@ -1881,18 +1879,26 @@
       ],
       "deliverables": [
         "cmd/attestara/main.go",
-        "tests/cli_test.go"
+        "tests/cli_test.go",
+        "tests/fixtures/attestara/C20/",
+        "docs/engineering/ENGINE_LAUNCH.md",
+        "docs/engineering/ENGINE_TESTS.md",
+        "docs/product/REFERENCE_WORKFLOW.md"
       ],
       "verification": [
-        "npm run validate:plan — All task/dependency/resource/reference/evidence metadata validates; no runtime capability inferred.",
-        "go test ./... — C03 creates this engine test command in the same commit; C06 adds CI/integration collection. Pass the actual C20 acceptance and negative cases on the selected engine; shell-only tests cannot certify this task."
+        "go test -count=1 -v ./... — Build and invoke the real C20 CLI process; pass all command, policy/input/engine exit-code and negative cases plus existing engine regressions.",
+        "go vet ./... and go build ./... — Go static analysis and package build pass.",
+        "npm run validate:plan — Task/dependency/resource/reference/evidence metadata validates; no runtime capability inferred.",
+        "npm run check — Roadmap validation, TypeScript typecheck, production web build and web/contract tests pass; this repository has no separate lint script."
       ],
       "acceptance": [
-        "Exit codes distinguish policy failure from malformed input and engine failure."
+        "The existing engine CLI exposes evaluate, verify and export using the C14/C18/C19 typed contracts; --listen and --version remain available.",
+        "Exit codes are stable: 0 pass/success, 1 policy fail or unknown, 2 malformed input/version/digest, 3 engine or output failure; all commands still emit valid non-pass passports before exiting 1.",
+        "Passports stay unverified; verify/export validate only the versioned C19 passport payload digest, not referenced file bytes or signer trust."
       ],
       "evidence_path": "docs/evidence/C20.json",
       "rollback": "Revert the isolated source change when no incompatible data was accepted. Otherwise retain the latest valid bytes/export and compatible reader, and use tested forward repair; never overwrite newer accepted state with an old backup.",
-      "scope": "Attestara complete open-source local web profile",
+      "scope": "Local Go engine CLI; no browser API/UI, database schema or persistence changes",
       "task_file": "plans/commits/C20.md",
       "read_before": [
         "AGENTS.md",
@@ -1901,8 +1907,8 @@
         "docs/product/REFERENCE_WORKFLOW.md",
         "plans/project-state.json"
       ],
-      "before": "Entry requirement: verified C19 evidence. Preserve its demonstrated behavior; inspect actual source and any recorded blockers before editing.",
-      "after": "Exit codes distinguish policy failure from malformed input and engine failure.",
+      "before": "Entry requirement: verified C19 evidence. Preserve its deterministic passport behavior and the existing health/version CLI.",
+      "after": "Local evaluate, verify and export commands compose existing contracts and distinguish non-pass policy results, invalid input and engine failures.",
       "resources": {
         "hardware": {
           "vcpu": 2,
@@ -1911,7 +1917,7 @@
           "measurement": "Unmeasured planning target; C28 must verify or reduce it."
         },
         "providers": [
-          "optional local OPA and Syft/Grype report ingestion"
+          "C14 Go evaluator is the C20 default; optional OPA and Syft/Grype are unused by this task."
         ],
         "toolchain": "Go engine plus locked Node/TypeScript web tools; exact engine/provider pins and source-build steps resolved at C02.",
         "upstream": [
@@ -1922,36 +1928,56 @@
         ],
         "fixture": {
           "path": "tests/fixtures/attestara/C20/",
-          "status": "planned; implement positive, negative and expected-output fixtures in this task",
-          "provenance": "repository-authored synthetic data or explicitly licensed upstream data"
+          "status": "implemented; versioned Apache-2.0 synthetic cases and exact provenance hashes",
+          "provenance": "Repository-authored synthetic cases; reuse exact existing C14 input, policy and evidence bytes."
         },
         "licenses": "Apache-2.0 project source; pin and inventory every shipped upstream library/provider/grammar/rule/dataset license. Unknown/restricted required resources block release."
       },
       "negative_cases": [
-        "One modified byte, missing evidence or a wrong/untrusted signer must not produce trusted success.",
-        "An expired/stale/replayed revision cannot replace the last valid accepted authority.",
-        "No user source execution"
+        "Missing evidence, an unknown fact or caller-classified stale evidence remains unknown and exits 1; it never becomes pass.",
+        "Malformed input, unsupported versions, modified passport payloads and digest mismatches exit 2 without passport output.",
+        "Output failure exits 3; source-like input stays inert; successful policy pass never promotes verification beyond unverified.",
+        "Bundle byte verification, signer trust, durable revision acceptance, expiry policy and replay prevention are explicitly outside C20 and remain required before C30 can certify the complete workflow."
       ],
       "implementation_steps": [
-        "Inspect the actual implementation, source/locks and verified dependencies for C20; preserve accepted existing behavior.",
-        "Define the versioned positive and negative release-evidence fixtures and expected error/result semantics under tests/fixtures/attestara/C20/.",
-        "Implement: Exit codes distinguish policy failure from malformed input and engine failure.",
-        "Change the listed exact targets and wire the actual typed outcome into the supported browser/engine workflow. Keep domain facts, validation, storage/provider adapters and UI separate.",
-        "Add regression/integration coverage for every acceptance and negative case; real storage/provider/security boundaries cannot be verified only with mocks.",
-        "Run the labeled verification commands; record exact source, fixture license/hash, tool/provider versions, command exits and observed results in docs/evidence/C20.json. Update progress only when the whole task is genuinely verified."
+        "Preserve the current loopback health/version behavior and dispatch the three subcommands through the existing Go engine executable.",
+        "Use the existing C14 evaluator, explicit caller freshness in C18, and C19 typed passport generator; add no provider or dependency.",
+        "Bound local input reads by the current contract limits; emit the typed passport on stdout for pass, fail and unknown outcomes without executing input content.",
+        "Validate version-1 passport fields and canonical payload digest for verify/export; preserve unverified status and disclose that signer and bundle trust were not assessed.",
+        "Add versioned positive/negative C20 fixtures with hashes for new files and all reused C14 inputs; test by building and invoking the real CLI process.",
+        "Correct current C20, workflow and C17/C18 deferred-obligation documentation so stateful revision/replay is not claimed by this CLI task; keep the missing authority work open before C30.",
+        "Record exact commands, exits, source identity, tool versions and fixture provenance in docs/evidence/C20.json; update progress and handoff only after verification."
       ],
       "verification_commands": [
+        {
+          "command": "go test -count=1 -v ./...",
+          "available_now": true,
+          "introduced_by": "C03",
+          "expected": "Real CLI process cases, all C20 exit classes and existing Go engine regressions pass; real pinned OPA C15 cases run when ATTESTARA_TEST_OPA is configured."
+        },
+        {
+          "command": "go vet ./...",
+          "available_now": true,
+          "introduced_by": "C03",
+          "expected": "Go static analysis passes."
+        },
+        {
+          "command": "go build ./...",
+          "available_now": true,
+          "introduced_by": "C03",
+          "expected": "All Go packages build."
+        },
         {
           "command": "npm run validate:plan",
           "available_now": true,
           "introduced_by": "web-foundation",
-          "expected": "All task/dependency/resource/reference/evidence metadata validates; no runtime capability inferred."
+          "expected": "Task/dependency/resource/reference/evidence metadata validates; no runtime capability inferred."
         },
         {
-          "command": "go test ./...",
-          "available_now": false,
-          "introduced_by": "C03",
-          "expected": "C03 creates this engine test command in the same commit; C06 adds CI/integration collection. Pass the actual C20 acceptance and negative cases on the selected engine; shell-only tests cannot certify this task."
+          "command": "npm run check",
+          "available_now": true,
+          "introduced_by": "web-foundation",
+          "expected": "Roadmap validation, TypeScript typecheck, production web build and web/contract tests pass; no separate lint script exists."
         }
       ],
       "stop_conditions": [

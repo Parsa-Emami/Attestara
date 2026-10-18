@@ -251,9 +251,11 @@
       "id": "C20",
       "title": "feat(cli): expose verify evaluate and export commands",
       "stage": "domain",
-      "status": "planned",
+      "status": "verified",
       "acceptance": [
-        "Exit codes distinguish policy failure from malformed input and engine failure."
+        "The existing engine CLI exposes evaluate, verify and export using the C14/C18/C19 typed contracts; --listen and --version remain available.",
+        "Exit codes are stable: 0 pass/success, 1 policy fail or unknown, 2 malformed input/version/digest, 3 engine or output failure; all commands still emit valid non-pass passports before exiting 1.",
+        "Passports stay unverified; verify/export validate only the versioned C19 passport payload digest, not referenced file bytes or signer trust."
       ],
       "dependsOn": [
         "C19"

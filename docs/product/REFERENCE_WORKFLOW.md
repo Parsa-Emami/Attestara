@@ -45,8 +45,8 @@ Trusted() requires both. A key supplied with input never grants trust by itself.
 The assessment authenticates only manifest bytes: callers must compose C08
 real-file validation before reporting bundle verification. C04/C15 wire results
 remain unchanged. No expiry/revision ordering, accepted-authority replacement or
-replay state is implemented; those rules remain an explicit obligation of the
-first stateful acceptance workflow. CLI/viewer integration remains C20/C21.
+replay state is implemented. C20's CLI verifies only a passport digest; it does
+not add stateful acceptance. CLI/viewer integration remains C20/C21.
 
 C17 adds internal stateless comparison of the existing C07 envelope subject digest
 with the existing C08 manifest subject digest. SubjectBound reports only equality
@@ -54,8 +54,8 @@ of validated claims: valid mismatch is false without error; missing/invalid inpu
 fails with a safe typed error. C08 actual-file validation and C16 signer trust
 remain independent. Builder/source assertions stay unverified without issuer
 policy. No new provenance format, authority state, CLI or viewer is added;
-freshness/replay authority remains mandatory in the first stateful workflow,
-including C20. Future C18/C19 decisions/passports can compose these independent assessments.
+freshness/replay authority remains a required but unimplemented workflow
+obligation. Future C18/C19 decisions/passports can compose these independent assessments.
 
 C18 adds stateless internal decision.Explain over existing v2 evaluation results.
 Caller-classified stale evidence always yields unknown, even with a zero-findings
@@ -63,5 +63,16 @@ C12 report and C14 pass. Existing warnings carry evidence_missing, evidence_stal
 and policy_failed reasons. Missing references stay unknown; raw parser/provider
 failures retain their typed errors. No age threshold or authenticity is inferred.
 The caller owns freshness classification; C19-C21 provide subsequent passport,
-CLI and viewer composition. Stateful freshness/revision authority remains required
-by the first stateful acceptance workflow, including C20.
+CLI and viewer composition. This does not establish durable freshness/revision
+authority or replay protection.
+
+C20 adds local `evaluate`, `verify` and `export` commands. `evaluate` composes
+the existing C14 predicate, explicit caller-classified C18 freshness and C19
+passport generation. Missing or stale evidence remains unknown, and every
+passport remains unverified. `verify` and `export` validate the C19 version and
+canonical passport digest; neither verifies referenced file bytes or signer
+trust. All commands preserve non-pass passports on stdout and return the policy
+non-pass exit code. The commands do not store accepted revisions or prevent replay. The
+full workflow's subject-byte verification, signer trust and durable
+revision/expiry/replay behavior remain unimplemented and must be specified and
+verified before C30 can certify clone-to-value.

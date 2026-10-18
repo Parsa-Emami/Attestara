@@ -2,7 +2,10 @@ package main
 
 import (
 	"context"
-	"encoding/json"
+	"crypto/sha256"
+	"crypto/subtle"
+	"encoding/hex"
+	json "encoding/json/v2"
 	"errors"
 	"flag"
 	"fmt"
@@ -13,9 +16,71 @@ import (
 	"os/signal"
 	"runtime"
 	"strconv"
+	"strings"
 	"syscall"
 	"time"
+	"unicode/utf8"
+
+	"attestara/internal/contracts"
+	"attestara/internal/decision"
+	"attestara/internal/policy"
+	"attestara/internal/report"
 )
+
+const (
+	policyExitCode = 1
+	inputExitCode  = 2
+	engineExitCode = 3
+	maxRuleBytes   = 4096
+)
+
+type commandFailure struct {
+	code    int
+	message string
+}
+
+func (e *commandFailure) Error() string { return e.message }
+
+func commandError(code int, message string) error {
+	return &commandFailure{code: code, message: message}
+}
+
+type policyOutcomeError struct{ decision string }
+
+func (e *policyOutcomeError) Error() string { return "policy decision is " + e.decision }
+
+func commandExitCode(err error) int {
+	var outcome *policyOutcomeError
+	if errors.As(err, &outcome) {
+		return policyExitCode
+	}
+	var failure *commandFailure
+	if errors.As(err, &failure) {
+		return failure.code
+	}
+	var contractError *contracts.Error
+	if errors.As(err, &contractError) {
+		switch contractError.Code {
+		case "invalid_json", "invalid_input", "unsupported_version", "limit_exceeded":
+			return inputExitCode
+		default:
+			return engineExitCode
+		}
+	}
+	return engineExitCode
+}
+
+func isDomainCommand(args []string) bool {
+	if len(args) == 0 {
+		return false
+	}
+	switch args[0] {
+	case "evaluate", "verify", "export":
+		return true
+	default:
+		return false
+	}
+}
 
 type health struct {
 	SchemaVersion int    `json:"schemaVersion"`
@@ -44,12 +109,22 @@ func handler() http.Handler {
 			return
 		}
 		if r.Method == "GET" {
-			json.NewEncoder(w).Encode(currentHealth())
+			_ = writeJSON(w, currentHealth())
 		}
 	})
 }
 
 func run(ctx context.Context, args []string, stdout, stderr io.Writer) error {
+	if len(args) > 0 {
+		switch args[0] {
+		case "evaluate":
+			return evaluateCommand(ctx, args[1:], stdout, stderr)
+		case "verify":
+			return passportCommand(args[1:], stdout, stderr, false)
+		case "export":
+			return passportCommand(args[1:], stdout, stderr, true)
+		}
+	}
 	flags := flag.NewFlagSet("attestara", flag.ContinueOnError)
 	flags.SetOutput(stderr)
 	address := flags.String("listen", "127.0.0.1:0", "loopback listen address")
@@ -61,7 +136,7 @@ func run(ctx context.Context, args []string, stdout, stderr io.Writer) error {
 		return errors.New("unexpected arguments; user source execution is unsupported")
 	}
 	if *version {
-		return json.NewEncoder(stdout).Encode(currentHealth())
+		return writeJSON(stdout, currentHealth())
 	}
 	host, port, err := net.SplitHostPort(*address)
 	number, portErr := strconv.Atoi(port)
@@ -79,7 +154,7 @@ func run(ctx context.Context, args []string, stdout, stderr io.Writer) error {
 	server := &http.Server{Handler: handler(), ReadHeaderTimeout: 5 * time.Second, ReadTimeout: 5 * time.Second, WriteTimeout: 5 * time.Second, IdleTimeout: 5 * time.Second, MaxHeaderBytes: 16384}
 	served := make(chan error, 1)
 	go func() { served <- server.Serve(listener) }()
-	if err := json.NewEncoder(stdout).Encode(struct {
+	if err := writeJSON(stdout, struct {
 		Event   string `json:"event"`
 		Address string `json:"address"`
 	}{"listening", listener.Addr().String()}); err != nil {
@@ -103,11 +178,222 @@ func run(ctx context.Context, args []string, stdout, stderr io.Writer) error {
 	return nil
 }
 
+func evaluateCommand(parent context.Context, args []string, stdout, stderr io.Writer) error {
+	flags := flag.NewFlagSet("attestara evaluate", flag.ContinueOnError)
+	flags.SetOutput(stderr)
+	inputPath := flags.String("input", "", "path to a C04 input JSON file")
+	rulePath := flags.String("policy", "", "path to a C14 rule JSON file")
+	evidencePath := flags.String("evidence", "", "path to the evidence JSON file; omit to evaluate as unknown")
+	freshness := flags.String("freshness", "", "caller-classified evidence freshness: fresh or stale")
+	if err := flags.Parse(args); err != nil {
+		return commandError(inputExitCode, "invalid evaluate arguments")
+	}
+	if flags.NArg() != 0 || *inputPath == "" || *rulePath == "" || (*freshness != "fresh" && *freshness != "stale") {
+		return commandError(inputExitCode, "evaluate requires --input, --policy and --freshness fresh|stale; --evidence is optional")
+	}
+
+	inputJSON, err := readCommandFile(*inputPath, contracts.MaxBundleBytes)
+	if err != nil {
+		return err
+	}
+	input, err := contracts.DecodeInput(parent, inputJSON)
+	if err != nil {
+		return err
+	}
+	ruleJSON, err := readCommandFile(*rulePath, maxRuleBytes)
+	if err != nil {
+		return err
+	}
+	var evidenceBytes []byte
+	if *evidencePath != "" {
+		evidenceBytes, err = readCommandFile(*evidencePath, contracts.MaxBundleBytes)
+		if err != nil {
+			return err
+		}
+	}
+	result, err := policy.Evaluate(parent, inputJSON, ruleJSON, evidenceBytes)
+	if err != nil {
+		return err
+	}
+	classified := decision.Fresh
+	if *freshness == "stale" {
+		classified = decision.Stale
+	}
+	result, err = decision.Explain(parent, result, classified)
+	if err != nil {
+		return err
+	}
+	passport, err := report.GeneratePassport(parent, input, result)
+	if err != nil {
+		return err
+	}
+	if err := writeJSON(stdout, passport); err != nil {
+		return commandError(engineExitCode, "could not write passport output")
+	}
+	if passport.PolicyDecision != "pass" {
+		return &policyOutcomeError{decision: passport.PolicyDecision}
+	}
+	return nil
+}
+
+func passportCommand(args []string, stdout, stderr io.Writer, export bool) error {
+	name := "verify"
+	if export {
+		name = "export"
+	}
+	flags := flag.NewFlagSet("attestara "+name, flag.ContinueOnError)
+	flags.SetOutput(stderr)
+	passportPath := flags.String("passport", "", "path to a C19 passport JSON file")
+	if err := flags.Parse(args); err != nil {
+		return commandError(inputExitCode, "invalid "+name+" arguments")
+	}
+	if flags.NArg() != 0 || *passportPath == "" {
+		return commandError(inputExitCode, name+" requires --passport <path>")
+	}
+	data, err := readCommandFile(*passportPath, contracts.MaxBundleBytes)
+	if err != nil {
+		return err
+	}
+	passport, err := decodePassport(data)
+	if err != nil {
+		return err
+	}
+	if !export {
+		fmt.Fprintln(stderr, "passport digest verified; signer and bundle trust were not assessed")
+	}
+	if err := writeJSON(stdout, passport); err != nil {
+		return commandError(engineExitCode, "could not write passport output")
+	}
+	if passport.PolicyDecision != "pass" {
+		return &policyOutcomeError{decision: passport.PolicyDecision}
+	}
+	return nil
+}
+
+func readCommandFile(path string, maxBytes int64) ([]byte, error) {
+	file, err := os.Open(path)
+	if err != nil {
+		return nil, commandError(inputExitCode, "input file is unavailable")
+	}
+	defer file.Close()
+	info, err := file.Stat()
+	if err != nil || !info.Mode().IsRegular() || info.Size() < 0 || info.Size() > maxBytes {
+		return nil, commandError(inputExitCode, "input file is invalid or exceeds its byte limit")
+	}
+	data, err := io.ReadAll(io.LimitReader(file, maxBytes+1))
+	if err != nil || int64(len(data)) > maxBytes {
+		return nil, commandError(inputExitCode, "input file is unavailable or exceeds its byte limit")
+	}
+	return data, nil
+}
+
+func decodePassport(data []byte) (report.Passport, error) {
+	var passport report.Passport
+	if len(data) == 0 || int64(len(data)) > contracts.MaxBundleBytes {
+		return report.Passport{}, commandError(inputExitCode, "passport is empty or exceeds its byte limit")
+	}
+	if err := json.Unmarshal(data, &passport, json.RejectUnknownMembers(true)); err != nil {
+		return report.Passport{}, commandError(inputExitCode, "passport JSON is invalid")
+	}
+	if !validPassport(passport) {
+		return report.Passport{}, commandError(inputExitCode, "passport version, fields or digest are invalid")
+	}
+	return passport, nil
+}
+
+func validPassport(passport report.Passport) bool {
+	if passport.SchemaVersion != "1" || !validCommandText(passport.ReleaseID) || !validCommandText(passport.SourceRevision) ||
+		!validCommandDigest(passport.SubjectDigest) || !validCommandDigest(passport.EvidenceDigest) || !validCommandDigest(passport.PolicyDigest) ||
+		!validCommandDigest(passport.ReportDigest) || passport.EvidenceReferences == nil || len(passport.EvidenceReferences) > contracts.MaxFiles || passport.Warnings == nil {
+		return false
+	}
+	switch passport.Status {
+	case "complete", "partial", "unverified":
+	default:
+		return false
+	}
+	switch passport.PolicyDecision {
+	case "pass", "fail", "unknown":
+	default:
+		return false
+	}
+	if passport.Status == "complete" && passport.PolicyDecision == "unknown" {
+		return false
+	}
+	if passport.Verification != "unverified" && passport.Verification != "rejected" {
+		return false
+	}
+	if passport.Status == "unverified" && passport.Verification != "unverified" {
+		return false
+	}
+	paths := make(map[string]struct{}, len(passport.EvidenceReferences))
+	var lastPath, lastDigest string
+	for _, reference := range passport.EvidenceReferences {
+		if !contracts.ValidManifestPath(reference.Path) || !validCommandDigest(reference.Digest) {
+			return false
+		}
+		if _, exists := paths[reference.Path]; exists {
+			return false
+		}
+		paths[reference.Path] = struct{}{}
+		if lastPath != "" && (reference.Path < lastPath || reference.Path == lastPath && reference.Digest < lastDigest) {
+			return false
+		}
+		lastPath, lastDigest = reference.Path, reference.Digest
+	}
+	for _, warning := range passport.Warnings {
+		if !validCommandText(warning) {
+			return false
+		}
+	}
+	payload := passport
+	payload.ReportDigest = ""
+	encoded, err := json.Marshal(payload, json.FormatNilSliceAsNull(true))
+	if err != nil {
+		return false
+	}
+	digest := sha256.Sum256(encoded)
+	want := "sha256:" + hex.EncodeToString(digest[:])
+	return subtle.ConstantTimeCompare([]byte(passport.ReportDigest), []byte(want)) == 1
+}
+
+func validCommandText(value string) bool {
+	return strings.TrimSpace(value) != "" && utf8.RuneCountInString(value) <= 4096
+}
+
+func validCommandDigest(value string) bool {
+	if len(value) != len("sha256:")+64 || !strings.HasPrefix(value, "sha256:") || value != strings.ToLower(value) {
+		return false
+	}
+	_, err := hex.DecodeString(value[len("sha256:"):])
+	return err == nil
+}
+
+func writeJSON(w io.Writer, value any) error {
+	data, err := json.Marshal(value, json.FormatNilSliceAsNull(true))
+	if err != nil {
+		return err
+	}
+	output := append(data, '\n')
+	written, err := w.Write(output)
+	if err != nil {
+		return err
+	}
+	if written != len(output) {
+		return io.ErrShortWrite
+	}
+	return nil
+}
+
 func main() {
 	ctx, stop := signal.NotifyContext(context.Background(), os.Interrupt, syscall.SIGTERM)
 	defer stop()
-	if err := run(ctx, os.Args[1:], os.Stdout, os.Stderr); err != nil {
+	args := os.Args[1:]
+	if err := run(ctx, args, os.Stdout, os.Stderr); err != nil {
 		fmt.Fprintln(os.Stderr, err)
+		if isDomainCommand(args) {
+			os.Exit(commandExitCode(err))
+		}
 		os.Exit(1)
 	}
 }

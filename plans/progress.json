@@ -177,10 +177,12 @@
     },
     {
       "id": "C20",
-      "status": "planned",
-      "evidence": [],
-      "source_identity": null,
-      "notes": ""
+      "status": "verified",
+      "evidence": [
+        "docs/evidence/C20.json"
+      ],
+      "source_identity": "sha256:0a364940990892ada6cfb1539fcc1aa016c1c98b8555f41353cc104c8b25869a",
+      "notes": "Actual CLI process tests cover typed evaluate/verify/export output, stable exits, policy fail/unknown, stale and missing evidence, malformed JSON/arguments, unsupported versions, altered passports, inert input and output failure. Go suite, vet/build, plan validation, TypeScript, web build and Node tests passed locally. Verification checks only the passport digest; signer/bundle trust and durable revision/expiry/replay authority remain outside C20."
     },
     {
       "id": "C21",
