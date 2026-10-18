@@ -17,6 +17,11 @@ DB/status/NVD metadata yields `unknown`, including an empty match list. A Grype
 source build may put `[not provided]` in `descriptor.version`; that literal is
 preserved but is not evidence of an exact scanner version.
 
+The decoder rejects reports over 100 MiB and reports with more than 10,000
+matches before allocating typed match and projection slices. This is a bounded
+adapter input limit, not a measured 2 GiB full-workflow capacity claim; C28
+still needs a peak-memory measurement with representative reports.
+
 All fixtures are repository-authored synthetic data under Apache-2.0. The
 format source and checksum-verified upstream archive are recorded in
 `provenance.json`. Tests check malformed and oversized input, secret omission,

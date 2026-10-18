@@ -62,6 +62,8 @@ type grypeDocument struct {
 	} `json:"descriptor"`
 }
 
+const maxGrypeMatches = 10000
+
 func grypeFailure(code, field string) error {
 	return &contracts.Error{Code: code, Field: field, Message: "Grype JSON report is missing or has an invalid supported field."}
 }
@@ -86,6 +88,19 @@ func DecodeGrypeReport(data []byte) (VulnerabilityReport, error) {
 	}
 	if !bytes.HasPrefix(bytes.TrimSpace(root["matches"]), []byte("[")) {
 		return fail("invalid_input", "matches")
+	}
+	// Count before unmarshalling the typed matches and allocating the projection.
+	matches := jsontext.NewDecoder(bytes.NewReader(root["matches"]))
+	if _, err := matches.ReadToken(); err != nil {
+		return fail("invalid_json", "matches")
+	}
+	for count := 0; matches.PeekKind() != ']'; count++ {
+		if count >= maxGrypeMatches {
+			return fail("limit_exceeded", "matches")
+		}
+		if err := matches.SkipValue(); err != nil {
+			return fail("invalid_json", "matches")
+		}
 	}
 	var doc grypeDocument
 	if json.Unmarshal(data, &doc) != nil {

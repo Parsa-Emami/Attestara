@@ -1,6 +1,6 @@
 # C02 resource lock
 
-`toolchain-lock.json` is a versioned inventory for the Linux x86_64 local profile. The existing web versions and npm lock are preserved. Go is the C03 build prerequisite; OPA, Syft and Grype are optional local tools. CycloneDX 1.7 and SPDX 3.0 are normative format references, not working adapters. Rego v1 is reported by the pinned OPA version; no external policy rule bundle, image or vulnerability database is required by C02.
+`toolchain-lock.json` is a versioned inventory for the Linux x86_64 local profile. The existing web versions and npm lock are preserved. Go is the C03 build prerequisite; OPA, Syft and Grype are optional local tools. At C02, CycloneDX 1.7 and SPDX 3.0 were normative format references only. C10 and C11 later added read-only CycloneDX 1.7 and bounded SPDX 3.0.0 subset adapters; C12 added read-only Grype report projection, and C15 added fixed-policy OPA execution. Rego v1 is reported by the pinned OPA version; C02 required no external policy rule bundle, image or vulnerability database.
 
 ```sh
 node scripts/verify-resources.mjs
@@ -22,7 +22,7 @@ GOROOT_BOOTSTRAP=/path/to/go1.26.2 GOMAXPROCS=2 ./make.bash
 ../bin/go version
 ```
 
-The official [Go source-build guide](https://go.dev/doc/install/source) describes bootstrap prerequisites. C02's actual compiler version and bootstrap executable hash are in its evidence. This build is of the upstream compiler, not the Attestara engine. No product `go.mod` or `go.sum` exists until C03.
+The official [Go source-build guide](https://go.dev/doc/install/source) describes bootstrap prerequisites. C02's actual compiler version and bootstrap executable hash are in its evidence. This build is of the upstream compiler, not the Attestara engine. The product `go.mod` and `go.sum` were added by C03 and are present in the current checkout.
 
 Each provider's `source_build` records its immutable source archive, upstream recipe and command. Extract into a separate directory and use the verified Go compiler. Preserve the upstream `go.mod` and `go.sum`; build with `-mod=readonly`. If the host has an unavailable private Go proxy, a command-local `GOPROXY='https://proxy.golang.org|direct' GOSUMDB=sum.golang.org GOTOOLCHAIN=local` can use the public checksum-verified module route, with VCS fallback. It does not change project environment files. Optional provider source builds do not measure Attestara functionality or hardware capacity.
 

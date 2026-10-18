@@ -68,3 +68,18 @@ jobs:
         run: go test -count=1 -v ./...
         env:
           GOTOOLCHAIN: local
+      - name: Verify C02-pinned OPA artifact and run real-provider regressions
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --input-type=module - "$RUNNER_TEMP/attestara-opa" <<'NODE'
+          import { readFileSync, writeFileSync } from 'node:fs';
+          import { createHash } from 'node:crypto';
+          const resource = JSON.parse(readFileSync('docs/engineering/toolchain-lock.json')).resources.find(item => item.id === 'opa');
+          const response = await fetch(resource.artifact.url, { signal: AbortSignal.timeout(120000) });
+          if (!response.ok) throw new Error('Locked OPA download failed: ' + response.status);
+          const bytes = Buffer.from(await response.arrayBuffer());
+          if (createHash('sha256').update(bytes).digest('hex') !== resource.artifact.sha256) throw new Error('OPA artifact checksum mismatch');
+          writeFileSync(process.argv[2], bytes, { mode: 0o700 });
+          NODE
+          ATTESTARA_TEST_OPA="$RUNNER_TEMP/attestara-opa" GOTOOLCHAIN=local go test -count=1 -v ./tests -run '^TestC15(RealOPAAndBindings|ReopenAndFreshProcess|NoSourceExecutionAndEnvironment|ProviderFailuresAndTimeout)$'

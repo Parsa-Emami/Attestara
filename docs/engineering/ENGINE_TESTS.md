@@ -63,10 +63,14 @@ C02 OPA 1.21.2 binary selected explicitly:
 ATTESTARA_TEST_OPA=/absolute/path/to/opa go test -count=1 -v ./...
 ```
 
-Real-provider tests also accept `opa` on PATH for developer convenience. If both
+Real-provider tests also accept a direct, nonsymlinked copy of the pinned `opa`
+binary on PATH for developer convenience. If an explicit path and that binary
 are absent, those tests explicitly skip: a green provider-free run cannot verify
-C15. CI does not currently provision this optional provider; no remote OPA
-acceptance is claimed. Missing-provider errors and synthetic executable boundary
-tests still run. C15 evidence records a separate actual OPA binary identity and
-execution. C05 reopen and fresh Go/OPA process repetition prove the v2 outcome
+C15. Runtime CI now downloads the C02-pinned OPA release artifact, checks its
+SHA-256, and runs real-provider C15 regressions with an explicit path. A missing
+or mismatched artifact fails the job. The provider-free suite can still skip
+optional-provider tests; that run alone is not C15 acceptance. This workflow
+change does not prove a remote Actions run passed. C15 historical evidence records
+a separate actual OPA binary identity and execution. C05 reopen and fresh Go/OPA
+process repetition prove the v2 outcome
 stays bound to the same bytes, not new power-loss or full-workflow recovery.

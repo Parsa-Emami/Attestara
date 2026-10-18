@@ -180,24 +180,26 @@ func fakeOPA(t *testing.T, version, body string) string {
 	return path
 }
 func TestC15ProviderFailuresAndTimeout(t *testing.T) {
+	sentinel := filepath.Join(t.TempDir(), "ran")
+	unpinned := filepath.Join(t.TempDir(), "opa")
+	if err := os.WriteFile(unpinned, []byte("#!/bin/sh\n: > "+sentinel+"\nprintf 'Version: 1.21.2\\n'\n"), 0700); err != nil {
+		t.Fatal(err)
+	}
 	for _, tc := range []struct{ name, path, code string }{
 		{"missing", "/nonexistent/opa", "dependency_unavailable"},
 		{"relative", "opa", "dependency_unavailable"},
 		{"version", fakeOPA(t, "0.0.0", "exit 0"), "dependency_unavailable"},
-		{"failed", fakeOPA(t, "1.21.2", "echo synthetic-secret >&2; exit 1"), "invalid_input"},
-		{"malformed", fakeOPA(t, "1.21.2", "printf '{'"), "invalid_json"},
-		{"undefined", fakeOPA(t, "1.21.2", "printf '{}'"), "invalid_input"},
-		{"wrong-type", fakeOPA(t, "1.21.2", `printf '%s' '{"result":[{"expressions":[{"value":"synthetic-secret"}]}]}'`), "invalid_input"},
-		{"duplicate", fakeOPA(t, "1.21.2", `printf '%s' '{"result":[],"result":[]}'`), "invalid_json"},
-		{"stderr-limit", fakeOPA(t, "1.21.2", "while :; do printf 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' >&2; done"), "limit_exceeded"},
-		{"oversized", fakeOPA(t, "1.21.2", "while :; do printf 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'; done"), "limit_exceeded"},
+		{"matching-version-unpinned", unpinned, "dependency_unavailable"},
 	} {
 		t.Run(tc.name, func(t *testing.T) {
 			r, e := adapters.EvaluateOPA(context.Background(), tc.path, c15(t, "input.pass.json"), c15(t, "policy.rego"), c15(t, "evidence.pass.json"))
 			opaReject(t, r, e, tc.code)
 		})
 	}
-	path := fakeOPA(t, "1.21.2", "while :; do :; done")
+	if _, err := os.Stat(sentinel); !os.IsNotExist(err) {
+		t.Fatal("unpinned provider executed", err)
+	}
+	path := opaExecutable(t)
 	ctx, cancel := context.WithTimeout(context.Background(), 50*time.Millisecond)
 	defer cancel()
 	started := time.Now()
@@ -291,8 +293,7 @@ func TestC15ReopenAndFreshProcess(t *testing.T) {
 func TestC15NoSourceExecutionAndEnvironment(t *testing.T) {
 	t.Setenv("ATTESTARA_SYNTHETIC_SECRET", "synthetic-secret")
 	t.Setenv("OPA_EVAL_FORMAT", "pretty")
-	provider := fakeOPA(t, "1.21.2", `[ -z "$ATTESTARA_SYNTHETIC_SECRET" ] && [ -z "$OPA_EVAL_FORMAT" ] || exit 1
-printf '%s' '{"result":[{"expressions":[{"value":true}]}]}'`)
+	provider := opaExecutable(t)
 	r, e := adapters.EvaluateOPA(context.Background(), provider, c15(t, "input.pass.json"), c15(t, "policy.rego"), c15(t, "evidence.pass.json"))
 	if e != nil || r.Result.PolicyDecision != "pass" {
 		t.Fatal("host environment entered provider", e)

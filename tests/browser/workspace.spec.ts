@@ -39,3 +39,26 @@ test('configuration failure blocks workspace startup', async ({ page }) => {
   await expect(page.getByRole('heading', { name: 'Workspace unavailable' })).toBeVisible();
   await expect(page.getByLabel('Choose JSON file')).toHaveCount(0);
 });
+
+test('keyboard navigation, live status and narrow reflow remain usable', async ({ page }) => {
+  await page.goto('/');
+  await page.getByRole('link', { name: 'Skip to content' }).focus();
+  await expect(page.getByRole('link', { name: 'Skip to content' })).toBeVisible();
+  await page.keyboard.press('Tab');
+  await expect(page.getByRole('link', { name: 'Attestara' })).toBeFocused();
+  await page.keyboard.press('Shift+Tab');
+  await expect(page.getByRole('link', { name: 'Skip to content' })).toBeFocused();
+  await page.keyboard.press('Enter');
+  await expect(page.locator('main#content')).toBeFocused();
+  await page.getByLabel('Choose JSON file').focus();
+  await expect(page.getByLabel('Choose JSON file')).toBeFocused();
+  await expect(page.getByLabel('Availability')).toHaveAttribute('aria-live', 'polite');
+  await page.getByRole('link', { name: 'Roadmap', exact: true }).click();
+  await page.getByLabel('Search tasks').fill('no-such-task');
+  await expect(page.locator('.filters + p')).toHaveAttribute('aria-live', 'polite');
+  await expect(page.getByText('No matching tasks.')).toBeVisible();
+  for (const width of [320, 640, 1280]) {
+    await page.setViewportSize({ width, height: 800 });
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  }
+});

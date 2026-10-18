@@ -8,10 +8,12 @@ import (
 	json "encoding/json/v2"
 	"errors"
 	"fmt"
+	"io"
 	"os"
 	"os/exec"
 	"path/filepath"
 	"strings"
+	"syscall"
 	"time"
 
 	"attestara/internal/contracts"
@@ -20,6 +22,7 @@ import (
 // C02 pins OPA; this C15 slice executes only the existing C04 policy, not
 // arbitrary uploaded Rego. The digest is checked against that fixture in tests.
 const opaVersion = "1.21.2"
+const opaExecutableDigest = "sha256:830ab11f61ffec760b5e19db0d7ad02bf037e13f5ef4d665faeaf17632177527"
 const opaPolicyDigest = "sha256:52f2452badde5b273ce44fb4663e08868116d8a1151544048021d8634b83483e"
 const opaByteLimit = 4096
 
@@ -38,8 +41,8 @@ func opaInterrupted(ctx context.Context) error {
 }
 
 // EvaluateOPA runs the pinned local CLI over the C04 allow policy and C14 facts.
-// executable is an absolute path chosen by the application owner, never an
-// uploaded path. Subject bytes are not opened or executed. Successful policy
+// executable is the C02-pinned release binary at an owner-selected absolute
+// path, never an uploaded path. Subject bytes are not opened or executed. Successful policy
 // results remain authenticity-unverified. No result is returned on failure.
 func EvaluateOPA(parent context.Context, executable string, inputJSON, policyBytes, evidenceBytes []byte) (contracts.Result, error) {
 	ctx, cancel := context.WithTimeout(parent, contracts.ValidationDeadline)
@@ -95,6 +98,17 @@ func EvaluateOPA(parent context.Context, executable string, inputJSON, policyByt
 	if !filepath.IsAbs(executable) {
 		return fail("dependency_unavailable", "opa")
 	}
+	provider, err := os.OpenFile(executable, os.O_RDONLY|syscall.O_NOFOLLOW|syscall.O_NONBLOCK, 0)
+	if err != nil {
+		return fail("dependency_unavailable", "opa")
+	}
+	info, statErr := provider.Stat()
+	h := sha256.New()
+	_, hashErr := io.Copy(h, io.LimitReader(provider, 128<<20))
+	closeErr := provider.Close()
+	if statErr != nil || !info.Mode().IsRegular() || info.Size() > 128<<20 || hashErr != nil || closeErr != nil || "sha256:"+fmt.Sprintf("%x", h.Sum(nil)) != opaExecutableDigest {
+		return fail("dependency_unavailable", "opa.digest")
+	}
 	version, err := runOPA(ctx, executable, "", nil, "version")
 	if err != nil {
 		var typed *contracts.Error
@@ -119,8 +133,23 @@ func EvaluateOPA(parent context.Context, executable string, inputJSON, policyByt
 	if err != nil {
 		return contracts.Result{}, err
 	}
+	allowed, err := opaDecision(output)
+	if err != nil {
+		return contracts.Result{}, err
+	}
+	if err := opaInterrupted(ctx); err != nil {
+		return contracts.Result{}, err
+	}
+	decision := "fail"
+	if allowed {
+		decision = "pass"
+	}
+	return contracts.Result{SchemaVersion: "2", Status: "unverified", InputDigest: opaHash(inputJSON), EngineVersion: "0.0.1", Warnings: []string{}, Result: &contracts.Outcome{SubjectDigest: input.SubjectDigest, EvidenceDigest: input.EvidenceDigest, PolicyDigest: input.PolicyDigest, PolicyDecision: decision, Verification: "unverified", EvidenceReferences: refs}}, nil
+}
+
+func opaDecision(output []byte) (bool, error) {
 	if !jsontext.Value(output).IsValid() {
-		return fail("invalid_json", "opa.result")
+		return false, opaError("invalid_json", "opa.result")
 	}
 	var response struct {
 		Errors jsontext.Value `json:"errors"`
@@ -131,16 +160,9 @@ func EvaluateOPA(parent context.Context, executable string, inputJSON, policyByt
 		} `json:"result"`
 	}
 	if json.Unmarshal(output, &response) != nil || len(response.Errors) > 0 || len(response.Result) != 1 || len(response.Result[0].Expressions) != 1 || response.Result[0].Expressions[0].Value == nil {
-		return fail("invalid_input", "opa.result")
+		return false, opaError("invalid_input", "opa.result")
 	}
-	if err := opaInterrupted(ctx); err != nil {
-		return contracts.Result{}, err
-	}
-	decision := "fail"
-	if *response.Result[0].Expressions[0].Value {
-		decision = "pass"
-	}
-	return contracts.Result{SchemaVersion: "2", Status: "unverified", InputDigest: opaHash(inputJSON), EngineVersion: "0.0.1", Warnings: []string{}, Result: &contracts.Outcome{SubjectDigest: input.SubjectDigest, EvidenceDigest: input.EvidenceDigest, PolicyDigest: input.PolicyDigest, PolicyDecision: decision, Verification: "unverified", EvidenceReferences: refs}}, nil
+	return *response.Result[0].Expressions[0].Value, nil
 }
 
 type opaOutput struct {

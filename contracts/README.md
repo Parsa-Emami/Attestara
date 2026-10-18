@@ -177,7 +177,10 @@ and [context deadline](https://pkg.go.dev/context#WithTimeout) boundaries.
 result, err := adapters.EvaluateOPA(ctx, absoluteOPAPath, inputJSON, policyBytes, evidenceJSON)
 ```
 
-The internal adapter requires the owner-selected OPA 1.21.2 executable and the
+The internal adapter requires the owner-selected path to the C02-pinned OPA 1.21.2
+Linux x86_64 release executable. It hashes the executable before running it and
+rejects a different binary, even if its version output matches. Source-built OPA
+has a different binary hash and is not accepted by this fixed-artifact adapter. The
 exact existing C04 Rego policy (SHA-256
 `52f2452badde5b273ce44fb4663e08868116d8a1151544048021d8634b83483e`).
 It is deliberately limited to that policy and the C14 version-1 fact document;
@@ -203,8 +206,11 @@ cancellation returns `cancelled`; missing/wrong-version providers return
 limits fail with existing typed errors and input-independent messages.
 
 The executable path is trusted application configuration, never upload data.
-Version checking is compatibility checking, not executable authenticity or a
-sandbox for hostile binaries. No provider is installed automatically. Subject
+The digest check reads at most 128 MiB and binds the selected regular file to the
+pinned artifact at check time. The owner must keep its directory free of
+concurrent untrusted writers because
+path replacement between check and execution remains possible. Version checking
+is compatibility checking, not a sandbox. No provider is installed automatically. Subject
 bytes, shell fragments and uploaded source are never executed. The HTTP API and
 browser domain workflow remain future work. CLI flags follow the
 [official OPA reference](https://www.openpolicyagent.org/docs/cli#eval).
