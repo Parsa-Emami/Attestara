@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "cases": [
+    {
+      "id": "malformed",
+      "evidence": "{",
+      "code": "invalid_json"
+    },
+    {
+      "id": "duplicate",
+      "evidence": "{\"schema_version\":\"1\",\"schema_version\":\"1\"}",
+      "code": "invalid_json"
+    },
+    {
+      "id": "version",
+      "evidence": "{\"schema_version\":\"2\",\"evidence_present\":true}",
+      "code": "unsupported_version"
+    },
+    {
+      "id": "scanner-field",
+      "evidence": "{\"schema_version\":\"1\",\"matches\":[]}",
+      "code": "invalid_input"
+    },
+    {
+      "id": "wrong-type",
+      "evidence": "{\"schema_version\":\"1\",\"evidence_present\":\"true\"}",
+      "code": "invalid_input"
+    }
+  ]
+}

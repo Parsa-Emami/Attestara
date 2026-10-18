@@ -51,3 +51,22 @@ The storage package additionally requires v2 SIGKILL, injected ENOSPC/lost-ACK,
 and on-disk quota rejection tests. Full `go test -count=1 -v ./...` executes them.
 C14 does not activate the future HTTP API or OPA provider. First-party policy
 facts and passing predicates do not establish producer authenticity.
+
+## C15 optional real OPA verification
+
+C15 adds required discovery for fixed-policy CLI evaluation, exact digest/size
+bindings, strict facts, safe provider errors, environment isolation, output caps,
+process timeout and inert source. Run the full suite with the checksum-verified
+C02 OPA 1.21.2 binary selected explicitly:
+
+```sh
+ATTESTARA_TEST_OPA=/absolute/path/to/opa go test -count=1 -v ./...
+```
+
+Real-provider tests also accept `opa` on PATH for developer convenience. If both
+are absent, those tests explicitly skip: a green provider-free run cannot verify
+C15. CI does not currently provision this optional provider; no remote OPA
+acceptance is claimed. Missing-provider errors and synthetic executable boundary
+tests still run. C15 evidence records a separate actual OPA binary identity and
+execution. C05 reopen and fresh Go/OPA process repetition prove the v2 outcome
+stays bound to the same bytes, not new power-loss or full-workflow recovery.

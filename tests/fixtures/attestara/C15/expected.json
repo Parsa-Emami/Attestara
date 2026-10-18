@@ -1,0 +1,7 @@
+{
+  "schema_version": 1,
+  "policy_digest": "sha256:52f2452badde5b273ce44fb4663e08868116d8a1151544048021d8634b83483e",
+  "query": "data.attestara.release.allow",
+  "timeout_code": "deadline_exceeded",
+  "provider_code": "dependency_unavailable"
+}

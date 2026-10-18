@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "license": "Apache-2.0",
+  "origin": "Repository-authored C15 data reusing unchanged C04 policy and C14 facts/subject.",
+  "files": {
+    "README.md": "sha256:ca105e73c50f0febf8dd5eaed1eb2005249c894cee4029431223f38d0c8c6de2",
+    "evidence.absent.json": "sha256:e1a1570295dbb8cf46de89a086705ff248d342f6e48f00f61ae83127dc88b457",
+    "evidence.fail.json": "sha256:f62ca433d8d739f57960be952e2c15615961f884d12373645aebd604f0ec7871",
+    "evidence.pass.json": "sha256:f4eef926e346ce1feac1114ab917dc53928001104bab21cb7e88948a9f1ca193",
+    "expected.json": "sha256:37193652b8477393bbfa14752636cf04b7c0bdc2ff320720791de26ec0e9028b",
+    "input.absent.json": "sha256:76102cc198e93d250cdb970214a938f63ab5f92abf72cb4ffd34019595bab618",
+    "input.fail.json": "sha256:4c1e4ba162a72ed5e441909cc9e0757e0388e92638688ab637134e26f051a656",
+    "input.pass.json": "sha256:9380a39d438635a49bd555dde8909c5e303b07fab2de18912a4a00da49f8818b",
+    "negative.json": "sha256:c3db20e9e50292a6ca299f9cbaa4e9a0297e334220a9c439a173910ac27629ae",
+    "policy.rego": "sha256:52f2452badde5b273ce44fb4663e08868116d8a1151544048021d8634b83483e",
+    "positive.json": "sha256:1055c74f767445ac57047f0480e2d648e39bb7babca4fc34f3ccf51aa8d368ed",
+    "subject.txt": "sha256:ecdc32b595e2dc30f73744505e78f4f6888b76c3997098f3f1fdffcb7b7d9cd4"
+  }
+}

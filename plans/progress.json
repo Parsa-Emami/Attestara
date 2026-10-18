@@ -132,10 +132,12 @@
     },
     {
       "id": "C15",
-      "status": "planned",
-      "evidence": [],
-      "source_identity": null,
-      "notes": ""
+      "status": "verified",
+      "evidence": [
+        "docs/evidence/C15.json"
+      ],
+      "source_identity": "sha256:b927455c04a5961ddca5bb8b3a951b3bcf26333bb94927a4b8ff6ce114d25d19",
+      "notes": "Owner-approved internal pinned OPA CLI adapter for exact C04 policy and C14 facts: real pass/fail, typed timeout/provider errors, bounded private subprocesses, exact v2 bindings and real C05 reopen/fresh-process repeat verified locally. No arbitrary Rego, API/UI, provider trust or full workflow claim."
     },
     {
       "id": "C16",

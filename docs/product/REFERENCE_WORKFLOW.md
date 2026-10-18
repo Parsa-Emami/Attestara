@@ -31,3 +31,10 @@ pass/fail/unknown and exact rule/evidence references under result v2. Its synthe
 fact documents are concrete evaluator inputs, not scanner/trust assertions. This
 is one engine slice; the ten-step browser/passport/signature/restore workflow
 above remains unexecuted. See `contracts/README.md` for the approved C14 boundary.
+
+C15 adds an internal optional OPA 1.21.2 CLI adapter for the exact C04 allow
+policy and C14 fact format. Real OPA decisions produce the existing v2 result;
+timeout is an explicit failed evaluation and authenticity stays unverified.
+No scanner-specific schema, arbitrary policy execution, HTTP admission or browser
+workflow is added. The C04 policy defaults missing/null facts to false; C14's
+first-party unknown behavior remains unchanged.

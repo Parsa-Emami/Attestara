@@ -1,6 +1,6 @@
 {
   "project": "Attestara",
-  "reviewed_commit": "3107727b2d65328db2131758ce774725c2413417",
+  "reviewed_commit": "e79fdd54e25d79fd49730ff20cde2a4d3f572fdf",
   "readiness": "WEB_FOUNDATION",
   "core_ready": false,
   "implemented": [
@@ -18,10 +18,11 @@
     "C11 read-only SPDX 3.0.0 compact JSON-LD package/dependency subset normalizes to CycloneDX 1.7 and round-trips exact package IDs and directed edges; full SPDX conformance and durable import are not claimed",
     "C12 read-only Grype JSON adapter projects scanner version, reported database build/age/status, NVD capture and vulnerability/package matches; missing CVE feed is unknown and sensitive configuration is excluded",
     "C13 read-only Go SPDX expression assessment uses the shared C02-pinned catalog: known expressions are recognized, unresolved references require review; neither is a compliance verdict",
-    "C14 internal Go evidence_present predicate yields pass/fail/unknown bound to actual rule/fact bytes and evidence references; result v2 persists through C05 with v1 read compatibility and real crash/replay/quota regressions"
+    "C14 internal Go evidence_present predicate yields pass/fail/unknown bound to actual rule/fact bytes and evidence references; result v2 persists through C05 with v1 read compatibility and real crash/replay/quota regressions",
+    "C15 internal optional OPA 1.21.2 CLI adapter executes only exact C04 policy over C14 facts; safe typed failures, bounded process/output and exact v2 bindings with real provider/reopen/fresh-process proof"
   ],
-  "engine": "Go lifecycle/health, v1 typed release-evidence validation, recoverable local file repository, per-artifact evidence envelopes, typed manifest reader and bounded read-only ZIP reader implemented; domain API, external OPA execution, cryptographic trust, revision authority and full workflow pending; read-only CycloneDX JSON 1.7, SPDX 3.0.0 subset and Grype JSON adapters implemented; C13 license expression recognition/review only, without compliance or release-rule decisions; C14 bounded first-party rule evaluation and v2 result persistence implemented, without producer authenticity or full workflow",
-  "next_task": "C15",
+  "engine": "Go lifecycle/health, v1 typed release-evidence validation, recoverable local file repository, per-artifact evidence envelopes, typed manifest reader and bounded read-only ZIP reader implemented; domain API, general external policy execution, cryptographic trust, revision authority and full workflow pending; read-only CycloneDX JSON 1.7, SPDX 3.0.0 subset and Grype JSON adapters implemented; C13 license expression recognition/review only, without compliance or release-rule decisions; C14 bounded first-party rule evaluation and v2 result persistence implemented, without producer authenticity or full workflow; C15 fixed-policy local OPA execution implemented, without arbitrary Rego or domain API/UI",
+  "next_task": "C16",
   "next_command": "npm run plan -- next",
   "full_product_endpoint": "C30 locally usable; C40 full published OSS v1"
 }

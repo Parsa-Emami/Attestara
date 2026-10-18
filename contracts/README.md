@@ -170,3 +170,41 @@ The HTTP/AsyncAPI designs remain inactive. OPA execution belongs to C15.
 
 Implementation follows the existing [Go JSON v2 decoder](https://pkg.go.dev/encoding/json/v2#Unmarshal)
 and [context deadline](https://pkg.go.dev/context#WithTimeout) boundaries.
+
+## C15 bounded local OPA adapter
+
+```go
+result, err := adapters.EvaluateOPA(ctx, absoluteOPAPath, inputJSON, policyBytes, evidenceJSON)
+```
+
+The internal adapter requires the owner-selected OPA 1.21.2 executable and the
+exact existing C04 Rego policy (SHA-256
+`52f2452badde5b273ce44fb4663e08868116d8a1151544048021d8634b83483e`).
+It is deliberately limited to that policy and the C14 version-1 fact document;
+arbitrary Rego, scanner-specific fields and caller-supplied queries are unsupported.
+Input remains contract v1; output remains result v2. Policy digest binds the exact
+Rego bytes here; C14 continues to bind its rule JSON. References bind actual fact
+bytes and manifest sizes. Hash binding and policy pass do not establish authenticity.
+
+The fixed query `data.attestara.release.allow` returns a boolean: true becomes
+pass and false becomes fail. The C04 policy defaults to false for an absent/null
+fact; C14's first-party predicate still returns unknown in that case. Unavailable
+evidence bytes fail with `input_unavailable`. An undefined/non-boolean provider
+result fails; it is never converted to pass or unknown.
+
+The provider receives facts via stdin with an empty environment, fixed argv and
+no shell. Only policy bytes are written into a private temporary directory and
+removed after evaluation. Policy, stdout and stderr each have a 4096-byte cap;
+input/facts use the existing 100 MiB limit. The caller deadline or shared 10-second
+cap bounds version probing and evaluation together. OPA's own evaluation timeout
+is also enabled. Timeout returns an empty result and `deadline_exceeded`; explicit
+cancellation returns `cancelled`; missing/wrong-version providers return
+`dependency_unavailable`. Malformed outputs, failed policy evaluation and output
+limits fail with existing typed errors and input-independent messages.
+
+The executable path is trusted application configuration, never upload data.
+Version checking is compatibility checking, not executable authenticity or a
+sandbox for hostile binaries. No provider is installed automatically. Subject
+bytes, shell fragments and uploaded source are never executed. The HTTP API and
+browser domain workflow remain future work. CLI flags follow the
+[official OPA reference](https://www.openpolicyagent.org/docs/cli#eval).

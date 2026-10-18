@@ -191,7 +191,7 @@
       "id": "C15",
       "title": "feat(opa): support bounded external policy adapter",
       "stage": "domain",
-      "status": "planned",
+      "status": "verified",
       "acceptance": [
         "Timeout is a failed evaluation; evidence schema does not depend on scanner-specific fields."
       ],
