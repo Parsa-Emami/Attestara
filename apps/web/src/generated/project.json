@@ -179,7 +179,7 @@
       "id": "C14",
       "title": "feat(policy): evaluate versioned release rules",
       "stage": "domain",
-      "status": "planned",
+      "status": "verified",
       "acceptance": [
         "Result includes pass, fail or unknown with evidence references and rule digest."
       ],

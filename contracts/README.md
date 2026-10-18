@@ -1,6 +1,6 @@
-# Attestara release-evidence contract v1
+# Attestara release-evidence contracts
 
-The executable C04 boundary is the Go library `attestara/internal/contracts`:
+The executable C04 boundary (extended by C14 result v2) is the Go library `attestara/internal/contracts`:
 
 ```go
 input, err := contracts.DecodeInput(ctx, immutableJSONBytes)
@@ -119,3 +119,54 @@ Implementation references: [Go 1.27 JSON v2](https://pkg.go.dev/encoding/json/v2
 [context.WithTimeout](https://pkg.go.dev/context#WithTimeout),
 [JSON Schema 2020-12 validation](https://json-schema.org/draft/2020-12/json-schema-validation).
 CycloneDX source identity/license are retained in `docs/engineering/toolchain-lock.json`.
+
+## C14 result v2 and local policy evaluation
+
+`result.schema.json` remains the unchanged v1 schema. `result.v2.schema.json`
+describes result version `"2"`; input remains version `"1"`. `DecodeResult`
+reads both versions. The v1 decoder still rejects v2 fields, including an explicit
+null/empty `evidence_references`, and retains `allow/deny/unknown`. Historical
+C04 fixture `result-version-2` now fails as an incomplete v2 payload; a separate
+regression rejects version 3. No existing stored result or fixture is rewritten.
+
+V2 retains the envelope, digest bindings and separate authenticity status. Its
+`policy_decision` is `pass`, `fail` or `unknown`; `policy_digest` hashes the exact
+rule JSON bytes, including whitespace. `evidence_references` is a required array
+of `{path, digest}` objects, capped at 2000 unique paths. Known decisions require
+at least one reference. The C05 adapter checks references against the associated
+input's root evidence artifact and checks actual file bytes before commit and
+on reopen. The store manifest format and operation IDs are unchanged; v1 and v2
+result payloads can coexist. Older software that only supports result v1 cannot
+read v2 payloads: preserve exports and use the compatible reader, not an old binary
+against newer accepted state. There is no automatic data migration.
+
+The internal Go entry point is:
+
+```go
+result, err := policy.Evaluate(ctx, inputJSON, ruleJSON, evidenceJSON)
+```
+
+The only supported rule is `{"schema_version":"1","predicate":"evidence_present"}`
+(with insignificant whitespace permitted but hashed exactly). Rule bytes are
+capped at 4096. Evidence is a first-party JSON fact document with version `"1"`
+and optional `evidence_present` boolean. True yields pass; explicit false yields
+fail; absent/null fact or unavailable evidence yields unknown. Actual evidence
+bytes must match the input evidence digest and manifest size before a known
+decision is returned. Nil evidence bytes mean unavailable; non-nil empty bytes
+are parsed and rejected as malformed JSON. A missing evidence file cannot be
+persisted through C05 even if an in-memory unknown result was produced.
+
+Rules and facts reject unknown/duplicate members, malformed UTF-8/JSON and
+unsupported versions with safe `contracts.Error` messages and empty results.
+Evidence/input use C04's 100 MiB boundary. The caller deadline or 10 second cap
+is checked cooperatively; synchronous JSON parsing and hashing are not preempted.
+References retain manifest order and returned slices are newly owned.
+
+This predicate evaluates the supplied first-party fact; it does not infer scanner
+coverage, SBOM correctness, license compliance, producer identity or signature
+trust. All generated outcomes retain unverified authenticity, including pass.
+No rule source, Rego, shell, URL, scanner or provider is executed or fetched.
+The HTTP/AsyncAPI designs remain inactive. OPA execution belongs to C15.
+
+Implementation follows the existing [Go JSON v2 decoder](https://pkg.go.dev/encoding/json/v2#Unmarshal)
+and [context deadline](https://pkg.go.dev/context#WithTimeout) boundaries.

@@ -98,6 +98,11 @@ func TestC04Fixtures(t *testing.T) {
 			} else {
 				_, err = DecodeResult(context.Background(), c.Value)
 			}
+			// Keep the historical fixture unchanged. C14 now supports result v2,
+			// but this old v1-shaped payload lacks its required evidence references.
+			if c.ID == "result-version-2" {
+				c.ExpectedCode = "invalid_input"
+			}
 			errorCode(t, err, c.ExpectedCode)
 		})
 	}

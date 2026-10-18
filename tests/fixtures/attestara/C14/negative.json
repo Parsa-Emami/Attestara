@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "cases": [
+    {
+      "rule": "{",
+      "code": "invalid_json"
+    },
+    {
+      "rule": "{\"schema_version\":\"2\",\"predicate\":\"evidence_present\"}",
+      "code": "unsupported_version"
+    },
+    {
+      "rule": "{\"schema_version\":\"1\",\"predicate\":\"exec\"}",
+      "code": "invalid_input"
+    },
+    {
+      "rule": "{\"schema_version\":\"1\",\"predicate\":\"evidence_present\",\"command\":\"sensitive-value\"}",
+      "code": "invalid_input"
+    },
+    {
+      "rule": "{\"schema_version\":\"1\",\"schema_version\":\"1\",\"predicate\":\"evidence_present\"}",
+      "code": "invalid_json"
+    },
+    {
+      "rule": "null",
+      "code": "invalid_input"
+    },
+    {
+      "rule": "{\"schema_version\":\"1\",\"predicate\":null}",
+      "code": "invalid_input"
+    }
+  ]
+}

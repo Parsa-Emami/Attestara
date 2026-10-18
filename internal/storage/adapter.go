@@ -246,6 +246,17 @@ func validate(ctx context.Context, r Record, files bool) (contracts.Input, error
 	if o := result.Result; o != nil && (o.SubjectDigest != v.SubjectDigest || o.EvidenceDigest != v.EvidenceDigest || o.PolicyDigest != v.PolicyDigest) {
 		return v, ErrInvalid
 	}
+	if o := result.Result; o != nil && result.SchemaVersion == "2" {
+		manifest := make(map[string]string, len(v.Files))
+		for _, f := range v.Files {
+			manifest[f.Path] = f.Digest
+		}
+		for _, ref := range o.EvidenceReferences {
+			if manifest[ref.Path] != ref.Digest || ref.Digest != v.EvidenceDigest {
+				return v, ErrInvalid
+			}
+		}
+	}
 	if files {
 		if len(r.Files) != len(v.Files) {
 			return v, ErrInvalid

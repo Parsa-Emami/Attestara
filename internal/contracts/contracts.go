@@ -1,4 +1,4 @@
-// Package contracts validates the v1 release-evidence boundary. It does not
+// Package contracts validates v1 input and v1/v2 release-evidence results. It does not
 // execute policy, read manifest paths, establish ownership, or verify signatures.
 package contracts
 
@@ -49,12 +49,19 @@ type Input struct {
 	Verification   string `json:"verification"`
 	Files          []File `json:"files"`
 }
+
+// EvidenceReference identifies inert bytes in the associated input manifest.
+type EvidenceReference struct {
+	Path   string `json:"path"`
+	Digest string `json:"digest"`
+}
 type Outcome struct {
-	SubjectDigest  string `json:"subject_digest"`
-	EvidenceDigest string `json:"evidence_digest"`
-	PolicyDigest   string `json:"policy_digest"`
-	PolicyDecision string `json:"policy_decision"`
-	Verification   string `json:"verification"`
+	SubjectDigest      string              `json:"subject_digest"`
+	EvidenceDigest     string              `json:"evidence_digest"`
+	PolicyDigest       string              `json:"policy_digest"`
+	PolicyDecision     string              `json:"policy_decision"`
+	Verification       string              `json:"verification"`
+	EvidenceReferences []EvidenceReference `json:"evidence_references,omitzero"`
 }
 type Result struct {
 	SchemaVersion string   `json:"schema_version"`
@@ -112,6 +119,35 @@ func decode(ctx context.Context, data []byte, out any) error {
 	for _, value := range fields {
 		if bytes.Equal(bytes.TrimSpace(value), []byte("null")) {
 			return invalid("")
+		}
+	}
+	if _, result := out.(*Result); result && len(fields["result"]) != 0 {
+		var outcome map[string]jsontext.Value
+		if err := json.Unmarshal(fields["result"], &outcome); err != nil {
+			return decodeError(err)
+		}
+		if refs, exists := outcome["evidence_references"]; exists {
+			// v1 remains closed to the new field, including explicit null/empty.
+			var resultVersion string
+			_ = json.Unmarshal(fields["schema_version"], &resultVersion)
+			if resultVersion == "1" {
+				return invalid("result.evidence_references")
+			}
+			d := jsontext.NewDecoder(bytes.NewReader(refs))
+			if token, err := d.ReadToken(); err != nil || token.Kind() != '[' {
+				return invalid("result.evidence_references")
+			}
+			for count := 0; d.PeekKind() != ']'; count++ {
+				if err := interrupted(ctx); err != nil {
+					return err
+				}
+				if count >= MaxFiles {
+					return failure("limit_exceeded", "result.evidence_references", "Result exceeds 2000 evidence references.")
+				}
+				if err := d.SkipValue(); err != nil {
+					return decodeError(err)
+				}
+			}
 		}
 	}
 	// Count before allocating the typed slice; a hostile null array must not
@@ -232,8 +268,13 @@ func DecodeResult(parent context.Context, data []byte) (Result, error) {
 	if err := decode(ctx, data, &v); err != nil {
 		return Result{}, err
 	}
-	if err := version(v.SchemaVersion); err != nil {
-		return Result{}, err
+	if v.SchemaVersion != "2" {
+		if err := version(v.SchemaVersion); err != nil {
+			if v.SchemaVersion != "" {
+				return Result{}, failure("unsupported_version", "schema_version", "Only result contract versions 1 and 2 are supported.")
+			}
+			return Result{}, err
+		}
 	}
 	if !digestPattern.MatchString(v.InputDigest) {
 		return Result{}, invalid("input_digest")
@@ -265,7 +306,24 @@ func DecodeResult(parent context.Context, data []byte) (Result, error) {
 		if o.Verification != "unverified" && o.Verification != "rejected" {
 			return Result{}, invalid("result.verification")
 		}
-		if o.PolicyDecision != "allow" && o.PolicyDecision != "deny" && o.PolicyDecision != "unknown" {
+		positive, negative := "allow", "deny"
+		if v.SchemaVersion == "2" {
+			positive, negative = "pass", "fail"
+			if o.EvidenceReferences == nil || len(o.EvidenceReferences) > MaxFiles {
+				return Result{}, invalid("result.evidence_references")
+			}
+			paths := make(map[string]bool, len(o.EvidenceReferences))
+			for _, ref := range o.EvidenceReferences {
+				if !text(ref.Path) || !ValidManifestPath(ref.Path) || !digestPattern.MatchString(ref.Digest) || paths[ref.Path] {
+					return Result{}, invalid("result.evidence_references")
+				}
+				paths[ref.Path] = true
+			}
+			if o.PolicyDecision != "unknown" && len(o.EvidenceReferences) == 0 {
+				return Result{}, invalid("result.evidence_references")
+			}
+		}
+		if o.PolicyDecision != positive && o.PolicyDecision != negative && o.PolicyDecision != "unknown" {
 			return Result{}, invalid("result.policy_decision")
 		}
 		if v.Status == "complete" && o.PolicyDecision == "unknown" {

@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "cases": [
+    {
+      "id": "pass",
+      "input_fixture": "input.json",
+      "evidence_fixture": "evidence.json",
+      "expected": "pass"
+    },
+    {
+      "id": "fail",
+      "input_fixture": "input.fail.json",
+      "evidence_fixture": "evidence.fail.json",
+      "expected": "fail"
+    },
+    {
+      "id": "unknown",
+      "input_fixture": "input.unknown.json",
+      "evidence_fixture": "evidence.unknown.json",
+      "expected": "unknown"
+    }
+  ]
+}

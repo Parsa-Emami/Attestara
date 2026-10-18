@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "license": "Apache-2.0",
+  "origin": "Repository-authored synthetic C14 fixtures; no customer data or upstream dataset.",
+  "files": {
+    "README.md": "sha256:1de7cbd1f72ee532984647244cf59aaa6fc6711ff233870158390a51541126da",
+    "evidence.fail.json": "sha256:f62ca433d8d739f57960be952e2c15615961f884d12373645aebd604f0ec7871",
+    "evidence.json": "sha256:f4eef926e346ce1feac1114ab917dc53928001104bab21cb7e88948a9f1ca193",
+    "evidence.unknown.json": "sha256:e1a1570295dbb8cf46de89a086705ff248d342f6e48f00f61ae83127dc88b457",
+    "expected.json": "sha256:0d6c6c42f3cbfca97f74de1565a28f7bb9d87a06c47e39551505347b92df5315",
+    "input.fail.json": "sha256:f3e5ecfa87d6b34653b793610c3b186645b2117117959888c3d40da94895c1ad",
+    "input.json": "sha256:c97379825e6424ec7caf770836f5f65a56f7d0dcfc92586ab5b95e38866ee5d1",
+    "input.unknown.json": "sha256:583481592f5a9971e4890098ee0486ba1cd0de31e9770b5daa709713c79abb6c",
+    "negative.json": "sha256:64529d5325c9fe34a041e1e0300485510f720a33406e32520de786a6515ef655",
+    "positive.json": "sha256:d08c851856b795cdd4442dca2db346da364d0c13e3a759ba545e5508518e507d",
+    "rule.json": "sha256:a8bff7c6201d8eacba9acf62cee9f3d2f50ceb1af9327340c464abc848068446",
+    "subject.txt": "sha256:ecdc32b595e2dc30f73744505e78f4f6888b76c3997098f3f1fdffcb7b7d9cd4"
+  }
+}

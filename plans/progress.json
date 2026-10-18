@@ -123,10 +123,12 @@
     },
     {
       "id": "C14",
-      "status": "planned",
-      "evidence": [],
-      "source_identity": null,
-      "notes": ""
+      "status": "verified",
+      "evidence": [
+        "docs/evidence/C14.json"
+      ],
+      "source_identity": "sha256:181846efab93a3960424933da5e5940742b0a374424f567f1cc177abde4456a5",
+      "notes": "Owner-approved internal evidence_present evaluator and result v2 persistence verified: pass/fail/unknown from actual hashed facts, exact rule digest/references, v1 read compatibility, real SIGKILL, injected ENOSPC, replay and quota. No HTTP/UI, OPA, producer trust or full workflow claim."
     },
     {
       "id": "C15",

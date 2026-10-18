@@ -1286,7 +1286,7 @@
       ],
       "verification": [
         "npm run validate:plan — All task/dependency/resource/reference/evidence metadata validates; no runtime capability inferred.",
-        "go test ./... — C03 creates this engine test command in the same commit; C06 adds CI/integration collection. Pass the actual C14 acceptance and negative cases on the selected engine; shell-only tests cannot certify this task."
+        "go test ./... — Execute C14 predicate, v1/v2 compatibility and real C05 recovery regressions; listing tests alone certifies no behavior."
       ],
       "acceptance": [
         "Result includes pass, fail or unknown with evidence references and rule digest."
@@ -1337,7 +1337,7 @@
         "Inspect the actual implementation, source/locks and verified dependencies for C14; preserve accepted existing behavior.",
         "Define the versioned positive and negative release-evidence fixtures and expected error/result semantics under tests/fixtures/attestara/C14/.",
         "Implement: Result includes pass, fail or unknown with evidence references and rule digest.",
-        "Change the listed exact targets and wire the actual typed outcome into the supported browser/engine workflow. Keep domain facts, validation, storage/provider adapters and UI separate.",
+        "Expose the typed Go result and persist it through the existing C05 port under the owner-approved C14 scope; no HTTP/UI admission.",
         "Add regression/integration coverage for every acceptance and negative case; real storage/provider/security boundaries cannot be verified only with mocks.",
         "Run the labeled verification commands; record exact source, fixture license/hash, tool/provider versions, command exits and observed results in docs/evidence/C14.json. Update progress only when the whole task is genuinely verified."
       ],
@@ -1350,9 +1350,9 @@
         },
         {
           "command": "go test ./...",
-          "available_now": false,
+          "available_now": true,
           "introduced_by": "C03",
-          "expected": "C03 creates this engine test command in the same commit; C06 adds CI/integration collection. Pass the actual C14 acceptance and negative cases on the selected engine; shell-only tests cannot certify this task."
+          "expected": "Execute C14 predicate, v1/v2 compatibility and real C05 recovery regressions; listing tests alone certifies no behavior."
         }
       ],
       "stop_conditions": [

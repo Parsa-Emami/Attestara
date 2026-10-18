@@ -42,3 +42,12 @@ Local verification uses an isolated source checkout containing the candidate byt
 ## Proof limits
 
 C06 adds no HTTP domain admission, identity, signature trust, revision authority, policy execution or browser workflow. Existing storage crash tests use real SIGKILL, while ENOSPC is injected at actual file-operation boundaries; neither is physical power-loss or full-volume proof. The 2 vCPU/2 GiB target remains unmeasured until C28. Full clean-host workflow/restart/restore remains C30 and published installation remains C40.
+
+## C14 predicate and result persistence
+
+Mandatory discovery now includes C14 rule/fact byte evaluation, result-v2 schema
+and v1 reader compatibility, C05 mixed-version reopen, and real v2 commit/recovery.
+The storage package additionally requires v2 SIGKILL, injected ENOSPC/lost-ACK,
+and on-disk quota rejection tests. Full `go test -count=1 -v ./...` executes them.
+C14 does not activate the future HTTP API or OPA provider. First-party policy
+facts and passing predicates do not establish producer authenticity.

@@ -24,3 +24,10 @@ The exact ten actions, fixture references, expected states/results and errors ar
 The reference invariants are: no user source execution; digest binds subject and outputs; missing evidence never means pass. This resolves the earlier `negative_uat` list, which mixed positive and negative expectations. The requirements in `product/project.json` remain the source for subject binding, portable passport, changed-subject rejection and viewer/verifier parity.
 
 `node scripts/verify-reference.mjs` checks only this specification and its synthetic fixture metadata. C30 must later run the full workflow on a clean supported Linux clone using `npm run setup` and `npm start`, including actual restart and restore. C01 does not make either command proof of domain behavior. C04 may extend the initial fixture format while preserving the C01 contract.
+
+
+C14 adds an internal, persisted first-party `evidence_present` predicate, with
+pass/fail/unknown and exact rule/evidence references under result v2. Its synthetic
+fact documents are concrete evaluator inputs, not scanner/trust assertions. This
+is one engine slice; the ten-step browser/passport/signature/restore workflow
+above remains unexecuted. See `contracts/README.md` for the approved C14 boundary.
