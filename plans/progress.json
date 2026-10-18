@@ -195,10 +195,12 @@
     },
     {
       "id": "C22",
-      "status": "planned",
-      "evidence": [],
-      "source_identity": null,
-      "notes": ""
+      "status": "verified",
+      "evidence": [
+        "docs/evidence/C22.json"
+      ],
+      "source_identity": "sha256:fce765eee32d8456150d7390a27f588e3bc3f94d9c6dff9540c983629df94582",
+      "notes": "Pure internal C12/C19 typed diff reports new vulnerability identities and removed path/digest evidence independently; fixtures and local Go/web checks passed. No report/passport binding, file verification, trust or persistence claim."
     },
     {
       "id": "C23",

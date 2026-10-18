@@ -277,7 +277,7 @@
       "id": "C22",
       "title": "feat(diff): compare release evidence changes",
       "stage": "domain",
-      "status": "planned",
+      "status": "verified",
       "acceptance": [
         "New vulnerability and removed evidence are reported independently."
       ],

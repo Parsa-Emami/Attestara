@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "license": "Apache-2.0",
+  "provenance": "Repository-authored synthetic C12 vulnerability projections and C19 evidence-reference snapshots; no scanner or external data was used.",
+  "files": {
+    "README.md": "sha256:3bfc4f80d4e5adfb3b320c22661e3091f98af1790247ca68364c95dc4466b78f",
+    "positive.json": "sha256:4b8a255a84ddbd3b1af4a5e7834990b7afd47c933988a8c06c4d1e4d412a0a5d",
+    "negative.json": "sha256:076fc7d4b1ace43c422351d7e645e7eaf4646192d23cdbb773e61cd3020b10d6"
+  }
+}

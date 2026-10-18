@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "license": "Apache-2.0",
+  "cases": [
+    {
+      "id": "only-new-vulnerability",
+      "before": {"evidence_references": [{"path": "evidence/policy.json", "digest": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"}], "findings": []},
+      "after": {"evidence_references": [{"path": "evidence/policy.json", "digest": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"}], "findings": [{"vulnerability_id": "CVE-2026-0003", "severity": "High", "artifact_id": "pkg-4", "artifact_name": "sample", "artifact_version": "1.0.0"}]},
+      "expected": {"new_vulnerabilities": [{"vulnerability_id": "CVE-2026-0003", "severity": "High", "artifact_id": "pkg-4", "artifact_name": "sample", "artifact_version": "1.0.0"}], "removed_evidence": []}
+    },
+    {
+      "id": "only-removed-evidence",
+      "before": {"evidence_references": [{"path": "evidence/policy.json", "digest": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"}, {"path": "evidence/source.json", "digest": "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"}], "findings": []},
+      "after": {"evidence_references": [{"path": "evidence/policy.json", "digest": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"}], "findings": []},
+      "expected": {"new_vulnerabilities": [], "removed_evidence": [{"path": "evidence/source.json", "digest": "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"}]}
+    },
+    {
+      "id": "severity-change-is-not-new",
+      "before": {"evidence_references": [], "findings": [{"vulnerability_id": "CVE-2026-0004", "severity": "Medium", "artifact_id": "pkg-5", "artifact_name": "sample", "artifact_version": "1.0.0"}]},
+      "after": {"evidence_references": [], "findings": [{"vulnerability_id": "CVE-2026-0004", "severity": "High", "artifact_id": "pkg-5", "artifact_name": "sample", "artifact_version": "1.0.0"}]},
+      "expected": {"new_vulnerabilities": [], "removed_evidence": []}
+    },
+    {
+      "id": "package-version-change-is-new",
+      "before": {"evidence_references": [], "findings": [{"vulnerability_id": "CVE-2026-0005", "severity": "High", "artifact_id": "pkg-6", "artifact_name": "sample", "artifact_version": "1.0.0"}]},
+      "after": {"evidence_references": [], "findings": [{"vulnerability_id": "CVE-2026-0005", "severity": "High", "artifact_id": "pkg-6-v2", "artifact_name": "sample", "artifact_version": "2.0.0"}]},
+      "expected": {"new_vulnerabilities": [{"vulnerability_id": "CVE-2026-0005", "severity": "High", "artifact_id": "pkg-6-v2", "artifact_name": "sample", "artifact_version": "2.0.0"}], "removed_evidence": []}
+    },
+    {
+      "id": "evidence-digest-change-is-removed",
+      "before": {"evidence_references": [{"path": "reports/grype.json", "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"}], "findings": []},
+      "after": {"evidence_references": [{"path": "reports/grype.json", "digest": "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"}], "findings": []},
+      "expected": {"new_vulnerabilities": [], "removed_evidence": [{"path": "reports/grype.json", "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"}]}
+    },
+    {
+      "id": "unchanged-snapshots-have-no-diff",
+      "before": {"evidence_references": [], "findings": []},
+      "after": {"evidence_references": [], "findings": []},
+      "expected": {"new_vulnerabilities": [], "removed_evidence": []}
+    }
+  ]
+}

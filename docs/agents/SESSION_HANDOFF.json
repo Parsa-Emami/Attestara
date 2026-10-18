@@ -1,55 +1,46 @@
 {
   "date": "2026-10-18",
-  "task": "C21",
-  "base_commit": "723fdcbb050a0fe169dd6c92c431a7cda30a3e45",
-  "worktree_committed": false,
-  "final_source_identity": "sha256:00fca7843f15101d05bd8ab9f2401c26ffdafeb7174bc1285cc09a7e76b925bf",
-  "source_identity_scope": "523 tracked/nonignored source, tests, configs, locks and documentation files; excludes docs/evidence/, plans/progress.json, plans/requirements.json, plans/project-state.json, docs/agents/SESSION_HANDOFF.json, apps/web/src/generated/project.json and SHA256SUMS.txt. Ignored dependency/build/cache outputs excluded by git.",
+  "task": "C22",
+  "base_commit": "693c5ab0633e49c6fc3f711114fee5fdc4890c0f",
+  "worktree_committed": true,
+  "final_source_identity": "sha256:fce765eee32d8456150d7390a27f588e3bc3f94d9c6dff9540c983629df94582",
+  "source_identity_scope": "529 tracked/nonignored source, tests, configs, locks and documentation files; excludes docs/evidence/, plans/progress.json, plans/requirements.json, plans/project-state.json, docs/agents/SESSION_HANDOFF.json, apps/web/src/generated/project.json and SHA256SUMS.txt. Ignored dependency/build/cache outputs excluded by git.",
   "changed_paths": [
-    "START_HERE.md",
     "apps/web/src/generated/project.json",
-    "apps/web/src/main.tsx",
-    "apps/web/src/pages/Passport.tsx",
-    "apps/web/src/styles.css",
-    "apps/web/tests/passport.spec.ts",
-    "docs/ROADMAP_FA.md",
     "docs/agents/SESSION_HANDOFF.json",
-    "docs/engineering/CLONE_TO_RUN.md",
-    "docs/evidence/C21.json",
-    "docs/product/REFERENCE_WORKFLOW.md",
+    "docs/evidence/C22.json",
+    "internal/report/diff.go",
     "plans/progress.json",
     "plans/project-state.json",
-    "plans/requirements.json",
-    "playwright.config.ts",
-    "tests/fixtures/attestara/C21/README.md",
-    "tests/fixtures/attestara/C21/expected.json",
-    "tests/fixtures/attestara/C21/negative.json",
-    "tests/fixtures/attestara/C21/positive.json",
-    "tests/fixtures/attestara/C21/provenance.json"
+    "tests/diff_test.go",
+    "tests/fixtures/attestara/C22/README.md",
+    "tests/fixtures/attestara/C22/negative.json",
+    "tests/fixtures/attestara/C22/positive.json",
+    "tests/fixtures/attestara/C22/provenance.json"
   ],
   "commands": [
-    "WEB_TEST_PORT=4175 PATH=/home/amirreza/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.2.linux-amd64/bin:$PATH GOTOOLCHAIN=local GOSUMDB=sum.golang.org GOPROXY='https://proxy.golang.org|direct' npm exec --yes --package=npm@11.9.0 -- npm run test:browser — exit 0",
-    "PATH=/home/amirreza/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.2.linux-amd64/bin:$PATH GOTOOLCHAIN=local GOSUMDB=sum.golang.org GOPROXY='https://proxy.golang.org|direct' ATTESTARA_TEST_OPA=/tmp/attestara-c15-provider/opa go test -count=1 ./... — exit 0",
-    "PATH=/home/amirreza/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.2.linux-amd64/bin:$PATH GOTOOLCHAIN=local GOSUMDB=sum.golang.org GOPROXY='https://proxy.golang.org|direct' ATTESTARA_TEST_OPA=/tmp/attestara-c15-provider/opa go vet ./... — exit 0",
-    "PATH=/home/amirreza/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.2.linux-amd64/bin:$PATH GOTOOLCHAIN=local GOSUMDB=sum.golang.org GOPROXY='https://proxy.golang.org|direct' ATTESTARA_TEST_OPA=/tmp/attestara-c15-provider/opa go build ./... — exit 0",
-    "PATH=/home/amirreza/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.2.linux-amd64/bin:$PATH GOTOOLCHAIN=local GOSUMDB=sum.golang.org GOPROXY='https://proxy.golang.org|direct' npm exec --yes --package=npm@11.9.0 -- npm run build — exit 0",
-    "PATH=/home/amirreza/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.2.linux-amd64/bin:$PATH GOTOOLCHAIN=local GOSUMDB=sum.golang.org GOPROXY='https://proxy.golang.org|direct' ATTESTARA_TEST_OPA=/tmp/attestara-c15-provider/opa npm exec --yes --package=npm@11.9.0 -- npm run check — exit 0",
-    "npm exec --yes --package=npm@11.9.0 -- npm run validate:plan — exit 0",
+    "go test ./tests -run C22 -count=1 — exit 0",
+    "go test -count=1 ./... — exit 0",
+    "go vet ./... — exit 0",
+    "go build ./... — exit 0",
+    "npm run check — exit 0; plan validation, TypeScript typecheck, production build and 28 Node tests passed",
+    "npm run validate:plan — exit 0",
+    "npm run plan -- next — exit 0; C23 is next",
     "python3 scripts/validate_repo.py — exit 0",
     "git diff --check — exit 0"
   ],
-  "validation_results": "docs/evidence/C21.json",
+  "validation_results": "docs/evidence/C22.json",
   "protected_paths_changed": [],
   "current_core_ready": false,
   "blockers": [
-    "C30 still requires separately specified and verified durable revision/expiry/replay acceptance and full clean-host workflow."
+    "C30 still requires the full clean-host core workflow, restart and restore proof."
   ],
   "deferred_obligations": [
-    "C21 viewer renders local C19 claims and does not verify passport digest, referenced bytes or signer trust.",
-    "C22-C26 retain diff, export, scanner, privacy and trust work.",
-    "No remote CI, clean-host C30 workflow, commit, push or publication was performed."
+    "C22 compares typed claims only; report/passport binding, actual evidence bytes, signer trust and persistence are not assessed.",
+    "C23 offline export/verifier work and C24-C26 scanner/privacy/trust obligations remain open.",
+    "No remote CI, push or publication was performed."
   ],
-  "next_task": "C22",
+  "next_task": "C23",
   "next_command": "npm run plan -- next",
-  "continuation": "C21 browser-local passport viewer is verified locally. The UI displays unverified C19 claims and reference details without uploading the selected file. Continue with C22 only after reviewing its card and dependency evidence. The UI prefers Noto Sans with native system fallback; this typography change passed npm check and all 10 browser tests."
+  "continuation": "C22's pure internal diff is verified. Continue with C23 after reviewing its task card and C22 evidence; preserve the typed-claim-only boundary and keep C30 readiness false."
 }
