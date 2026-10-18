@@ -1,0 +1,5 @@
+{
+  "schema_version": 1,
+  "license": "Apache-2.0",
+  "provenance": "Repository-authored synthetic C08 manifest and inert file bytes copied unchanged for C23 ZIP export and offline verification tests. Negative cases are local mutations; no upstream or user data."
+}

@@ -204,10 +204,12 @@
     },
     {
       "id": "C23",
-      "status": "planned",
-      "evidence": [],
-      "source_identity": null,
-      "notes": ""
+      "status": "verified",
+      "evidence": [
+        "docs/evidence/C23.json"
+      ],
+      "source_identity": "sha256:f9b012016ecbdec1671ddce2584e7356d6ad26be51a8ca3b0587a77e5ff66e4f",
+      "notes": "Local ZIP export packages the existing v1 manifest and every referenced file through a confined file root; size/digest and C09 archive validation reject modified or absent bytes. CLI passport export remains available. ZIP integrity does not establish signer trust, passport binding or revision/replay authority."
     },
     {
       "id": "C24",

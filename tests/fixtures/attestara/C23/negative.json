@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "license": "Apache-2.0",
+  "cases": [
+    {"id": "modified-source", "expected_code": "invalid_input", "expected_field": "files.digest"},
+    {"id": "missing-source", "expected_code": "input_unavailable", "expected_field": "files.path"},
+    {"id": "modified-export-member", "expected_code": "invalid_input", "expected_field": "files.digest"},
+    {"id": "missing-export-member", "expected_code": "input_unavailable", "expected_field": "files.path"},
+    {"id": "malformed-manifest", "expected_code": "invalid_json", "expected_field": "$"},
+    {"id": "unsupported-manifest-version", "expected_code": "unsupported_version", "expected_field": "schema_version"},
+    {"id": "over-limit-manifest", "expected_code": "limit_exceeded", "expected_field": "$"}
+  ]
+}

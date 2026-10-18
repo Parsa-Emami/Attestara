@@ -81,5 +81,12 @@ C21 adds a browser-local viewer for version-1 C19 passports. It renders policy,
 verification and evidence-reference claims as inert text; a selected file stays
 in tab memory, with explicit empty, invalid, cancelled and engine-unavailable
 states. The viewer does not check the passport digest or referenced files and
-does not establish signer trust. C22-C26 retain their separate diff, export,
+does not establish signer trust. C22-C26 own the separate diff, export,
 scanner, privacy and trust obligations.
+
+C23 adds a local ZIP export mode for the existing v1 manifest and its referenced
+files. The exporter validates source bytes, builds the C09 archive shape and
+checks the complete ZIP with `bundle.ReadArchive` before publishing a new file.
+The offline reader rejects absent or modified members after export. This proves
+portable file integrity for the exported inputs only; passport binding, signer
+trust and durable revision/replay authority remain separate obligations.

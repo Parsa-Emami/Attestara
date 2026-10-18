@@ -289,7 +289,7 @@
       "id": "C23",
       "title": "feat(export): package self contained verifier inputs",
       "stage": "domain",
-      "status": "planned",
+      "status": "verified",
       "acceptance": [
         "Offline verifier detects modified and absent files from exported bundle."
       ],

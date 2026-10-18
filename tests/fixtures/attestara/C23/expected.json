@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "license": "Apache-2.0",
+  "archive_manifest": "manifest.json",
+  "files": ["subject.txt", "evidence.txt", "policy.txt"],
+  "verification": "unverified",
+  "repeat_after_reopen": "same typed C04 input"
+}

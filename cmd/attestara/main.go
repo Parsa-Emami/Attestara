@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"os"
 	"os/signal"
+	"path/filepath"
 	"runtime"
 	"strconv"
 	"strings"
@@ -23,6 +24,7 @@ import (
 
 	"attestara/internal/contracts"
 	"attestara/internal/decision"
+	"attestara/internal/export"
 	"attestara/internal/policy"
 	"attestara/internal/report"
 )
@@ -120,9 +122,9 @@ func run(ctx context.Context, args []string, stdout, stderr io.Writer) error {
 		case "evaluate":
 			return evaluateCommand(ctx, args[1:], stdout, stderr)
 		case "verify":
-			return passportCommand(args[1:], stdout, stderr, false)
+			return passportCommand(ctx, args[1:], stdout, stderr, false)
 		case "export":
-			return passportCommand(args[1:], stdout, stderr, true)
+			return passportCommand(ctx, args[1:], stdout, stderr, true)
 		}
 	}
 	flags := flag.NewFlagSet("attestara", flag.ContinueOnError)
@@ -236,16 +238,28 @@ func evaluateCommand(parent context.Context, args []string, stdout, stderr io.Wr
 	return nil
 }
 
-func passportCommand(args []string, stdout, stderr io.Writer, export bool) error {
+func passportCommand(ctx context.Context, args []string, stdout, stderr io.Writer, exporting bool) error {
 	name := "verify"
-	if export {
+	if exporting {
 		name = "export"
 	}
 	flags := flag.NewFlagSet("attestara "+name, flag.ContinueOnError)
 	flags.SetOutput(stderr)
 	passportPath := flags.String("passport", "", "path to a C19 passport JSON file")
+	var inputPath, filesPath, outputPath *string
+	if exporting {
+		inputPath = flags.String("input", "", "path to a C04 input manifest JSON file")
+		filesPath = flags.String("files", "", "root directory of referenced files")
+		outputPath = flags.String("output", "", "new ZIP output path")
+	}
 	if err := flags.Parse(args); err != nil {
 		return commandError(inputExitCode, "invalid "+name+" arguments")
+	}
+	if exporting && (*inputPath != "" || *filesPath != "" || *outputPath != "") {
+		if flags.NArg() != 0 || *passportPath != "" || *inputPath == "" || *filesPath == "" || *outputPath == "" {
+			return commandError(inputExitCode, "ZIP export requires --input, --files and --output without --passport")
+		}
+		return exportBundle(ctx, *inputPath, *filesPath, *outputPath)
 	}
 	if flags.NArg() != 0 || *passportPath == "" {
 		return commandError(inputExitCode, name+" requires --passport <path>")
@@ -258,7 +272,7 @@ func passportCommand(args []string, stdout, stderr io.Writer, export bool) error
 	if err != nil {
 		return err
 	}
-	if !export {
+	if !exporting {
 		fmt.Fprintln(stderr, "passport digest verified; signer and bundle trust were not assessed")
 	}
 	if err := writeJSON(stdout, passport); err != nil {
@@ -266,6 +280,43 @@ func passportCommand(args []string, stdout, stderr io.Writer, export bool) error
 	}
 	if passport.PolicyDecision != "pass" {
 		return &policyOutcomeError{decision: passport.PolicyDecision}
+	}
+	return nil
+}
+
+func exportBundle(ctx context.Context, inputPath, filesPath, outputPath string) error {
+	manifest, err := readCommandFile(inputPath, contracts.MaxBundleBytes)
+	if err != nil {
+		return err
+	}
+	root, err := os.OpenRoot(filesPath)
+	if err != nil {
+		return commandError(inputExitCode, "file root is unavailable")
+	}
+	defer root.Close()
+	archive, err := export.Build(ctx, manifest, root)
+	if err != nil {
+		return err
+	}
+	directory := filepath.Dir(outputPath)
+	temporary, err := os.CreateTemp(directory, ".attestara-export-*")
+	if err != nil {
+		return commandError(engineExitCode, "could not create ZIP output")
+	}
+	defer os.Remove(temporary.Name())
+	if _, err := temporary.Write(archive); err != nil {
+		temporary.Close()
+		return commandError(engineExitCode, "could not write ZIP output")
+	}
+	if err := temporary.Sync(); err != nil {
+		temporary.Close()
+		return commandError(engineExitCode, "could not sync ZIP output")
+	}
+	if err := temporary.Close(); err != nil {
+		return commandError(engineExitCode, "could not close ZIP output")
+	}
+	if err := os.Link(temporary.Name(), outputPath); err != nil {
+		return commandError(engineExitCode, "could not publish ZIP output; target must not exist")
 	}
 	return nil
 }

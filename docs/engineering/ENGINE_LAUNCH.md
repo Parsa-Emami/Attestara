@@ -32,6 +32,7 @@ existing process-health options remain unchanged.
 dist/engine/attestara evaluate --input input.json --policy rule.json --evidence evidence.json --freshness fresh > passport.json
 dist/engine/attestara verify --passport passport.json
 dist/engine/attestara export --passport passport.json > portable-passport.json
+dist/engine/attestara export --input manifest.json --files ./release-files --output release.zip
 ```
 
 `--evidence` may be omitted; the decision then remains unknown. `--freshness`
@@ -43,6 +44,14 @@ results from all three commands still write the typed C19 passport to stdout.
 the passport version and canonical digest. It does not check referenced file
 bytes, signatures, signer trust or revision/replay authority; successful output
 continues to say `verification: unverified`.
+
+The C23 ZIP mode writes a new `release.zip` containing the unchanged v1 manifest
+and every file it references. Paths are relative to `--files`; the target must
+not already exist. The exporter checks actual file size and SHA-256, then uses
+the offline archive reader on the finished ZIP before publishing it. A missing
+or modified file fails explicitly. The ZIP does not include a passport or
+establish a trusted signer. The CLI `verify --passport` still checks only the
+passport digest; `bundle.ReadArchive` is the current offline file-byte verifier.
 
 The existing web CI now prepares Go and the engine before its engine-dependent web/browser/clone checks. `actions/setup-go@924ae3a1cded613372ab5595356fb5720e22ba16` (official v6 tag, MIT) supplies the C02 Go 1.26.2 bootstrap compiler; the final compiler is built from the C02 source archive after SHA-256 verification. This repairs the existing job's new prerequisite; C06 still owns broader domain integration CI. No remote CI run is implied by a local test result.
 
