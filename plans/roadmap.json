@@ -1557,14 +1557,19 @@
       ],
       "deliverables": [
         "internal/verify/provenance.go",
-        "tests/provenance_test.go"
+        "tests/provenance_test.go",
+        "scripts/verify-engine-tests.mjs",
+        "tests/fixtures/attestara/C17/"
       ],
       "verification": [
         "npm run validate:plan — All task/dependency/resource/reference/evidence metadata validates; no runtime capability inferred.",
-        "go test ./... — C03 creates this engine test command in the same commit; C06 adds CI/integration collection. Pass the actual C17 acceptance and negative cases on the selected engine; shell-only tests cannot certify this task."
+        "go test -count=1 -v ./... — Run C17 subject-binding, hostile-input, independent file/trust and inert-byte tests plus existing Go regressions.",
+        "go vet ./... — Static analysis succeeds.",
+        "go build ./... — Existing and new engine packages compile.",
+        "npm run check — Plan validation, TypeScript typecheck, production build and web/contract regressions pass."
       ],
       "acceptance": [
-        "Builder and source assertions remain unverified until issuer policy passes."
+        "Compare the existing C07 envelope and C08 manifest subject digests without granting trust. Builder and source assertions remain unverified until an independent issuer policy passes."
       ],
       "evidence_path": "docs/evidence/C17.json",
       "rollback": "Revert the isolated source change when no incompatible data was accepted. Otherwise retain the latest valid bytes/export and compatible reader, and use tested forward repair; never overwrite newer accepted state with an old backup.",
@@ -1578,7 +1583,7 @@
         "plans/project-state.json"
       ],
       "before": "Entry requirement: verified C16 evidence. Preserve its demonstrated behavior; inspect actual source and any recorded blockers before editing.",
-      "after": "Builder and source assertions remain unverified until issuer policy passes.",
+      "after": "Compare the existing C07 envelope and C08 manifest subject digests without granting trust. Builder and source assertions remain unverified until an independent issuer policy passes.",
       "resources": {
         "hardware": {
           "vcpu": 2,
@@ -1587,34 +1592,32 @@
           "measurement": "Unmeasured planning target; C28 must verify or reduce it."
         },
         "providers": [
-          "optional local OPA and Syft/Grype report ingestion"
+          "Go standard library and existing C04/C07 decoders; no new provider"
         ],
         "toolchain": "Go engine plus locked Node/TypeScript web tools; exact engine/provider pins and source-build steps resolved at C02.",
         "upstream": [
-          "https://cyclonedx.org/specification/overview/",
-          "https://spdx.dev/specifications/",
-          "https://www.openpolicyagent.org/docs/",
-          "https://nodejs.org/docs/latest-v24.x/api/"
+          "https://pkg.go.dev/context@go1.27.2",
+          "https://pkg.go.dev/encoding/json/v2@go1.27.2"
         ],
         "fixture": {
           "path": "tests/fixtures/attestara/C17/",
-          "status": "planned; implement positive, negative and expected-output fixtures in this task",
+          "status": "implemented; repository-authored positive, negative and expected-output fixtures verified locally",
           "provenance": "repository-authored synthetic data or explicitly licensed upstream data"
         },
         "licenses": "Apache-2.0 project source; pin and inventory every shipped upstream library/provider/grammar/rule/dataset license. Unknown/restricted required resources block release."
       },
       "negative_cases": [
-        "One modified byte, missing evidence or a wrong/untrusted signer must not produce trusted success.",
-        "An expired/stale/replayed revision cannot replace the last valid accepted authority.",
+        "Valid unequal subject digests return SubjectBound=false without an error; missing, malformed or unsupported inputs return safe typed errors and an empty result.",
+        "Subject binding never grants signer trust or validates actual file bytes; preserve independent C16 trust and C08 file checks.",
+        "Repeated calls preserve input bytes and have no authority state. Expiry, stale/replayed revision acceptance and retention of the last valid authority remain mandatory for the first stateful workflow, including C20.",
         "No user source execution"
       ],
       "implementation_steps": [
-        "Inspect the actual implementation, source/locks and verified dependencies for C17; preserve accepted existing behavior.",
-        "Define the versioned positive and negative release-evidence fixtures and expected error/result semantics under tests/fixtures/attestara/C17/.",
-        "Implement: Builder and source assertions remain unverified until issuer policy passes.",
-        "Change the listed exact targets and wire the actual typed outcome into the supported browser/engine workflow. Keep domain facts, validation, storage/provider adapters and UI separate.",
-        "Add regression/integration coverage for every acceptance and negative case; real storage/provider/security boundaries cannot be verified only with mocks.",
-        "Run the labeled verification commands; record exact source, fixture license/hash, tool/provider versions, command exits and observed results in docs/evidence/C17.json. Update progress only when the whole task is genuinely verified."
+        "Preserve C04/C07/C08 wire contracts, C16 trust and C05 storage. Implement only the owner-approved internal stateless subject-binding check.",
+        "Reuse contracts.DecodeInput and evidence.DecodeEnvelope over supplied bytes; return ProvenanceVerification containing only SubjectBound. Valid digest mismatch is false with no error; decoder failures use existing contracts.Error.",
+        "Add repository-authored C17 fixtures, exact hashes and expected positive/negative outcomes. Test cancellation, input immutability, inert source, and independent actual C08 file/C16 trust boundaries.",
+        "Register all C17 tests in the existing engine discovery guard. Leave decision reasons, passports, CLI/viewer and stateful revision acceptance to future tasks.",
+        "Run actual relevant Go and web checks; record source/tool/fixture identities and observed results. Update progress and handoff only after verification."
       ],
       "verification_commands": [
         {
@@ -1624,10 +1627,28 @@
           "expected": "All task/dependency/resource/reference/evidence metadata validates; no runtime capability inferred."
         },
         {
-          "command": "go test ./...",
-          "available_now": false,
+          "command": "go test -count=1 -v ./...",
+          "available_now": true,
           "introduced_by": "C03",
-          "expected": "C03 creates this engine test command in the same commit; C06 adds CI/integration collection. Pass the actual C17 acceptance and negative cases on the selected engine; shell-only tests cannot certify this task."
+          "expected": "Run C17 subject-binding, hostile-input, independent file/trust and inert-byte tests plus existing Go regressions."
+        },
+        {
+          "command": "go vet ./...",
+          "available_now": true,
+          "introduced_by": "C03",
+          "expected": "Static analysis succeeds."
+        },
+        {
+          "command": "go build ./...",
+          "available_now": true,
+          "introduced_by": "C03",
+          "expected": "Existing and new engine packages compile."
+        },
+        {
+          "command": "npm run check",
+          "available_now": true,
+          "introduced_by": "web-foundation",
+          "expected": "Plan validation, TypeScript typecheck, production build and web/contract regressions pass."
         }
       ],
       "stop_conditions": [

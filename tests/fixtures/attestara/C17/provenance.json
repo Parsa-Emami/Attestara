@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "license": "Apache-2.0",
+  "provenance": "Repository-authored synthetic C17 fixtures; reuses unchanged repository-authored C07 envelope format and C08 fixture manifest. No upstream data or user source execution.",
+  "reused_files": {
+    "tests/fixtures/attestara/C08/evidence.txt": "sha256:09c28470bdbce4baaa27d223d41a584823b06a183bcf5dbe226fccf42d7b55bf",
+    "tests/fixtures/attestara/C08/policy.txt": "sha256:f5ec11ee33d80cc73968513cd2baec7c5ca347dd78369bd3ed0c29e3d0bb288f",
+    "tests/fixtures/attestara/C08/subject.txt": "sha256:932b3d53fd10fa5bf895eb4fffecc08ecc73f193165eb3a5ff7c1502138881d9",
+    "tests/fixtures/attestara/C08/positive.json": "sha256:b4be01339816463cd2be73d4aaf1136fdba7c629dc90dba6daf2c62792c1fdc0"
+  },
+  "files": {
+    "README.md": "sha256:1273417edc1d4cfc1e9352140c08e9dae099d8614ad941692a1a8709461544d7",
+    "expected.json": "sha256:9cabb80f3533b4c6b0856b9ab07141228ae2848d56fcfea20ff5c7d7d44ae5e2",
+    "negative.json": "sha256:9ba42897b2be3fdcc27e1aa2785677b1f1678255b0a208b2391fa6e39c543c79",
+    "positive.json": "sha256:f96a52c7f4b4114be4dcd0771a80c77aa7414ad9e69fe367de550101b307e546"
+  }
+}

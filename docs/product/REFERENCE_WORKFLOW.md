@@ -47,3 +47,12 @@ real-file validation before reporting bundle verification. C04/C15 wire results
 remain unchanged. No expiry/revision ordering, accepted-authority replacement or
 replay state is implemented; those rules remain an explicit obligation of the
 first stateful acceptance workflow. CLI/viewer integration remains C20/C21.
+
+C17 adds internal stateless comparison of the existing C07 envelope subject digest
+with the existing C08 manifest subject digest. SubjectBound reports only equality
+of validated claims: valid mismatch is false without error; missing/invalid input
+fails with a safe typed error. C08 actual-file validation and C16 signer trust
+remain independent. Builder/source assertions stay unverified without issuer
+policy. No new provenance format, authority state, CLI or viewer is added;
+freshness/replay authority remains mandatory in the first stateful workflow,
+including C20. Future C18/C19 decisions/passports can compose these independent assessments.

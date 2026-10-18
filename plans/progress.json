@@ -150,10 +150,12 @@
     },
     {
       "id": "C17",
-      "status": "planned",
-      "evidence": [],
-      "source_identity": null,
-      "notes": ""
+      "status": "verified",
+      "evidence": [
+        "docs/evidence/C17.json"
+      ],
+      "source_identity": "sha256:1d8b3968fa2cf06444745556eace4077daadc535027280bbc31d604e95a6fdc5",
+      "notes": "Owner-approved stateless C07/C08 subject-digest comparison verified: SubjectBound only, valid mismatch false/nil, safe typed invalid-input errors, cancellation, immutable/inert inputs and independent real C08 file/C16 trust boundaries. No issuer/builder/source trust, persistence, freshness/replay authority, API/UI or full-workflow claim."
     },
     {
       "id": "C18",

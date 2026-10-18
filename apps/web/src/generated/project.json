@@ -215,9 +215,9 @@
       "id": "C17",
       "title": "feat(attestations): bind provenance to subject digest",
       "stage": "domain",
-      "status": "planned",
+      "status": "verified",
       "acceptance": [
-        "Builder and source assertions remain unverified until issuer policy passes."
+        "Compare the existing C07 envelope and C08 manifest subject digests without granting trust. Builder and source assertions remain unverified until an independent issuer policy passes."
       ],
       "dependsOn": [
         "C16"

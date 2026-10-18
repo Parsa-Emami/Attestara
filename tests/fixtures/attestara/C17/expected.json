@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "cases": [
+    {
+      "mutation": "none",
+      "subject_bound": true
+    },
+    {
+      "mutation": "different-subject",
+      "subject_bound": false
+    }
+  ],
+  "verification": "unverified"
+}

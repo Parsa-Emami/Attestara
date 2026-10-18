@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "cases": [
+    {
+      "mutation": "missing-envelope",
+      "code": "invalid_json"
+    },
+    {
+      "mutation": "null-envelope",
+      "code": "invalid_input"
+    },
+    {
+      "mutation": "missing-subject",
+      "code": "invalid_input"
+    },
+    {
+      "mutation": "bad-digest",
+      "code": "invalid_input"
+    },
+    {
+      "mutation": "unknown-field",
+      "code": "invalid_input"
+    },
+    {
+      "mutation": "duplicate-field",
+      "code": "invalid_json"
+    },
+    {
+      "mutation": "unsupported-version",
+      "code": "unsupported_version"
+    },
+    {
+      "mutation": "oversized-envelope",
+      "code": "limit_exceeded"
+    },
+    {
+      "mutation": "missing-manifest",
+      "code": "invalid_json"
+    },
+    {
+      "mutation": "cancelled",
+      "code": "cancelled"
+    },
+    {
+      "mutation": "deadline",
+      "code": "deadline_exceeded"
+    }
+  ]
+}

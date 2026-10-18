@@ -1,0 +1,13 @@
+{
+  "schema_version": "1",
+  "subject_digest": "sha256:932b3d53fd10fa5bf895eb4fffecc08ecc73f193165eb3a5ff7c1502138881d9",
+  "tool": "synthetic-fixture-tool",
+  "tool_version": "fixture-only",
+  "configuration_digest": "sha256:9c3dacf1d4fd96be675c923eb139da44a41d96531075421d15c6ee177e51fdd3",
+  "artifact": {
+    "path": "evidence.txt",
+    "digest": "sha256:09c28470bdbce4baaa27d223d41a584823b06a183bcf5dbe226fccf42d7b55bf",
+    "size_bytes": 34,
+    "media_type": "text/plain"
+  }
+}

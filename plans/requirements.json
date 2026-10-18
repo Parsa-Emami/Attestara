@@ -148,11 +148,11 @@
     {
       "id": "F11",
       "kind": "functional",
-      "description": "Builder and source assertions remain unverified until issuer policy passes.",
+      "description": "Compare the existing C07 envelope and C08 manifest subject digests without granting trust. Builder and source assertions remain unverified until an independent issuer policy passes.",
       "mandatory": true,
       "planned_commit": "C17",
       "evidence_path": "docs/evidence/C17.json",
-      "status": "unimplemented"
+      "status": "verified"
     },
     {
       "id": "F12",

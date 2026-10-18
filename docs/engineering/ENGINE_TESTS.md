@@ -83,3 +83,11 @@ configured signer/key matching, hostile/unsigned inputs, cancellation, real C08
 missing/modified file checks and inert source-like text. Discovery requires all
 five C16 tests. It does not certify expiry/revision/replay authority, CLI/viewer
 integration or the full reference workflow. No external provider is required.
+
+## C17 subject binding
+
+Four mandatory C17 tests cover C07/C08 digest equality/mismatch, strict existing
+decoders, cancellation, input immutability, inert source and fixture hashes.
+Real C08 missing-file and C16 untrusted-signer checks demonstrate that subject
+binding alone certifies neither integrity nor authenticity. C17 has no authority
+state; it does not certify expiry/revision/replay acceptance.

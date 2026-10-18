@@ -1,31 +1,30 @@
 {
   "date": "2026-10-18",
-  "task": "C16",
-  "base_commit": "5b12ee10ebc11c2e385124154538c6229683a4cd",
+  "task": "C17",
+  "base_commit": "10015f127ce309ab83d6d436bd212a475f4bf9e8",
   "worktree_committed": true,
-  "final_source_identity": "sha256:b6874d611a3c37169848d36fdf34af4ffa6b8b3b1923f88761c28dfac648f656",
-  "source_identity_scope": "487 tracked/nonignored source, tests, configs, locks and documentation files; excludes docs/evidence, plans/progress.json, plans/requirements.json, plans/project-state.json, docs/agents/SESSION_HANDOFF.json, apps/web/src/generated/project.json and SHA256SUMS.txt. Ignored dependency/build/cache outputs excluded by git.",
+  "final_source_identity": "sha256:1d8b3968fa2cf06444745556eace4077daadc535027280bbc31d604e95a6fdc5",
+  "source_identity_scope": "494 tracked/nonignored source, tests, configs, locks and documentation files; excludes docs/evidence, plans/progress.json, plans/requirements.json, plans/project-state.json, docs/agents/SESSION_HANDOFF.json, apps/web/src/generated/project.json and SHA256SUMS.txt. Ignored dependency/build/cache outputs excluded by git.",
   "changed_paths": [
     "apps/web/src/generated/project.json",
-    "contracts/README.md",
     "docs/ROADMAP_FA.md",
     "docs/agents/SESSION_HANDOFF.json",
     "docs/engineering/ENGINE_TESTS.md",
-    "docs/evidence/C16.json",
+    "docs/evidence/C17.json",
     "docs/product/REFERENCE_WORKFLOW.md",
-    "internal/verify/signatures.go",
-    "plans/commits/C16.md",
+    "internal/verify/provenance.go",
+    "plans/commits/C17.md",
     "plans/progress.json",
     "plans/project-state.json",
     "plans/requirements.json",
     "plans/roadmap.json",
     "scripts/verify-engine-tests.mjs",
-    "tests/fixtures/attestara/C16/README.md",
-    "tests/fixtures/attestara/C16/expected.json",
-    "tests/fixtures/attestara/C16/negative.json",
-    "tests/fixtures/attestara/C16/positive.json",
-    "tests/fixtures/attestara/C16/provenance.json",
-    "tests/signature_test.go"
+    "tests/fixtures/attestara/C17/README.md",
+    "tests/fixtures/attestara/C17/expected.json",
+    "tests/fixtures/attestara/C17/negative.json",
+    "tests/fixtures/attestara/C17/positive.json",
+    "tests/fixtures/attestara/C17/provenance.json",
+    "tests/provenance_test.go"
   ],
   "commands": [
     "go test -count=1 -v ./... — exit 0",
@@ -33,23 +32,23 @@
     "go build ./... — exit 0",
     "node scripts/verify-engine-tests.mjs — exit 0",
     "npm exec --yes --package=npm@11.9.0 -- npm run check — exit 0",
-    "npm run validate:plan — exit 0",
     "python3 scripts/plan.py validate — exit 0",
     "python3 scripts/validate_repo.py — exit 0",
     "git diff --check — exit 0",
-    "/home/amirreza/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.2.linux-amd64/bin/gofmt -l internal/verify/signatures.go tests/signature_test.go — exit 0",
-    "npm run plan -- next — exit 0"
+    "/home/amirreza/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.2.linux-amd64/bin/gofmt -l internal/verify/provenance.go tests/provenance_test.go — exit 0",
+    "node scripts/roadmap.mjs next — exit 0"
   ],
-  "validation_results": "docs/evidence/C16.json",
+  "validation_results": "docs/evidence/C17.json",
   "protected_paths_changed": [],
   "current_core_ready": false,
   "blockers": [],
   "deferred_obligations": [
-    "No expiry/revision ordering or replay authority state; first future stateful acceptance workflow must preserve the last accepted valid authority. A replay can remain mathematically valid.",
-    "No new HTTP/CLI/viewer integration, signing service, public signature wire format, provider trust or full C30 workflow proof.",
-    "Trusted() authenticates manifest bytes only; caller must compose C08 actual-file validation. Configured policy is caller authority, not learned from input."
+    "SubjectBound compares validated claims only; actual file bytes require C08 and signer authenticity requires independent C16 trust. Builder/source assertions remain unverified without issuer policy.",
+    "No stateful revision authority, expiry, stale/replay acceptance or persistence; those remain mandatory for the first stateful workflow, including C20.",
+    "No new wire format, HTTP/CLI/viewer integration, provider, dependency or protected file changes. Browser tests and full C30 clean-host workflow were not run; no remote CI, commit or publication is claimed.",
+    "Envelope parsing is bounded by existing 100 MiB contracts but synchronous; cancellation is checked before/after parsing, not during JSON unmarshal."
   ],
-  "next_task": "C17",
+  "next_task": "C18",
   "next_command": "npm run plan -- next",
-  "continuation": "C16 owner-approved stateless Ed25519 library and real crypto/file-composition regressions verified locally. C04/C15 wire and C05 storage unchanged. Historical C01-C15 evidence untouched. C16 adds no acceptance state; expiry/revision/replay authority remains mandatory for the first stateful acceptance workflow. C16 committed locally; no push or publication requested."
+  "continuation": "C17 owner-approved stateless C07/C08 subject binding verified locally. Existing wire/storage/trust preserved. C18 is next; no C18 implementation started. C17 committed locally; no push requested. Freshness/replay authority remains mandatory in the first stateful acceptance workflow, including C20."
 }
