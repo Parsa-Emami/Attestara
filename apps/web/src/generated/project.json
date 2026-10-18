@@ -301,7 +301,7 @@
       "id": "C24",
       "title": "feat(adapters): document safe local syft grype ingestion",
       "stage": "domain",
-      "status": "planned",
+      "status": "verified",
       "acceptance": [
         "User runs upstream scanner locally; report records exact scanner and database version."
       ],

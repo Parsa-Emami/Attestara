@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "provenance": "Repository-authored synthetic example; no scanner or live database was invoked.",
+  "reports": {
+    "syft": {
+      "format": "syft-json",
+      "scanner_version": "1.54.1"
+    },
+    "grype": {
+      "format": "grype-json",
+      "scanner_version": "0.120.1",
+      "database": {
+        "schema_version": "6.1.10",
+        "built": "2026-10-16T12:00:00Z",
+        "reported_valid": true
+      }
+    }
+  }
+}

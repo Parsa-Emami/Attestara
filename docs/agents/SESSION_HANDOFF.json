@@ -1,50 +1,33 @@
 {
   "date": "2026-10-18",
-  "task": "C23",
-  "base_commit": "391ceb9342ed3f2e76d6119fe0bb32a3505dd1d3",
+  "task": "C24",
+  "base_commit": "3e9fc38af70ee844152d422023a464ec8c40ca4f",
   "worktree_committed": true,
-  "final_source_identity": "sha256:f9b012016ecbdec1671ddce2584e7356d6ad26be51a8ca3b0587a77e5ff66e4f",
-  "source_identity_scope": "539 tracked/nonignored source, tests, configs, locks and documentation files; excludes docs/evidence/, plans/progress.json, plans/requirements.json, plans/project-state.json, docs/agents/SESSION_HANDOFF.json, apps/web/src/generated/project.json and SHA256SUMS.txt.",
+  "final_source_identity": "sha256:8f8389990d52473e3fc71a2850d00ccd62f517cb4b438773c96c0ec7ddde76ff",
+  "source_identity_scope": "541 tracked/nonignored source, tests, configs, locks and documentation files; excludes docs/evidence/, plans/progress.json, plans/requirements.json, plans/project-state.json, docs/agents/SESSION_HANDOFF.json, apps/web/src/generated/project.json and SHA256SUMS.txt. Ignored dependency/build/cache outputs excluded by git.",
   "changed_paths": [
     "apps/web/src/generated/project.json",
-    "cmd/attestara/main.go",
     "docs/ROADMAP_FA.md",
     "docs/agents/SESSION_HANDOFF.json",
-    "docs/engineering/ENGINE_LAUNCH.md",
-    "docs/evidence/C23.json",
-    "docs/product/REFERENCE_WORKFLOW.md",
-    "internal/export/bundle.go",
+    "docs/evidence/C24.json",
+    "docs/integrations/syft-grype.md",
     "plans/progress.json",
     "plans/project-state.json",
-    "tests/export_test.go",
-    "tests/fixtures/attestara/C23/README.md",
-    "tests/fixtures/attestara/C23/evidence.txt",
-    "tests/fixtures/attestara/C23/expected.json",
-    "tests/fixtures/attestara/C23/manifest.json",
-    "tests/fixtures/attestara/C23/negative.json",
-    "tests/fixtures/attestara/C23/policy.txt",
-    "tests/fixtures/attestara/C23/provenance.json",
-    "tests/fixtures/attestara/C23/subject.txt"
+    "plans/requirements.json",
+    "tests/fixtures/adapter-manifest.json"
   ],
-  "commands": [
-    "go test -count=1 ./... with pinned Go 1.27.2 and local verification environment — exit 0",
-    "go vet ./... — exit 0",
-    "go build ./... — exit 0",
-    "npm exec --yes --package=npm@11.9.0 -- npm run check — exit 0; plan validation, typecheck, production build and 28 Node tests passed",
-    "python3 scripts/validate_repo.py — exit 0; 225 JSON files checked",
-    "npm run plan -- next — exit 0; C24 selected",
-    "git diff --check — exit 0"
-  ],
-  "validation_results": "docs/evidence/C23.json",
+  "validation_results": "docs/evidence/C24.json",
   "protected_paths_changed": [],
   "current_core_ready": false,
-  "blockers": ["C30 still requires the full clean-host core workflow, restart and restore proof."],
-  "deferred_obligations": [
-    "C23 checks ZIP file integrity, not passport binding, signer trust, accepted revision, expiry or replay authority.",
-    "C24-C26 retain scanner, privacy and trust obligations.",
-    "No remote CI, commit, push or publication was performed."
+  "blockers": [
+    "C30 still requires the full clean-host core workflow, restart and restore proof."
   ],
-  "next_task": "C24",
+  "deferred_obligations": [
+    "No real Syft/Grype scan or live database was run; C24 evidence is documentation/fixture-only.",
+    "C25 still owns public-passport redaction; C26 still owns distinct bundle trust outcomes.",
+    "No remote CI, push, or publication was performed."
+  ],
+  "next_task": "C25",
   "next_command": "npm run plan -- next",
-  "continuation": "C23 is locally verified: new CLI ZIP export packages and validates v1 manifest bytes plus referenced files, while --passport behavior remains. Continue with C24 after reading its card and current evidence."
+  "continuation": "C24 is verified for its approved documentation and synthetic-manifest scope. No scanner or database was invoked; the manual local workflow is not an Attestara runtime integration or trust proof. Continue with C25."
 }
