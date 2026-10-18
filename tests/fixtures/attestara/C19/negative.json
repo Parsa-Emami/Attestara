@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "license": "Apache-2.0",
+  "cases": [
+    {"id": "invalid-input-version", "code": "unsupported_version", "field": "schema_version"},
+    {"id": "invalid-result-version", "code": "unsupported_version", "field": "schema_version"},
+    {"id": "subject-mismatch", "code": "invalid_input", "field": "result.binding"},
+    {"id": "evidence-mismatch", "code": "invalid_input", "field": "result.binding"},
+    {"id": "policy-mismatch", "code": "invalid_input", "field": "result.binding"},
+    {"id": "unbound-reference", "code": "invalid_input", "field": "result.evidence_references"},
+    {"id": "cancelled", "code": "cancelled", "field": "$"}
+  ],
+  "policy_projections": {
+    "pass": "pass",
+    "fail": "fail",
+    "unknown": "unknown",
+    "stale-pass": "unknown"
+  },
+  "untrusted_verification": "unverified",
+  "source_execution": "forbidden"
+}

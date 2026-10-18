@@ -103,3 +103,13 @@ reason-code idempotency are checked. No external provider is required by C18.
 Freshness is caller-supplied; no age-policy, persistence or revision authority
 claim is made. The existing full suite additionally exercises real pinned OPA
 when ATTESTARA_TEST_OPA is configured.
+
+## C19 deterministic passport
+
+Five required C19 tests exercise a real C14 policy result through C18 decision
+explanation and the C19 passport generator. They cover order-independent
+reference sorting and digest output, changed-content digest variation,
+pass/fail/unknown and stale projection, C04/C18 binding validation, failed
+provider outcomes, inert source-like warnings and exact C19/C14 fixture hashes.
+The passport remains unsigned and stateless; C08 file-byte validation, C16
+signer trust, and C05 persistence/recovery remain separate boundaries.

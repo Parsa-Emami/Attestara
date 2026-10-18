@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "license": "Apache-2.0",
+  "cases": [
+    {
+      "id": "stable-evidence-order",
+      "input_fixture": "C14/input.json",
+      "evidence_fixture": "C14/evidence.json",
+      "policy_fixture": "C14/rule.json",
+      "duplicate_evidence_path": "evidence-copy.json",
+      "freshness": "fresh"
+    }
+  ]
+}

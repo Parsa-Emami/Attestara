@@ -239,7 +239,7 @@
       "id": "C19",
       "title": "feat(passport): generate deterministic release passport",
       "stage": "domain",
-      "status": "planned",
+      "status": "verified",
       "acceptance": [
         "Stable evidence order gives same normalized report digest."
       ],

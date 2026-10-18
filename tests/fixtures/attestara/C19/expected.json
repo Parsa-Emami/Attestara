@@ -1,0 +1,23 @@
+{
+  "schema_version": "1",
+  "status": "unverified",
+  "release_id": "attestara-c14-release",
+  "source_revision": "synthetic-c14-1",
+  "subject_digest": "sha256:ecdc32b595e2dc30f73744505e78f4f6888b76c3997098f3f1fdffcb7b7d9cd4",
+  "evidence_digest": "sha256:f4eef926e346ce1feac1114ab917dc53928001104bab21cb7e88948a9f1ca193",
+  "policy_digest": "sha256:a8bff7c6201d8eacba9acf62cee9f3d2f50ceb1af9327340c464abc848068446",
+  "policy_decision": "pass",
+  "verification": "unverified",
+  "evidence_references": [
+    {
+      "path": "evidence-copy.json",
+      "digest": "sha256:f4eef926e346ce1feac1114ab917dc53928001104bab21cb7e88948a9f1ca193"
+    },
+    {
+      "path": "evidence.json",
+      "digest": "sha256:f4eef926e346ce1feac1114ab917dc53928001104bab21cb7e88948a9f1ca193"
+    }
+  ],
+  "warnings": [],
+  "report_digest": "sha256:59eed36201f004076ca3910ecd241e1997196c0e224d0c4023db97c7eb1d64f5"
+}

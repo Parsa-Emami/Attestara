@@ -168,10 +168,12 @@
     },
     {
       "id": "C19",
-      "status": "planned",
-      "evidence": [],
-      "source_identity": null,
-      "notes": ""
+      "status": "verified",
+      "evidence": [
+        "docs/evidence/C19.json"
+      ],
+      "source_identity": "sha256:fe22bd0914ee12a960cb9783a26d114bac0233ef9e04c6e2fa77e91a926821eb",
+      "notes": "Owner-approved stateless deterministic typed C04/C18 release passport: sorted evidence references, stable SHA-256 payload, binding validation, preserved fail/unknown and independent verification states. Full Go/storage regressions, actual C15 OPA suite, web checks and plan validation passed locally. No durability, revision authority, API/UI or full-workflow claim."
     },
     {
       "id": "C20",

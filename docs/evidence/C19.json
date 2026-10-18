@@ -1,0 +1,191 @@
+{
+  "planning_template": false,
+  "commit_id": "C19",
+  "date": "2026-10-18",
+  "base_commit": "8b22f23e3cc44a4c212e9401e28f906900d8a586",
+  "worktree_committed": false,
+  "approved_scope": "Owner-approved stateless typed C04/C18 deterministic release passport: validate existing contracts, bind subject/evidence/policy digests, sort evidence references by path then digest, preserve policy warnings and independent verification status, and hash the typed compact JSON payload without report_digest. No persistence, revision acceptance, replay, API or UI behavior is added.",
+  "source_identity": "sha256:fe22bd0914ee12a960cb9783a26d114bac0233ef9e04c6e2fa77e91a926821eb",
+  "source_identity_method": "SHA-256 of sorted relative-path + NUL + per-file SHA-256 hex + newline UTF-8 records.",
+  "source_identity_scope": "510 tracked/nonignored source, tests, configs, locks and documentation files; excludes docs/evidence, plans/progress.json, plans/requirements.json, plans/project-state.json, docs/agents/SESSION_HANDOFF.json, apps/web/src/generated/project.json and SHA256SUMS.txt. Ignored dependency/build/cache outputs excluded by git.",
+  "changed_source_sha256": {
+    "docs/engineering/ENGINE_TESTS.md": "sha256:f1779cce9ce93aa255bad971dd2a649ea3e2cee8b76560ece10f0af9af1ec1a3",
+    "internal/report/passport.go": "sha256:da3d427849fc766e0adab109151c4a03342a9433374db71fc30be7e1e5cb665c",
+    "plans/commits/C19.md": "sha256:4bfdb531edf6772b535ad18d1c85225de5d7453bde5e73e5a0bb282b9495a8a2",
+    "plans/roadmap.json": "sha256:9e0aa6cccbca562ce3f5d64b36be722778f0bd5774e16ef9a8dda4eafe235473",
+    "scripts/verify-engine-tests.mjs": "sha256:751ab072327efa445fc40041a10583a632ec8200e6416549d31740d0fbdd4bfb",
+    "tests/fixtures/attestara/C19/README.md": "sha256:e754c92051f9baf18c942a1e7840f8afb33736e39c3702f10a8952dbb76c7a70",
+    "tests/fixtures/attestara/C19/evidence-copy.json": "sha256:f4eef926e346ce1feac1114ab917dc53928001104bab21cb7e88948a9f1ca193",
+    "tests/fixtures/attestara/C19/expected.json": "sha256:e283469e2eefeb129e5bd045cf1cbfe0e57b8f2ce50958b5a61fb78a58b393a0",
+    "tests/fixtures/attestara/C19/negative.json": "sha256:5ec9abfeac3a5d6a9d287da20bfae2e50b10edffc88a55872c62e058def22a39",
+    "tests/fixtures/attestara/C19/positive.json": "sha256:7f81539e62ec4981b545f670def0bad55f88d588ae8b0699a6a7dabedc476329",
+    "tests/fixtures/attestara/C19/provenance.json": "sha256:93dcb91b4b800201c6fee1f3ede6e231d1f1d30fa6e10d2293c1091b0933f521",
+    "tests/passport_test.go": "sha256:66cfc66adb524144225371e665e74aead2122e0f4ede4f9aaa1428a00fa5dc3f"
+  },
+  "changed_paths": [
+    "apps/web/src/generated/project.json",
+    "docs/agents/SESSION_HANDOFF.json",
+    "docs/engineering/ENGINE_TESTS.md",
+    "docs/evidence/C19.json",
+    "internal/report/passport.go",
+    "plans/commits/C19.md",
+    "plans/progress.json",
+    "plans/project-state.json",
+    "plans/requirements.json",
+    "plans/roadmap.json",
+    "scripts/verify-engine-tests.mjs",
+    "tests/fixtures/attestara/C19/README.md",
+    "tests/fixtures/attestara/C19/evidence-copy.json",
+    "tests/fixtures/attestara/C19/expected.json",
+    "tests/fixtures/attestara/C19/negative.json",
+    "tests/fixtures/attestara/C19/positive.json",
+    "tests/fixtures/attestara/C19/provenance.json",
+    "tests/passport_test.go"
+  ],
+  "tools": {
+    "go": {
+      "path": "/home/amirreza/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.2.linux-amd64/bin/go",
+      "version": "go version go1.27.2 linux/amd64",
+      "sha256": "sha256:548d3c32f83fa81152f543eb1526be7884cfe0526eb5e9ce29d3eca14786e7e0"
+    },
+    "node": {
+      "path": "/home/amirreza/.nvm/versions/node/v24.19.0/bin/node",
+      "version": "v24.19.0",
+      "sha256": "sha256:bc17c508ffeed0ec622934f9b7fa72f8e78da65350e63c3eceb56fa688aa5e12"
+    },
+    "npm": {
+      "command": "npm exec --yes --package=npm@11.9.0 -- npm",
+      "version": "11.9.0"
+    },
+    "opa": {
+      "path": "/tmp/attestara-c15-provider/opa",
+      "version": "Version: 1.21.2\nBuild Commit: 3f7474e6b3c631821d8aac25ca444f7e75a56483-dirty\nBuild Timestamp: 2026-10-12T13:42:18Z\nBuild Hostname: \nGo Version: go1.27.2\nPlatform: linux/amd64\nRego Version: v1\nWebAssembly: available",
+      "sha256": "sha256:830ab11f61ffec760b5e19db0d7ad02bf037e13f5ef4d665faeaf17632177527",
+      "purpose": "Existing C15 real-provider regression in the full Go suite; no OPA execution is part of C19 passport generation."
+    }
+  },
+  "environment": {
+    "GOTOOLCHAIN": "local",
+    "GOPROXY": "https://proxy.golang.org|direct",
+    "GOSUMDB": "sum.golang.org",
+    "ATTESTARA_TEST_OPA": "/tmp/attestara-c15-provider/opa",
+    "PATH_prefix": "/home/amirreza/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.2.linux-amd64/bin"
+  },
+  "hardware": {
+    "platform": "Linux 7.0.0-38-generic x86_64 GNU/Linux",
+    "logical_cpus": 16,
+    "mem_total": "MemTotal:       32093688 kB",
+    "free_disk_bytes": 126817480704,
+    "scope": "Host snapshot only; no C28 target benchmark."
+  },
+  "fixtures": {
+    "license": "Apache-2.0",
+    "provenance": "Repository-authored synthetic C19 passport expectation and inert evidence copy; actual C14 input, policy and evidence fixtures are reused unchanged. Tests compose the actual C14 evaluator and C18 decision result.",
+    "sha256": {
+      "C19/README.md": "sha256:e754c92051f9baf18c942a1e7840f8afb33736e39c3702f10a8952dbb76c7a70",
+      "C19/evidence-copy.json": "sha256:f4eef926e346ce1feac1114ab917dc53928001104bab21cb7e88948a9f1ca193",
+      "C19/expected.json": "sha256:e283469e2eefeb129e5bd045cf1cbfe0e57b8f2ce50958b5a61fb78a58b393a0",
+      "C19/negative.json": "sha256:5ec9abfeac3a5d6a9d287da20bfae2e50b10edffc88a55872c62e058def22a39",
+      "C19/positive.json": "sha256:7f81539e62ec4981b545f670def0bad55f88d588ae8b0699a6a7dabedc476329",
+      "C19/provenance.json": "sha256:93dcb91b4b800201c6fee1f3ede6e231d1f1d30fa6e10d2293c1091b0933f521"
+    },
+    "reused_sha256": {
+      "C14/input.json": "sha256:c97379825e6424ec7caf770836f5f65a56f7d0dcfc92586ab5b95e38866ee5d1",
+      "C14/input.fail.json": "sha256:f3e5ecfa87d6b34653b793610c3b186645b2117117959888c3d40da94895c1ad",
+      "C14/input.unknown.json": "sha256:583481592f5a9971e4890098ee0486ba1cd0de31e9770b5daa709713c79abb6c",
+      "C14/evidence.json": "sha256:f4eef926e346ce1feac1114ab917dc53928001104bab21cb7e88948a9f1ca193",
+      "C14/evidence.fail.json": "sha256:f62ca433d8d739f57960be952e2c15615961f884d12373645aebd604f0ec7871",
+      "C14/evidence.unknown.json": "sha256:e1a1570295dbb8cf46de89a086705ff248d342f6e48f00f61ae83127dc88b457",
+      "C14/rule.json": "sha256:a8bff7c6201d8eacba9acf62cee9f3d2f50ceb1af9327340c464abc848068446",
+      "C14/subject.txt": "sha256:ecdc32b595e2dc30f73744505e78f4f6888b76c3997098f3f1fdffcb7b7d9cd4"
+    }
+  },
+  "commands": [
+    {
+      "command": "go test -count=1 -v ./...",
+      "exit_code": 0,
+      "output": "Relevant captured output:\n--- PASS: TestC05RealProcessCrashRecoveryAndWriterLock\n--- PASS: TestC15RealOPAAndBindings (pass/fail/absent)\n--- PASS: TestC19PassportDeterminism\n--- PASS: TestC19PolicyOutcomesAndTrustRemainIndependent\n--- PASS: TestC19RejectsInvalidInputsAndBindings\n--- PASS: TestC19FailedEvaluationAndSourceSentinelStayInert\n--- PASS: TestC19FixtureProvenance\nPASS\nok  attestara/tests"
+    },
+    {
+      "command": "go vet ./...",
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "command": "go build ./...",
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "command": "node scripts/verify-engine-tests.mjs",
+      "exit_code": 0,
+      "output": "./internal/licensecatalog: required tests discovered\n./cmd/attestara: required tests discovered\n./internal/contracts: required tests discovered\n./internal/storage: required tests discovered\n./tests: required tests discovered"
+    },
+    {
+      "command": "npm exec --yes --package=npm@11.9.0 -- npm run check",
+      "exit_code": 0,
+      "output": "Validated 40 detailed tasks. Production web build and TypeScript typecheck passed. Node test runner: tests 28, pass 28, fail 0, skipped 0."
+    },
+    {
+      "command": "npm exec --yes --package=npm@11.9.0 -- npm run validate:plan",
+      "exit_code": 0,
+      "output": "Validated 40 detailed tasks, resources, references and progress; no runtime capability inferred."
+    },
+    {
+      "command": "npm exec --yes --package=npm@11.9.0 -- npm run plan -- next",
+      "exit_code": 0,
+      "output": "Selected C20 (feat(cli): expose verify evaluate and export commands), status planned, dependency C19, requirement F14."
+    },
+    {
+      "command": "gofmt -l internal/report/passport.go tests/passport_test.go",
+      "exit_code": 0,
+      "output": "No output; files are gofmt-clean."
+    },
+    {
+      "command": "git diff --check",
+      "exit_code": 0,
+      "output": "No output; exit 0."
+    },
+    {
+      "command": "python3 scripts/validate_repo.py",
+      "exit_code": 0,
+      "output": "VALIDATION PASSED\nChecked 206 JSON files and repository contract invariants."
+    }
+  ],
+  "development_attempts": [
+    {
+      "command": "npm run check with host defaults",
+      "exit_code": 1,
+      "output": "An earlier attempt failed in two Node subtests because subprocess Go inherited host GOSUMDB=off. Retried with pinned npm and GOSUMDB=sum.golang.org; the final run passed."
+    },
+    {
+      "command": "node scripts/verify-engine-tests.mjs with host defaults",
+      "exit_code": 1,
+      "output": "go: golang.org/toolchain@v0.0.1-go1.27.2.linux-amd64: verifying module: checksum database disabled by GOSUMDB=off. Retried with project Go environment; passed."
+    },
+    {
+      "command": "npm exec --yes --package=npm@11.9.0 -- npm run check after marking progress verified, before writing docs/evidence/C19.json",
+      "exit_code": 1,
+      "output": "C19: missing evidence. The plan correctly refused completion until the evidence artifact was written; successful rerun follows."
+    },
+    {
+      "command": "npm exec --yes --package=npm@11.9.0 -- npm run validate:plan and npm exec --yes --package=npm@11.9.0 -- npm run plan -- next before writing docs/evidence/C19.json",
+      "exit_code": 1,
+      "output": "C19: missing evidence. Successful reruns follow after evidence creation."
+    }
+  ],
+  "results": {
+    "acceptance": "Actual C14 policy evaluation and C18 decision output produce the expected version-1 passport. The positive fixture digest is sha256:59eed36201f004076ca3910ecd241e1997196c0e224d0c4023db97c7eb1d64f5. Reversing the same input evidence order yields equal passports and digest; changing source_revision changes the digest.",
+    "policy_and_verification": "Pass, fail, unknown and stale-to-unknown remain distinct in the output. Unverified remains unverified; an input rejected verification state remains rejected. Warning ordering is preserved.",
+    "negative_cases": "Seven fixture-described cases reject invalid input/result versions, subject/evidence/policy binding mismatches, an evidence reference absent from the manifest, and cancellation with typed errors. Failed evaluation returns a typed error without caller-controlled message/field leakage. Source-like warning sentinel remains inert.",
+    "regression": "The uncached full Go suite passed, including existing C05 real crash/recovery and disk-full tests and the real C15 OPA provider tests. All required engine test packages were discovered.",
+    "quality": "Go vet/build and gofmt passed. The pinned npm check ran plan validation, TypeScript typecheck, production web build and 28 web/contract tests (28 passed, zero skipped). Repository validator and final C20 plan selection passed. No separate npm lint script is present."
+  },
+  "limitations": [
+    "C19 is stateless and creates an unsigned report; no persistence, replay prevention, revision acceptance or recovery behavior is claimed.",
+    "Digest binding does not prove file bytes; C08 remains the file-byte validation boundary, and C16 signer trust remains independent. No trust is inferred from a digest or signature presence.",
+    "C20 owns CLI integration and stale/replayed revision acceptance; C21 owns viewer integration.",
+    "Browser tests were not run because C19 has no browser-facing behavior. Remote CI, C30 clean-host restart/restore and C28 target-hardware measurement were not run. No commit, push or publication occurred."
+  ],
+  "passed": true
+}

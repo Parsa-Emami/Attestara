@@ -1836,16 +1836,16 @@
         "licenses": "Apache-2.0 project source; pin and inventory every shipped upstream library/provider/grammar/rule/dataset license. Unknown/restricted required resources block release."
       },
       "negative_cases": [
-        "Kill the writer at the staged-byte/manifest boundary; restart exposes only a complete prior or new authoritative state.",
-        "Replay the operation, lose an ACK or exhaust disk/quota; no duplicate side effect, partial success or unlimited retry.",
+        "Invalid contracts, digest mismatches or evidence references absent from the input manifest return typed errors.",
+        "Policy fail/unknown and verification status remain distinct; no trust is inferred.",
         "No user source execution"
       ],
       "implementation_steps": [
         "Inspect the actual implementation, source/locks and verified dependencies for C19; preserve accepted existing behavior.",
-        "Define the versioned positive and negative release-evidence fixtures and expected error/result semantics under tests/fixtures/attestara/C19/.",
+        "Define versioned positive and negative fixtures for the approved stateless passport contract under tests/fixtures/attestara/C19/.",
         "Implement: Stable evidence order gives same normalized report digest.",
-        "Change the listed exact targets and wire the actual typed outcome into the supported browser/engine workflow. Keep domain facts, validation, storage/provider adapters and UI separate.",
-        "Add regression/integration coverage for every acceptance and negative case; real storage/provider/security boundaries cannot be verified only with mocks.",
+        "Expose the typed internal passport generator for future C20 CLI and C21 viewer consumers; keep domain facts, validation, storage/provider adapters and UI separate.",
+        "Add regression coverage for the C19 contract and rerun existing real C05 storage recovery tests unchanged.",
         "Run the labeled verification commands; record exact source, fixture license/hash, tool/provider versions, command exits and observed results in docs/evidence/C19.json. Update progress only when the whole task is genuinely verified."
       ],
       "verification_commands": [
@@ -1857,9 +1857,9 @@
         },
         {
           "command": "go test ./...",
-          "available_now": false,
+          "available_now": true,
           "introduced_by": "C03",
-          "expected": "C03 creates this engine test command in the same commit; C06 adds CI/integration collection. Pass the actual C19 acceptance and negative cases on the selected engine; shell-only tests cannot certify this task."
+          "expected": "Run the actual C19 acceptance and negative cases plus existing engine/storage regressions; shell-only tests cannot certify this task."
         }
       ],
       "stop_conditions": [
