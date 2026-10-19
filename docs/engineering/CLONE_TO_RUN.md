@@ -34,10 +34,10 @@ npm run test:clone
 npm run doctor
 ```
 
-The current test:clone performs a real local Git clone of the staged/committed source, runs setup and verifies unified web/engine process health and disabled domain admission. C30 must extend it to the full tests/scenarios/clone-to-value.json workflow and complete domain/storage/provider readiness. Current shell checks cannot certify domain functionality. See each C task for future engine commands and prerequisites. Optional hosting/package operations remain in WEB_RUNBOOK.md.
+The current test:clone performs a real Git transport clone and the approved C30 CLI snapshot workflow, including negative cases, restart, backup/restore and browser passport parity. It verifies local storage readiness and disabled domain admission; it does not certify external domain APIs or optional providers. See each later C task for future engine commands and prerequisites. Optional hosting/package operations remain in WEB_RUNBOOK.md.
 
 ## C30 approved local snapshot composition
 
 The current CLI snapshot workflow, full file/signature verification, real storage readiness and safe backup/restore are described in [C30 local workflow](C30_LOCAL_WORKFLOW.md). The earlier C03/C20/C29 sections above retain their historical capability boundaries. Full C30 status is determined by source-bound evidence, not these instructions.
 
-C30 test-only prerequisite: bubblewrap; a fresh Playwright browser download or explicit system browser via `WEB_TEST_CHROMIUM`. These are acceptance-test tools, not required to run the CLI or local viewer.
+C30 test-only prerequisites: locally, bubblewrap; on GitHub Actions, its ephemeral runner VM; both need a fresh Playwright browser download or an explicit system browser via `WEB_TEST_CHROMIUM`. These are acceptance-test tools, not required to run the CLI or local viewer.

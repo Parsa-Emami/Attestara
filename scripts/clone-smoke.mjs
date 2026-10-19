@@ -19,6 +19,22 @@ function run(command, args, cwd, options = {}) {
 // bwrap exposes system libraries and installed prerequisites, never the original
 // checkout, developer HOME/cache or sibling projects. The Linux kernel is shared.
 async function isolated(temporary, checkout) {
+  if (process.env.GITHUB_ACTIONS === 'true') {
+    const runtime = join(temporary, 'runtime');
+    const environment = {
+      ...process.env,
+      HOME: join(runtime, 'home'),
+      TMPDIR: join(runtime, 'tmp'),
+      npm_config_cache: join(runtime, 'npm-cache'),
+      npm_config_userconfig: join(runtime, 'empty-npmrc'),
+      npm_config_globalconfig: join(runtime, 'empty-global-npmrc'),
+      GOMODCACHE: join(runtime, 'go-mod'),
+      GOCACHE: join(runtime, 'go-build'),
+      PLAYWRIGHT_BROWSERS_PATH: join(runtime, 'browsers'),
+    };
+    for (const path of [environment.HOME, environment.TMPDIR, environment.npm_config_cache, environment.GOMODCACHE, environment.GOCACHE, environment.PLAYWRIGHT_BROWSERS_PATH]) await mkdir(path, { recursive: true });
+    return run(process.execPath, ['scripts/clone-smoke.mjs', '--inside'], checkout, { env: environment, timeout: 600000 });
+  }
   await mkdir(join(temporary, 'runtime-tmp'));
   const tools = join(temporary, 'tools'); await mkdir(tools); await mkdir(join(tools, 'go')); await mkdir(join(tools, 'node'));
   const goRoot = run('go', ['env', 'GOROOT'], root, { env: { ...process.env, GOTOOLCHAIN: 'local' } });
@@ -95,7 +111,7 @@ async function acceptance() {
     assert.match(browserOutput, /1 passed/);
     console.log(JSON.stringify({ phase: 'browser', command: 'npm run test:browser -- tests/browser/clone-to-value.spec.ts', exit: 0, output: browserOutput }));
     console.log(JSON.stringify({ phase: 'cli', commands: workflowCommands }));
-    console.log(JSON.stringify({ passed: true, profile: 'local-cli-snapshots', steps: 10, proof: 'clean isolated git clone -> npm run setup -> npm start -> actual CLI/browser workflow -> service restart -> new-store restore', policy: 'pass', authenticity: 'unverified', host: { platform: platform(), arch: arch(), kernel: release(), cpus: cpus().length, memory: totalmem() }, isolation: 'bubblewrap fresh HOME/npm/Go/browser caches; shared Linux kernel and network; installed prerequisites only', webOnlyProof: { processHealth: true, disabledDomainAdmission: true, certifiesDomain: false }, optionalProvidersExecuted: [], testBrowser: process.env.WEB_TEST_CHROMIUM ? { version: run(process.env.WEB_TEST_CHROMIUM, ['--version'], root), sha256: createHash('sha256').update(await readFile(process.env.WEB_TEST_CHROMIUM)).digest('hex'), source: 'explicit installed system prerequisite; not developer cache' } : { source: 'fresh Playwright download' } }));
+    console.log(JSON.stringify({ passed: true, profile: 'local-cli-snapshots', steps: 10, proof: 'clean isolated git clone -> npm run setup -> npm start -> actual CLI/browser workflow -> service restart -> new-store restore', policy: 'pass', authenticity: 'unverified', host: { platform: platform(), arch: arch(), kernel: release(), cpus: cpus().length, memory: totalmem() }, isolation: process.env.GITHUB_ACTIONS === 'true' ? 'fresh clone and HOME/npm/Go/browser caches on an ephemeral GitHub Actions VM; shared runner kernel and network' : 'bubblewrap fresh HOME/npm/Go/browser caches; shared Linux kernel and network; installed pinned prerequisites only', webOnlyProof: { processHealth: true, disabledDomainAdmission: true, certifiesDomain: false }, optionalProvidersExecuted: [], testBrowser: process.env.WEB_TEST_CHROMIUM ? { version: run(process.env.WEB_TEST_CHROMIUM, ['--version'], root), sha256: createHash('sha256').update(await readFile(process.env.WEB_TEST_CHROMIUM)).digest('hex'), source: 'explicit installed system prerequisite; not developer cache' } : { source: 'fresh Playwright download' } }));
   } finally {
     await stop();
     await rm(work, { recursive: true, force: true });
@@ -135,6 +151,6 @@ if (process.argv.includes('--inside')) {
       const base = '/sys/fs/cgroup' + path;
       cgroup = { available: true, cpuMax: (await readFile(base + '/cpu.max', 'utf8')).trim(), memoryMax: (await readFile(base + '/memory.max', 'utf8')).trim(), memoryPeak: (await readFile(base + '/memory.peak', 'utf8')).trim() };
     } catch {}
-    console.log(JSON.stringify({ candidateTree: tree, transportClone: true, originalIndexUnchanged: true, initialFreeDiskBytes, bwrapVersion: run('bwrap', ['--version'], root), cgroup }));
+    console.log(JSON.stringify({ candidateTree: tree, transportClone: true, originalIndexUnchanged: true, initialFreeDiskBytes, isolationRuntime: process.env.GITHUB_ACTIONS === 'true' ? 'GitHub Actions ephemeral VM' : run('bwrap', ['--version'], root), cgroup }));
   } finally { await rm(temporary, { recursive: true, force: true }); }
 }
