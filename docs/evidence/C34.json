@@ -1,11 +1,11 @@
 {
   "planning_template": false,
-  "passed": false,
+  "passed": true,
   "commit_id": "C34",
-  "date": "2026-10-19T17:03:14.595511+00:00",
+  "date": "2026-10-19T17:11:56.687835+00:00",
   "base_commit": "9e8438d9e4b97fc482c77e35b028682bcbf9e9d8",
   "worktree_committed": false,
-  "source_identity": "sha256:848ed50ae0812abfa267436338f8d895252c2d26bf8d70f4dc17956a48611e8a",
+  "source_identity": "sha256:033a31e4fa06a516c3d935524f6902576c9414faa5dc89090bb36cc426dcfa89",
   "source_identity_method": "SHA-256 of sorted UTF-8 relative path + NUL + raw per-file SHA-256 + newline records.",
   "source_identity_scope": "617 source/config/test/documentation files; excludes docs/evidence/, progress/requirements/project-state/handoff, generated web project JSON and SHA256SUMS.txt.",
   "fixture_license": "Apache-2.0",
@@ -33,56 +33,105 @@
       "command": "npm run setup -- --skip-install",
       "exit_code": 0,
       "output_path": "docs/evidence/C34-setup.log",
-      "output_sha256": "sha256:a810654fe489859801ebc7358b6fbdd450c54e87901c159cf22a9e97dfb95c1c"
+      "output_sha256": "sha256:a810654fe489859801ebc7358b6fbdd450c54e87901c159cf22a9e97dfb95c1c",
+      "validation_source_commit": "49700dc236e984639fe3ecfaec566589c1a430e0"
     },
     {
       "command": "npm run check",
       "exit_code": 0,
       "output_path": "docs/evidence/C34-check.log",
-      "output_sha256": "sha256:b09bb79f2408a7494cb43bf70363acece6d705495080fe525e5488a4e0015201"
+      "output_sha256": "sha256:b09bb79f2408a7494cb43bf70363acece6d705495080fe525e5488a4e0015201",
+      "validation_source_commit": "49700dc236e984639fe3ecfaec566589c1a430e0"
     },
     {
       "command": "ATTESTARA_TEST_OPA=<pinned OPA> go test -v ./...",
       "exit_code": 0,
       "output_path": "docs/evidence/C34-go-test.log",
-      "output_sha256": "sha256:926ff18e3beaf7870ab38c5071f58b052484a097ada6fa5ec4863d400c780c29"
+      "output_sha256": "sha256:926ff18e3beaf7870ab38c5071f58b052484a097ada6fa5ec4863d400c780c29",
+      "validation_source_commit": "49700dc236e984639fe3ecfaec566589c1a430e0"
     },
     {
       "command": "go vet ./...",
       "exit_code": 0,
       "output_path": "docs/evidence/C34-go-vet.log",
-      "output_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      "output_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "validation_source_commit": "49700dc236e984639fe3ecfaec566589c1a430e0"
     },
     {
       "command": "NGINX_BIN=<real Nginx> node --test tests/ops/nginx-local.test.mjs",
       "exit_code": 0,
       "output_path": "docs/evidence/C34-nginx.log",
-      "output_sha256": "sha256:fa84f8da8a0df93c0bbe604c7dd4f8a57f8b142f85477ed71fa380d382c84889"
+      "output_sha256": "sha256:fa84f8da8a0df93c0bbe604c7dd4f8a57f8b142f85477ed71fa380d382c84889",
+      "validation_source_commit": "49700dc236e984639fe3ecfaec566589c1a430e0"
     },
     {
       "command": "node --test tests/ops/user-guide.test.mjs",
       "exit_code": 0,
       "output_path": "docs/evidence/C34-guide.log",
-      "output_sha256": "sha256:2972d9b86662c85368e9181eb745a520c332f8131f21d4f0f7914914e1d23e73"
+      "output_sha256": "sha256:2972d9b86662c85368e9181eb745a520c332f8131f21d4f0f7914914e1d23e73",
+      "validation_source_commit": "49700dc236e984639fe3ecfaec566589c1a430e0"
     },
     {
       "command": "python3 -m unittest discover -s tests/engineering -p test_*.py -v",
       "exit_code": 0,
       "output_path": "docs/evidence/C34-engineering.log",
-      "output_sha256": "sha256:d36e68a6325d22082d4dc5e6075d03d214810aa3d1f1f05645a304f646efdd68"
+      "output_sha256": "sha256:d36e68a6325d22082d4dc5e6075d03d214810aa3d1f1f05645a304f646efdd68",
+      "validation_source_commit": "49700dc236e984639fe3ecfaec566589c1a430e0"
     },
     {
       "command": "npm run package:web",
       "exit_code": 0,
       "output_path": "docs/evidence/C34-package-web.log",
-      "output_sha256": "sha256:a7e90ad6d2f73d2875241743e8ce72b88d3f2d834e6460ca16e733b74150f14f"
+      "output_sha256": "sha256:a7e90ad6d2f73d2875241743e8ce72b88d3f2d834e6460ca16e733b74150f14f",
+      "validation_source_commit": "49700dc236e984639fe3ecfaec566589c1a430e0"
     },
     {
       "command": "npm run validate:plan",
       "exit_code": 0,
       "output_path": "docs/evidence/C34-plan.log",
-      "output_sha256": "sha256:283e6caec9a4ede676ba65160c05d9cc3dbd186a1b5847b20847f3e4f84e946d"
+      "output_sha256": "sha256:283e6caec9a4ede676ba65160c05d9cc3dbd186a1b5847b20847f3e4f84e946d",
+      "validation_source_commit": "49700dc236e984639fe3ecfaec566589c1a430e0"
     },
+    {
+      "command": "npm run security:check",
+      "exit_code": 0,
+      "output_path": "docs/evidence/C34-reporting-enabled.log",
+      "output_sha256": "sha256:e6a4966e130e3d9b0d096b6d758e3721e88ec7305ce88d58441c979f43f47e29",
+      "validation_source_commit": "49700dc236e984639fe3ecfaec566589c1a430e0"
+    },
+    {
+      "command": "GitHub Actions: browser, clone, documented CLI, isolated proxy and package checks",
+      "exit_code": 0,
+      "output_path": "docs/evidence/C34-ci-web.log",
+      "output_sha256": "sha256:b2493683c914f521087c884e8c05156f7de9865df6db30200f8deadfb12edd54",
+      "validation_source_commit": "49700dc236e984639fe3ecfaec566589c1a430e0"
+    },
+    {
+      "command": "npm run check (final documentation/metadata candidate; pinned Go on PATH)",
+      "exit_code": 0,
+      "output_path": "docs/evidence/C34-final-check.log",
+      "output_sha256": "sha256:63abef36b9e08a6ba7338dbf44772f926400c0fd9727911c72b645909c09f14e",
+      "validation_source_identity": "sha256:033a31e4fa06a516c3d935524f6902576c9414faa5dc89090bb36cc426dcfa89"
+    }
+  ],
+  "observed_results": [
+    "All 47 Node tests passed.",
+    "All 118 top-level Go tests passed with real pinned OPA and zero skips.",
+    "All seven literal user-guide CLI commands succeeded against real engine/storage, including supervised restart, portable backup and new-store restore.",
+    "Real isolated Nginx syntax/start/request test passed: preserved Host port/CSP/no-store, replaced forged forwarded claims, retained API read 503/write 405 and emitted 502 after upstream stopped.",
+    "All six engineering tests passed; local documentation link targets and repository contracts validated.",
+    "Web-only packaging passed; no complete release/publication is claimed.",
+    "All four GitHub workflows completed successfully on implementation commit 49700dc: contracts, plan-consistency, engine-runtime and web-foundation.",
+    "GitHub ran all 25 browser cases successfully, plus clean-clone and installed package/reproduction workflows. Local browser EPERM failure remains recorded separately and is not relabelled.",
+    "Private reporting was actually enabled on GitHub, confirmed by independent API and private advisory form; no report or email was sent."
+  ],
+  "blockers": [],
+  "limits": [
+    "Runtime/complete-browser/clone/package CI proof belongs to exact implementation commit 49700dc. The following attestation changes only documentation activation wording and planning/evidence/generated roadmap metadata; it does not claim those earlier runtime tests ran on a new tree.",
+    "Local Chromium execution is still blocked by host socket permissions; browser acceptance is certified by the recorded GitHub Actions run.",
+    "No actual Apache host, deployed TLS, multi-user authorization, report delivery or published OSS v1 was tested."
+  ],
+  "failed_local_attempts": [
     {
       "command": "node scripts/check-security-reporting.mjs",
       "exit_code": 2,
@@ -94,23 +143,30 @@
       "exit_code": 1,
       "output_path": "docs/evidence/C34-browser.log",
       "output_sha256": "sha256:594a02732f4abaf00b86dba01eaf46bfcc6a66a1c13a27b34983898ce4d8b29d"
+    },
+    {
+      "command": "npm run check (final documentation/metadata candidate; Go missing from PATH)",
+      "exit_code": 1,
+      "output_path": "docs/evidence/C34-final-check-without-go-path.log",
+      "output_sha256": "sha256:38df1bf0f065331edf6b6633539bd82639165aff93ecfcde5fa56ae94d25a4f6",
+      "validation_source_identity": "sha256:033a31e4fa06a516c3d935524f6902576c9414faa5dc89090bb36cc426dcfa89"
     }
   ],
-  "observed_results": [
-    "All 47 Node tests passed.",
-    "All 118 top-level Go tests passed with real pinned OPA and zero skips.",
-    "All seven literal user-guide CLI commands succeeded against real engine/storage, including supervised restart, portable backup and new-store restore.",
-    "Real isolated Nginx syntax/start/request test passed: preserved Host port/CSP/no-store, replaced forged forwarded claims, retained API read 503/write 405 and emitted 502 after upstream stopped.",
-    "All six engineering tests passed; local documentation link targets and repository contracts validated.",
-    "Web-only packaging passed; no complete release/publication is claimed."
-  ],
-  "blockers": [
-    "Private vulnerability reporting API returned enabled:false; GitHub Mobile device verification is pending owner approval. No setting change or report delivery is claimed.",
-    "Local Chromium cannot launch because this execution host denies its process-singleton socket operation (EPERM). Four non-browser cases passed and 21 browser cases failed before page execution. Required 360px/keyboard/inert-input cases are not re-certified by this run; full unchanged browser checks remain enabled in CI."
-  ],
-  "limits": [
-    "No actual Apache host, deployed TLS, multi-user authorization or published release was tested.",
-    "Browser log is a compact failure excerpt; repeated identical traces are omitted explicitly.",
-    "No email address, real vulnerability report or authentication secret was published."
+  "implementation_commit": "49700dc236e984639fe3ecfaec566589c1a430e0",
+  "runtime_validation_commit": "49700dc236e984639fe3ecfaec566589c1a430e0",
+  "ci_evidence": "docs/evidence/C34-ci.json",
+  "private_reporting": {
+    "enabled": true,
+    "verification": "Live public API enabled:true, settings saved/Disable button, private advisory form and visibility notice inspected as maintainer.",
+    "report_url": "https://github.com/Parsa-Emami/Attestara/security/advisories/new",
+    "report_submitted": false,
+    "email_published": false,
+    "notification_delivery_tested": false
+  },
+  "post_runtime_validation_changes": [
+    "SECURITY.md activation status",
+    "docs/security/REPORTING.md activation evidence",
+    "docs/engineering/CLONE_TO_RUN.md activation wording",
+    "progress/requirement/project-state/handoff and generated roadmap metadata"
   ]
 }

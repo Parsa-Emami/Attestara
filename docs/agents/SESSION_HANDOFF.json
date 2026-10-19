@@ -1,9 +1,9 @@
 {
-  "date": "2026-10-19T17:03:14.595511+00:00",
+  "date": "2026-10-19T17:11:56.687835+00:00",
   "task": "C34",
-  "base_commit": "9e8438d9e4b97fc482c77e35b028682bcbf9e9d8",
+  "base_commit": "49700dc236e984639fe3ecfaec566589c1a430e0",
   "worktree_committed": false,
-  "final_source_identity": "sha256:848ed50ae0812abfa267436338f8d895252c2d26bf8d70f4dc17956a48611e8a",
+  "final_source_identity": "sha256:033a31e4fa06a516c3d935524f6902576c9414faa5dc89090bb36cc426dcfa89",
   "source_identity_scope": "617 source/config/test/documentation files; excludes docs/evidence/, progress/requirements/project-state/handoff, generated web project JSON and SHA256SUMS.txt.",
   "changed_paths": [
     ".github/ISSUE_TEMPLATE/config.yml",
@@ -19,6 +19,8 @@
     "docs/evidence/C34-browser.log",
     "docs/evidence/C34-build.log",
     "docs/evidence/C34-check.log",
+    "docs/evidence/C34-ci-web.log",
+    "docs/evidence/C34-ci.json",
     "docs/evidence/C34-engineering.log",
     "docs/evidence/C34-go-test.log",
     "docs/evidence/C34-go-vet.log",
@@ -26,6 +28,7 @@
     "docs/evidence/C34-nginx.log",
     "docs/evidence/C34-package-web.log",
     "docs/evidence/C34-plan.log",
+    "docs/evidence/C34-reporting-enabled.log",
     "docs/evidence/C34-reporting.log",
     "docs/evidence/C34-setup.log",
     "docs/evidence/C34.json",
@@ -36,6 +39,7 @@
     "ops/web/nginx.local.conf",
     "package.json",
     "plans/progress.json",
+    "plans/project-state.json",
     "plans/requirements.json",
     "scripts/check-security-reporting.mjs",
     "tests/fixtures/attestara/C34/README.md",
@@ -45,13 +49,15 @@
     "tests/ops/user-guide.test.mjs",
     "tests/web/security-reporting.test.mjs"
   ],
-  "verification": "47 Node, 118 Go with real pinned OPA/zero skips, six engineering, real documented CLI restart/restore and isolated Nginx tests passed. Browser cases blocked at host socket permissions; private reporting activation awaits owner device approval. C34 remains in_progress, not verified.",
+  "verification": "C34 verified: current public guides, confirmed live GitHub-only private reporting, 47 Node/118 Go with real OPA/zero skips, six engineering tests, literal CLI restart/restore and real isolated Nginx tests. All four implementation-commit GitHub workflows succeeded, including 25 browser, clean-clone and package/reproduction checks. See C34.json for exact source scopes and retained failed local attempt.",
   "current_core_ready": true,
   "verified_profile": "local-cli-snapshots",
-  "blockers": [
-    "Private vulnerability reporting API returned enabled:false; GitHub Mobile device verification is pending owner approval. No setting change or report delivery is claimed.",
-    "Local Chromium cannot launch because this execution host denies its process-singleton socket operation (EPERM). Four non-browser cases passed and 21 browser cases failed before page execution. Required 360px/keyboard/inert-input cases are not re-certified by this run; full unchanged browser checks remain enabled in CI."
-  ],
-  "next_task": "C34",
-  "next_command": "npm run security:check; npm run test:browser; npm run plan -- next"
+  "blockers": [],
+  "next_task": "C35",
+  "next_command": "npm run plan -- next",
+  "remaining_limits": [
+    "Runtime/complete-browser/clone/package CI proof belongs to exact implementation commit 49700dc. The following attestation changes only documentation activation wording and planning/evidence/generated roadmap metadata; it does not claim those earlier runtime tests ran on a new tree.",
+    "Local Chromium execution is still blocked by host socket permissions; browser acceptance is certified by the recorded GitHub Actions run.",
+    "No actual Apache host, deployed TLS, multi-user authorization, report delivery or published OSS v1 was tested."
+  ]
 }

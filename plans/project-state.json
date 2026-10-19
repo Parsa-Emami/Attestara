@@ -1,6 +1,6 @@
 {
   "project": "Attestara",
-  "reviewed_commit": "4449eeec8acba9d2a4bad982f6290210329fd0ef",
+  "reviewed_commit": "49700dc236e984639fe3ecfaec566589c1a430e0",
   "readiness": "LOCAL_USABLE",
   "core_ready": true,
   "implemented": [
@@ -37,10 +37,11 @@
     "C30 owner-approved single-operator CLI/viewer workflow: real manifest/file/CycloneDX validation, independent Ed25519 configured signature assessment, immutable C05 operation replay/conflict, non-overwriting backup/new-store restore, actual service restart and clean namespace Git clone/setup/start/browser parity; optional providers not executed",
     "C31 complete unsigned reproducible Linux x64 runtime/source packaging: actual Go engine, web UI, offline schemas/catalog and examples, licensed resources, validated CycloneDX 1.7 SBOM, checksums and deterministic provenance; two-path and source-archive reproduction plus installed CLI/viewer restart/restore. Node external; optional providers unbundled. No publication or signed-release claim.",
     "C32 tested loopback-only local web launch, absent cross-origin CORS grant, self-only connection CSP, dynamic no-store/fingerprinted immutable cache and disabled domain API across real restart; optional private TLS/CIDR ingress documented without deployment or remote authorization claim.",
-    "C33 verified existing local CLI/viewer workflow at 360px and 1440px with native keyboard actions, semantic table claims, explicit invalid/empty/interrupted/engine-outage states and existing v1 passport/ZIP/snapshot format compatibility; fixed skip-to-content route loss. Linux/headless Chrome observed only; installed-version upgrades and release authority remain outside scope."
+    "C33 verified existing local CLI/viewer workflow at 360px and 1440px with native keyboard actions, semantic table claims, explicit invalid/empty/interrupted/engine-outage states and existing v1 passport/ZIP/snapshot format compatibility; fixed skip-to-content route loss. Linux/headless Chrome observed only; installed-version upgrades and release authority remain outside scope.",
+    "C34 current-profile user/source-build/license/privacy/recovery/support guides, GitHub private vulnerability reporting enabled and live-checked without email, literal guide restart/restore and isolated local Nginx regressions; implementation commit 49700dc passed all four GitHub CI workflows including browser/clone/package checks. No new public API, production hosting or published OSS v1 claim."
   ],
   "engine": "Current C30 local-cli-snapshots profile composes existing C04/C05/C08-C10/C14/C16/C18/C19 contracts through the existing evaluate/verify/export CLI plus restore. Full file/ZIP integrity and independently configured manifest signature trust are assessed separately from policy and unverified passport claims. C05 snapshots retain exact input/result/files through restart and new-store restore; identical operations replay and changed content conflicts. Freshness is caller classified. Draft domain HTTP APIs, multi-user/private authorization, automatic expiry/latest-release authority, scanner execution and representative Grype/full-size combined-workload capacity remain unsupported or unmeasured. Historical C01-C29 evidence retains its original scope.",
-  "next_task": "C34",
+  "next_task": "C35",
   "next_command": "npm run plan -- next",
   "full_product_endpoint": "C30 locally usable; C40 full published OSS v1",
   "verified_profile": "local-cli-snapshots"

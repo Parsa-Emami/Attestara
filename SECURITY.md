@@ -8,13 +8,12 @@ GitHub advisory conversation with authorized maintainers. No dedicated email
 address is required or published. Issues, pull requests and Discussions are
 public and must not contain vulnerability details.
 
-**Activation is pending:** on 2026-10-19 the public GitHub API returned
-`enabled: false`. The link above is the intended route, not proof of an active
-private channel. If the button is missing, open an Issue containing only
-“Please enable private vulnerability reporting”; withhold technical details
-until a private route is available. See [maintainer activation and verification](docs/security/REPORTING.md).
-C34 remains unverified until the live check returns `enabled: true` and its
-remaining acceptance checks pass.
+**Private reporting is enabled.** The maintainer enabled the setting on
+2026-10-19; a separate public GitHub API check returned `enabled: true`.
+The private advisory form was inspected without submitting a report. If the
+button becomes unavailable, open an Issue containing only “Please restore
+private vulnerability reporting”; withhold technical details until the route
+works again. See [maintainer verification](docs/security/REPORTING.md).
 
 ## What to include privately
 

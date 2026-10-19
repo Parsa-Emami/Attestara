@@ -55,8 +55,8 @@ its upstream port must match the launcher. No existing Apache service or global
 Nginx site needs changing.
 
 Public Issues are for non-sensitive support. [SECURITY.md](../../SECURITY.md)
-defines the private GitHub route, supported scope, response targets and pending
-activation. `npm run security:check` reads the live setting without a token:
+defines the enabled private GitHub route, supported scope and response targets.
+`npm run security:check` reads the live setting without a token:
 exit 0 is enabled, 2 disabled, 1 unavailable. It is an online operator check,
 not an offline build prerequisite, and submits no report.
 

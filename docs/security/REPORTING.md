@@ -25,7 +25,7 @@ operator check, separate from the offline test suite.
 Then open **Security → Advisories → Report a vulnerability** and verify that
 the private form is available. Do not submit a dummy report or publish an
 advisory to test the route. Record actual UTC time/API response in evidence,
-then update the pending notice in SECURITY.md. A link or unit-test fixture alone
+then update the activation notice in SECURITY.md. A link or unit-test fixture alone
 cannot certify the live setting. Keep credentials out of source and evidence.
 
 ## Handle reports
@@ -36,14 +36,16 @@ Follow the acknowledgement/assessment targets in SECURITY.md, request minimal
 redacted reproductions and coordinate a patch/disclosure. Never copy private
 details to public Issues, PR comments, commit messages or evidence.
 
-## Current handoff
+## Confirmed activation
 
-An unauthenticated API check on 2026-10-19 returned HTTP 200 with
-`{"enabled":false}`. The source integration exposes no administration action
-for this setting. Browser administration requires authenticated GitHub access;
-the earlier authentication attempt was blocked by origin approval. No setting
-change or report delivery was verified. C34 must remain unverified until the
-live private route and every acceptance criterion are demonstrated.
+The owner enabled **Private vulnerability reporting** in this repository's
+Advanced Security settings on 2026-10-19. GitHub showed **Repository settings
+saved** and **Disable private vulnerability reporting**. The independent public
+API check then returned HTTP 200 with `{"enabled":true}` and exit 0.
+The private advisory form and its access/visibility notice were inspected in
+the signed-in maintainer session. No dummy report, advisory or email was sent,
+and notification delivery was not tested. Reports and follow-up remain in
+GitHub; no personal or dedicated mailbox is published.
 
 Official references: [configure reporting](https://docs.github.com/en/code-security/how-tos/report-and-fix-vulnerabilities/configure-vulnerability-reporting/configure-for-a-repository),
 [report privately](https://docs.github.com/en/code-security/how-tos/report-and-fix-vulnerabilities/report-privately),
