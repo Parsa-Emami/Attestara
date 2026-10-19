@@ -24,7 +24,9 @@
     "doctor": "node scripts/oss-bootstrap.mjs doctor",
     "plan": "node scripts/roadmap.mjs",
     "release:check": "node scripts/roadmap.mjs release-check",
-    "test:clone": "node scripts/clone-smoke.mjs"
+    "test:clone": "node scripts/clone-smoke.mjs",
+    "package": "bash scripts/package.sh",
+    "test:package": "node scripts/test-package.mjs"
   },
   "dependencies": {
     "react": "19.3.1",

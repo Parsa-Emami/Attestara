@@ -1,94 +1,545 @@
 {
   "date": "2026-10-19",
-  "task": "C30",
-  "base_commit": "59e809487b9a10be32d353963f401627edf519e2",
+  "task": "C31",
+  "base_commit": "4449eeec8acba9d2a4bad982f6290210329fd0ef",
   "worktree_committed": false,
-  "final_source_identity": "sha256:ea9bb04e7cf88682b42f45c3ac2d450dc74712c5d7d793faee29f135eb9e33a6",
-  "source_identity_scope": "590 tracked/nonignored source/test/config/lock/documentation files, excluding docs/evidence/, plans/progress.json, plans/requirements.json, plans/project-state.json, docs/agents/SESSION_HANDOFF.json, apps/web/src/generated/project.json and SHA256SUMS.txt.",
+  "final_source_identity": "sha256:ad6f10b7215259baeb241af87f7244323a05a861bda907cbfeddaac008936fc4",
+  "source_identity_scope": "598 tracked/nonignored source/test/config/lock/documentation files, excluding docs/evidence/, plans/progress.json, plans/requirements.json, plans/project-state.json, docs/agents/SESSION_HANDOFF.json, apps/web/src/generated/project.json and SHA256SUMS.txt.",
   "changed_paths": [
     ".github/workflows/web.yml",
-    "START_HERE.md",
+    "THIRD_PARTY_NOTICES.md",
     "apps/web/src/generated/project.json",
-    "cmd/attestara/main.go",
-    "cmd/attestara/readiness_test.go",
-    "cmd/attestara/snapshot.go",
-    "contracts/README.md",
     "docs/ROADMAP_FA.md",
     "docs/agents/SESSION_HANDOFF.json",
-    "docs/engineering/C30_LOCAL_WORKFLOW.md",
-    "docs/engineering/CLONE_TO_RUN.md",
-    "docs/engineering/ENGINE_LAUNCH.md",
-    "docs/evidence/C30-browser.log",
-    "docs/evidence/C30-check.log",
-    "docs/evidence/C30-clone.log",
-    "docs/evidence/C30-diff.log",
-    "docs/evidence/C30-discovery.log",
-    "docs/evidence/C30-go-build.log",
-    "docs/evidence/C30-go-test.log",
-    "docs/evidence/C30-go-vet.log",
-    "docs/evidence/C30-next.log",
-    "docs/evidence/C30-plan.log",
-    "docs/evidence/C30-python-plan.log",
-    "docs/evidence/C30-report.md",
-    "docs/evidence/C30-typecheck.log",
-    "docs/evidence/C30.json",
-    "docs/evidence/private-install.json",
-    "docs/product/REFERENCE_WORKFLOW.md",
-    "internal/report/passport.go",
-    "internal/workflow/publish_linux_amd64.go",
-    "internal/workflow/publish_other.go",
-    "internal/workflow/snapshot.go",
-    "internal/workflow/snapshot_test.go",
-    "ops/diagnostics.md",
-    "plans/commits/C30.md",
+    "docs/engineering/WEB_RUNBOOK.md",
+    "docs/engineering/toolchain-lock.json",
+    "docs/evidence/C31-audit-full.log",
+    "docs/evidence/C31-audit.log",
+    "docs/evidence/C31-browser.log",
+    "docs/evidence/C31-check.log",
+    "docs/evidence/C31-clone.log",
+    "docs/evidence/C31-diff.log",
+    "docs/evidence/C31-discovery.log",
+    "docs/evidence/C31-go-build.log",
+    "docs/evidence/C31-go-test.log",
+    "docs/evidence/C31-go-vet.log",
+    "docs/evidence/C31-node-syntax.log",
+    "docs/evidence/C31-opa.log",
+    "docs/evidence/C31-package-web.log",
+    "docs/evidence/C31-package.log",
+    "docs/evidence/C31-plan.log",
+    "docs/evidence/C31-python-plan.log",
+    "docs/evidence/C31-report.md",
+    "docs/evidence/C31-resources.log",
+    "docs/evidence/C31-runner-syntax.log",
+    "docs/evidence/C31-source-syntax.log",
+    "docs/evidence/C31-syntax.log",
+    "docs/evidence/C31-systemd.log",
+    "docs/evidence/C31-typecheck.log",
+    "docs/evidence/C31.json",
+    "docs/release/ARTIFACTS.md",
+    "ops/web/nginx.conf.template",
+    "ops/web/service.systemd",
+    "package.json",
     "plans/progress.json",
     "plans/project-state.json",
-    "plans/release-gates.json",
     "plans/requirements.json",
-    "plans/roadmap.json",
-    "playwright.config.ts",
-    "product/project.json",
-    "scripts/clone-smoke.mjs",
-    "scripts/clone-workflow.mjs",
-    "scripts/serve-web.mjs",
-    "scripts/start-local.mjs",
-    "scripts/verify-engine-tests.mjs",
-    "scripts/verify-reference.mjs",
-    "tests/browser/clone-to-value.spec.ts",
-    "tests/c30_test.go",
-    "tests/fixtures/attestara/C30/README.md",
-    "tests/fixtures/attestara/C30/evidence.json",
-    "tests/fixtures/attestara/C30/expected.json",
-    "tests/fixtures/attestara/C30/invalid-signature.json",
-    "tests/fixtures/attestara/C30/manifest.json",
-    "tests/fixtures/attestara/C30/negative.json",
-    "tests/fixtures/attestara/C30/provenance.json",
-    "tests/fixtures/attestara/C30/rule.json",
-    "tests/fixtures/attestara/C30/sbom.cdx.json",
-    "tests/fixtures/attestara/C30/signature.json",
-    "tests/fixtures/attestara/C30/subject.txt",
-    "tests/fixtures/attestara/C30/trust.json",
-    "tests/fixtures/attestara/C30/untrusted.json",
-    "tests/scenarios/clone-to-value.json",
-    "tests/web/engine-readiness.test.mjs",
-    "tests/web/local-launch.test.mjs"
+    "scripts/package-release.mjs",
+    "scripts/package-source.mjs",
+    "scripts/package-web.mjs",
+    "scripts/package.sh",
+    "scripts/test-package.mjs",
+    "tests/fixtures/attestara/C31/README.md",
+    "tests/fixtures/attestara/C31/cases.json",
+    "tests/web/package-release.test.mjs"
   ],
-  "validation_results": "docs/evidence/C30.json",
-  "protected_paths_changed": [],
-  "current_core_ready": true,
-  "verified_profile": "local-cli-snapshots",
+  "commands": [
+    {
+      "command": [
+        "node",
+        "/home/amirreza/.npm/_npx/5ed1df33febb5bb0/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "check"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 3.97,
+      "source_identity": "sha256:ad6f10b7215259baeb241af87f7244323a05a861bda907cbfeddaac008936fc4",
+      "source_files": 598,
+      "output_path": "docs/evidence/C31-check.log",
+      "environment": {
+        "GOTOOLCHAIN": "local",
+        "GOSUMDB": "sum.golang.org",
+        "GOPROXY": "https://proxy.golang.org",
+        "WEB_TEST_PORT": "4319",
+        "WEB_TEST_CHROMIUM": "/opt/google/chrome/chrome"
+      },
+      "output_sha256": "d31b113cfc2c95e26f55270ee45d8b1edfe472570e5b2aaa7cb19f13d0de63ee"
+    },
+    {
+      "command": [
+        "node",
+        "/home/amirreza/.npm/_npx/5ed1df33febb5bb0/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "typecheck"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.245,
+      "source_identity": "sha256:ad6f10b7215259baeb241af87f7244323a05a861bda907cbfeddaac008936fc4",
+      "source_files": 598,
+      "output_path": "docs/evidence/C31-typecheck.log",
+      "environment": {
+        "GOTOOLCHAIN": "local",
+        "GOSUMDB": "sum.golang.org",
+        "GOPROXY": "https://proxy.golang.org",
+        "WEB_TEST_PORT": "4319",
+        "WEB_TEST_CHROMIUM": "/opt/google/chrome/chrome"
+      },
+      "output_sha256": "bacf67b27641e15adb7f6f66853da30940dabd4107ce8a1256b45c05d52a8bf5"
+    },
+    {
+      "command": [
+        "go",
+        "test",
+        "-count=1",
+        "-v",
+        "./..."
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 5.087,
+      "source_identity": "sha256:ad6f10b7215259baeb241af87f7244323a05a861bda907cbfeddaac008936fc4",
+      "source_files": 598,
+      "output_path": "docs/evidence/C31-go-test.log",
+      "environment": {
+        "GOTOOLCHAIN": "local",
+        "GOSUMDB": "sum.golang.org",
+        "GOPROXY": "https://proxy.golang.org",
+        "WEB_TEST_PORT": "4319",
+        "WEB_TEST_CHROMIUM": "/opt/google/chrome/chrome"
+      },
+      "output_sha256": "d7fb283e169b5d904a2af05a346a6308f04b74bac505805b6bceccd933795888"
+    },
+    {
+      "command": [
+        "go",
+        "vet",
+        "./..."
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.117,
+      "source_identity": "sha256:ad6f10b7215259baeb241af87f7244323a05a861bda907cbfeddaac008936fc4",
+      "source_files": 598,
+      "output_path": "docs/evidence/C31-go-vet.log",
+      "environment": {
+        "GOTOOLCHAIN": "local",
+        "GOSUMDB": "sum.golang.org",
+        "GOPROXY": "https://proxy.golang.org",
+        "WEB_TEST_PORT": "4319",
+        "WEB_TEST_CHROMIUM": "/opt/google/chrome/chrome"
+      },
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": [
+        "go",
+        "build",
+        "./..."
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.374,
+      "source_identity": "sha256:ad6f10b7215259baeb241af87f7244323a05a861bda907cbfeddaac008936fc4",
+      "source_files": 598,
+      "output_path": "docs/evidence/C31-go-build.log",
+      "environment": {
+        "GOTOOLCHAIN": "local",
+        "GOSUMDB": "sum.golang.org",
+        "GOPROXY": "https://proxy.golang.org",
+        "WEB_TEST_PORT": "4319",
+        "WEB_TEST_CHROMIUM": "/opt/google/chrome/chrome"
+      },
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": [
+        "node",
+        "scripts/verify-engine-tests.mjs"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 1.304,
+      "source_identity": "sha256:ad6f10b7215259baeb241af87f7244323a05a861bda907cbfeddaac008936fc4",
+      "source_files": 598,
+      "output_path": "docs/evidence/C31-discovery.log",
+      "environment": {
+        "GOTOOLCHAIN": "local",
+        "GOSUMDB": "sum.golang.org",
+        "GOPROXY": "https://proxy.golang.org",
+        "WEB_TEST_PORT": "4319",
+        "WEB_TEST_CHROMIUM": "/opt/google/chrome/chrome"
+      },
+      "output_sha256": "6eee51b54f5cae3068998ef6567c736c293f7f534d6493079fd5e0384284af68"
+    },
+    {
+      "command": [
+        "go",
+        "test",
+        "-count=1",
+        "-v",
+        "./tests",
+        "-run",
+        "^TestC15(RealOPAAndBindings|ReopenAndFreshProcess|NoSourceExecutionAndEnvironment|ProviderFailuresAndTimeout)$"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.868,
+      "source_identity": "sha256:ad6f10b7215259baeb241af87f7244323a05a861bda907cbfeddaac008936fc4",
+      "source_files": 598,
+      "output_path": "docs/evidence/C31-opa.log",
+      "environment": {
+        "GOTOOLCHAIN": "local",
+        "GOSUMDB": "sum.golang.org",
+        "GOPROXY": "https://proxy.golang.org",
+        "WEB_TEST_PORT": "4319",
+        "WEB_TEST_CHROMIUM": "/opt/google/chrome/chrome"
+      },
+      "output_sha256": "08eed2e8914f58fa7df8df091f5075208e78c7ef4302efeade4c14598b67772f"
+    },
+    {
+      "command": [
+        "bash",
+        "-n",
+        "scripts/package.sh"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.018,
+      "source_identity": "sha256:ad6f10b7215259baeb241af87f7244323a05a861bda907cbfeddaac008936fc4",
+      "source_files": 598,
+      "output_path": "docs/evidence/C31-syntax.log",
+      "environment": {
+        "GOTOOLCHAIN": "local",
+        "GOSUMDB": "sum.golang.org",
+        "GOPROXY": "https://proxy.golang.org",
+        "WEB_TEST_PORT": "4319",
+        "WEB_TEST_CHROMIUM": "/opt/google/chrome/chrome"
+      },
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": [
+        "node",
+        "scripts/verify-resources.mjs"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.081,
+      "source_identity": "sha256:ad6f10b7215259baeb241af87f7244323a05a861bda907cbfeddaac008936fc4",
+      "source_files": 598,
+      "output_path": "docs/evidence/C31-resources.log",
+      "environment": {
+        "GOTOOLCHAIN": "local",
+        "GOSUMDB": "sum.golang.org",
+        "GOPROXY": "https://proxy.golang.org",
+        "WEB_TEST_PORT": "4319",
+        "WEB_TEST_CHROMIUM": "/opt/google/chrome/chrome"
+      },
+      "output_sha256": "a33aeb5cdf0e54234d41656e5d6f4348cbd5e03f01ff9dc5f26fd3299a82a641"
+    },
+    {
+      "command": [
+        "node",
+        "--check",
+        "scripts/package-release.mjs"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.058,
+      "source_identity": "sha256:ad6f10b7215259baeb241af87f7244323a05a861bda907cbfeddaac008936fc4",
+      "source_files": 598,
+      "output_path": "docs/evidence/C31-node-syntax.log",
+      "environment": {
+        "GOTOOLCHAIN": "local",
+        "GOSUMDB": "sum.golang.org",
+        "GOPROXY": "https://proxy.golang.org",
+        "WEB_TEST_PORT": "4319",
+        "WEB_TEST_CHROMIUM": "/opt/google/chrome/chrome"
+      },
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": [
+        "node",
+        "--check",
+        "scripts/package-source.mjs"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.058,
+      "source_identity": "sha256:ad6f10b7215259baeb241af87f7244323a05a861bda907cbfeddaac008936fc4",
+      "source_files": 598,
+      "output_path": "docs/evidence/C31-source-syntax.log",
+      "environment": {
+        "GOTOOLCHAIN": "local",
+        "GOSUMDB": "sum.golang.org",
+        "GOPROXY": "https://proxy.golang.org",
+        "WEB_TEST_PORT": "4319",
+        "WEB_TEST_CHROMIUM": "/opt/google/chrome/chrome"
+      },
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": [
+        "node",
+        "--check",
+        "scripts/test-package.mjs"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.055,
+      "source_identity": "sha256:ad6f10b7215259baeb241af87f7244323a05a861bda907cbfeddaac008936fc4",
+      "source_files": 598,
+      "output_path": "docs/evidence/C31-runner-syntax.log",
+      "environment": {
+        "GOTOOLCHAIN": "local",
+        "GOSUMDB": "sum.golang.org",
+        "GOPROXY": "https://proxy.golang.org",
+        "WEB_TEST_PORT": "4319",
+        "WEB_TEST_CHROMIUM": "/opt/google/chrome/chrome"
+      },
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": [
+        "systemd-analyze",
+        "verify",
+        ".cache/c31/unit/attestara-web.service"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.094,
+      "source_identity": "sha256:ad6f10b7215259baeb241af87f7244323a05a861bda907cbfeddaac008936fc4",
+      "source_files": 598,
+      "output_path": "docs/evidence/C31-systemd.log",
+      "environment": {
+        "GOTOOLCHAIN": "local",
+        "GOSUMDB": "sum.golang.org",
+        "GOPROXY": "https://proxy.golang.org",
+        "WEB_TEST_PORT": "4319",
+        "WEB_TEST_CHROMIUM": "/opt/google/chrome/chrome"
+      },
+      "output_sha256": "318c5553442d66a9adaeb231a8042b1ca9a8943d2ea295f4d73361997b1fae40"
+    },
+    {
+      "command": [
+        "node",
+        "/home/amirreza/.npm/_npx/5ed1df33febb5bb0/node_modules/npm/bin/npm-cli.js",
+        "audit",
+        "--audit-level=high"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.753,
+      "source_identity": "sha256:ad6f10b7215259baeb241af87f7244323a05a861bda907cbfeddaac008936fc4",
+      "source_files": 598,
+      "output_path": "docs/evidence/C31-audit-full.log",
+      "environment": {
+        "GOTOOLCHAIN": "local",
+        "GOSUMDB": "sum.golang.org",
+        "GOPROXY": "https://proxy.golang.org",
+        "WEB_TEST_PORT": "4319",
+        "WEB_TEST_CHROMIUM": "/opt/google/chrome/chrome"
+      },
+      "output_sha256": "6d8c5c8f3d7684adb070417bd608d01ae90aa3dc26a65af03ffda4955f38d9a3"
+    },
+    {
+      "command": [
+        "node",
+        "/home/amirreza/.npm/_npx/5ed1df33febb5bb0/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "test:package"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 23.629,
+      "source_identity": "sha256:ad6f10b7215259baeb241af87f7244323a05a861bda907cbfeddaac008936fc4",
+      "source_files": 598,
+      "output_path": "docs/evidence/C31-package.log",
+      "environment": {
+        "GOTOOLCHAIN": "local",
+        "GOSUMDB": "sum.golang.org",
+        "GOPROXY": "https://proxy.golang.org",
+        "WEB_TEST_PORT": "4319",
+        "WEB_TEST_CHROMIUM": "/opt/google/chrome/chrome"
+      },
+      "output_sha256": "b3fc07248b1d67bddfbd8a98deed1891d4cbdb0ae54e1bd6dc1a46944df5621d"
+    },
+    {
+      "command": [
+        "node",
+        "/home/amirreza/.npm/_npx/5ed1df33febb5bb0/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "test:browser"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 4.113,
+      "source_identity": "sha256:ad6f10b7215259baeb241af87f7244323a05a861bda907cbfeddaac008936fc4",
+      "source_files": 598,
+      "output_path": "docs/evidence/C31-browser.log",
+      "environment": {
+        "GOTOOLCHAIN": "local",
+        "GOSUMDB": "sum.golang.org",
+        "GOPROXY": "https://proxy.golang.org",
+        "WEB_TEST_PORT": "4319",
+        "WEB_TEST_CHROMIUM": "/opt/google/chrome/chrome"
+      },
+      "output_sha256": "8429b9a2227946460241b0e48339b070924a5e82a3af7f7d6235bebc0e23a749"
+    },
+    {
+      "command": [
+        "systemd-run",
+        "--user",
+        "--scope",
+        "--unit=attestara-c31-clone",
+        "-p",
+        "MemoryMax=2147483648",
+        "-p",
+        "CPUQuota=200%",
+        "node",
+        "/home/amirreza/.npm/_npx/5ed1df33febb5bb0/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "test:clone"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 24.315,
+      "source_identity": "sha256:ad6f10b7215259baeb241af87f7244323a05a861bda907cbfeddaac008936fc4",
+      "source_files": 598,
+      "output_path": "docs/evidence/C31-clone.log",
+      "environment": {
+        "GOTOOLCHAIN": "local",
+        "GOSUMDB": "sum.golang.org",
+        "GOPROXY": "https://proxy.golang.org",
+        "WEB_TEST_PORT": "4319",
+        "WEB_TEST_CHROMIUM": "/opt/google/chrome/chrome"
+      },
+      "output_sha256": "53d74f50851e44f63eff66cad14d0b12915dffb0173f9e0320c8b21d07aa45ab"
+    },
+    {
+      "command": [
+        "node",
+        "/home/amirreza/.npm/_npx/5ed1df33febb5bb0/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "package:web"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.201,
+      "source_identity": "sha256:ad6f10b7215259baeb241af87f7244323a05a861bda907cbfeddaac008936fc4",
+      "source_files": 598,
+      "output_path": "docs/evidence/C31-package-web.log",
+      "environment": {
+        "GOTOOLCHAIN": "local",
+        "GOSUMDB": "sum.golang.org",
+        "GOPROXY": "https://proxy.golang.org",
+        "WEB_TEST_PORT": "4319",
+        "WEB_TEST_CHROMIUM": "/opt/google/chrome/chrome"
+      },
+      "output_sha256": "2a2abc0f403e4a66401dce8f99b85d62891f2deb69698182911fbfcb85164b5d"
+    },
+    {
+      "command": [
+        "node",
+        "/home/amirreza/.npm/_npx/5ed1df33febb5bb0/node_modules/npm/bin/npm-cli.js",
+        "audit",
+        "--omit=dev",
+        "--audit-level=high"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.702,
+      "source_identity": "sha256:ad6f10b7215259baeb241af87f7244323a05a861bda907cbfeddaac008936fc4",
+      "source_files": 598,
+      "output_path": "docs/evidence/C31-audit.log",
+      "environment": {
+        "GOTOOLCHAIN": "local",
+        "GOSUMDB": "sum.golang.org",
+        "GOPROXY": "https://proxy.golang.org",
+        "WEB_TEST_PORT": "4319",
+        "WEB_TEST_CHROMIUM": "/opt/google/chrome/chrome"
+      },
+      "output_sha256": "6d8c5c8f3d7684adb070417bd608d01ae90aa3dc26a65af03ffda4955f38d9a3"
+    },
+    {
+      "command": [
+        "node",
+        "/home/amirreza/.npm/_npx/5ed1df33febb5bb0/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "validate:plan"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.202,
+      "source_identity": "sha256:ad6f10b7215259baeb241af87f7244323a05a861bda907cbfeddaac008936fc4",
+      "source_files": 598,
+      "output_path": "docs/evidence/C31-plan.log",
+      "environment": {
+        "GOTOOLCHAIN": "local",
+        "GOSUMDB": "sum.golang.org",
+        "GOPROXY": "https://proxy.golang.org",
+        "WEB_TEST_PORT": "4319",
+        "WEB_TEST_CHROMIUM": "/opt/google/chrome/chrome"
+      },
+      "output_sha256": "80bbca2588f2b88e23d684c912d76f77095d0d2e92bc075441ad2bb7eb877446"
+    },
+    {
+      "command": [
+        "python3",
+        "scripts/plan.py",
+        "validate"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.086,
+      "source_identity": "sha256:ad6f10b7215259baeb241af87f7244323a05a861bda907cbfeddaac008936fc4",
+      "source_files": 598,
+      "output_path": "docs/evidence/C31-python-plan.log",
+      "environment": {
+        "GOTOOLCHAIN": "local",
+        "GOSUMDB": "sum.golang.org",
+        "GOPROXY": "https://proxy.golang.org",
+        "WEB_TEST_PORT": "4319",
+        "WEB_TEST_CHROMIUM": "/opt/google/chrome/chrome"
+      },
+      "output_sha256": "80db941735ead06893f77b7665ee16dc48e94576f81377fc2591985f0778233d"
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.024,
+      "source_identity": "sha256:ad6f10b7215259baeb241af87f7244323a05a861bda907cbfeddaac008936fc4",
+      "source_files": 598,
+      "output_path": "docs/evidence/C31-diff.log",
+      "environment": {
+        "GOTOOLCHAIN": "local",
+        "GOSUMDB": "sum.golang.org",
+        "GOPROXY": "https://proxy.golang.org",
+        "WEB_TEST_PORT": "4319",
+        "WEB_TEST_CHROMIUM": "/opt/google/chrome/chrome"
+      },
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "artifacts": "/home/amirreza/Desktop/Projects/Attestara/dist/packages/529e0a9c49e4c2aace0bcd9cf359e68bdd71d8a2",
+  "candidate_commit": "529e0a9c49e4c2aace0bcd9cf359e68bdd71d8a2",
+  "candidate_tree": "3a2e250d12f974c1f0b36f6cc9fe17f02a77dc32",
+  "verified": [
+    "Complete runtime and rebuildable source archives",
+    "Validated SBOM/licenses/checksums/unsigned provenance",
+    "Three-path byte reproduction and real installed C30 workflow",
+    "Existing web-only package/service compatibility",
+    "Actual local CI commands and real pinned OPA"
+  ],
   "blockers": [],
   "limitations": [
-    "Single local OS operator; no multi-user/private authorization, automatic expiry, latest-release authority or release-order replay prevention.",
-    "Fresh isolated Linux namespace shares the host kernel/network and installed pinned toolchain/system libraries. It is not an independent machine or C36 proof.",
-    "Fresh Playwright CDN browser download returned HTTP 403 geographic denial. Successful isolated acceptance used explicit system-installed Google Chrome 153.0.8010.52 with recorded SHA-256; no developer browser cache was mounted.",
-    "The constrained 2 CPU/2 GiB measurement covers this synthetic reference workflow including preparation, not arbitrary maximum-size combined inputs or representative Grype reports.",
-    "C05 failure-injection tests exercise ENOSPC/quota/crash behavior; no physical disk was filled during the final C30 installation.",
-    "Four optional real-OPA tests skipped; no OPA/Syft/Grype execution claimed. No standalone lint configured.",
-    "No remote CI, commit, push, tag, packaging release or publication was performed.",
-    "Point-in-time readiness and lifecycle diagnostics do not independently certify product evidence; runtime diagnostics retain coreReady=false."
+    "Unsigned local test-snapshot artifacts only. No tag, actual project commit, push, remote CI run, host configuration or public release was made.",
+    "Node 24.19.0 remains an external runtime prerequisite; OPA/Syft/Grype binaries and scanner databases are not bundled. Pinned OPA was executed only for actual provider regression tests.",
+    "Three-path reproducibility and installed CLI/browser proof share this Linux host; they are not independent-host C36 evidence or cross-platform support.",
+    "Nginx is not installed on the test host: nginx -t and private ingress were not executed. The unchanged deny-by-default behavior is retained; C32 owns network verification.",
+    "No standalone ESLint/Prettier command is defined. TypeScript, Go vet, Node/Bash syntax and diff checks passed. Full npm audit found zero known vulnerabilities; this is not proof of absence of all vulnerabilities.",
+    "Clean clone proof used explicit system-installed Google Chrome after the recorded C30 regional browser CDN limitation; no claim of fresh browser download success.",
+    "Distribution source filtering omits only optional copied skill directories lacking their own upstream LICENSE, without deleting any repository files. SOURCE_MANIFEST.json records every omission.",
+    "Application crash/ACK/quota/ENOSPC boundaries are real existing C05/C14/C30 regressions; packaging additionally exercises actual SIGKILL, existing destinations and /dev/full write failure. No new storage format or authority is introduced.",
+    "Source identity intentionally excludes evidence/self-referential status and generated roadmap metadata. Each archive separately binds its exact candidate commit and complete included file inventory; final evidence is written after packaging."
   ],
-  "next_task": "C31",
+  "next_task": "C32",
   "next_command": "npm run plan -- next",
-  "continuation": "Continue with C31 after inspecting its full card. Preserve the existing CLI/viewer snapshot profile and unverified passport semantics. No private/multi-user admission, release authority or publication authorization was added."
+  "publication": "None; branch/index unchanged; temporary candidate Git objects only"
 }

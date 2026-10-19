@@ -17,6 +17,7 @@ jobs:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
         with:
           persist-credentials: false
+          fetch-depth: 0
       - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
         with:
           node-version-file: .nvmrc
@@ -60,10 +61,17 @@ jobs:
       - run: npx --no-install playwright install --with-deps chromium
       - run: npm run test:browser
       - run: npm run test:clone
+      - run: npm run test:package
       - run: npm run package:web
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: web-${{ github.sha }}
           path: dist/release/
+          retention-days: 14
+          if-no-files-found: error
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: attestara-${{ github.sha }}
+          path: dist/packages/
           retention-days: 14
           if-no-files-found: error

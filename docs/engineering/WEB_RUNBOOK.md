@@ -1,73 +1,58 @@
-# Attestara web runbook
+# Local operation and optional service templates
 
-## Local checkout
-
-Use Node 24.19.0, npm 11.9.0 and Go 1.27.2 from the tested Linux x86_64 toolchain. [ENGINE_LAUNCH.md](ENGINE_LAUNCH.md) describes the unified lifecycle and Go source-build prerequisite. From the repository root:
+Use the pinned Linux x86_64 prerequisites in CLONE_TO_RUN.md. From source:
 
 ```sh
-npm ci --ignore-scripts
-npm run setup -- --skip-install
-npm run check
-go test ./...
-npx --no-install playwright install chromium
-npm run test:browser
-npm run dev
+npm run setup
+npm start -- --store /absolute/private/attestara-store --port 4173
 ```
 
-Browser checks may use an operator-provided Chromium executable through the `WEB_TEST_CHROMIUM` process variable. CI uses the Playwright-managed browser. This test override never changes application configuration.
+For complete C31 artifacts and source rebuilds follow `../release/ARTIFACTS.md`.
+The binary distribution starts with `node scripts/start-local.mjs`, requires only
+Node 24.19.0 at runtime and includes the actual Go executable. The existing
+`npm run package:web` remains a standalone web-only convenience artifact under
+`dist/release`; it never certifies the complete product or storage readiness.
+It can still run with `node scripts/serve-web.mjs --root web --port 4304 --config
+ops/web/runtime-config.json` from that web-only directory.
 
-Development URL: http://127.0.0.1:5173. To run the built workspace and Go process together:
+## Readiness and data
 
-```sh
-npm run setup -- --skip-install
-npm start -- --port 4304
-```
+`/healthz` is web-process health. Under the unified launcher `/readyz` checks real
+engine process and C05 snapshot storage readiness. A concurrent writer can yield
+503/locked. Standalone web readiness covers only web assets/configuration.
+`/api/engine/health` is process health; other domain API routes remain disabled.
+The browser-selected passport stays local and unverified. The runtime has no
+multi-user/private authorization contract. Never enable it by a public config flag.
 
-Built URL: http://127.0.0.1:4304. Browser routing uses hashes and hosting at the origin root. There is no subpath deployment in this release. Change the public nonsecret configuration in `ops/web/runtime-config.json`; `apps/web/public/runtime-config.json` must mirror it for static hosts/development. The Node server validates its config at startup and the browser validates its own project identity. Do not put credentials in either file.
+Keep a private store outside immutable release directories. C30_LOCAL_WORKFLOW.md
+covers exact CLI workflow, portable backup, non-overwriting restore and recovery
+on uncertain acknowledgement. Never copy a live store or replace newer data with
+an older backup. Stop/restart the unified launcher with SIGTERM/Ctrl+C; it supervises
+the Go child. Diagnostics use fixed redacted states; inspect no raw payload logs.
 
-## What is runnable
+## Optional Linux service
 
-The responsive React workspace, forty-step product roadmap, local bounded JSON structure preview, Node static server and its health endpoints are implemented. Preview uses tab memory, does not persist files and does not send them to the server. Reload clears the preview. This is not a domain import or a security assessment. The PWA manifest supplies install metadata; there is no service worker or offline claim. Cache rules retain only fingerprinted static assets; HTML and runtime configuration are no-store.
+No host configuration is applied by packaging. An operator can review
+`ops/web/service.systemd` for an unprivileged `attestara-web` account and releases
+under `/srv/attestara/releases/<commit>`, with `/srv/attestara/current` selecting one.
+Verify archive checksums before extracting into a fresh directory. Match the Node
+binary path to the pinned runtime. `StateDirectory=attestara` provides the private
+writable store at `/var/lib/attestara/store`; the release tree remains read-only.
+The service binds only loopback on port 4304. Copy the template to a temporary file named `attestara-web.service` and run
+`systemd-analyze verify /path/to/attestara-web.service` before an operator installs/enables it.
 
-`GET /healthz` covers the web process; `GET /readyz` covers web assets and valid startup configuration. Neither proves engine/provider/database health. The unified launcher exposes only `GET/HEAD /api/engine/health`, backed by the actual loopback Go process. Invalid or unavailable health returns 503. Other `/api` routes return 503. No upload endpoint or authentication service is created. Engine admission cannot be enabled by a public config flag.
+The Nginx template denies all external traffic by default. Only an operator-owned
+domain, actual TLS paths and explicitly reviewed private network ranges may be
+substituted. IP allowlists do not provide user/object authorization. Keep domain
+API routes unavailable and validate a rendered template using `nginx -t` before
+an operator reloads it. C32 owns further network/private-ingress verification.
+No domain, certificate, account or service installation is created here.
 
-## Build an artifact
+## Update and recovery
 
-```sh
-npm run package:web
-cd dist/release
-sha256sum -c SHA256SUMS.txt
-node scripts/serve-web.mjs --root web --port 4304 --config ops/web/runtime-config.json
-```
-
-Package after build. `release.json` records the source commit and whether the working tree was dirty; build from a clean commit for a releasable provenance record. Node production serving needs no installed npm dependencies. CI uploads the web package; it does not publish a host or modify repository settings. Copy the complete `dist/release` tree to the chosen immutable release directory.
-
-## Private Linux host
-
-Prerequisites: operator-owned domain/DNS, valid TLS certificate/key, installed Node 24.19.0, Nginx, systemd, and an unprivileged `attestara-web` account. Reserve port 4304 for this project. Keep certificates outside the artifact and never commit a private key. Install releases under `/srv/attestara/releases/<source-commit>` and point `/srv/attestara/current` to the selected verified release. Ensure the service user has read/execute access to artifact directories. Match the actual Node binary path in the service file.
-
-Use `ops/web/service.systemd` and render `ops/web/nginx.conf.template` with the real owned domain, TLS paths and reviewed operator network ranges. The proxy initially denies external traffic. Keep the deny-all default until private admission is configured and tested; do not treat an IP range as per-user authentication. Runtime APIs remain blocked until W06/W07. Validate the rendered Nginx configuration with `nginx -t` before reload. Install the service under `/etc/systemd/system/attestara-web.service`, then run:
-
-```sh
-sudo systemctl daemon-reload
-sudo systemctl enable --now attestara-web
-curl --fail http://127.0.0.1:4304/healthz
-curl --fail http://127.0.0.1:4304/readyz
-sudo journalctl -u attestara-web --since '10 minutes ago'
-```
-
-Test HTTPS access from an allowed operator and rejection from a disallowed network. Test that `/api/v1/not-implemented` stays unavailable. No domain, certificate, host or credentials were provisioned by the source commit.
-
-## Update and rollback
-
-Build/test/package from a clean source commit; verify SHA256SUMS before switching the current symlink. Retain the previous artifact; switch the symlink and restart the service in a maintenance window. Check both web probes and browser navigation. If either fails, restore the previous symlink and restart. The shell has no durable user data, so it has no data restore operation. Once domain storage/providers are integrated, add backup/restore and schema-compatibility evidence before updates; a frontend rollback does not roll back engine data.
-
-## Engine integration and operations still required
-
-Profile: `web-viewer-private-engine`. Retained engine choices: Go verifier/CLI, TypeScript report viewer, Syft/Grype adapters optional, OPA policy adapter. C03 provides process health only. C04 and subsequent C tasks define domain contracts and behavior; private admission remains a later verified gate. Domain work must use explicitly supported endpoints through a same-origin authenticated service. Keep secrets exclusively on the server/provider. Add real engine readiness, bounded jobs, cancellation, redacted audit, operational metrics, alerts and retention/restore proof alongside the domain implementation. Public marketing/static demonstrations must use synthetic data; they cannot admit arbitrary runtime work.
-
-For KeyHelix, no plaintext secrets may enter browser file preview; import only synthetic nonsecret metadata. For RiftRange/MirageMesh, orchestration/sensors stay on isolated private hosts. Existing RiskWeft Laravel source is preserved and has not been connected to this shell or certified by web tests.
-
-## Reproduce source evidence
-
-Run `python3 scripts/source_identity.py --check` against the committed checkout. The digest covers tracked and deliverable untracked files, excluding only the self-referential evidence JSON and SHA256SUMS.txt. Build/test output directories are ignored. Verification evidence records web-only checks and the exact tested runtime; it does not certify the domain engine.
+Retain the previous immutable artifact and the independent store. After stopping
+the service, switch only the release symlink, restart, and verify readiness plus
+the real CLI workflow. Reverting an executable never authorizes reverting data.
+C35 owns verified install/upgrade/rollback compatibility. A corrupt or unavailable
+store must produce failure; retain the latest accepted bytes and use a new-store
+restore/forward repair. A successful static web probe does not prove storage recovery.

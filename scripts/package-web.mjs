@@ -9,6 +9,13 @@ await cp('scripts/serve-web.mjs', output + '/scripts/serve-web.mjs');
 await cp('apps/web/src/lib/runtime-config.mjs', output + '/apps/web/src/lib/runtime-config.mjs');
 await cp('apps/web/src/lib/engine-health.mjs', output + '/apps/web/src/lib/engine-health.mjs');
 await cp('ops/web', output + '/ops/web', { recursive: true });
+// Preserve the standalone web service when the shared template targets the complete product.
+const service = await readFile(output + '/ops/web/service.systemd', 'utf8');
+await writeFile(output + '/ops/web/service.systemd', service
+  .replace('Description=Attestara local CLI snapshot service', 'Description=Attestara web application shell')
+  .replace(/^ExecStart=.*$/m, 'ExecStart=/usr/bin/node scripts/serve-web.mjs --root web --port 4304 --config ops/web/runtime-config.json')
+  .replace(/^StateDirectory(?:Mode)?=.*\n/gm, ''));
+
 await cp('LICENSE', output + '/LICENSE');
 await cp('NOTICE', output + '/NOTICE');
 await cp('docs/engineering/WEB_RUNBOOK.md', output + '/README.md');

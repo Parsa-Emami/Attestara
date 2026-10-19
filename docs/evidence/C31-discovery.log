@@ -1,0 +1,6 @@
+./internal/licensecatalog: required tests discovered
+./internal/workflow: required tests discovered
+./cmd/attestara: required tests discovered
+./internal/contracts: required tests discovered
+./internal/storage: required tests discovered
+./tests: required tests discovered

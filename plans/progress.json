@@ -276,10 +276,12 @@
     },
     {
       "id": "C31",
-      "status": "planned",
-      "evidence": [],
-      "source_identity": null,
-      "notes": ""
+      "status": "verified",
+      "evidence": [
+        "docs/evidence/C31.json"
+      ],
+      "source_identity": "sha256:ad6f10b7215259baeb241af87f7244323a05a861bda907cbfeddaac008936fc4",
+      "notes": "Complete unsigned Linux x64 engine/web/offline-resource and source artifacts; exact locks, license texts, validated CycloneDX SBOM, checksums/provenance; independent-path/source-archive byte reproduction and installed CLI/browser restart/restore verified locally. Node external; providers unbundled. No publication, signatures, new APIs or data formats."
     },
     {
       "id": "C32",

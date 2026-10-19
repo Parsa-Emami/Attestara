@@ -1,0 +1,24 @@
+=== RUN   TestC15RealOPAAndBindings
+=== RUN   TestC15RealOPAAndBindings/pass
+=== RUN   TestC15RealOPAAndBindings/fail
+=== RUN   TestC15RealOPAAndBindings/absent
+--- PASS: TestC15RealOPAAndBindings (0.30s)
+    --- PASS: TestC15RealOPAAndBindings/pass (0.10s)
+    --- PASS: TestC15RealOPAAndBindings/fail (0.10s)
+    --- PASS: TestC15RealOPAAndBindings/absent (0.10s)
+=== RUN   TestC15ProviderFailuresAndTimeout
+=== RUN   TestC15ProviderFailuresAndTimeout/missing
+=== RUN   TestC15ProviderFailuresAndTimeout/relative
+=== RUN   TestC15ProviderFailuresAndTimeout/version
+=== RUN   TestC15ProviderFailuresAndTimeout/matching-version-unpinned
+--- PASS: TestC15ProviderFailuresAndTimeout (0.00s)
+    --- PASS: TestC15ProviderFailuresAndTimeout/missing (0.00s)
+    --- PASS: TestC15ProviderFailuresAndTimeout/relative (0.00s)
+    --- PASS: TestC15ProviderFailuresAndTimeout/version (0.00s)
+    --- PASS: TestC15ProviderFailuresAndTimeout/matching-version-unpinned (0.00s)
+=== RUN   TestC15ReopenAndFreshProcess
+--- PASS: TestC15ReopenAndFreshProcess (0.21s)
+=== RUN   TestC15NoSourceExecutionAndEnvironment
+--- PASS: TestC15NoSourceExecutionAndEnvironment (0.05s)
+PASS
+ok  	attestara/tests	0.570s

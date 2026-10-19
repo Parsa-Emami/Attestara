@@ -1,3 +1,5 @@
+# Optional operator-reviewed template only; C31 installs no ingress.
+# CIDR admission is not identity/object authorization; domain APIs remain disabled.
 # Replace every __PLACEHOLDER__, run nginx -t, then enable the site.
 # All external traffic is denied until reviewed trusted CIDRs are explicitly added.
 server {

@@ -1,6 +1,6 @@
 # Third-party inventory
 
-Updated 2026-10-16. These current web facts come from the committed npm lockfile. Complete distributed notices/license texts and SBOM are C31 work; this index is not compliance certification.
+Updated 2026-10-16. These current web facts come from the committed npm lockfile. C31 packages the distributed runtime license texts and CycloneDX SBOM; this index is not compliance certification.
 
 | Resource | Version | Declared license |
 |---|---|---|
@@ -102,3 +102,22 @@ The SPDX source snapshot is a specification reference; no SPDX-licensed implemen
 | `golang.org/x/text` | v0.14.0 | Validator runtime localization | BSD-3-Clause; `docs/engineering/resources/golang-x-text-LICENSE.txt` and `golang-x-text-PATENTS.txt` |
 
 The validator's upstream test dependency `github.com/dlclark/regexp2` v1.11.0 appears only in module checksum resolution; it is not imported or linked by this adapter. C10 uses Go's standard regexp engine. Schema validation never establishes signature or signer trust. Complete distribution packaging remains C31.
+
+## C31 distribution boundaries
+
+The complete Linux x64 artifact links the Go runtime, jsonschema/v6 and x/text,
+embeds unchanged CycloneDX schemas/catalog, and bundles React/react-dom/scheduler
+and the Vite MIT module-preload helper. Their license texts and applicable patent/
+notice material accompany the artifact; `license-inventory.json` records paths.
+The generated CycloneDX 1.7 SBOM records npm build dependencies separately from
+distributed runtime components, and confirms linked Go modules from the actual binary.
+
+Node is an external prerequisite. OPA/Syft/Grype binaries, scanner databases,
+node_modules, private stores and dependency caches are not distributed. Build-only
+MPL-2.0 tools are referenced with pinned registry source locations in the lock/SBOM;
+their source is not relicensed and their executable code is not shipped as part
+of the runtime distribution. The source archive contains complete product source
+and build recipes, with an explicit manifest of omitted optional copied agent
+skills whose upstream redistribution license is undeclared. No repository file
+is removed by this distribution filter. Unknown licenses of necessary distributed
+components fail packaging. Checksums/provenance remain unsigned until C35.

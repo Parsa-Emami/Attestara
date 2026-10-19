@@ -1,5 +1,5 @@
 [Unit]
-Description=Attestara web application shell
+Description=Attestara local CLI snapshot service
 After=network.target
 
 [Service]
@@ -7,7 +7,10 @@ Type=simple
 User=attestara-web
 Group=attestara-web
 WorkingDirectory=/srv/attestara/current
-ExecStart=/usr/bin/node scripts/serve-web.mjs --root web --port 4304 --config ops/web/runtime-config.json
+ExecStart=/usr/bin/node scripts/start-local.mjs --store /var/lib/attestara/store --port 4304
+StateDirectory=attestara
+StateDirectoryMode=0700
+KillMode=control-group
 Restart=on-failure
 RestartSec=3
 TimeoutStopSec=15

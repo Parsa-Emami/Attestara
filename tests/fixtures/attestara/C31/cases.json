@@ -1,0 +1,8 @@
+{
+  "schema_version": "1",
+  "license": "Apache-2.0",
+  "provenance": "Repository-authored packaging cases; real C30 synthetic workflow inputs reused without alteration",
+  "positive": ["two-path-byte-reproduction", "source-archive-rebuild", "packaged-cli-viewer-restart-restore", "offline-schema-sbom"],
+  "negative": ["unsafe-path", "symlink", "modified-byte", "missing-resource-license", "wrong-toolchain", "dirty-source", "existing-output", "killed-writer", "write-failure", "inert-user-source"],
+  "expected": {"success_exit": 0, "packaging_failure_exit": 1, "publication": "complete-or-absent; existing destinations never replaced"}
+}
