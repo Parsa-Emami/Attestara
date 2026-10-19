@@ -72,12 +72,19 @@ try {
   const wrong = { ...process.env, npm_execpath: '/nonexistent/npm' };
   assert.throws(() => run(process.execPath, ['scripts/package-release.mjs'], first, { env: wrong }));
   checks.push('dirty source and incompatible/missing tool rejected');
-  const license = join(first, 'docs/engineering/resources/go-LICENSE.txt');
-  const original = await readFile(license); await rm(license);
-  assert.throws(() => run(process.execPath, [npm, 'run', 'package'], first), /clean source/);
-  await writeFile(license, original);
-  checks.push('missing licensed source input rejected');
-  assert.equal(run('git', ['status', '--porcelain'], first), '', 'test fixture cleanup');
+  const missingLicenseRoot = join(temporary, 'missing-license');
+  run('git', ['clone', '--quiet', '--shared', '--no-checkout', root, missingLicenseRoot], temporary);
+  run('git', ['checkout', '--quiet', '--detach', commit], missingLicenseRoot);
+  const license = join(missingLicenseRoot, 'docs/engineering/resources/go-LICENSE.txt');
+  await rm(license);
+  run('git', ['add', '-u', '--', 'docs/engineering/resources/go-LICENSE.txt'], missingLicenseRoot);
+  run('git', ['-c', 'user.name=C31 test', '-c', 'user.email=c31@example.invalid', 'commit', '-m', 'temporary missing-license fixture'], missingLicenseRoot);
+  assert.equal(run('git', ['status', '--porcelain'], missingLicenseRoot), '', 'missing-license fixture must be a clean source snapshot');
+  assert.throws(
+    () => run(process.execPath, [npm, 'run', 'package'], missingLicenseRoot),
+    error => error.stderr?.includes('ENOENT: no such file or directory') && error.stderr.includes(license),
+  );
+  checks.push('clean source with a missing locked Go license is rejected before packaging');
   // Kill a real writer after staging exists; its private work must never be published.
   const writer = spawn(process.execPath, [npm, 'run', 'package'], { cwd: first, env: process.env, detached: true, stdio: ['ignore', 'ignore', 'pipe'] });
   let writerError = ''; writer.stderr.on('data', bytes => { writerError += bytes; });
