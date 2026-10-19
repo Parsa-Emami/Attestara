@@ -19,9 +19,15 @@ Open http://127.0.0.1:4173. Setup installs the committed web lockfile with lifec
 
 The default address is `http://127.0.0.1:4173`; an owned domain is not a prerequisite. The launchers reject non-loopback binds. The browser uses same-origin `/api`, while domain API work remains disabled. Dynamic pages, configuration and health responses are not cached; fingerprinted web assets can be cached immutably. [Local network and optional ingress](../../infra/deployment.md) describes the tested boundary and operator-reviewed TLS/private CIDR template. This does not turn the local workspace into a remote multi-user service.
 
-## Full-product contract to implement
+## Supported local profile and resources
 
-The same clone/setup/start sequence must prepare and supervise the actual Go engine and required self-hosted open-source resources by C30. No second undocumented terminal, paid account, sibling clone or owned public domain. C03 implements local lifecycle/health and C31 supplies verified convenience artifacts plus a documented source-build alternative. Downloads may be needed to prepare resources; user payloads are not sent to a compulsory proprietary service. No global runtime install, system trust change or user data deletion occurs implicitly.
+The clone/setup/start sequence prepares and supervises the Go engine for the
+supported single-operator CLI/snapshot profile. Follow [the user guide](../release/USER_GUIDE.md)
+for actual synthetic evaluate/verify/view commands. C31 documents locally
+verified convenience artifacts and a source-build alternative; published releases
+remain pending. Downloads may be needed to prepare resources; payloads are not
+sent to a compulsory proprietary service. No global runtime install, trust
+change or user-data deletion occurs implicitly.
 
 Local resources: optional local OPA and Syft/Grype report ingestion. The read-only Grype adapter rejects more than 10,000 matches before typed projection. Hardware target: 2 vCPU / 2048 MiB RAM / 10240 MiB free disk plus real dataset/provider/backup space. C28 measures the existing CLI evaluate/verify/ZIP-export workload and one-byte-over-limit rejection under a 2 vCPU / 2048 MiB cgroup with at least 10240 MiB initially free in an isolated temporary filesystem; see `docs/evidence/performance.json`. This supports only that measured CLI workload. Peak memory for representative Grype reports and the complete C30 workflow remain unmeasured; the full product hardware profile is not certified. Full engine support initially targets Linux x86_64; other hosts require their own actual C30/C33 evidence. Rootless workloads need Linux or a tested Linux/WSL2 host.
 
@@ -39,6 +45,20 @@ npm run doctor
 ```
 
 The current test:clone performs a real Git transport clone and the approved C30 CLI snapshot workflow, including negative cases, restart, backup/restore and browser passport parity. It verifies local storage readiness and disabled domain admission; it does not certify external domain APIs or optional providers. See each later C task for future engine commands and prerequisites. Optional hosting/package operations remain in WEB_RUNBOOK.md.
+
+## Ports, support and security reports
+
+Apache occupying port 80 does not block `npm start` on 4173. Select another
+local application port with `npm start -- --port 4301`. Optional Nginx testing
+on loopback 8080 uses the isolated config in [WEB_RUNBOOK.md](WEB_RUNBOOK.md#test-alongside-apache-on-port-80);
+its upstream port must match the launcher. No existing Apache service or global
+Nginx site needs changing.
+
+Public Issues are for non-sensitive support. [SECURITY.md](../../SECURITY.md)
+defines the private GitHub route, supported scope, response targets and pending
+activation. `npm run security:check` reads the live setting without a token:
+exit 0 is enabled, 2 disabled, 1 unavailable. It is an online operator check,
+not an offline build prerequisite, and submits no report.
 
 ## C30 approved local snapshot composition
 

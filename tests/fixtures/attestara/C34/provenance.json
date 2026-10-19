@@ -1,0 +1,8 @@
+{
+  "license": "Apache-2.0",
+  "provenance": "Repository-authored synthetic support/proxy test metadata; real GitHub setting checked separately.",
+  "files": {
+    "README.md": "sha256:249a97ff0230cef5996d9b2fc3f5bef8024c351f860172532ae19b09bc80dcbb",
+    "cases.json": "sha256:a01de768efd4525ed7aff138abf84c0bbaaf644f79670c751b5918b5ce300d26"
+  }
+}

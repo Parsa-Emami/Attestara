@@ -22,6 +22,7 @@
     "check": "npm run validate:plan && npm run build && npm test",
     "setup": "node scripts/oss-bootstrap.mjs setup",
     "doctor": "node scripts/oss-bootstrap.mjs doctor",
+    "security:check": "node scripts/check-security-reporting.mjs",
     "plan": "node scripts/roadmap.mjs",
     "release:check": "node scripts/roadmap.mjs release-check",
     "test:clone": "node scripts/clone-smoke.mjs",

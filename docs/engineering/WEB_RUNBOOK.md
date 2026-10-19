@@ -48,6 +48,51 @@ API routes unavailable and validate a rendered template using `nginx -t` before
 an operator reloads it. C32 owns further network/private-ingress verification.
 No domain, certificate, account or service installation is created here.
 
+## Test alongside Apache on port 80
+
+`npm start` uses `127.0.0.1:4173`; Apache can keep port 80. Select another
+application port with `npm start -- --port 4301` if needed. The TLS site template
+uses 443, so an Nginx error about `0.0.0.0:80` usually comes from another
+loaded/default site. `nginx -t` checks configuration, not availability of a
+listening port; actual startup and HTTP checks are separate.
+
+For same-host testing, the complete isolated
+[`nginx.local.conf`](../../ops/web/nginx.local.conf) binds `127.0.0.1:8080` and
+proxies to the default application on 4173 without loading system sites. With
+Nginx installed and `npm start` running in another terminal, run from this
+repository root:
+
+```sh
+mkdir -p .local-data/nginx/logs .local-data/nginx/temp
+nginx -p "$PWD/.local-data/nginx/" -c "$PWD/ops/web/nginx.local.conf" -t
+nginx -p "$PWD/.local-data/nginx/" -c "$PWD/ops/web/nginx.local.conf"
+curl --fail http://127.0.0.1:8080/healthz
+curl --fail http://127.0.0.1:8080/readyz
+```
+
+Open `http://127.0.0.1:8080`. `/healthz` reports web health; unified `/readyz`
+must report actual engine/storage readiness. An unavailable backend gives an
+error such as 502. Stop only this isolated instance using its matching paths:
+
+```sh
+nginx -p "$PWD/.local-data/nginx/" -c "$PWD/ops/web/nginx.local.conf" -s quit
+```
+
+If 8080 is occupied, copy the config to a private temporary file and change its
+`listen` port. If the application uses 4301, change `proxy_pass` to 4301 too.
+Use the copy's absolute path in every `-c` command. Inspect `ss -ltn` for
+listeners; do not stop another service or overwrite its configuration to free a
+port. Do not use `systemctl reload nginx` for this isolated instance.
+
+HTTP is restricted to same-host loopback testing. For remote access retain the
+reviewed TLS/private-network template. The proxy preserves the browser port in
+`Host`, replaces forwarded claims from the real connection, and does not grant
+identity or object authorization. Domain API writes remain disabled.
+
+Run the real proxy regression with `node --test tests/ops/nginx-local.test.mjs`
+using an installed Nginx, or `NGINX_BIN=/absolute/path/to/nginx`. The test uses
+disposable prefixes/free ports and never reloads a host service.
+
 ## Update and recovery
 
 Retain the previous immutable artifact and the independent store. After stopping

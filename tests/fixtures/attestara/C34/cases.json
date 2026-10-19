@@ -1,0 +1,6 @@
+{
+  "schemaVersion": 1,
+  "license": "Apache-2.0",
+  "reporting": { "repository": "Parsa-Emami/Attestara", "enabledExit": 0, "disabledExit": 2, "unavailableExit": 1, "submitTestReport": false, "dedicatedEmailRequired": false },
+  "localProxy": { "listen": "127.0.0.1:8080", "upstream": "127.0.0.1:4173", "loadSystemSites": false, "apiReadStatus": 503, "apiWriteStatus": 405, "upstreamUnavailableStatus": 502 }
+}

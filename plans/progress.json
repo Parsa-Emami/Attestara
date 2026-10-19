@@ -303,10 +303,12 @@
     },
     {
       "id": "C34",
-      "status": "planned",
-      "evidence": [],
+      "status": "in_progress",
+      "evidence": [
+        "docs/evidence/C34.json"
+      ],
       "source_identity": null,
-      "notes": ""
+      "notes": "User guide, current source/build/license/privacy/recovery/support docs and isolated Apache-compatible local Nginx configuration implemented. Real guide restart/restore, 47 Node tests and 118 Go tests with pinned OPA passed. Private GitHub reporting still disabled pending owner device verification; local Chromium launch blocked by host socket permissions, so C34 is not yet verified."
     },
     {
       "id": "C35",

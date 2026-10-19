@@ -58,6 +58,13 @@ jobs:
       - run: npm run setup -- --skip-install
       - run: go test ./...
       - run: npm test
+      - name: Verify the documented local CLI workflow
+        run: node --test tests/ops/user-guide.test.mjs
+      - name: Verify the optional isolated Nginx proxy
+        run: |
+          sudo apt-get update
+          sudo apt-get install --no-install-recommends -y nginx
+          node --test tests/ops/nginx-local.test.mjs
       - run: npx --no-install playwright install --with-deps chromium
       - run: npm run test:browser
       - run: npm run test:clone

@@ -1,0 +1,47 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> @parsa-emami/attestara-web@0.0.1 setup
+> node scripts/oss-bootstrap.mjs setup --skip-install
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> @parsa-emami/attestara-web@0.0.1 build
+> npm run prepare:web && npm run typecheck && vite build --config apps/web/vite.config.ts
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> @parsa-emami/attestara-web@0.0.1 prepare:web
+> node scripts/generate-web-data.mjs
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> @parsa-emami/attestara-web@0.0.1 typecheck
+> tsc -p tsconfig.json
+
+vite v8.3.4 building client environment for production...
+transforming...
+✓ 20 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/web/index.html                   0.79 kB │ gzip:  0.47 kB
+dist/web/assets/index-CiHsYJnA.css    5.05 kB │ gzip:  1.81 kB
+dist/web/assets/index-6P48c8Yu.js   249.36 kB │ gzip: 77.90 kB
+
+✓ built in 224ms
+go: downloading github.com/santhosh-tekuri/jsonschema/v6 v6.0.3
+go: downloading golang.org/x/text v0.14.0
+{
+  "executed": true,
+  "steps": [
+    [
+      "run",
+      "build"
+    ]
+  ],
+  "npm": "11.9.0",
+  "capability": "local-engine-process",
+  "enginePrepared": true,
+  "coreReady": false,
+  "start": "npm start",
+  "note": "Full product usability requires the C30 workflow; complete OSS v1 requires C40."
+}
