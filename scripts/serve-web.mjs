@@ -116,7 +116,8 @@ export function createWebServer({ root, config, projectId, engineURL, snapshotRe
       const filename = await realpath(resolve(publicRoot, '.' + (path === '/' ? '/index.html' : path)));
       if (!within(filename) || !(await stat(filename)).isFile()) { send(404, '{"error":"not_found"}'); return; }
       const bytes = await readFile(filename);
-      res.writeHead(200, { 'Content-Type': types[extname(filename)] ?? 'application/octet-stream', 'Content-Length': bytes.length, 'Cache-Control': asset ? 'public, max-age=31536000, immutable' : 'no-store' });
+      const fingerprinted = asset && /-[A-Za-z0-9_-]{8,}\.[^.]+$/.test(path);
+      res.writeHead(200, { 'Content-Type': types[extname(filename)] ?? 'application/octet-stream', 'Content-Length': bytes.length, 'Cache-Control': fingerprinted ? 'public, max-age=31536000, immutable' : 'no-store' });
       res.end(req.method === 'HEAD' ? undefined : bytes);
     } catch { send(404, '{"error":"not_found"}'); }
   });

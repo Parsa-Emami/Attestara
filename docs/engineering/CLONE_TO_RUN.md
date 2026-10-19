@@ -15,6 +15,10 @@ Open http://127.0.0.1:4173. Setup installs the committed web lockfile with lifec
 
 `npm run setup -- --check` checks the pinned npm version and shows preparation without changing files. Setup also refuses an npm version other than `package.json`'s `packageManager` pin. `--skip-install` builds using already installed dependencies. `npm run doctor` reports actual web/core state. `npm run release:check` deliberately exits 2 until full evidence is ready. Ctrl+C stops the web server and Go child. Ports can be selected with `npm start -- --port 4301` when running multiple projects.
 
+## C32 local network boundary
+
+The default address is `http://127.0.0.1:4173`; an owned domain is not a prerequisite. The launchers reject non-loopback binds. The browser uses same-origin `/api`, while domain API work remains disabled. Dynamic pages, configuration and health responses are not cached; fingerprinted web assets can be cached immutably. [Local network and optional ingress](../../infra/deployment.md) describes the tested boundary and operator-reviewed TLS/private CIDR template. This does not turn the local workspace into a remote multi-user service.
+
 ## Full-product contract to implement
 
 The same clone/setup/start sequence must prepare and supervise the actual Go engine and required self-hosted open-source resources by C30. No second undocumented terminal, paid account, sibling clone or owned public domain. C03 implements local lifecycle/health and C31 supplies verified convenience artifacts plus a documented source-build alternative. Downloads may be needed to prepare resources; user payloads are not sent to a compulsory proprietary service. No global runtime install, system trust change or user data deletion occurs implicitly.

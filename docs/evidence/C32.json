@@ -1,0 +1,138 @@
+{
+  "planning_template": false,
+  "passed": true,
+  "commit_id": "C32",
+  "date": "2026-10-19",
+  "base_commit": "34aae002533d1993ca6772fffcb5cb3235acae1c",
+  "worktree_committed": false,
+  "source_identity": "sha256:e1018931f634b1a2c23cbec9d3c1ddcaf230c9511eae8863fb91c916447cf1b7",
+  "source_identity_method": "SHA-256 of sorted UTF-8 relative path + NUL + raw per-file SHA-256 + newline records.",
+  "source_identity_scope": "602 tracked/nonignored source/test/config/lock/documentation files; excludes docs/evidence/, progress/requirements/project-state/handoff, generated web project JSON and SHA256SUMS.txt.",
+  "fixture_license": "Apache-2.0",
+  "fixture_sha256": {
+    "tests/fixtures/attestara/C32/README.md": "sha256:1febd036a70224b4beb31499c389f9e0f241d6450d58c51e5eb08cedcc6f33d1",
+    "tests/fixtures/attestara/C32/cases.json": "sha256:e2de52c098cb1c95cb96e1d4883590b04201070e1f94c7d72cb1e80cd5a77444"
+  },
+  "tools": {
+    "node": "v24.19.0",
+    "npm": "11.9.0 (pinned cached CLI)",
+    "go": "go1.27.2 linux/amd64 (module toolchain on PATH)",
+    "browser": "Google Chrome 153.0.8010.52",
+    "systemd_analyze": "systemd 255"
+  },
+  "commands": [
+    {
+      "command": "npm run validate:plan",
+      "exit_code": 0,
+      "output_path": "docs/evidence/C32-plan.log",
+      "output_sha256": "sha256:80bbca2588f2b88e23d684c912d76f77095d0d2e92bc075441ad2bb7eb877446"
+    },
+    {
+      "command": "npm run check",
+      "exit_code": 0,
+      "output_path": "docs/evidence/C32-check.log",
+      "output_sha256": "sha256:a0dc39e51fd3d1dd1ae5fb11f90d401f8d8af370363d6772b0f0c984ec8184c7"
+    },
+    {
+      "command": "npm run test:browser",
+      "exit_code": 0,
+      "output_path": "docs/evidence/C32-browser.log",
+      "output_sha256": "sha256:d66a3814e9d9f34388ca6b693ec1cb401673f8292d488d8a734f79d78e173a51"
+    },
+    {
+      "command": "npm run test:clone",
+      "exit_code": 0,
+      "output_path": "docs/evidence/C32-clone.log",
+      "output_sha256": "sha256:46976de0ff5f11d879cb085c8f86b16be8fa8208fffb145f0c18380a24357c01"
+    },
+    {
+      "command": "npm run test:package",
+      "exit_code": 0,
+      "output_path": "docs/evidence/C32-package-test.log",
+      "output_sha256": "sha256:23d7f4a0d7f08a84b8ada4308815e9f1b8facc87bee8a466562458a95ef6bb48"
+    },
+    {
+      "command": "npm run package:web",
+      "exit_code": 0,
+      "output_path": "docs/evidence/C32-package-web.log",
+      "output_sha256": "sha256:2a2abc0f403e4a66401dce8f99b85d62891f2deb69698182911fbfcb85164b5d"
+    },
+    {
+      "command": "npm run setup -- --check",
+      "exit_code": 0,
+      "output_path": "docs/evidence/C32-setup-check.log",
+      "output_sha256": "sha256:f23d111dec8d6b5e6040bd652f26428ada00ef96e10216b6ef2b26413c915ce9"
+    },
+    {
+      "command": "node scripts/verify-engine-tests.mjs",
+      "exit_code": 0,
+      "output_path": "docs/evidence/C32-engine-discovery.log",
+      "output_sha256": "sha256:6eee51b54f5cae3068998ef6567c736c293f7f534d6493079fd5e0384284af68"
+    },
+    {
+      "command": "go build ./...",
+      "exit_code": 0,
+      "output_path": "docs/evidence/C32-go-build.log",
+      "output_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": "go vet ./...",
+      "exit_code": 0,
+      "output_path": "docs/evidence/C32-go-vet.log",
+      "output_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": "go test ./...",
+      "exit_code": 0,
+      "output_path": "docs/evidence/C32-go-test.log",
+      "output_sha256": "sha256:951b47d41db9c9cf34a5f18cac5081dbe11584c42b233c56f43d1121268efcd0"
+    },
+    {
+      "command": "python3 scripts/validate_repo.py",
+      "exit_code": 0,
+      "output_path": "docs/evidence/C32-repo.log",
+      "output_sha256": "sha256:847b2c9f901971167c8a49553cd401d41916854bd19ce03515326459fb572512"
+    },
+    {
+      "command": "npm audit --audit-level=high",
+      "exit_code": 0,
+      "output_path": "docs/evidence/C32-audit.log",
+      "output_sha256": "sha256:6d8c5c8f3d7684adb070417bd608d01ae90aa3dc26a65af03ffda4955f38d9a3"
+    },
+    {
+      "command": "systemd-analyze verify /tmp/attestara-web.service",
+      "exit_code": 0,
+      "output_path": "docs/evidence/C32-systemd.log",
+      "output_sha256": "sha256:318c5553442d66a9adaeb231a8042b1ca9a8943d2ea295f4d73361997b1fae40"
+    }
+  ],
+  "observed_results": [
+    "Standalone web server accepts loopback bind only; nonlocal bind rejected.",
+    "Cross-origin Origin requests receive no Access-Control-Allow-Origin; CSP connect-src self.",
+    "Dynamic shell/configuration/health/domain-error responses no-store; fingerprinted assets immutable; unversioned assets no-store.",
+    "Domain API returns 503; writes return 405; unrelated source path is not served.",
+    "The same HTTP boundaries passed after stopping and restarting the process.",
+    "Missing assets/configuration fail startup with a redacted diagnostic.",
+    "Nginx TLS/private-CIDR ingress remains an operator-reviewed template and was not deployed.",
+    "Clean candidate package test ran verify_ci_source.py with passed=true; remote GitHub Actions not run."
+  ],
+  "negative_cases": {
+    "missing_config_and_assets": "startup_failed, exit 1, no raw path",
+    "nonlocal_bind": "webOptions rejects",
+    "domain_work": "503; POST 405",
+    "direct_ci_source_dirty_tree": "Expected exit 1 for uncommitted C32 work; clean candidate package source check passed.",
+    "malformed_config": "startup_failed, exit 1, no raw path"
+  },
+  "limits": [
+    "No Host allowlist or DNS-rebinding defense is claimed.",
+    "CORS/CSP/CIDR do not provide identity or object authorization.",
+    "Nginx is not installed; nginx -t and live TLS ingress were not tested.",
+    "No standalone lint script exists; typecheck ran inside npm run check/build.",
+    "systemd-analyze verify passed for correctly named temporary unit, with warnings from unrelated installed services."
+  ],
+  "docs_updated": [
+    "infra/deployment.md",
+    "docs/engineering/CLONE_TO_RUN.md",
+    "docs/evidence/domain.json"
+  ]
+}

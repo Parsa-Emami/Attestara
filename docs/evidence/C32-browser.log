@@ -1,0 +1,39 @@
+
+> @parsa-emami/attestara-web@0.0.1 test:browser
+> playwright test
+
+[WebServer] (node:377422) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:377435) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 18 tests using 4 workers
+
+(node:377460) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:377461) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:377469) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:377467) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   2 apps/web/tests/passport.spec.ts:10:1 › C21 synthetic fixture hashes match their provenance (14ms)
+  ✓   4 tests/browser/security.spec.ts:35:1 › C27 fixtures retain versioned synthetic provenance and exact hashes (17ms)
+  ✓   5 apps/web/tests/passport.spec.ts:19:1 › local C19 passport shows policy and evidence without uploading its bytes (412ms)
+  ✓   3 tests/browser/workspace.spec.ts:2:1 › workspace, local preview, navigation and roadmap filters work (588ms)
+  ✓   6 tests/browser/security.spec.ts:57:1 › C27 local preview escapes hostile names and keys without requests or prototype pollution (563ms)
+  ✓   7 apps/web/tests/passport.spec.ts:35:1 › viewer presents the C25 public redaction marker without exposing source text (226ms)
+  ✓   8 tests/browser/workspace.spec.ts:27:1 › malformed or unavailable runtime health is visible without blocking local preview (365ms)
+  ✓   9 tests/browser/security.spec.ts:78:1 › C27 hostile passport fields stay literal and unverified without sending selected bytes (317ms)
+  ✓  10 apps/web/tests/passport.spec.ts:48:1 › invalid, unsupported and oversized passports show an error (440ms)
+  ✓  11 tests/browser/workspace.spec.ts:36:1 › configuration failure blocks workspace startup (187ms)
+  ✓  13 apps/web/tests/passport.spec.ts:68:1 › unknown policy claims remain unverified (204ms)
+  ✓   1 tests/browser/clone-to-value.spec.ts:9:1 › C30 real CLI snapshot and restored passport agree with the local viewer (1.6s)
+  ✓  14 tests/browser/workspace.spec.ts:43:1 › keyboard navigation, live status and narrow reflow remain usable (445ms)
+  ✓  12 tests/browser/security.spec.ts:92:1 › C27 invalid passports discard the previous display and fail with safe errors (657ms)
+  ✓  16 tests/browser/security.spec.ts:111:1 › C27 cancelled native file callbacks cannot restore old passport claims (220ms)
+  ✓  15 apps/web/tests/passport.spec.ts:77:1 › cancellation, inert text, keyboard access and narrow layout remain explicit (576ms)
+  ✓  17 tests/browser/security.spec.ts:142:1 › C27 forged headers cannot open disabled object/provider APIs or turn health into a writer (30ms)
+  ✓  18 apps/web/tests/passport.spec.ts:98:1 › HTML-like passport text stays inert and engine unavailability is visible (168ms)
+
+  18 passed (3.4s)

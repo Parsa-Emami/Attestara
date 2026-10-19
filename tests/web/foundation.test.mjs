@@ -32,7 +32,7 @@ test('HTTP isolation, cache rules, health semantics, methods, traversal and syml
   const root = join(dir, 'public');
   await mkdir(join(root, 'assets'), { recursive: true });
   await writeFile(join(root, 'index.html'), '<!doctype html><h1>workspace</h1>');
-  await writeFile(join(root, 'assets', 'app-123.js'), 'export const ok = true;');
+  await writeFile(join(root, 'assets', 'app-a1b2c3d4.js'), 'export const ok = true;');
   await writeFile(join(dir, 'private.txt'), 'PRIVATE_SENTINEL');
   await symlink(join(dir, 'private.txt'), join(root, 'assets', 'leak.js'));
   const server = createWebServer({ root, config, projectId: 'test-project' });
@@ -44,7 +44,7 @@ test('HTTP isolation, cache rules, health semantics, methods, traversal and syml
   assert.equal(index.headers.get('cache-control'), 'no-store');
   assert.match(index.headers.get('content-security-policy'), /frame-ancestors 'none'/);
   assert.equal(index.headers.get('x-content-type-options'), 'nosniff');
-  assert.equal((await fetch(base + '/assets/app-123.js')).headers.get('cache-control'), 'public, max-age=31536000, immutable');
+  assert.equal((await fetch(base + '/assets/app-a1b2c3d4.js')).headers.get('cache-control'), 'public, max-age=31536000, immutable');
   assert.equal((await fetch(base + '/api/v1/anything')).status, 503);
   const ready = await (await fetch(base + '/readyz')).json(); assert.equal(ready.engineReady, false);
   assert.equal((await fetch(base + '/runtime-config.json')).headers.get('cache-control'), 'no-store');

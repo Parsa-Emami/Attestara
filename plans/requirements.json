@@ -287,7 +287,7 @@
       "mandatory": true,
       "planned_commit": "C32",
       "evidence_path": "docs/evidence/C32.json",
-      "status": "unimplemented"
+      "status": "implemented"
     },
     {
       "id": "N33",

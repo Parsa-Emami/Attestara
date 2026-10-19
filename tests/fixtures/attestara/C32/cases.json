@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "license": "Apache-2.0",
+  "origin": "https://outside.invalid",
+  "bindRejected": ["0.0.0.0", "::", "outside.invalid"],
+  "noStore": ["/", "/runtime-config.json", "/healthz", "/readyz", "/api/work"],
+  "fingerprintedAsset": "/assets/app-a1b2c3d4.js",
+  "unversionedAsset": "/assets/manual.js",
+  "disabledDomainRoute": "/api/work"
+}
