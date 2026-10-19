@@ -1,7 +1,7 @@
 {
   "version": "0.0.0",
   "project": "Attestara",
-  "readiness": "WEB_FOUNDATION",
+  "readiness": "LOCAL_USABLE",
   "market_validation": "UNVALIDATED",
   "commits": [
     {
@@ -250,7 +250,9 @@
     {
       "id": "C28",
       "status": "verified",
-      "evidence": ["docs/evidence/C28.json"],
+      "evidence": [
+        "docs/evidence/C28.json"
+      ],
       "source_identity": "sha256:53513a68abba41305eb6489df9fd0a54311a3f3150463da4afa4aaf42395a715",
       "notes": "Measured the owner-selected existing CLI workload: real evaluate/verify/ZIP export and 100 MiB versus 100 MiB+1 input under a 2 vCPU/2048 MiB cgroup with at least 10240 MiB initially free in an isolated temporary filesystem. Cancellation, two-process saturation and fresh-process repeat passed. This does not certify representative Grype memory, complete engine workflow or C30 product hardware support."
     },
@@ -265,10 +267,12 @@
     },
     {
       "id": "C30",
-      "status": "planned",
-      "evidence": [],
-      "source_identity": null,
-      "notes": ""
+      "status": "verified",
+      "evidence": [
+        "docs/evidence/C30.json"
+      ],
+      "source_identity": "sha256:ea9bb04e7cf88682b42f45c3ac2d450dc74712c5d7d793faee29f135eb9e33a6",
+      "notes": "Owner-approved single-operator Linux loopback CLI plus browser-local viewer; immutable C05 snapshots; explicit operator freshness; no automatic expiry/latest-release authority or multi-user API. Full ten-step workflow, negative cases, restart/restore and clean namespace clone/setup/start passed; see source-bound commands and limitations."
     },
     {
       "id": "C31",
@@ -348,5 +352,5 @@
     "backend_tests": "not_implemented"
   },
   "roadmap_contract": "clone-to-run-oss-v1",
-  "current_core_ready": false
+  "current_core_ready": true
 }

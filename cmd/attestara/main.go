@@ -27,6 +27,8 @@ import (
 	"attestara/internal/export"
 	"attestara/internal/policy"
 	"attestara/internal/report"
+	"attestara/internal/storage"
+	"attestara/internal/workflow"
 )
 
 const (
@@ -77,7 +79,7 @@ func isDomainCommand(args []string) bool {
 		return false
 	}
 	switch args[0] {
-	case "evaluate", "verify", "export":
+	case "evaluate", "verify", "export", "restore":
 		return true
 	default:
 		return false
@@ -94,12 +96,14 @@ type health struct {
 
 func currentHealth() health { return health{1, "ok", "engine-process", "0.0.1", runtime.Version()} }
 
-func handler() http.Handler {
+func handler() http.Handler { return handlerForStore("") }
+
+func handlerForStore(storePath string) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Cache-Control", "no-store")
 		w.Header().Set("Content-Type", "application/json; charset=utf-8")
 		w.Header().Set("X-Content-Type-Options", "nosniff")
-		if r.URL.Path != "/healthz" {
+		if r.URL.Path != "/healthz" && !(r.URL.Path == "/readyz" && storePath != "") {
 			w.WriteHeader(404)
 			io.WriteString(w, `{"error":"not_found"}`)
 			return
@@ -108,6 +112,16 @@ func handler() http.Handler {
 			w.Header().Set("Allow", "GET, HEAD")
 			w.WriteHeader(405)
 			io.WriteString(w, `{"error":"method_not_allowed"}`)
+			return
+		}
+		if r.URL.Path == "/readyz" {
+			state := probeStore(storePath)
+			if state != "ready" {
+				w.WriteHeader(http.StatusServiceUnavailable)
+			}
+			if r.Method == "GET" {
+				_ = writeJSON(w, map[string]any{"schema_version": "1", "scope": "local-cli-snapshots", "storage": state, "policy": "builtin", "required_providers": []string{}})
+			}
 			return
 		}
 		if r.Method == "GET" {
@@ -122,13 +136,21 @@ func run(ctx context.Context, args []string, stdout, stderr io.Writer) error {
 		case "evaluate":
 			return evaluateCommand(ctx, args[1:], stdout, stderr)
 		case "verify":
-			return passportCommand(ctx, args[1:], stdout, stderr, false)
+			return verifyCommand(ctx, args[1:], stdout, stderr)
+		case "restore":
+			return snapshotCommand(ctx, args[1:], stdout, stderr, true)
 		case "export":
+			for _, arg := range args[1:] {
+				if arg == "--store" || strings.HasPrefix(arg, "--store=") {
+					return snapshotCommand(ctx, args[1:], stdout, stderr, false)
+				}
+			}
 			return passportCommand(ctx, args[1:], stdout, stderr, true)
 		}
 	}
 	flags := flag.NewFlagSet("attestara", flag.ContinueOnError)
 	flags.SetOutput(stderr)
+	storePath := flags.String("store", "", "optional authoritative snapshot store path")
 	address := flags.String("listen", "127.0.0.1:0", "loopback listen address")
 	version := flags.Bool("version", false, "print engine process version as JSON")
 	if err := flags.Parse(args); err != nil {
@@ -148,12 +170,20 @@ func run(ctx context.Context, args []string, stdout, stderr io.Writer) error {
 	if ctx.Err() != nil {
 		return nil
 	}
+	if *storePath != "" {
+		if err := os.MkdirAll(filepath.Dir(*storePath), 0700); err != nil {
+			return errors.New("snapshot storage parent unavailable")
+		}
+	}
+	if *storePath != "" && probeStore(*storePath) != "ready" {
+		return errors.New("snapshot storage unavailable")
+	}
 	listener, err := net.Listen("tcp", *address)
 	if err != nil {
 		return err
 	}
 	defer listener.Close()
-	server := &http.Server{Handler: handler(), ReadHeaderTimeout: 5 * time.Second, ReadTimeout: 5 * time.Second, WriteTimeout: 5 * time.Second, IdleTimeout: 5 * time.Second, MaxHeaderBytes: 16384}
+	server := &http.Server{Handler: handlerForStore(*storePath), ReadHeaderTimeout: 5 * time.Second, ReadTimeout: 5 * time.Second, WriteTimeout: 5 * time.Second, IdleTimeout: 5 * time.Second, MaxHeaderBytes: 16384}
 	served := make(chan error, 1)
 	go func() { served <- server.Serve(listener) }()
 	if err := writeJSON(stdout, struct {
@@ -186,6 +216,9 @@ func evaluateCommand(parent context.Context, args []string, stdout, stderr io.Wr
 	inputPath := flags.String("input", "", "path to a C04 input JSON file")
 	rulePath := flags.String("policy", "", "path to a C14 rule JSON file")
 	evidencePath := flags.String("evidence", "", "path to the evidence JSON file; omit to evaluate as unknown")
+	filesPath := flags.String("files", "", "confined root of all manifest files, including CycloneDX SBOM")
+	store := flags.String("store", "", "durable local store")
+	operationID := flags.String("operation-id", "", "immutable operation identifier")
 	freshness := flags.String("freshness", "", "caller-classified evidence freshness: fresh or stale")
 	if err := flags.Parse(args); err != nil {
 		return commandError(inputExitCode, "invalid evaluate arguments")
@@ -194,6 +227,9 @@ func evaluateCommand(parent context.Context, args []string, stdout, stderr io.Wr
 		return commandError(inputExitCode, "evaluate requires --input, --policy and --freshness fresh|stale; --evidence is optional")
 	}
 
+	if (*store == "") != (*operationID == "") || (*store != "" && *filesPath == "") {
+		return commandError(inputExitCode, "storage requires --files, --store and --operation-id")
+	}
 	inputJSON, err := readCommandFile(*inputPath, contracts.MaxBundleBytes)
 	if err != nil {
 		return err
@@ -213,6 +249,16 @@ func evaluateCommand(parent context.Context, args []string, stdout, stderr io.Wr
 			return err
 		}
 	}
+	var files map[string][]byte
+	if *filesPath != "" {
+		files, err = workflow.ReadFiles(parent, inputJSON, *filesPath)
+		if err != nil {
+			return err
+		}
+		if err = workflow.ValidateSBOM(input, files); err != nil {
+			return err
+		}
+	}
 	result, err := policy.Evaluate(parent, inputJSON, ruleJSON, evidenceBytes)
 	if err != nil {
 		return err
@@ -228,6 +274,21 @@ func evaluateCommand(parent context.Context, args []string, stdout, stderr io.Wr
 	passport, err := report.GeneratePassport(parent, input, result)
 	if err != nil {
 		return err
+	}
+	if *store != "" {
+		resultJSON, e := json.Marshal(result)
+		if e != nil {
+			return commandError(engineExitCode, "could not encode evaluation")
+		}
+		a, e := storage.Open(*store)
+		if e != nil {
+			return commandError(engineExitCode, "store unavailable")
+		}
+		e = a.Commit(parent, storage.Record{OperationID: *operationID, InputJSON: inputJSON, ResultJSON: resultJSON, Files: files})
+		closeErr := a.Close()
+		if e != nil || closeErr != nil {
+			return commandError(engineExitCode, "snapshot commit failed or conflicted; reopen to reconcile")
+		}
 	}
 	if err := writeJSON(stdout, passport); err != nil {
 		return commandError(engineExitCode, "could not write passport output")
@@ -322,7 +383,7 @@ func exportBundle(ctx context.Context, inputPath, filesPath, outputPath string) 
 }
 
 func readCommandFile(path string, maxBytes int64) ([]byte, error) {
-	file, err := os.Open(path)
+	file, err := os.OpenFile(path, os.O_RDONLY|syscall.O_NONBLOCK, 0)
 	if err != nil {
 		return nil, commandError(inputExitCode, "input file is unavailable")
 	}

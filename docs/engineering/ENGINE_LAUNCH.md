@@ -60,3 +60,7 @@ passport digest; `bundle.ReadArchive` is the current offline file-byte verifier.
 The existing web CI now prepares Go and the engine before its engine-dependent web/browser/clone checks. `actions/setup-go@924ae3a1cded613372ab5595356fb5720e22ba16` (official v6 tag, MIT) supplies the C02 Go 1.26.2 bootstrap compiler; the final compiler is built from the C02 source archive after SHA-256 verification. This repairs the existing job's new prerequisite; C06 still owns broader domain integration CI. No remote CI run is implied by a local test result.
 
 Implementation references: [Node 24.19 child processes](https://nodejs.org/download/release/v24.19.0/docs/api/child_process.html#child_processspawncommand-args-options), [Go graceful HTTP shutdown](https://pkg.go.dev/net/http@go1.27.2#Server.Shutdown), [Go signal context](https://pkg.go.dev/os/signal@go1.27.2#NotifyContext). Source-bound commands, versions and fixture hashes are recorded in `docs/evidence/C03.json`.
+
+## C30 approved local snapshot composition
+
+The current CLI snapshot workflow, full file/signature verification, real storage readiness and safe backup/restore are described in [C30 local workflow](C30_LOCAL_WORKFLOW.md). The earlier C03/C20/C29 sections above retain their historical capability boundaries. Full C30 status is determined by source-bound evidence, not these instructions.

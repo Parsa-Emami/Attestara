@@ -2860,7 +2860,7 @@
       ],
       "evidence_path": "docs/evidence/C30.json",
       "rollback": "Revert the isolated source change when no incompatible data was accepted. Otherwise retain the latest valid bytes/export and compatible reader, and use tested forward repair; never overwrite newer accepted state with an old backup.",
-      "scope": "Attestara complete open-source local web profile",
+      "scope": "Owner-approved single-operator local-cli-snapshots profile: existing CLI plus browser-local viewer, immutable C05 operations, explicit caller freshness; no automatic expiry/latest-release authority or multi-user API",
       "task_file": "plans/commits/C30.md",
       "read_before": [
         "AGENTS.md",
@@ -2904,8 +2904,8 @@
         "Inspect the actual implementation, source/locks and verified dependencies for C30; preserve accepted existing behavior.",
         "Define the versioned positive and negative release-evidence fixtures and expected error/result semantics under tests/fixtures/attestara/C30/.",
         "Implement: On a clean supported Linux host, git clone -> npm run setup -> npm start completes this project's full reference workflow, negative cases, restart and restore with verified C01-C30 evidence. This is the first locally usable supported product.",
-        "Extend scripts/clone-smoke.mjs to launch the actual engine/providers and complete tests/scenarios/clone-to-value.json through tests/browser/clone-to-value.spec.ts. Readiness must prove engine/provider/storage availability; restart and restore the actual accepted result. Keep the current web-only proof labeled separately.",
-        "Change the listed exact targets and wire the actual typed outcome into the supported browser/engine workflow. Keep domain facts, validation, storage/provider adapters and UI separate.",
+        "Extend scripts/clone-smoke.mjs with a real clean transport clone, isolated fresh HOME/npm/Go/browser caches, actual npm setup/start, full CLI reference workflow, browser viewer parity and real service restart/new-store restore. Keep historical C01/web-only proof separate. Required policy is builtin C14; optional providers are not silently required or reported as executed.",
+        "Reuse C04 input/result, C05 storage.Record and C19 passport shapes. Add bounded file/SBOM validation and independent C16 signature assessment to existing CLI adapters; never enable the draft HTTP domain API. Same operation/content replays; changed content conflicts; backup/restore atomically refuse every existing destination.",
         "Add regression/integration coverage for every acceptance and negative case; real storage/provider/security boundaries cannot be verified only with mocks.",
         "Run the labeled verification commands; record exact source, fixture license/hash, tool/provider versions, command exits and observed results in docs/evidence/C30.json. Update progress only when the whole task is genuinely verified."
       ],

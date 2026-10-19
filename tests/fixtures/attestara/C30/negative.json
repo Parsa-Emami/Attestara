@@ -1,0 +1,19 @@
+{
+  "schema_version": "1",
+  "license": "Apache-2.0",
+  "cases": {
+    "changed-subject": "reject",
+    "incomplete-manifest": "reject before storage creation",
+    "missing-evidence": "unknown, never pass",
+    "stale-evidence": "unknown, never pass",
+    "invalid-signature": "reject",
+    "signed-untrusted": "unverified",
+    "malformed-sbom": "reject",
+    "same-operation-changed-content": "conflict, preserve accepted bytes",
+    "existing-restore-destination": "reject without replacement",
+    "corrupt-or-missing-backup-evidence": "reject without destination publication",
+    "escaping-link": "reject",
+    "cancellation": "no destination publication",
+    "writer-lock": "readiness locked; no duplicate writer"
+  }
+}

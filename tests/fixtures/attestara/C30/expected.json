@@ -1,0 +1,8 @@
+{
+  "schema_version": "1",
+  "policy_decision": "pass",
+  "verification": "unverified",
+  "operation_id": "release-1",
+  "steps": 10,
+  "restore": "same-identity"
+}

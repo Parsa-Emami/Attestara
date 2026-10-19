@@ -21,7 +21,7 @@ export async function verifyReference({ root = projectRoot } = {}) {
   check(scenario.version === 1, 'Unsupported scenario version');
   check(scenario.project === product.name && scenario.guide === 'docs/product/REFERENCE_WORKFLOW.md', 'Scenario identity or guide mismatch');
   check(scenario.status === 'unexecuted reference contract' && scenario.engine_execution_verified === false && scenario.passed !== true, 'Engine execution must remain unverified');
-  check(/^Execution status: unimplemented\./m.test(guide) && !/^Engine (?:execution )?(?:passed|verified)\b/im.test(guide), 'Guide claims engine execution or omits unimplemented status');
+  check(/^C01 specification status: unexecuted reference contract\./m.test(guide) && !/^Engine (?:execution )?(?:passed|verified)\b/im.test(guide), 'Guide claims engine execution or omits historical specification status');
   check(Array.isArray(scenario.invariants) && JSON.stringify(scenario.invariants) === JSON.stringify(product.domain.invariants), 'Missing or changed domain invariants');
   check(Array.isArray(scenario.steps) && JSON.stringify(scenario.steps.map(step => step.id)) === JSON.stringify(requiredSteps), 'Missing or reordered workflow steps');
   check(Array.isArray(scenario.fixtures) && scenario.fixtures.length === 3, 'Expected positive, negative and expected-output fixtures');

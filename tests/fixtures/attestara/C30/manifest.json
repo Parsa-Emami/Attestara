@@ -1,0 +1,38 @@
+{
+  "schema_version": "1",
+  "release_id": "attestara-c30-release",
+  "owner": "synthetic Attestara maintainer",
+  "subject_digest": "sha256:ecdc32b595e2dc30f73744505e78f4f6888b76c3997098f3f1fdffcb7b7d9cd4",
+  "source_revision": "synthetic-c30-1",
+  "tool": "attestara-c14-fixture",
+  "tool_version": "1",
+  "evidence_digest": "sha256:f4eef926e346ce1feac1114ab917dc53928001104bab21cb7e88948a9f1ca193",
+  "policy_digest": "sha256:a8bff7c6201d8eacba9acf62cee9f3d2f50ceb1af9327340c464abc848068446",
+  "verification": "unverified",
+  "files": [
+    {
+      "path": "subject.txt",
+      "digest": "sha256:ecdc32b595e2dc30f73744505e78f4f6888b76c3997098f3f1fdffcb7b7d9cd4",
+      "size_bytes": 33,
+      "media_type": "text/plain"
+    },
+    {
+      "path": "evidence.json",
+      "digest": "sha256:f4eef926e346ce1feac1114ab917dc53928001104bab21cb7e88948a9f1ca193",
+      "size_bytes": 47,
+      "media_type": "application/json"
+    },
+    {
+      "path": "rule.json",
+      "digest": "sha256:a8bff7c6201d8eacba9acf62cee9f3d2f50ceb1af9327340c464abc848068446",
+      "size_bytes": 54,
+      "media_type": "application/json"
+    },
+    {
+      "path": "sbom.cdx.json",
+      "digest": "sha256:55761b9f1b1f365a584540c0396fc6c669393bedd08d0736977461369345c9ab",
+      "size_bytes": 232,
+      "media_type": "application/vnd.cyclonedx+json"
+    }
+  ]
+}

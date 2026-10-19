@@ -1,0 +1,18 @@
+{
+  "license": "Apache-2.0",
+  "provenance": "repository-authored synthetic C30 inputs; C04 SBOM and C14 subject/rule/facts reused; ephemeral synthetic Ed25519 key discarded",
+  "files": {
+    "README.md": "sha256:92d042c398ec1f8ddabc2d40fed53d6172cdf9fcde212afce7691d6d07e830bc",
+    "evidence.json": "sha256:f4eef926e346ce1feac1114ab917dc53928001104bab21cb7e88948a9f1ca193",
+    "expected.json": "sha256:92a40febb11deb9a3c063582aa32cb10a82ed023a240e15667537302a5b6f172",
+    "invalid-signature.json": "sha256:83782f37097e26bb5bdd2666eb9834e187c83b153633d569b8495221a71c731f",
+    "manifest.json": "sha256:922b304f8147699cc39dc8c412804aab5c61e4a15c87e3edb50bea5ab16b82f1",
+    "negative.json": "sha256:175547fe9b0fc4ea64f15562bc25dad5a96ba9a7ccbd617f80c79a56b6ab1c14",
+    "rule.json": "sha256:a8bff7c6201d8eacba9acf62cee9f3d2f50ceb1af9327340c464abc848068446",
+    "sbom.cdx.json": "sha256:55761b9f1b1f365a584540c0396fc6c669393bedd08d0736977461369345c9ab",
+    "signature.json": "sha256:3676202cee5c13bdc3124b22057aacb1448ce4744d97c5b2441bd2896b657569",
+    "subject.txt": "sha256:ecdc32b595e2dc30f73744505e78f4f6888b76c3997098f3f1fdffcb7b7d9cd4",
+    "trust.json": "sha256:61b03e06d2e3002a2637b7ab3abb4e98fb661cbd9082f015f73a11c4f928f272",
+    "untrusted.json": "sha256:a5934c121ecbdeaef7247fbb5acc20e470fa9139701286c859c04125c18d1fcd"
+  }
+}

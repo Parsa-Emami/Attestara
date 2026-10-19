@@ -1,0 +1,6 @@
+{
+  "schema_version": "1",
+  "signer_id": "synthetic-c30-maintainer",
+  "public_key_hex": "e03815c91760b458f3b52d72c4974c0f95d58782ead8b1ec05cd8ec35025b76e",
+  "signature_hex": "b381084196627bd87400b0d024ae7f080e509bcc2a5cd581977251d190149e7356b795fe9cdbd44f5d3fe6b1f02a78cd7d1d389fc0625045ecd8c2012c694d0d"
+}

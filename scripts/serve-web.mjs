@@ -15,7 +15,7 @@ export function runtimeDiagnostic(entryPoint, event, runId) {
     readiness: {
       web: ready ? 'ready' : 'not_ready',
       engine: entryPoint === 'web' ? 'not_configured' : ready ? 'process_healthy' : 'unavailable',
-      storage: 'not_integrated', providers: 'not_integrated', requiredProviders: [],
+      storage: entryPoint === 'local' && ready ? 'ready' : entryPoint === 'local' ? 'unavailable' : 'not_integrated', providers: entryPoint === 'local' ? 'not_required' : 'not_integrated', requiredProviders: [],
     },
   };
 }
@@ -33,9 +33,8 @@ export function validateEngineURL(value) {
   return url.href;
 }
 
-export async function probeEngineHealth(url) {
-  const response = await fetch(validateEngineURL(url), { signal: AbortSignal.timeout(1500), redirect: 'error', credentials: 'omit' });
-  if (!response.ok || !response.body) throw new Error('Engine unavailable.');
+async function boundedJSON(response, limit) {
+  if (!response.body) throw new Error('Missing response body.');
   const reader = response.body.getReader();
   const chunks = []; let size = 0;
   try {
@@ -43,16 +42,29 @@ export async function probeEngineHealth(url) {
       const { value, done } = await reader.read();
       if (done) break;
       size += value.length;
-      if (size > 4096) throw new Error('Engine health exceeds limit.');
+      if (size > limit) throw new Error('Response exceeds limit.');
       chunks.push(value);
     }
   } finally { await reader.cancel(); }
-  return validateEngineHealth(JSON.parse(Buffer.concat(chunks).toString('utf8')));
+  return JSON.parse(Buffer.concat(chunks).toString('utf8'));
+}
+
+export async function probeEngineHealth(url) {
+  const response = await fetch(validateEngineURL(url), { signal: AbortSignal.timeout(1500), redirect: 'error', credentials: 'omit' });
+  if (!response.ok) throw new Error('Engine unavailable.');
+  return validateEngineHealth(await boundedJSON(response, 4096));
+}
+
+export async function probeSnapshotReadiness(url) {
+  const response = await fetch(new URL('/readyz', validateEngineURL(url)), { signal: AbortSignal.timeout(1500), redirect: 'error', credentials: 'omit' });
+  const state = await boundedJSON(response, 1024);
+  if (state.schema_version !== '1' || !['ready', 'locked', 'corrupt', 'unavailable'].includes(state.storage) || state.scope !== 'local-cli-snapshots' || state.policy !== 'builtin' || !Array.isArray(state.required_providers) || state.required_providers.length !== 0 || response.ok !== (state.storage === 'ready')) throw new Error('Invalid snapshot readiness.');
+  return state.storage;
 }
 
 const types = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.css': 'text/css; charset=utf-8', '.svg': 'image/svg+xml', '.png': 'image/png', '.webmanifest': 'application/manifest+json' };
 const csp = "default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'; object-src 'none'";
-export function createWebServer({ root, config, projectId, engineURL }) {
+export function createWebServer({ root, config, projectId, engineURL, snapshotReadiness = false }) {
   const valid = validateRuntimeConfig(config, projectId);
   if (engineURL !== undefined) engineURL = validateEngineURL(engineURL);
   const publicRoot = resolve(root);
@@ -75,6 +87,15 @@ export function createWebServer({ root, config, projectId, engineURL }) {
       if (!path.startsWith('/') || path.includes('\\') || path.includes('\0') || path.split('/').some(part => part.startsWith('.'))) throw new Error();
     } catch { send(400, '{"error":"invalid_path"}'); return; }
     if (path === '/healthz') { send(200, '{"status":"ok","scope":"web-shell"}'); return; }
+    if (path === '/readyz' && snapshotReadiness) {
+      try {
+        await probeWebAssets(publicRoot);
+        await probeEngineHealth(engineURL);
+        const storage = await probeSnapshotReadiness(engineURL);
+        send(storage === 'ready' ? 200 : 503, JSON.stringify({status: storage === 'ready' ? 'ready' : 'not_ready', scope: 'local-cli-snapshots', engineReady: true, storage, policy: 'builtin', requiredProviders: []}));
+      } catch { send(503, '{"status":"not_ready","scope":"local-cli-snapshots"}'); }
+      return;
+    }
     if (path === '/readyz') {
       try { await probeWebAssets(publicRoot); send(200, '{"status":"ready","scope":"web-shell","engineReady":false}'); }
       catch { send(503, '{"status":"not_ready","scope":"web-shell"}'); }
@@ -102,7 +123,7 @@ export function createWebServer({ root, config, projectId, engineURL }) {
 }
 
 export function webOptions(args) {
-  const options = { host: '127.0.0.1', port: '4173', root: 'dist/web', config: 'ops/web/runtime-config.json' };
+  const options = { host: '127.0.0.1', port: '4173', root: 'dist/web', config: 'ops/web/runtime-config.json', store: '.local-data/attestara' };
   for (let i = 0; i < args.length; i += 2) {
     const key = args[i].slice(2);
     if (!args[i].startsWith('--') || !Object.hasOwn(options, key) || !args[i + 1]) throw new Error('Usage: node scripts/serve-web.mjs [--host 127.0.0.1] [--port 4173] [--root dist/web] [--config path]');

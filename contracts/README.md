@@ -259,3 +259,7 @@ the call. Existing warning contents are preserved, not redacted or authenticated
 There is no new wire schema, persistence or stateful expiry/revision acceptance.
 Raw C14/C15 evaluators remain unchanged; C19-C21 consume this composition layer
 for passport, CLI and viewer integration.
+
+## C30 approved local snapshot composition
+
+The current CLI snapshot workflow, full file/signature verification, real storage readiness and safe backup/restore are described in [C30 local workflow](../docs/engineering/C30_LOCAL_WORKFLOW.md). The earlier C03/C20/C29 sections above retain their historical capability boundaries. Full C30 status is determined by source-bound evidence, not these instructions.

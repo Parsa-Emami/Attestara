@@ -1,6 +1,8 @@
 # Attestara: reference workflow
 
-Execution status: unimplemented. This document and `tests/scenarios/clone-to-value.json` define C01 acceptance only; no complete engine, provider, verifier/viewer parity or durable restore has passed this workflow. The web application has a bounded JSON structure preview and a browser-local C19 passport viewer.
+C01 specification status: unexecuted reference contract. The original ten-step synthetic specification and its C01 fixture identities remain historical. C30 composes real CLI evaluation/storage/verification, browser-local viewing, service restart and new-store restore for the owner-approved single-operator profile. Current certification and limitations are recorded in `docs/evidence/C30.json`; specification validation alone cannot establish execution.
+
+See [C30 local workflow](../engineering/C30_LOCAL_WORKFLOW.md) for actual commands. The stage-specific notes below preserve earlier implementation boundaries; the approved C30 contract at the end resolves their deferred composition obligations for this profile.
 
 ## Synthetic release and ownership
 
@@ -119,3 +121,7 @@ unsupported authorization obligations, not passed tests. Private/multi-user
 profiles remain blocked pending an explicit authorization contract; later C32
 network/private-ingress work alone does not provide it. See
 `../security/THREAT_MODEL.md` and `../../tests/release/security-matrix.md`.
+
+## Approved C30 composition contract (2026-10-19)
+
+The supported reference profile is one local OS operator: CLI import/evaluate/verify/export/restore plus the existing browser file-picker viewer. Durable acceptance means an immutable C05 operation, not endorsement as the latest authentic release. Same operation/content replays; changed content conflicts. Fresh/stale is the operator's explicit classification, not an inferred expiry policy. Restore creates a new store only. Automatic expiry/revision ordering and release-authority replay prevention are outside this approved profile; they are not required claims of C30. Private/multi-user identity remains unsupported. Policy, referenced-byte integrity and configured signer trust stay independent.

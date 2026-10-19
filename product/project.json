@@ -80,21 +80,21 @@
     ]
   },
   "version": "0.0.0",
-  "status": "WEB_FOUNDATION",
+  "status": "LOCAL_USABLE",
   "source_implemented": true,
   "market_validation": "UNVALIDATED",
   "assumption": "Browser application first; optional CLI/worker remains an engine adapter. Web foundation does not satisfy domain release gates.",
-  "engine_implemented": false,
+  "engine_implemented": true,
   "previous_engine_mode": "file-cli",
   "web_application": {
-    "status": "foundation_implemented",
+    "status": "local_passport_viewer",
     "deployment_profile": "web-viewer-private-engine",
     "frontend": "React + TypeScript + Vite",
-    "web_runtime": "Node.js static shell; no engine proxy",
+    "web_runtime": "Node local viewer with bounded Go process health/readiness; domain operations use the local CLI",
     "default_engine_enabled": false,
     "preview_storage": "tab memory only",
     "offline_supported": false,
-    "engine_status": "planned",
+    "engine_status": "local-cli-snapshots",
     "source": "apps/web/src/main.tsx",
     "existing_backend": null
   },
@@ -108,7 +108,7 @@
     "start": "npm start",
     "usable_at": "C30",
     "complete_v1_at": "C40",
-    "core_ready": false,
+    "core_ready": true,
     "architecture": "docs/architecture/ADR-0003-open-source-local-first.md"
   }
 }

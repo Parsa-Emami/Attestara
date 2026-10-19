@@ -3,11 +3,11 @@ import { readFile, stat } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { randomUUID } from 'node:crypto';
-import { createWebServer, probeEngineHealth, probeWebAssets, validateEngineURL, webOptions, runtimeDiagnostic } from './serve-web.mjs';
+import { createWebServer, probeEngineHealth, probeSnapshotReadiness, probeWebAssets, validateEngineURL, webOptions, runtimeDiagnostic } from './serve-web.mjs';
 
 const repository = fileURLToPath(new URL('../', import.meta.url));
 
-export async function startLocal({ host = '127.0.0.1', port = 4173, root = resolve(repository, 'dist/web'), config: configPath = resolve(repository, 'ops/web/runtime-config.json'), signal } = {}) {
+export async function startLocal({ host = '127.0.0.1', port = 4173, root = resolve(repository, 'dist/web'), config: configPath = resolve(repository, 'ops/web/runtime-config.json'), store = resolve(repository, '.local-data/attestara'), signal } = {}) {
   if (signal?.aborted) throw new Error('Local startup cancelled.');
   if (!['127.0.0.1', '::1'].includes(host) || !Number.isInteger(port) || port < 0 || port > 65535) throw new Error('Invalid local listen address.');
   const config = JSON.parse(await readFile(configPath, 'utf8'));
@@ -17,7 +17,7 @@ export async function startLocal({ host = '127.0.0.1', port = 4173, root = resol
   // Spawn the repository-built executable directly; no shell or user payload is accepted.
   // https://nodejs.org/docs/latest-v24.x/api/child_process.html#child_processspawncommand-args-options
   // Discard raw stderr; the CLI emits fixed lifecycle diagnostics instead.
-  const engine = spawn(binary, ['--listen', '127.0.0.1:0'], { cwd: repository, stdio: ['ignore', 'pipe', 'ignore'] });
+  const engine = spawn(binary, ['--listen', '127.0.0.1:0', '--store', resolve(store)], { cwd: repository, stdio: ['ignore', 'pipe', 'ignore'] });
   let server; let stopping = false; let closing;
   let finish;
   const done = new Promise(resolve => { finish = resolve; });
@@ -68,8 +68,9 @@ export async function startLocal({ host = '127.0.0.1', port = 4173, root = resol
       if (signal?.aborted) cancelled();
     });
     await probeEngineHealth(engineURL);
+    if (await probeSnapshotReadiness(engineURL) !== 'ready') throw new Error('Snapshot storage unavailable.');
     if (stopping) throw new Error('Local startup cancelled or engine exited.');
-    server = createWebServer({ root, config, projectId: 'attestara', engineURL });
+    server = createWebServer({ root, config, projectId: 'attestara', engineURL, snapshotReadiness: true });
     server.maxRequestsPerSocket = 1000;
     await new Promise((accept, reject) => {
       server.once('error', reject);

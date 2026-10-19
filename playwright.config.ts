@@ -9,6 +9,6 @@ export default defineConfig({
     baseURL, browserName: 'chromium', headless: true,
     launchOptions: process.env.WEB_TEST_CHROMIUM ? { executablePath: process.env.WEB_TEST_CHROMIUM, args: ['--no-sandbox'] } : {},
   },
-  webServer: { command: `npm start -- --port ${port}`, url: `${baseURL}/readyz`, reuseExistingServer: false, timeout: 15000 },
+  webServer: process.env.C30_EXTERNAL_SERVER ? undefined : { command: `npm start -- --port ${port}`, url: `${baseURL}/readyz`, reuseExistingServer: false, timeout: 15000 },
   reporter: 'list',
 });

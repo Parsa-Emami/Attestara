@@ -69,7 +69,7 @@ test('C03 real engine health, method boundaries, shutdown and restart', async ()
    assert.equal((await fetch(base + '/api/run', { method: 'POST', body: `touch ${marker}` })).status, 405);
    await assert.rejects(access(marker));
    assert.equal((await fetch(base + '/api/run')).status, 503);
-   assert.equal((await (await fetch(base + '/readyz')).json()).engineReady, false);
+   assert.equal((await (await fetch(base + '/readyz')).json()).engineReady, true);
    assert.equal((await fetch(base)).status, 200);
   } finally { await local.close(); }
   assert.equal(await local.done, expected.success.shutdownExit);

@@ -1,4 +1,5 @@
 import test from 'node:test';
+import { randomUUID } from 'node:crypto';
 import assert from 'node:assert/strict';
 import { spawn } from 'node:child_process';
 import { once } from 'node:events';
@@ -22,6 +23,8 @@ async function freePort() {
 }
 
 function launch(t, script, args = [], cwd = repository, env = process.env) {
+  const store = join(tmpdir(), 'attestara-c30-lifecycle-' + randomUUID());
+  if (script.endsWith('start-local.mjs')) args = [...args, '--store', store];
   const child = spawn(process.execPath, [script, ...args], { cwd, env, stdio: ['ignore', 'pipe', 'pipe'] });
   let stdout = '', stderr = '', overflow = false;
   let first;
@@ -37,7 +40,7 @@ function launch(t, script, args = [], cwd = repository, env = process.env) {
     if (stderr.length > 8192) { overflow = true; stderr = stderr.slice(0, 8193); child.kill('SIGKILL'); }
   });
   const done = new Promise(resolve => child.once('close', (code, signal) => { clearTimeout(timer); first(undefined); resolve({code, signal}); }));
-  t.after(async () => { child.kill('SIGKILL'); await done; });
+  t.after(async () => { child.kill('SIGKILL'); await done; await rm(store, {recursive:true,force:true}); });
   return { child, started, done, output: () => ({stdout, stderr, overflow}) };
 }
 
@@ -54,8 +57,8 @@ function diagnostics(run) {
     assert.match(event.runId, /^[0-9a-f-]{36}$/);
     assert.equal(event.runId, events[0].runId);
     assert.equal(event.coreReady, false);
-    assert.equal(event.readiness.storage, 'not_integrated');
-    assert.equal(event.readiness.providers, 'not_integrated');
+    assert.equal(event.readiness.storage, event.entryPoint === 'local' ? event.event === 'started' ? 'ready' : 'unavailable' : 'not_integrated');
+    assert.equal(event.readiness.providers, event.entryPoint === 'local' ? 'not_required' : 'not_integrated');
     assert.deepEqual(event.readiness.requiredProviders, []);
   }
   return events;
@@ -71,12 +74,12 @@ test('C29 real Go lifecycle reports separate readiness, restarts and fails visib
     const run = launch(t, 'scripts/start-local.mjs', ['--port', String(port)]);
     const event = await run.started;
     assert.equal(event?.event, 'started');
-    assert.deepEqual(event.readiness, expected.started);
+    assert.deepEqual(event.readiness, {...expected.started, storage:'ready', providers:'not_required'});
     assert.notEqual(event.runId, previousRun); previousRun = event.runId;
     const base = `http://127.0.0.1:${port}`;
     assert.deepEqual(await (await fetch(base + '/healthz')).json(), {status:'ok',scope:'web-shell'});
     const ready = await (await fetch(base + '/readyz')).json();
-    assert.equal(ready.scope, 'web-shell'); assert.equal(ready.engineReady, false);
+    assert.equal(ready.scope, 'local-cli-snapshots'); assert.equal(ready.engineReady, true); assert.equal(ready.storage, 'ready');
     const health = await fetch(base + '/api/engine/health'); assert.equal(health.status, 200);
     assert.equal((await health.json()).scope, 'engine-process');
     assert.equal((await fetch(base + '/api/run', {method:'POST',body:`touch ${marker}`})).status, 405);
@@ -86,7 +89,7 @@ test('C29 real Go lifecycle reports separate readiness, restarts and fails visib
     assert.equal((await run.done).code, action === 'crash' ? 1 : 0);
     const events = diagnostics(run); assert.equal(events.length, 2);
     assert.equal(events[1].event, action === 'crash' ? 'runtime_failed' : 'stopped');
-    assert.deepEqual(events[1].readiness, expected.failed);
+    assert.deepEqual(events[1].readiness, {...expected.failed, storage: 'unavailable', providers: 'not_required'});
     await assert.rejects(fetch(base + '/healthz'));
     assert.throws(() => process.kill(event.enginePid, 0), {code:'ESRCH'});
   }
@@ -132,15 +135,10 @@ test('C29 hostile child stdout/stderr and malformed health never enter operator 
   await chmod(join(dir,'dist/engine/attestara'),0o700);
   for (const mode of ['malformed','oversized','invalid_health','noisy_health']) {
     const run = launch(t,'scripts/start-local.mjs',['--port',String(await freePort())],dir,{...process.env,ATTESTARA_C29_FIXTURE:mode});
-    if (mode === 'noisy_health') {
-      assert.equal((await run.started)?.event,'started');
-      await delay(200); run.child.kill('SIGTERM');
-      assert.equal((await run.done).code,0);
-      assert.equal(diagnostics(run).length,2);
-    } else {
-      assert.equal((await run.done).code,1);
-      assert.equal(diagnostics(run)[0].event,'startup_failed');
-    }
+    // C30 also requires an independent bounded storage probe. A hostile child
+    // with valid process health alone must no longer satisfy startup readiness.
+    assert.equal((await run.done).code,1);
+    assert.equal(diagnostics(run)[0].event,'startup_failed');
   }
 });
 

@@ -265,11 +265,11 @@
     {
       "id": "N30",
       "kind": "engineering-release",
-      "description": "On a clean supported Linux host, git clone -> npm run setup -> npm start completes this project's full reference workflow, negative cases, restart and restore with verified C01-C30 evidence. This is the first locally usable supported product.",
+      "description": "On a clean supported Linux host, git clone -> npm run setup -> npm start completes this project's full reference workflow, negative cases, restart and restore with verified C01-C30 evidence. This is the first locally usable supported product. Owner-approved profile: single operator, existing CLI plus local viewer; immutable snapshot replay/conflict and new-store restore, explicit caller freshness. No latest-release authority, automatic expiry or multi-user authorization claim.",
       "mandatory": true,
       "planned_commit": "C30",
       "evidence_path": "docs/evidence/C30.json",
-      "status": "unimplemented"
+      "status": "implemented"
     },
     {
       "id": "N31",

@@ -75,3 +75,7 @@ config fields. Before C30 can claim full local usability, it must integrate and
 probe the actual authoritative store and any selected required providers, then
 prove the reference workflow, restart and restore. Private/multi-user admission
 and release publication remain separate gates.
+
+## C30 approved local snapshot composition
+
+The current CLI snapshot workflow, full file/signature verification, real storage readiness and safe backup/restore are described in [C30 local workflow](../docs/engineering/C30_LOCAL_WORKFLOW.md). The earlier C03/C20/C29 sections above retain their historical capability boundaries. Full C30 status is determined by source-bound evidence, not these instructions.

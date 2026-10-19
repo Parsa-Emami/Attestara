@@ -118,3 +118,24 @@ func GeneratePassport(parent context.Context, input contracts.Input, result cont
 	passport.ReportDigest = "sha256:" + hex.EncodeToString(digest[:])
 	return passport, nil
 }
+
+// MatchesInput compares an already validated passport with a validated manifest,
+// including the existing public metadata redaction. It does not verify a policy.
+func MatchesInput(p Passport, input contracts.Input) bool {
+	if p.SubjectDigest != input.SubjectDigest || p.EvidenceDigest != input.EvidenceDigest || p.PolicyDigest != input.PolicyDigest || p.ReleaseID != redactPublicText(input.ReleaseID) || p.SourceRevision != redactPublicText(input.SourceRevision) {
+		return false
+	}
+	for _, ref := range p.EvidenceReferences {
+		found := false
+		for _, f := range input.Files {
+			if ref.Path == f.Path && ref.Digest == f.Digest && ref.Digest == input.EvidenceDigest {
+				found = true
+				break
+			}
+		}
+		if !found {
+			return false
+		}
+	}
+	return true
+}

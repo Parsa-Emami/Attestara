@@ -11,7 +11,7 @@ npm run setup
 npm start
 ```
 
-Open http://127.0.0.1:4173. Setup installs the committed web lockfile with lifecycle scripts disabled, stops on errors, builds the workspace and prepares the real Go executable. The unified launcher displays actual engine process health/version. No database, cloud account or domain is required. The workspace previews JSON structure, browses the roadmap and opens a local C19 passport at `#passport`. The viewer renders unverified claims from a browser-selected file without uploading it; it does not check the passport digest, referenced bytes or signer trust. The full domain product remains pending.
+Open http://127.0.0.1:4173. Setup installs the committed web lockfile with lifecycle scripts disabled, stops on errors, builds the workspace and prepares the real Go executable. The unified launcher displays actual engine process health/version. No database, cloud account or domain is required. The workspace previews JSON structure, browses the roadmap and opens a local C19 passport at `#passport`. The viewer renders unverified claims from a browser-selected file without uploading it; it does not check the passport digest, referenced bytes or signer trust. The approved single-operator CLI snapshot workflow is documented in C30_LOCAL_WORKFLOW.md; current acceptance status and limitations live in docs/evidence/C30.json.
 
 `npm run setup -- --check` checks the pinned npm version and shows preparation without changing files. Setup also refuses an npm version other than `package.json`'s `packageManager` pin. `--skip-install` builds using already installed dependencies. `npm run doctor` reports actual web/core state. `npm run release:check` deliberately exits 2 until full evidence is ready. Ctrl+C stops the web server and Go child. Ports can be selected with `npm start -- --port 4301` when running multiple projects.
 
@@ -35,3 +35,9 @@ npm run doctor
 ```
 
 The current test:clone performs a real local Git clone of the staged/committed source, runs setup and verifies unified web/engine process health and disabled domain admission. C30 must extend it to the full tests/scenarios/clone-to-value.json workflow and complete domain/storage/provider readiness. Current shell checks cannot certify domain functionality. See each C task for future engine commands and prerequisites. Optional hosting/package operations remain in WEB_RUNBOOK.md.
+
+## C30 approved local snapshot composition
+
+The current CLI snapshot workflow, full file/signature verification, real storage readiness and safe backup/restore are described in [C30 local workflow](C30_LOCAL_WORKFLOW.md). The earlier C03/C20/C29 sections above retain their historical capability boundaries. Full C30 status is determined by source-bound evidence, not these instructions.
+
+C30 test-only prerequisite: bubblewrap; a fresh Playwright browser download or explicit system browser via `WEB_TEST_CHROMIUM`. These are acceptance-test tools, not required to run the CLI or local viewer.

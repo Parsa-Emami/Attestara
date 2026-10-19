@@ -25,5 +25,15 @@
     { "id": "signed-untrusted", "action": "Inspect a signed passport without a trusted signer", "fixture_refs": ["negative", "expected"], "expected_state": "signed and trusted remain distinct states", "expected_result": "Signature presence alone is unverified; trusted requires valid signature and trusted signer", "on_error": "Never infer signer trust from signature presence", "outcome_ref": "signed-untrusted" },
     { "id": "viewer-parity", "action": "Compare offline verifier and viewer policy results", "fixture_refs": ["positive", "expected"], "expected_state": "both present the same policy decision for the same passport", "expected_result": "Viewer and offline verifier agree on the policy result", "on_error": "Report a mismatch rather than silently choosing one result", "outcome_ref": "viewer-parity" },
     { "id": "restart-restore", "action": "Restart the local service and restore the accepted portable result", "fixture_refs": ["positive", "expected"], "expected_state": "subject and passport identity survive restart and restore", "expected_result": "Restored passport retains the same subject digest and policy result", "on_error": "Reject missing or corrupted restored evidence", "outcome_ref": "restart-restore" }
-  ]
+  ],
+  "execution": {
+    "version": 1,
+    "profile": "local-cli-snapshots",
+    "harness": "scripts/clone-workflow.mjs",
+    "browser_test": "tests/browser/clone-to-value.spec.ts",
+    "fixture_directory": "tests/fixtures/attestara/C30",
+    "freshness": "explicit operator classification",
+    "authority": "immutable C05 operation; no latest-release authority",
+    "evidence": "docs/evidence/C30.json"
+  }
 }
