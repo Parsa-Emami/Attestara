@@ -25,7 +25,7 @@ async function choose(page: Page, bytes: Buffer) {
   await tabTo(page, input);
   await expect(page.locator('.file-button')).toHaveCSS('outline-style', 'solid');
   const chooser = page.waitForEvent('filechooser');
-  await page.keyboard.press('Enter');
+  await page.keyboard.press('Space');
   await (await chooser).setFiles({ name: 'c33-passport.json', mimeType: 'application/json', buffer: bytes });
 }
 

@@ -3,7 +3,7 @@
   "task": "C33",
   "base_commit": "9520e0871c4836cbd5d8dfe6aec65a1a5aa0cf88",
   "worktree_committed": false,
-  "final_source_identity": "sha256:dcf757d43e648a5bea601f01eabb16b58463038a74f22b8943d44ec0167c7d03",
+  "final_source_identity": "sha256:4e7e77a721315bcec5ac97fdf0a9819070938afbdd725bba1848761bd54abf4d",
   "source_identity_scope": "606 tracked/nonignored source/test/config/lock/documentation files; excludes docs/evidence/, plans/progress.json, plans/requirements.json, plans/project-state.json, docs/agents/SESSION_HANDOFF.json, apps/web/src/generated/project.json and SHA256SUMS.txt.",
   "changed_paths": [
     "apps/web/src/generated/project.json",
@@ -39,7 +39,7 @@
     "tests/fixtures/attestara/C33/cases.json",
     "tests/fixtures/attestara/C33/provenance.json"
   ],
-  "verification": "C33 verified: 25 browser tests (7 C33), 44 Node tests, 118 top-level Go tests with real pinned OPA/no skips, 6 Python engineering tests; clone/restart/restore, package reproducibility/installed workflow, typecheck/build/vet, audit, repository/plan/diff checks passed. See docs/evidence/C33.json and ux.json.",
+  "verification": "C33 verified: 25 browser tests (7 C33), with 35 repeated C33 cases after CI follow-up; 44 Node tests, 118 top-level Go tests with real pinned OPA/no skips, 6 Python engineering tests; clone/restart/restore, package reproducibility/installed workflow, typecheck/build/vet, audit, repository/plan/diff checks passed. See docs/evidence/C33.json and ux.json.",
   "current_core_ready": true,
   "verified_profile": "local-cli-snapshots",
   "remaining_limits": [

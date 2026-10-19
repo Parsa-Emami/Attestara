@@ -6,7 +6,7 @@
   "base_commit": "9520e0871c4836cbd5d8dfe6aec65a1a5aa0cf88",
   "worktree_committed": false,
   "approved_scope": "Owner-approved C30 profile and existing v1 N-1 formats: real CLI/browser workflow at 360/1440px, native keyboard file chooser/clear/cancel, semantic evidence table, explicit invalid/empty/outage states, inert text, no upload, replay/conflict and new-store restore. Fixed skip link route loss. All local Go/real OPA, Node/browser, clone/package and CI-equivalent checks passed; no installed-version upgrade or remote CI claim.",
-  "source_identity": "sha256:dcf757d43e648a5bea601f01eabb16b58463038a74f22b8943d44ec0167c7d03",
+  "source_identity": "sha256:4e7e77a721315bcec5ac97fdf0a9819070938afbdd725bba1848761bd54abf4d",
   "source_identity_method": "SHA-256 of sorted UTF-8 relative path + NUL + raw per-file SHA-256 + newline records.",
   "source_identity_scope": "606 tracked/nonignored source/test/config/lock/documentation files; excludes docs/evidence/, plans/progress.json, plans/requirements.json, plans/project-state.json, docs/agents/SESSION_HANDOFF.json, apps/web/src/generated/project.json and SHA256SUMS.txt.",
   "tools": {
@@ -93,12 +93,12 @@
         "test:browser"
       ],
       "exit_code": 0,
-      "elapsed_seconds": 6.298,
-      "source_identity": "sha256:dcf757d43e648a5bea601f01eabb16b58463038a74f22b8943d44ec0167c7d03",
+      "elapsed_seconds": 6.591,
+      "source_identity": "sha256:4e7e77a721315bcec5ac97fdf0a9819070938afbdd725bba1848761bd54abf4d",
       "source_files": 606,
       "source_unchanged": true,
       "output_path": "docs/evidence/C33-browser.log",
-      "output_sha256": "sha256:095789ca97779d27a1bc429c93b64000894e3fa247d44448fd8f58a49b866f33"
+      "output_sha256": "sha256:176eb9a9792fd149b0b2b68847915ce649527867e64cc701abea3d766607e062"
     },
     {
       "command": [
@@ -326,7 +326,9 @@
       "total": 25,
       "c33": 7,
       "failed": 0,
-      "log": "docs/evidence/C33-browser.log"
+      "log": "docs/evidence/C33-browser.log",
+      "repeat_c33_runs": 35,
+      "followup": "Keyboard file chooser activation uses Space on focused native file inputs; Enter remains on Clear/Cancel buttons."
     },
     "node": {
       "passed": 44,
@@ -424,5 +426,12 @@
     "original_index_unchanged": true
   },
   "ux_sha256": "sha256:1b39f1d437799df05dcba54761ac51d1146917237feb024b271c4e9128eab96d",
-  "metadata_finalization": "After all runtime checks passed, updated C33 evidence/progress/requirements/handoff and regenerated web status. Re-ran npm check/build, plan/repository checks and web packaging; source identity excludes these declared metadata files. Clone/package candidate identities remain in their logs."
+  "metadata_finalization": "After all runtime checks passed, updated C33 evidence/progress/requirements/handoff and regenerated web status. Re-ran npm check/build, plan/repository checks and web packaging; source identity excludes these declared metadata files. Clone/package candidate identities remain in their logs.",
+  "test_harness_followup": {
+    "cause": "CI Chromium did not emit filechooser when Enter was pressed on the focused native file input.",
+    "change": "Use Space, the native file-input keyboard activation key, while retaining the Tab/focus/outline assertions.",
+    "verification": "npm run test:browser passed 25 tests; C33 cases repeated 5 times (35 passed).",
+    "log_sha256": "sha256:176eb9a9792fd149b0b2b68847915ce649527867e64cc701abea3d766607e062"
+  },
+  "updated_source_identity_scope_note": "Source identity advanced after the C33 runner failure follow-up; prior successful non-browser command records retain the source identity they actually tested."
 }
