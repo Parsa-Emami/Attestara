@@ -1,0 +1,24 @@
+
+> @parsa-emami/attestara-web@0.0.1 setup
+> node scripts/oss-bootstrap.mjs setup --check
+
+{
+  "executed": false,
+  "steps": [
+    [
+      "ci",
+      "--ignore-scripts",
+      "--no-fund"
+    ],
+    [
+      "run",
+      "build"
+    ]
+  ],
+  "npm": "11.9.0",
+  "go": "1.27.2",
+  "engineBuild": "go build -mod=readonly -trimpath ./cmd/attestara",
+  "engineReady": false,
+  "start": "npm start",
+  "note": "Full product usability requires the C30 workflow; complete OSS v1 requires C40."
+}

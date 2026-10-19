@@ -294,10 +294,12 @@
     },
     {
       "id": "C33",
-      "status": "planned",
-      "evidence": [],
-      "source_identity": null,
-      "notes": ""
+      "status": "verified",
+      "evidence": [
+        "docs/evidence/C33.json"
+      ],
+      "source_identity": "sha256:dcf757d43e648a5bea601f01eabb16b58463038a74f22b8943d44ec0167c7d03",
+      "notes": "Owner-approved C30 profile and existing v1 N-1 formats: real CLI/browser workflow at 360/1440px, native keyboard file chooser/clear/cancel, semantic evidence table, explicit invalid/empty/outage states, inert text, no upload, replay/conflict and new-store restore. Fixed skip link route loss. All local Go/real OPA, Node/browser, clone/package and CI-equivalent checks passed; no installed-version upgrade or remote CI claim."
     },
     {
       "id": "C34",

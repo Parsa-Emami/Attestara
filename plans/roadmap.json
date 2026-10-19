@@ -3196,7 +3196,7 @@
       },
       "negative_cases": [
         "One modified byte, missing evidence or a wrong/untrusted signer must not produce trusted success.",
-        "An expired/stale/replayed revision cannot replace the last valid accepted authority.",
+        "Explicit stale evidence yields unknown; identical immutable operations replay unchanged and changed content/freshness conflicts. No automatic expiry, release ordering or latest-release authority is claimed.",
         "No user source execution"
       ],
       "implementation_steps": [

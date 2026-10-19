@@ -1,0 +1,194 @@
+
+> @parsa-emami/attestara-web@0.0.1 test:package
+> node scripts/test-package.mjs
+
+VALIDATION PASSED
+Checked 221 JSON files and repository contract invariants.
+test_action_and_source_updates_keep_old_proofs_bound_to_their_real_tree (test_ci_source.CiSourceTest.test_action_and_source_updates_keep_old_proofs_bound_to_their_real_tree) ... ok
+test_corrupted_recorded_manifest_cannot_be_relabelled_as_history (test_ci_source.CiSourceTest.test_corrupted_recorded_manifest_cannot_be_relabelled_as_history) ... ok
+test_dirty_workflow_is_rejected_even_if_old_evidence_is_valid (test_ci_source.CiSourceTest.test_dirty_workflow_is_rejected_even_if_old_evidence_is_valid) ... ok
+test_forged_evidence_identity_is_rejected (test_ci_source.CiSourceTest.test_forged_evidence_identity_is_rejected) ... ok
+test_shallow_history_fails_with_an_actionable_message (test_ci_source.CiSourceTest.test_shallow_history_fails_with_an_actionable_message) ... ok
+test_untracked_source_is_not_silently_omitted (test_ci_source.CiSourceTest.test_untracked_source_is_not_silently_omitted) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.309s
+
+OK
+{"schema_version": 1, "passed": true, "scope": "Source integrity only; runtime results belong to this commit's CI jobs", "commit": "93d66a5f4cc0741e52854a5fb9d3834eaff7df56", "git_tree": "de5bccc9cb19a1d6b9da3e11d2af5c3cdaccdca6", "current_source_identity": "sha256:cc511cbad112f14b3d69b82fca6867cb6cb20094381446cb1a626b707838940b", "historical_manifest": {"commit": "67c5dbe0e628aca34c6703ffd66a0a82d31f093e", "verified_files": 291}, "historical_evidence": {"commit": "0717cbc89c456dc3f62d2cb01800512e95a74324", "source_identity": "sha256:4a72515c25cd45938e9a2d3c31aa8cad03a23c53d9fb83ddc2e1461c5c80f92c"}, "runtime_tests_certified": false, "core_tasks_certified": []}
+Package requires a clean source snapshot
+node:internal/modules/cjs/loader:1520
+  throw err;
+  ^
+
+Error: Cannot find module '/nonexistent/npm'
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1517:15)
+    at wrapResolveFilename (node:internal/modules/cjs/loader:1071:27)
+    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1095:10)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1122:12)
+    at Module._load (node:internal/modules/cjs/loader:1294:5)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)
+    at node:internal/main/run_main_module:33:47 {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: []
+}
+
+Node.js v24.19.0
+Command failed: /home/amirreza/.nvm/versions/node/v24.19.0/bin/node /nonexistent/npm --version
+node:internal/modules/cjs/loader:1520
+  throw err;
+  ^
+
+Error: Cannot find module '/nonexistent/npm'
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1517:15)
+    at wrapResolveFilename (node:internal/modules/cjs/loader:1071:27)
+    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1095:10)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1122:12)
+    at Module._load (node:internal/modules/cjs/loader:1294:5)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)
+    at node:internal/main/run_main_module:33:47 {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: []
+}
+
+Node.js v24.19.0
+
+ENOENT: no such file or directory, realpath '/tmp/attestara-c31-gYcNPh/missing-license/docs/engineering/resources/go-LICENSE.txt'
+
+> @parsa-emami/attestara-web@0.0.1 package
+> bash scripts/package.sh
+
+
+added 28 packages in 617ms
+
+> @parsa-emami/attestara-web@0.0.1 build
+> npm run prepare:web && npm run typecheck && vite build --config apps/web/vite.config.ts
+
+
+> @parsa-emami/attestara-web@0.0.1 prepare:web
+> node scripts/generate-web-data.mjs
+
+
+> @parsa-emami/attestara-web@0.0.1 typecheck
+> tsc -p tsconfig.json
+
+vite v8.3.4 building client environment for production...
+transforming...
+✓ 20 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/web/index.html                   0.79 kB │ gzip:  0.46 kB
+dist/web/assets/index-CiHsYJnA.css    5.05 kB │ gzip:  1.81 kB
+dist/web/assets/index-CHZl3ddU.js   249.36 kB │ gzip: 77.90 kB
+
+✓ built in 124ms
+Complete unsigned local-profile artifacts: /tmp/attestara-c31-gYcNPh/first/dist/packages/93d66a5f4cc0741e52854a5fb9d3834eaff7df56
+
+> @parsa-emami/attestara-web@0.0.1 package
+> bash scripts/package.sh
+
+
+added 28 packages in 621ms
+
+> @parsa-emami/attestara-web@0.0.1 build
+> npm run prepare:web && npm run typecheck && vite build --config apps/web/vite.config.ts
+
+
+> @parsa-emami/attestara-web@0.0.1 prepare:web
+> node scripts/generate-web-data.mjs
+
+
+> @parsa-emami/attestara-web@0.0.1 typecheck
+> tsc -p tsconfig.json
+
+vite v8.3.4 building client environment for production...
+transforming...
+✓ 20 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/web/index.html                   0.79 kB │ gzip:  0.46 kB
+dist/web/assets/index-CiHsYJnA.css    5.05 kB │ gzip:  1.81 kB
+dist/web/assets/index-CHZl3ddU.js   249.36 kB │ gzip: 77.90 kB
+
+✓ built in 118ms
+Complete unsigned local-profile artifacts: /tmp/attestara-c31-gYcNPh/different-path/dist/packages/93d66a5f4cc0741e52854a5fb9d3834eaff7df56
+Release destination exists
+
+> @parsa-emami/attestara-web@0.0.1 package
+> bash scripts/package.sh
+
+
+added 28 packages in 614ms
+
+> @parsa-emami/attestara-web@0.0.1 build
+> npm run prepare:web && npm run typecheck && vite build --config apps/web/vite.config.ts
+
+
+> @parsa-emami/attestara-web@0.0.1 prepare:web
+> node scripts/generate-web-data.mjs
+
+
+> @parsa-emami/attestara-web@0.0.1 typecheck
+> tsc -p tsconfig.json
+
+vite v8.3.4 building client environment for production...
+transforming...
+✓ 20 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/web/index.html                   0.79 kB │ gzip:  0.46 kB
+dist/web/assets/index-CiHsYJnA.css    5.05 kB │ gzip:  1.81 kB
+dist/web/assets/index-CHZl3ddU.js   249.36 kB │ gzip: 77.90 kB
+
+✓ built in 125ms
+Complete unsigned local-profile artifacts: /tmp/attestara-c31-gYcNPh/rebuild-source/dist/packages/93d66a5f4cc0741e52854a5fb9d3834eaff7df56
+Release checksum mismatch: .agents/skills/no-ai-slop/LICENSE
+Packaged browser: 153.0.8010.52
+{
+  "passed": true,
+  "candidateCommit": "93d66a5f4cc0741e52854a5fb9d3834eaff7df56",
+  "candidateTree": "de5bccc9cb19a1d6b9da3e11d2af5c3cdaccdca6",
+  "artifacts": "/home/amirreza/Desktop/Projects/Attestara/dist/packages/93d66a5f4cc0741e52854a5fb9d3834eaff7df56",
+  "checks": [
+    "actual contracts CI validators, engineering regressions and exact-checkout source integrity passed in clean candidate",
+    "dirty source and incompatible/missing tool rejected",
+    "clean source with a missing locked Go license is rejected before packaging",
+    "real SIGKILL before publication exposes no partial release",
+    "two independently installed/built paths reproduce every output byte",
+    "source archive without Git rebuilds byte-identical artifacts",
+    "distributed source tampering rejected; exclusions explicit",
+    "shell-like evidence remains inert in actual packaged engine",
+    "packaged CLI/full C30 negative workflow, service restart, restore and real browser parity without npm/Go on PATH"
+  ],
+  "files": [
+    {
+      "path": "SHA256SUMS.txt",
+      "sha256": "128a0fbf06ebd7d097de7dcf3d204ba79f08f0451064308f17545b4656366731",
+      "mode": 420
+    },
+    {
+      "path": "attestara-93d66a5f4cc0741e52854a5fb9d3834eaff7df56-linux-x64.tar.gz",
+      "sha256": "81a006fbbd89e490920688fa7bfb0ccaebc540c0dae18a949e24d477a2e14c7f",
+      "mode": 420
+    },
+    {
+      "path": "attestara-93d66a5f4cc0741e52854a5fb9d3834eaff7df56-source.tar.gz",
+      "sha256": "f82192395cdcca08ba2f03ce0a9e96f098c5bc6c9322ac6be2c984a09e488d6b",
+      "mode": 420
+    },
+    {
+      "path": "release.json",
+      "sha256": "c64b63a4829c0886bcb24dd8a8dbf94243d5218e1bbfe8f7ce6424c574e78e3b",
+      "mode": 420
+    },
+    {
+      "path": "sbom.cdx.json",
+      "sha256": "ed8c6260c88b3b26b82384544fac95a4390f25eb92be2cd4246b019e74baba03",
+      "mode": 420
+    }
+  ],
+  "publication": "local unsigned artifacts only",
+  "testEnvironment": "three fresh source/build paths on this Linux host; not independent-host C36 evidence"
+}

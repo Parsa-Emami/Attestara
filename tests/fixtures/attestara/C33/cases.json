@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "widths": [
+    360,
+    1440
+  ],
+  "profile": "local-cli-snapshots",
+  "baseline": {
+    "passport": "C21 version-1 fixture",
+    "archive": "C09 version-1 ZIP fixture",
+    "snapshot": "C30/C05 current version-1 immutable backup and new-store restore; format compatibility, not an installed-version upgrade"
+  },
+  "stale_decision": "unknown",
+  "viewer_assessment": "Viewer assessment: Unverified",
+  "invalid": [
+    {
+      "id": "empty",
+      "text": "",
+      "error": "Passport file is empty."
+    },
+    {
+      "id": "malformed",
+      "text": "{",
+      "error": "Choose a valid JSON document."
+    }
+  ],
+  "html_sentinel": "<img src=\"https://example.invalid/c33\" onerror=\"window.__c33Injected=true\">"
+}

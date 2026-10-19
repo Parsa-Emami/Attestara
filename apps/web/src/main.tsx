@@ -53,7 +53,7 @@ function App({ config }: { config: Runtime }) {
   }
   const tasks = project.tasks.filter(task => (stage === 'all' || task.stage === stage) && `${task.id} ${task.title}`.toLowerCase().includes(query.toLowerCase()));
   return <div className="app" style={{ '--accent': project.accent } as React.CSSProperties}>
-    <a className="skip" href="#content">Skip to content</a>
+    <a className="skip" href="#content" onClick={event => { event.preventDefault(); document.getElementById('content')?.focus(); }}>Skip to content</a>
     <header><a className="brand" href="#workspace"><span className="mark" aria-hidden="true">{project.name.slice(0, 1)}</span>{project.name}</a><nav aria-label="Main"><a href="#workspace" aria-current={page === 'workspace' ? 'page' : undefined}>Workspace</a><a href="#passport" aria-current={page === 'passport' ? 'page' : undefined}>Passport</a><a href="#roadmap" aria-current={page === 'roadmap' ? 'page' : undefined}>Roadmap</a></nav><span className="badge">Foundation · 0.0.1</span></header>
     <main id="content" tabIndex={-1}>
       <div className="eyebrow">{project.mode.replaceAll('-', ' ')} · browser workspace</div>

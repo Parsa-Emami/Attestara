@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "license": "Apache-2.0",
+  "origin": "repository-authored synthetic fixtures; existing bytes reused by path",
+  "files": {
+    "tests/fixtures/attestara/C21/positive.json": "sha256:2b141585ef223d12056d644c22dd936e18867aa64696a0ca27273fbd6d7ac3d0",
+    "tests/fixtures/attestara/C09/positive.zip": "sha256:fd84aad1ad63c28fa79a0ddb079136e938cdd70e3352d665d0e03132009126b6",
+    "tests/fixtures/attestara/C30/provenance.json": "sha256:c93d01a86c8c51caff561fea4aabc9492107ff916a22e3bde6cf5d7c8893ddbc",
+    "tests/fixtures/attestara/C33/cases.json": "sha256:aeb08173928a188db83c2def1591bfe69c4b67cefb825fb53be7831cc63d4a4d",
+    "tests/fixtures/attestara/C33/README.md": "sha256:416c0e360976a0d4615b0948c7eb8db8adf3ba0ebf646fa5bf7d00da8959922d"
+  }
+}
