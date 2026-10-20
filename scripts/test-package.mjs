@@ -9,6 +9,7 @@ import { createServer } from 'node:net';
 import { chromium } from '@playwright/test';
 import { runWorkflow, restoreWorkflow, engineCommand } from './clone-workflow.mjs';
 import { inventory, sha256, publish, verifyInventory } from './package-release.mjs';
+import { runUpgradeRecovery } from '../tests/release/upgrade-recovery.mjs';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
 const npm = process.env.npm_execpath;
@@ -16,7 +17,7 @@ assert.ok(npm, 'Invoke through pinned npm run test:package');
 const run = (command, args, cwd, options = {}) => (execFileSync(command, args, { cwd, encoding: 'utf8', maxBuffer: 16 * 1024 * 1024, timeout: 600000, ...options }) ?? '').trim();
 const temporary = await mkdtemp(join(tmpdir(), 'attestara-c31-'));
 const checks = [];
-let service;
+let service, releaseVerification;
 async function stop() {
   if (!service) return;
   const child = service; service = undefined;
@@ -153,6 +154,9 @@ try {
     await page.getByText('Viewer assessment: Unverified').waitFor();
     assert.deepEqual(writes, []);
     console.log('Packaged browser: ' + browser.version());
+    await stop();
+    releaseVerification = await runUpgradeRecovery({ root, work: join(temporary, 'upgrade'), candidateArtifacts: output, candidateCommit: commit, runtime, start, stop, browser });
+    checks.push('C35 real signed artifact verification and installed C34 -> candidate -> C34 upgrade/rollback preserve newer accepted data');
   } finally { await browser.close(); }
   await stop();
   checks.push('packaged CLI/full C30 negative workflow, service restart, restore and real browser parity without npm/Go on PATH');
@@ -163,6 +167,8 @@ try {
     const retained = await mkdtemp(join(artifacts, '.tested-')); await cp(output, retained, { recursive: true }); await publish(retained, target);
   }
   await verifyInventory(target, files);
+  const proofDirectory = join(root, 'dist/release-verification'); await mkdir(proofDirectory, { recursive: true });
+  await writeFile(join(proofDirectory, commit + '.json'), JSON.stringify(releaseVerification, null, 2) + '\n');
   console.log(JSON.stringify({ passed: true, candidateCommit: commit, candidateTree: tree, artifacts: target, checks, files, publication: 'local unsigned artifacts only', testEnvironment: 'three fresh source/build paths on this Linux host; not independent-host C36 evidence' }, null, 2));
 } catch (error) { console.error('C31 integration failure:', error); throw error; }
 finally { await stop().catch(error => console.error('C31 cleanup:', error.message)); await rm(temporary, { recursive: true, force: true }); }

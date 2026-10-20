@@ -1,0 +1,8 @@
+{
+  "license": "Apache-2.0",
+  "provenance": "Repository-authored synthetic metadata; actual C34 baseline and candidate artifacts are built by the package harness. Ephemeral test keys are never maintainer identities.",
+  "files": {
+    "README.md": "sha256:06e906675cd9b0a6cd39ba8698d9d19ddf2c40fb2399f6493b15dbb647e49556",
+    "cases.json": "sha256:ed98fdbbeb870e89152983ccf12b10337768ec5865366c928ae9c381e918265e"
+  }
+}

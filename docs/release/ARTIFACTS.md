@@ -1,4 +1,4 @@
-# Complete local artifacts (C31)
+# Complete local artifacts (C31/C35)
 
 The supported artifact is Linux x86_64, one local OS operator, profile
 `local-cli-snapshots`. It includes the real Go engine, built web UI, offline
@@ -44,7 +44,8 @@ before manual cleanup. No accepted application store is read or copied by packag
 
 ## Run the binary distribution
 
-Obtain the expected checksum manifest through a trusted channel, then:
+First follow the detached-signature verification procedure below using a reviewed
+copy of the verifier and independently established trust/expected source. Then:
 
 ```sh
 cd dist/packages/<full-source-commit>
@@ -88,8 +89,109 @@ then executes the packaged workflow, restart, restore and browser parity.
 
 Checksums detect accidental modification against a separately trusted expected
 manifest; neither checksums nor this unsigned provenance authenticate a publisher.
-Independent release signatures/upgrade proof belong to C35; publication requires
-C40 authorization. No artifact here is a published OSS v1 claim.
+The C35 verifier authenticates a detached signature over the checksum manifest,
+using independently configured trust. The package command itself remains unsigned.
+Publication and a maintainer-controlled release identity require C40 authorization.
+No artifact here is a published OSS v1 claim.
+
+## Verify a detached release signature (C35)
+
+Use `scripts/verify-release.mjs` from a previously reviewed source checkout, before
+extracting or executing the download. Running the verifier from an unverified
+archive cannot bootstrap trust. It uses only the pinned Node runtime and its
+built-in crypto/filesystem APIs; no network service or Go/npm runtime is needed.
+
+Obtain the expected full source commit and signer/public-key mapping through an
+independently trusted channel. Do not copy trust from the download or assume its
+embedded candidate key is trusted. The existing version-1 trust format is:
+
+```json
+{"schema_version":"1","trusted_signers":{"independently-established-signer":"64_HEX_CHARACTERS_FROM_AN_INDEPENDENT_CHANNEL"}}
+```
+
+The detached descriptor uses the existing C30 fields `schema_version: "1"`,
+`signer_id`, `public_key_hex` (32-byte Ed25519 key) and `signature_hex` (64 bytes).
+It signs the **exact bytes of the top-level SHA256SUMS.txt**, not reserialized JSON
+or just release.json. All four C31 outputs must be listed exactly once and match:
+the Linux runtime archive, source archive, SBOM and release metadata. Extra,
+duplicate or unsafe checksum entries fail. Artifact files are read as regular
+files without following symlinks, with streaming SHA-256 and a 1 GiB per-artifact
+limit. The checksum/signature files are capped at 16 KiB and trust/release metadata
+at 64 KiB. The supported metadata profile is `linux-x64`/`local-cli-snapshots`.
+
+```sh
+node /absolute/reviewed-source/scripts/verify-release.mjs --directory /absolute/download-directory --signature /absolute/release-signature.json --trust /absolute/independent-trust.json --expected-source-commit EXPECTED_FULL_SOURCE_COMMIT --freshness fresh
+```
+
+From a reviewed checkout, `npm run verify:release --` accepts the same arguments.
+The JSON assessment keeps `file_integrity`, `cryptographic_valid`, `signer_trusted`,
+`expected_source_match`, `freshness` and `release_trusted` separate. Exit 0 requires
+all checks and explicit fresh classification. Exit 1 means unsigned, untrusted or
+stale; 2 means invalid/missing/modified input or a different expected source;
+3 means verification was operationally unavailable. Never install on a nonzero
+exit. The optional absence of `--signature` cannot produce trusted success.
+
+`fresh` is the operator's classification, not a clock-based expiry guarantee.
+Once the operator expects a newer commit, an older signed package fails that
+expectation. Rechecking an explicitly selected package is stateless. There is no
+automatic latest-version discovery, persistent anti-replay authority or implicit
+trust-on-first-use. A rollback explicitly selects the compatible earlier software;
+it never restores older data over the current store. Verification is a point-in-time
+assessment: keep download/install directories private and unchanged through use.
+
+### Creating the detached descriptor
+
+Signing happens separately, after the reproducible package has been completed.
+An operator who already controls a reviewed Ed25519 PKCS#8 private key can use the
+following recipe. Keep that key outside source/artifacts and establish its public
+identity independently; the recipe does not enroll trust or select a production key.
+
+```sh
+node --input-type=module - /absolute/download-directory/SHA256SUMS.txt /private/ed25519-key.pem /absolute/new-signature.json independently-established-signer <<'NODE'
+import { readFile, writeFile } from 'node:fs/promises';
+import { createPrivateKey, createPublicKey, sign } from 'node:crypto';
+const [checksums, privatePath, output, signer] = process.argv.slice(2);
+const key = createPrivateKey(await readFile(privatePath));
+if (key.asymmetricKeyType !== 'ed25519') throw new Error('Ed25519 key required');
+const publicKey = createPublicKey(key).export({ format: 'jwk' });
+const descriptor = { schema_version: '1', signer_id: signer,
+  public_key_hex: Buffer.from(publicKey.x, 'base64url').toString('hex'),
+  signature_hex: sign(null, await readFile(checksums), key).toString('hex') };
+await writeFile(output, JSON.stringify(descriptor, null, 2) + '\n', { flag: 'wx' });
+NODE
+```
+
+C35 tests generate ephemeral keys in memory. Those signatures demonstrate the
+real mechanism on locally built artifacts; they are not the maintainer's identity
+and are never a production trust root. Real publication remains C40.
+
+## Upgrade and roll back without replacing accepted data
+
+Keep releases in separate new directories and the private store outside them.
+Before switching, export each operation you need to back up using the existing
+CLI; one export contains one operation, not a whole-store snapshot. Verify the
+new package as above, extract it into an unused directory, and check its internal
+checksums. Leave the current release and store in place on any failure.
+
+Stop the current launcher and start the new installed launcher with the **same
+absolute --store path**. Re-read existing operations with its CLI before accepting
+new ones. The current data formats are unchanged; no migration runs. If the new
+installation is incomplete, continue using the previous complete installation.
+
+For rollback, stop the new launcher and start the compatible earlier installation
+against that same store. Verify both old and newly accepted operation IDs. Never
+extract a release into the store, overwrite it with a backup, delete newer accepted
+objects, or treat an old backup as ordinary software rollback. Existing destinations
+are rejected by restore. Restore exports only into a fresh private directory and
+verify them there. If an earlier reader rejects a newer format, retain the latest
+bytes and compatible reader and repair forward; do not edit the version header.
+
+`npm run test:package` also builds the pinned C34 baseline and installs it alongside
+the candidate, verifies test signatures, writes distinct snapshots, restarts,
+rolls software back and checks byte preservation, restore refusal/new-store recovery,
+unsupported-format refusal and both browser viewers. Public test-key/signature and
+artifact identities are retained under `dist/release-verification/`. See C35 evidence
+for actual results; this same-host test does not certify C36 independent onboarding.
 
 License texts for distributed components accompany `THIRD_PARTY_NOTICES.md` and
 `license-inventory.json`. The Go runtime and schema licenses are retained under

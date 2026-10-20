@@ -1,0 +1,5 @@
+
+> @parsa-emami/attestara-web@0.0.1 verify:release
+> node scripts/verify-release.mjs --directory dist/packages/395c45f173ec7d01c241104ed2aabd6df7f1685d --signature .cache/c35/public-signature.json --trust .cache/c35/public-trust.json --expected-source-commit 395c45f173ec7d01c241104ed2aabd6df7f1685d --freshness fresh
+
+{"schema_version":"1","scope":"release-distribution","file_integrity":"verified","cryptographic_valid":true,"signer_trusted":true,"expected_source_match":true,"freshness":"fresh","release_trusted":true,"source_commit":"395c45f173ec7d01c241104ed2aabd6df7f1685d","checksums_sha256":"2dbee0cb91a217c36a3b69820874aa097cd70b3b6e5e2c431adb219663cff075"}

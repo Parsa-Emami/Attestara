@@ -1,0 +1,15 @@
+{
+  "schema_version": "1",
+  "baseline_commit": "f103087fe933937775f701dbc9170cdfd9ee3a7d",
+  "profile": "local-cli-snapshots",
+  "expected_checks": [
+    "independently configured Ed25519 test identity authenticates exact C31 checksum bytes",
+    "both source-built releases installed in separate directories with an external private store",
+    "newer distinct snapshot survives candidate restart and baseline software rollback with identical stored bytes",
+    "old backup cannot overwrite existing newer store; fresh destinations restore both operations independently",
+    "stale and wrong expected release cannot produce trusted success",
+    "incomplete installation and unsupported store version fail without replacing accepted data",
+    "real candidate and rollback browser display newer passport locally without upload",
+    "user source bytes remain inert"
+  ]
+}

@@ -1,0 +1,596 @@
+{
+  "planning_template": false,
+  "passed": true,
+  "commit_id": "C35",
+  "date": "2026-10-20T07:07:04.146405+00:00",
+  "base_commit": "f103087fe933937775f701dbc9170cdfd9ee3a7d",
+  "worktree_committed": false,
+  "source_identity": "sha256:bc3a3b6a724c0ffff690becc3858ce8c1aec1e9859fbd5d212da70e077ee0092",
+  "source_identity_method": "SHA-256 of sorted UTF-8 relative path + NUL + raw per-file SHA-256 + newline records.",
+  "source_identity_scope": "623 source/config/test/documentation files; excludes docs/evidence/, progress/requirements/project-state/handoff, generated web project JSON and SHA256SUMS.txt.",
+  "runtime_candidate_commit": "395c45f173ec7d01c241104ed2aabd6df7f1685d",
+  "runtime_candidate_tree": "4ba5d64e1ce84e9ac54f1b6d4221519efde6d2d1",
+  "approved_contract": {
+    "signature": "Detached Ed25519 over exact C31 SHA256SUMS.txt; independently enrolled C30 v1 signer/key map.",
+    "authority": "Operator-selected expected full source commit and explicit fresh/stale classification; no persistent latest-release authority.",
+    "signing_custody": "Ephemeral in-memory test key only; official signing and publication deferred to C40.",
+    "upgrade": "Separate immutable software directories, same external C05 store, no data format changes.",
+    "baseline_commit": "f103087fe933937775f701dbc9170cdfd9ee3a7d"
+  },
+  "fixture_license": "Apache-2.0",
+  "fixture_sha256": {
+    "tests/fixtures/attestara/C35/README.md": "sha256:06e906675cd9b0a6cd39ba8698d9d19ddf2c40fb2399f6493b15dbb647e49556",
+    "tests/fixtures/attestara/C35/cases.json": "sha256:ed98fdbbeb870e89152983ccf12b10337768ec5865366c928ae9c381e918265e",
+    "tests/fixtures/attestara/C35/provenance.json": "sha256:2c18268c0bd2832b29d3ff07e5e283dae2b4e1615ac76d070fc4c9e37cbe6efd"
+  },
+  "tools": {
+    "node": {
+      "version": "v24.19.0",
+      "sha256": "sha256:bc17c508ffeed0ec622934f9b7fa72f8e78da65350e63c3eceb56fa688aa5e12"
+    },
+    "npm_cli": {
+      "version": "11.9.0",
+      "sha256": "sha256:8e5f6f3429f8cdbe693cdc29904e9d5a7b127a494bd15c804bd54c7403bfcbe7"
+    },
+    "go": {
+      "version": "go version go1.27.2 linux/amd64",
+      "sha256": "sha256:548d3c32f83fa81152f543eb1526be7884cfe0526eb5e9ce29d3eca14786e7e0"
+    },
+    "opa": {
+      "version": "Version: 1.21.2\nBuild Commit: 3f7474e6b3c631821d8aac25ca444f7e75a56483-dirty\nBuild Timestamp: 2026-10-12T13:42:18Z\nBuild Hostname: \nGo Version: go1.27.2\nPlatform: linux/amd64\nRego Version: v1\nWebAssembly: available",
+      "sha256": "sha256:830ab11f61ffec760b5e19db0d7ad02bf037e13f5ef4d665faeaf17632177527"
+    },
+    "browser": {
+      "version": "Google Chrome 153.0.8010.52 \n[1020/103141.053286:WARNING:chrome/app/chrome_main_linux.cc:84] Read channel stable from /opt/google/chrome/CHROME_VERSION_EXTRA",
+      "sha256": "sha256:0ba9d6c54dbc1a46dfaa5f95d5975bc9b963030c8647880f5b6a537f8af7d2e8"
+    },
+    "nginx": {
+      "version": "nginx version: nginx/1.24.0 (Ubuntu)",
+      "sha256": "sha256:a24def283d640db0bcad3c81b0630a3444b3079f6c50c956c9bd39330eaca544"
+    }
+  },
+  "hardware": {
+    "os": "Linux",
+    "architecture": "x86_64",
+    "kernel": "7.0.0-38-generic",
+    "logical_cpus": 16,
+    "ram_bytes": 32863936512,
+    "free_disk_bytes_at_recording": 130163204096,
+    "scope": "Observed host; no new C28 capacity or independent-host claim."
+  },
+  "commands": [
+    {
+      "command": [
+        "npm",
+        "audit",
+        "--audit-level=high"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.812,
+      "source_identity": "sha256:bc3a3b6a724c0ffff690becc3858ce8c1aec1e9859fbd5d212da70e077ee0092",
+      "source_files": 623,
+      "source_unchanged": true,
+      "output_path": "docs/evidence/C35-audit.log",
+      "output_sha256": "sha256:6d8c5c8f3d7684adb070417bd608d01ae90aa3dc26a65af03ffda4955f38d9a3"
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "test:browser"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 7.837,
+      "source_identity": "sha256:bc3a3b6a724c0ffff690becc3858ce8c1aec1e9859fbd5d212da70e077ee0092",
+      "source_files": 623,
+      "source_unchanged": true,
+      "output_path": "docs/evidence/C35-browser.log",
+      "output_sha256": "sha256:39379b72caad34bd98ad55c67dea70de84e4d2d02138d24e55c28b05204b75d7"
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 3.971,
+      "source_identity": "sha256:bc3a3b6a724c0ffff690becc3858ce8c1aec1e9859fbd5d212da70e077ee0092",
+      "source_files": 623,
+      "source_unchanged": true,
+      "output_path": "docs/evidence/C35-check.log",
+      "output_sha256": "sha256:52de983a449250f32ac9a558b3870821291919e2c676a9218ca68dae88bb10e1"
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "test:clone"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 27.197,
+      "source_identity": "sha256:bc3a3b6a724c0ffff690becc3858ce8c1aec1e9859fbd5d212da70e077ee0092",
+      "source_files": 623,
+      "source_unchanged": true,
+      "output_path": "docs/evidence/C35-clone.log",
+      "output_sha256": "sha256:14e43b74f40a6f9d3ebcdf801dade1ab59aade9d13460090fa974632dc3329a6"
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.023,
+      "source_identity": "sha256:bc3a3b6a724c0ffff690becc3858ce8c1aec1e9859fbd5d212da70e077ee0092",
+      "source_files": 623,
+      "source_unchanged": true,
+      "output_path": "docs/evidence/C35-diff.log",
+      "output_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": [
+        "node",
+        "scripts/verify-engine-tests.mjs"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 1.951,
+      "source_identity": "sha256:bc3a3b6a724c0ffff690becc3858ce8c1aec1e9859fbd5d212da70e077ee0092",
+      "source_files": 623,
+      "source_unchanged": true,
+      "output_path": "docs/evidence/C35-discovery.log",
+      "output_sha256": "sha256:6eee51b54f5cae3068998ef6567c736c293f7f534d6493079fd5e0384284af68"
+    },
+    {
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests/engineering",
+        "-p",
+        "test_*.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.376,
+      "source_identity": "sha256:bc3a3b6a724c0ffff690becc3858ce8c1aec1e9859fbd5d212da70e077ee0092",
+      "source_files": 623,
+      "source_unchanged": true,
+      "output_path": "docs/evidence/C35-engineering.log",
+      "output_sha256": "sha256:48fe8403f5f9e8d0000e0c82b357fe963b6b263e206b8b4877477ae3ca8c7af7"
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "test:browser"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 6.708,
+      "source_identity": "sha256:bc3a3b6a724c0ffff690becc3858ce8c1aec1e9859fbd5d212da70e077ee0092",
+      "source_files": 623,
+      "source_unchanged": true,
+      "output_path": "docs/evidence/C35-final-browser.log",
+      "output_sha256": "sha256:637b1f58b5a8fbbd98c59c48ee11be30157b856fdd23c68da02dad2f56fd75e8"
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 3.763,
+      "source_identity": "sha256:bc3a3b6a724c0ffff690becc3858ce8c1aec1e9859fbd5d212da70e077ee0092",
+      "source_files": 623,
+      "source_unchanged": true,
+      "output_path": "docs/evidence/C35-final-check.log",
+      "output_sha256": "sha256:d173ceb89c56113ebd35e8ebac43e3422f8058d20c1fd2fab5bb12f9cd2c2415"
+    },
+    {
+      "command": [
+        "go",
+        "build",
+        "./..."
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.929,
+      "source_identity": "sha256:bc3a3b6a724c0ffff690becc3858ce8c1aec1e9859fbd5d212da70e077ee0092",
+      "source_files": 623,
+      "source_unchanged": true,
+      "output_path": "docs/evidence/C35-go-build.log",
+      "output_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": [
+        "go",
+        "test",
+        "-count=1",
+        "-v",
+        "./..."
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 6.505,
+      "source_identity": "sha256:bc3a3b6a724c0ffff690becc3858ce8c1aec1e9859fbd5d212da70e077ee0092",
+      "source_files": 623,
+      "source_unchanged": true,
+      "output_path": "docs/evidence/C35-go-test.log",
+      "output_sha256": "sha256:a6de5bbf7253cba55b9107cfb684431cac343e3dc700f770ea9bce913d543714"
+    },
+    {
+      "command": [
+        "go",
+        "vet",
+        "./..."
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.259,
+      "source_identity": "sha256:bc3a3b6a724c0ffff690becc3858ce8c1aec1e9859fbd5d212da70e077ee0092",
+      "source_files": 623,
+      "source_unchanged": true,
+      "output_path": "docs/evidence/C35-go-vet.log",
+      "output_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": [
+        "node",
+        "--test",
+        "tests/ops/user-guide.test.mjs"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.628,
+      "source_identity": "sha256:bc3a3b6a724c0ffff690becc3858ce8c1aec1e9859fbd5d212da70e077ee0092",
+      "source_files": 623,
+      "source_unchanged": true,
+      "output_path": "docs/evidence/C35-guide.log",
+      "output_sha256": "sha256:213b178b84d2749c60d88dcbdf41ae65e08816414e89773e4bf78d1fb241117d"
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "plan",
+        "--",
+        "next"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.158,
+      "source_identity": "sha256:bc3a3b6a724c0ffff690becc3858ce8c1aec1e9859fbd5d212da70e077ee0092",
+      "source_files": 623,
+      "source_unchanged": true,
+      "output_path": "docs/evidence/C35-next.log",
+      "output_sha256": "sha256:e5b1f1b2220861a6577d1206020dc69d9d565833cd75ad3787cdd82775ad914a"
+    },
+    {
+      "command": [
+        "node",
+        "--test",
+        "tests/ops/nginx-local.test.mjs"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.225,
+      "source_identity": "sha256:bc3a3b6a724c0ffff690becc3858ce8c1aec1e9859fbd5d212da70e077ee0092",
+      "source_files": 623,
+      "source_unchanged": true,
+      "output_path": "docs/evidence/C35-nginx.log",
+      "output_sha256": "sha256:f82acacecc0b8a960bd59fe5293609fd3db3a0534a69439486ed37653bc832b5"
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "test:package"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 37.902,
+      "source_identity": "sha256:bc3a3b6a724c0ffff690becc3858ce8c1aec1e9859fbd5d212da70e077ee0092",
+      "source_files": 623,
+      "source_unchanged": true,
+      "output_path": "docs/evidence/C35-package-confirmed.log",
+      "output_sha256": "sha256:c246b42e96d464336d0773371487f72b169a2c8a885f6284b3c56dd5a4789a94"
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "test:package"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 42.198,
+      "source_identity": "sha256:bc3a3b6a724c0ffff690becc3858ce8c1aec1e9859fbd5d212da70e077ee0092",
+      "source_files": 623,
+      "source_unchanged": true,
+      "output_path": "docs/evidence/C35-package.log",
+      "output_sha256": "sha256:ef273228bf81688a50fd312777ac895fd0484037df27a391be16e48432198461"
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "package:web"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.184,
+      "source_identity": "sha256:bc3a3b6a724c0ffff690becc3858ce8c1aec1e9859fbd5d212da70e077ee0092",
+      "source_files": 623,
+      "source_unchanged": true,
+      "output_path": "docs/evidence/C35-package-web.log",
+      "output_sha256": "sha256:2a2abc0f403e4a66401dce8f99b85d62891f2deb69698182911fbfcb85164b5d"
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "setup",
+        "--",
+        "--check"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.202,
+      "source_identity": "sha256:bc3a3b6a724c0ffff690becc3858ce8c1aec1e9859fbd5d212da70e077ee0092",
+      "source_files": 623,
+      "source_unchanged": true,
+      "output_path": "docs/evidence/C35-pins.log",
+      "output_sha256": "sha256:f23d111dec8d6b5e6040bd652f26428ada00ef96e10216b6ef2b26413c915ce9"
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "validate:plan"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.154,
+      "source_identity": "sha256:bc3a3b6a724c0ffff690becc3858ce8c1aec1e9859fbd5d212da70e077ee0092",
+      "source_files": 623,
+      "source_unchanged": true,
+      "output_path": "docs/evidence/C35-plan.log",
+      "output_sha256": "sha256:80bbca2588f2b88e23d684c912d76f77095d0d2e92bc075441ad2bb7eb877446"
+    },
+    {
+      "command": [
+        "python3",
+        "scripts/plan.py",
+        "validate"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.085,
+      "source_identity": "sha256:bc3a3b6a724c0ffff690becc3858ce8c1aec1e9859fbd5d212da70e077ee0092",
+      "source_files": 623,
+      "source_unchanged": true,
+      "output_path": "docs/evidence/C35-python-plan.log",
+      "output_sha256": "sha256:80db941735ead06893f77b7665ee16dc48e94576f81377fc2591985f0778233d"
+    },
+    {
+      "command": [
+        "python3",
+        "scripts/validate_repo.py"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.213,
+      "source_identity": "sha256:bc3a3b6a724c0ffff690becc3858ce8c1aec1e9859fbd5d212da70e077ee0092",
+      "source_files": 623,
+      "source_unchanged": true,
+      "output_path": "docs/evidence/C35-repo.log",
+      "output_sha256": "sha256:d679ea6120327b664a410a594210e38d4d2e7a2dcb386f97c96cbea070586ef7"
+    },
+    {
+      "command": [
+        "node",
+        "scripts/verify-resources.mjs"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.083,
+      "source_identity": "sha256:bc3a3b6a724c0ffff690becc3858ce8c1aec1e9859fbd5d212da70e077ee0092",
+      "source_files": 623,
+      "source_unchanged": true,
+      "output_path": "docs/evidence/C35-resources.log",
+      "output_sha256": "sha256:a33aeb5cdf0e54234d41656e5d6f4348cbd5e03f01ff9dc5f26fd3299a82a641"
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "setup",
+        "--",
+        "--skip-install"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 1.265,
+      "source_identity": "sha256:bc3a3b6a724c0ffff690becc3858ce8c1aec1e9859fbd5d212da70e077ee0092",
+      "source_files": 623,
+      "source_unchanged": true,
+      "output_path": "docs/evidence/C35-setup.log",
+      "output_sha256": "sha256:244e454d1d0a6835b2e32908ccebe835812a74fa2569b3ae8ae8feaa01bacec8"
+    },
+    {
+      "command": [
+        "node",
+        "--check",
+        "scripts/package-release.mjs"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.038,
+      "source_identity": "sha256:bc3a3b6a724c0ffff690becc3858ce8c1aec1e9859fbd5d212da70e077ee0092",
+      "source_files": 623,
+      "source_unchanged": true,
+      "output_path": "docs/evidence/C35-syntax-package.log",
+      "output_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": [
+        "node",
+        "--check",
+        "scripts/test-package.mjs"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.037,
+      "source_identity": "sha256:bc3a3b6a724c0ffff690becc3858ce8c1aec1e9859fbd5d212da70e077ee0092",
+      "source_files": 623,
+      "source_unchanged": true,
+      "output_path": "docs/evidence/C35-syntax-runner.log",
+      "output_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": [
+        "bash",
+        "-n",
+        "scripts/package.sh"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.02,
+      "source_identity": "sha256:bc3a3b6a724c0ffff690becc3858ce8c1aec1e9859fbd5d212da70e077ee0092",
+      "source_files": 623,
+      "source_unchanged": true,
+      "output_path": "docs/evidence/C35-syntax-shell.log",
+      "output_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": [
+        "node",
+        "--check",
+        "tests/web/release-verification.test.mjs"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.037,
+      "source_identity": "sha256:bc3a3b6a724c0ffff690becc3858ce8c1aec1e9859fbd5d212da70e077ee0092",
+      "source_files": 623,
+      "source_unchanged": true,
+      "output_path": "docs/evidence/C35-syntax-unit.log",
+      "output_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": [
+        "node",
+        "--check",
+        "tests/release/upgrade-recovery.mjs"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.039,
+      "source_identity": "sha256:bc3a3b6a724c0ffff690becc3858ce8c1aec1e9859fbd5d212da70e077ee0092",
+      "source_files": 623,
+      "source_unchanged": true,
+      "output_path": "docs/evidence/C35-syntax-upgrade.log",
+      "output_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": [
+        "node",
+        "--check",
+        "scripts/verify-release.mjs"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.039,
+      "source_identity": "sha256:bc3a3b6a724c0ffff690becc3858ce8c1aec1e9859fbd5d212da70e077ee0092",
+      "source_files": 623,
+      "source_unchanged": true,
+      "output_path": "docs/evidence/C35-syntax-verify.log",
+      "output_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.203,
+      "source_identity": "sha256:bc3a3b6a724c0ffff690becc3858ce8c1aec1e9859fbd5d212da70e077ee0092",
+      "source_files": 623,
+      "source_unchanged": true,
+      "output_path": "docs/evidence/C35-typecheck.log",
+      "output_sha256": "sha256:bacf67b27641e15adb7f6f66853da30940dabd4107ce8a1256b45c05d52a8bf5"
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "verify:release",
+        "--",
+        "--directory",
+        "dist/packages/395c45f173ec7d01c241104ed2aabd6df7f1685d",
+        "--signature",
+        ".cache/c35/public-signature.json",
+        "--trust",
+        ".cache/c35/public-trust.json",
+        "--expected-source-commit",
+        "395c45f173ec7d01c241104ed2aabd6df7f1685d",
+        "--freshness",
+        "fresh"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.141,
+      "source_identity": "sha256:bc3a3b6a724c0ffff690becc3858ce8c1aec1e9859fbd5d212da70e077ee0092",
+      "source_files": 623,
+      "source_unchanged": true,
+      "output_path": "docs/evidence/C35-verify-artifacts.log",
+      "output_sha256": "sha256:88797e85f62a4f4ab802c2571ce012821746516ba02dddb7cc166d377f4cb970"
+    },
+    {
+      "command": "python3 scripts/verify_ci_source.py (isolated clean candidate)",
+      "exit_code": 0,
+      "output_path": "docs/evidence/C35-package-confirmed.log",
+      "output_sha256": "sha256:c246b42e96d464336d0773371487f72b169a2c8a885f6284b3c56dd5a4789a94",
+      "validation_source_commit": "395c45f173ec7d01c241104ed2aabd6df7f1685d",
+      "validation_tree": "4ba5d64e1ce84e9ac54f1b6d4221519efde6d2d1",
+      "notes": "Actual clean candidate validation in the package runner; dirty-root rejection retained separately."
+    }
+  ],
+  "observed_results": [
+    "56 Node tests passed, including nine C35 verification/provenance cases.",
+    "118 top-level Go tests passed with real pinned OPA and zero skips; actual C05 SIGKILL, injected ENOSPC, replay and lost-ACK tests passed.",
+    "25 Chromium browser cases passed; both actually installed C35 candidate and C34 rollback viewers displayed the newer passport locally.",
+    "Actual clean transport clone/setup/start/full C30 workflow/restart/restore passed in bubblewrap with fresh package/Go caches.",
+    "C31 two-build-path and source-archive reproduction passed, plus actual signed baseline/candidate package validation and installed upgrade/rollback preserving all newer store bytes.",
+    "Old backup could not replace the newer store; both operation exports restored to new stores; unsupported store versions were rejected without editing their bytes.",
+    "Changed/missing bytes, wrong/unknown signing identity, invalid signature, malformed/oversized metadata, unsafe/duplicate checksum entries, symlinks/FIFO, stale classification and unexpected commit never produced trusted success.",
+    "Known-advisory npm audit returned zero vulnerabilities. Node syntax, Go vet/build, TypeScript, production web build, resource locks, engineering contracts, documented CLI guide and real isolated Nginx tests passed."
+  ],
+  "release_verification": "docs/evidence/release-verification.json",
+  "failed_local_attempts": [
+    {
+      "command": [
+        "python3",
+        "scripts/verify_ci_source.py"
+      ],
+      "exit_code": 1,
+      "elapsed_seconds": 0.114,
+      "source_identity": "sha256:bc3a3b6a724c0ffff690becc3858ce8c1aec1e9859fbd5d212da70e077ee0092",
+      "source_files": 623,
+      "source_unchanged": true,
+      "output_path": "docs/evidence/C35-source.log",
+      "output_sha256": "sha256:6a373d6beec01f852f7d32141108a5fd26a68ac449dfea56094ce5cb86da0413",
+      "reason": "Expected rejection of the modified working tree; the same checker passed in the clean source-bound candidate without disabling any checks."
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "test:package"
+      ],
+      "exit_code": 1,
+      "elapsed_seconds": 17.024,
+      "source_identity": "sha256:bc3a3b6a724c0ffff690becc3858ce8c1aec1e9859fbd5d212da70e077ee0092",
+      "source_files": 623,
+      "source_unchanged": true,
+      "output_path": "docs/evidence/C35-package-final.log",
+      "output_sha256": "sha256:2e5840e38b2ebc9b56acb831d3341680990059d12347af6211df408617cfb50f",
+      "reason": "A concurrent final check regenerated roadmap task status while the temporary candidate was captured; the source inventory correctly rejected stale generated bytes. Repeated sequentially after generation completed, without weakening checks."
+    }
+  ],
+  "blockers": [],
+  "limits": [
+    "Ephemeral test signing identity, not a real maintainer release key; official signing/publication remains C40.",
+    "Expected commit and fresh/stale classification are operator inputs; no clock expiry, automatic latest version or persistent anti-replay authority.",
+    "Supported Linux x86_64 same-host evidence only. Independent onboarding remains C36; no new capacity certification.",
+    "GitHub workflow test/validation commands ran locally, including a clean candidate and isolated namespace clone. No new remote GitHub Actions run, push or publication occurred; setup/upload actions and compiler bootstrap were not reenacted.",
+    "Runtime/package proof belongs to the recorded temporary source candidate. Final attestation changes only evidence/planning/generated task status; it does not relabel historical proof as a new full-tree Git run."
+  ],
+  "post_runtime_validation_changes": [
+    "C35 evidence/progress/requirement/project-state/handoff attestation",
+    "generated web roadmap task status"
+  ]
+}

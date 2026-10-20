@@ -1,0 +1,103 @@
+
+> @parsa-emami/attestara-web@0.0.1 check
+> npm run validate:plan && npm run build && npm test
+
+
+> @parsa-emami/attestara-web@0.0.1 validate:plan
+> node scripts/roadmap.mjs validate
+
+Validated 40 detailed tasks, resources, references and progress; no runtime capability inferred.
+
+> @parsa-emami/attestara-web@0.0.1 build
+> npm run prepare:web && npm run typecheck && vite build --config apps/web/vite.config.ts
+
+
+> @parsa-emami/attestara-web@0.0.1 prepare:web
+> node scripts/generate-web-data.mjs
+
+
+> @parsa-emami/attestara-web@0.0.1 typecheck
+> tsc -p tsconfig.json
+
+vite v8.3.4 building client environment for production...
+transforming...
+✓ 20 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/web/index.html                   0.79 kB │ gzip:  0.46 kB
+dist/web/assets/index-CiHsYJnA.css    5.05 kB │ gzip:  1.81 kB
+dist/web/assets/index-C5hofQlN.js   249.36 kB │ gzip: 77.90 kB
+
+✓ built in 106ms
+
+> @parsa-emami/attestara-web@0.0.1 test
+> node --test tests/web/*.test.mjs tests/contracts/*.test.mjs
+
+✔ C04 versioned schemas and synthetic concrete artifacts preserve product requirements (9.042996ms)
+✔ C04 Node entry exercises actual Go validators, including hostile/version/size/cancellation cases (1043.063898ms)
+✔ C04 fresh engine test processes reproduce immutable fixture expectations after restart (440.053302ms)
+✔ engine discovery requires every representative test in each real Go package (6.20763ms)
+✔ C28 scenario resolves only bounded repository fixtures (18.59104ms)
+✔ C28 benchmark reports a missing tool without publishing success (71.140205ms)
+✔ C29 real Go lifecycle reports separate readiness, restarts and fails visibly without executing source (640.980218ms)
+✔ C29 missing prerequisites, secret-bearing configuration and occupied port emit bounded safe diagnostics (546.140067ms)
+✔ C29 hostile child stdout/stderr and malformed health never enter operator logs (510.826559ms)
+✔ C29 standalone web stays web-only and unavailable engine health fails closed (58.474044ms)
+✔ C29 directory or escaping index cannot satisfy web readiness or launcher startup (213.030054ms)
+✔ planning validator accepts current and historical evidence result fields (99.197096ms)
+✔ public configuration fails closed on engine flags, external endpoints, unknown keys and project mismatch (0.651423ms)
+✔ preview rejects hostile structure, excessive UTF-8 size and excessive complexity (1.360125ms)
+✔ HTTP isolation, cache rules, health semantics, methods, traversal and symlink containment (108.28184ms)
+✔ generated project and runtime identity agree with exactly forty original product tasks (1.905099ms)
+✔ C03 rejects malformed health fixtures without asserting product readiness (5.75536ms)
+✔ C03 setup invalidates stale output and fails explicitly for missing/mismatched Go or partial build (12.423286ms)
+✔ C03 real engine health, method boundaries, shutdown and restart (337.822014ms)
+✔ C03 occupied web port cleans up engine; crash stops web; cancellation stops engine (314.534964ms)
+✔ C03 actual npm start handles terminal signals and engine crash without orphans (651.069581ms)
+✔ C03 same-origin boundary rejects unavailable, malformed, redirected and oversized upstream health (1519.320686ms)
+✔ C32 fixture is versioned and loopback input rejects nonlocal bind (1.52265ms)
+✔ C32 local HTTP boundaries survive restart (301.784823ms)
+✔ C32 missing assets and configuration fail startup without raw path disclosure (297.702767ms)
+✔ setup validates toolchain/options and stops at the first failed prerequisite (8.339134ms)
+✔ roadmap rejects absent resources, escaping paths and unproved completion (15.984585ms)
+✔ release paths reject traversal, option injection and control characters (2.649006ms)
+✔ release inventory detects altered bytes and rejects symlinks (12.219993ms)
+✔ publication preserves every existing destination (9.830134ms)
+tar (child): /tmp/c31-full-KBkIf7/archive.gz: Cannot write: No space left on device
+tar (child): Error is not recoverable: exiting now
+tar: Child returned status 2
+tar: Error is not recoverable: exiting now
+✔ archive write failures never produce a successful artifact (15.496217ms)
+✔ recorded inventories reject executable changes and symlink parents (3.586106ms)
+✔ web-only packaging preserves its standalone service entrypoint (111.626232ms)
+✔ C01 accepts its synthetic reference contract without executing the engine (30.700566ms)
+✔ C01 rejects missing actions, results, invariants and fixture references (54.050435ms)
+✔ C01 rejects absent provenance or license and invalid fixture JSON (25.109054ms)
+✔ C01 rejects missing expected outputs and incorrect domain digests (20.510956ms)
+✔ C01 rejects path escapes, unsupported versions and false engine claims (75.850142ms)
+✔ C01 rejects symlinks leaving the fixture directory (12.593405ms)
+✔ C35 authenticates exact checksum bytes and independent signer without executing artifacts (82.656406ms)
+✔ C35 distinguishes unsigned, untrusted, wrong-key and stale assessments (15.680163ms)
+✔ C35 rejects a modified byte and every missing required output (24.470934ms)
+✔ C35 rejects tampered signatures/checksums and wrong expected source (17.952822ms)
+✔ C35 rejects signed unsafe, duplicate, missing and extra checksum entries (28.562349ms)
+✔ C35 bounds metadata, validates descriptors and refuses symbolic/special files (96.247575ms)
+✔ C35 reports unavailable trust files as an operational failure without leaking paths (11.128253ms)
+✔ C35 rejects freshly signed incompatible release metadata (30.642667ms)
+✔ C35 fixture provenance records exact licensed scenario bytes (1.991621ms)
+✔ C02 validates pinned resources offline without requiring optional providers or a product engine (74.674604ms)
+✔ C02 rejects mutable pins, missing authority/license, removed prerequisites and unsupported mandatory platforms (538.249996ms)
+✔ C02 rejects tampered checksum evidence, dependency locks, notices and escaping snapshot paths (125.091975ms)
+✔ C02 verifies artifact bytes before accepting them and rejects a one-byte mutation (17.604247ms)
+✔ C02 compares pins with separately published checksums and fails on absent required artifacts (34.603147ms)
+✔ private reporting check reads the setting without credentials or submitting a report (30.626317ms)
+✔ disabled reporting stays disabled (0.513454ms)
+✔ unavailable, malformed and ambiguous responses cannot certify reporting (3.154175ms)
+ℹ tests 56
+ℹ suites 0
+ℹ pass 56
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2960.034427

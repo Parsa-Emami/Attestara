@@ -312,10 +312,12 @@
     },
     {
       "id": "C35",
-      "status": "planned",
-      "evidence": [],
-      "source_identity": null,
-      "notes": ""
+      "status": "verified",
+      "evidence": [
+        "docs/evidence/C35.json"
+      ],
+      "source_identity": "sha256:bc3a3b6a724c0ffff690becc3858ce8c1aec1e9859fbd5d212da70e077ee0092",
+      "notes": "Owner-approved offline Ed25519 release verification with independent configured trust and operator expected commit/freshness; real C34/candidate installs and newer-data-safe software rollback, local browser/clone/package/Go/OPA checks verified. Test key only; no automatic release authority, remote CI or publication claim."
     },
     {
       "id": "C36",

@@ -67,8 +67,12 @@ copy a live mutable store or overwrite a newer one. Backup/restore rejects every
 existing destination, even an empty directory or symlink. After interruption or
 uncertain acknowledgement, inspect/reopen before retrying: accepted publication
 may already be durable. Preserve original bytes and restore into a new store.
-Stop the service before switching immutable release directories. Installed-version
-upgrade/rollback certification remains C35.
+Stop the service before switching immutable release directories. Follow the
+[signed-artifact and upgrade procedure](ARTIFACTS.md#verify-a-detached-release-signature-c35)
+before using another installed version. Rollback changes the software directory
+while retaining the same external store, including snapshots accepted afterward.
+The tested C35 baseline/candidate identities and limitations belong in its evidence;
+this guide does not establish a published maintainer-signed release.
 
 ## Errors and limits
 
@@ -99,8 +103,8 @@ dependencies; browser-selected passport bytes are not uploaded.
 
 Project source/examples use [Apache-2.0](../../LICENSE); retain [NOTICE](../../NOTICE).
 Dependencies retain their licenses in [THIRD_PARTY_NOTICES.md](../../THIRD_PARTY_NOTICES.md).
-[ARTIFACTS.md](ARTIFACTS.md) covers unsigned local artifacts, source rebuilds,
-checksums and bundled notices. No stable published v1 is claimed.
+[ARTIFACTS.md](ARTIFACTS.md) covers local artifacts, detached signature verification,
+source rebuilds, checksums and bundled notices. No stable published v1 is claimed.
 
 Ask ordinary questions in [Issues](https://github.com/Parsa-Emami/Attestara/issues)
 with the commit, platform/tool versions, exact command and redacted expected/actual

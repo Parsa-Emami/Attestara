@@ -27,7 +27,8 @@
     "release:check": "node scripts/roadmap.mjs release-check",
     "test:clone": "node scripts/clone-smoke.mjs",
     "package": "bash scripts/package.sh",
-    "test:package": "node scripts/test-package.mjs"
+    "test:package": "node scripts/test-package.mjs",
+    "verify:release": "node scripts/verify-release.mjs"
   },
   "dependencies": {
     "react": "19.3.1",
