@@ -1,0 +1,106 @@
+{
+  "planning_template": false,
+  "passed": true,
+  "commit_id": "C38",
+  "date": "2026-10-20",
+  "base_commit": "90e1f9f3625589136835652620b6c6034460e8c6",
+  "worktree_committed": false,
+  "source_identity": "sha256:abd5b706f71e90f9627aa9b7ac8a8fc34659407b341fc3d84c369e6ba6dced7e",
+  "source_identity_method": "SHA-256 over sorted source-relative UTF-8 paths, NUL separators, raw per-file SHA-256 bytes and newline delimiters; excludes docs/evidence, progress/requirements/project-state/handoff, generated web project data and SHA256SUMS.txt.",
+  "source_identity_scope": "Current documentation and source inputs only. This attestation verifies C38 policy statements and document references; it does not rerun or relabel historical runtime evidence.",
+  "fixture_license": "Not applicable; C38 is documentation-only and adds no fixture.",
+  "evidence_references": {
+    "storage_contract": "docs/architecture/STORAGE_PROOF.md",
+    "storage_runtime_evidence": "docs/evidence/C05.json",
+    "full_local_workflow_evidence": "docs/evidence/C30.json",
+    "prior_acceptance_audit": "docs/evidence/C37.json"
+  },
+  "tools": {
+    "node": "v24.19.0",
+    "npm_cli": "11.9.0 (invoked from existing local cache)",
+    "npm_on_path": "11.17.0",
+    "go": "go1.27.2 linux/amd64 via command-local GOTOOLCHAIN=go1.27.2",
+    "opa": "1.21.2; SHA-256 830ab11f61ffec760b5e19db0d7ad02bf037e13f5ef4d665faeaf17632177527"
+  },
+  "commands": [
+    {
+      "command": "node --test tests/ops/user-guide.test.mjs",
+      "exit_code": 0,
+      "result": "1 passed; real guide evaluate, verify, service restart, export, restore and verification succeeded."
+    },
+    {
+      "command": "python3 -m unittest discover -s tests/engineering -p 'test_*.py' -v",
+      "exit_code": 0,
+      "result": "6 passed."
+    },
+    {
+      "command": "node --test tests/web/reference-contract.test.mjs",
+      "exit_code": 0,
+      "result": "6 passed."
+    },
+    {
+      "command": "C38 relative-link and heading-anchor validation for SERVICE_POLICY.md, MAINTENANCE.md and USER_GUIDE.md",
+      "exit_code": 0,
+      "result": "All local targets and heading anchors resolved."
+    },
+    {
+      "command": "Pinned npm 11.9.0 run build (prepare:web, TypeScript check and Vite production build)",
+      "exit_code": 0,
+      "result": "Build and type checking passed; generated project metadata refreshed."
+    },
+    {
+      "command": "GOTOOLCHAIN=go1.27.2 GOSUMDB=sum.golang.org GOPROXY='https://proxy.golang.org|direct' node /home/amirreza/.npm/_npx/5ed1df33febb5bb0/node_modules/npm/bin/npm-cli.js run check",
+      "exit_code": 0,
+      "result": "Plan validation, production build, TypeScript check and all 62 Node tests passed; zero failures and zero skips. The two Go-backed C04 Node tests executed successfully."
+    },
+    {
+      "command": "GOTOOLCHAIN=go1.27.2 GOSUMDB=sum.golang.org GOPROXY='https://proxy.golang.org|direct' ATTESTARA_TEST_OPA=/home/amirreza/Desktop/Projects/Attestara/dist/c37/opa go test -json -count=1 ./...",
+      "exit_code": 0,
+      "result": "All 7 test-bearing Go packages passed; 542 tests passed, 0 skipped and 0 failed, using locked OPA 1.21.2."
+    },
+    {
+      "command": "npm run validate:plan (final metadata candidate)",
+      "exit_code": 0,
+      "result": "All 40 detailed tasks, resources, references and progress validated; no runtime capability inferred."
+    },
+    {
+      "command": "npm run plan -- next (final metadata candidate)",
+      "exit_code": 0,
+      "result": "C39 returned as the next dependency-ready task."
+    },
+    {
+      "command": "git diff --check",
+      "exit_code": 0,
+      "result": "Passed after final documentation and metadata edits."
+    }
+  ],
+  "observed_results": [
+    "Local privacy policy documents the existing private store, operator-selected input/output paths, one-operation export, no in-product deletion command, no automatic expiry, and restore into a new non-existing store.",
+    "Maintenance policy records the supported profile, locked toolchains/resources, optional provider boundary, license/integrity update requirements, and the limits of support and release identity.",
+    "Documentation checks and the user-guide integration passed; no runtime behavior, API or data format changed.",
+    "With Go 1.27.2 and locked OPA, npm run check passed all 62 Node tests and uncached Go tests passed 542/542 with zero skips."
+  ],
+  "acceptance": {
+    "local_data_export_deletion_retention_backup_recovery": "Documented against the current CLI/store behavior; no delete command, automatic expiry or whole-store export is claimed.",
+    "supported_profile_and_limits": "Linux x86_64, one local OS operator, local-cli-snapshots and browser-local viewer documented; unsupported profiles remain explicit.",
+    "maintenance_dependency_policy": "Pinned toolchains, optional integrations, license/integrity update requirements and support boundaries documented from current locks and policies.",
+    "no_paid_core_or_unearned_sla": "No paid/cloud core requirement or unearned service-level guarantee introduced."
+  },
+  "blockers": [],
+  "unverified_checks": [],
+  "superseded_attempts": [
+    "Earlier runs with the host Go 1.26.2/GOSUMDB=off did not validate the project toolchain. A later Go-backed test run also exposed missing results metadata in the new C38 evidence. Both conditions were corrected; the final full check passed on Go 1.27.2."
+  ],
+  "changed_paths": [
+    "docs/release/SERVICE_POLICY.md",
+    "docs/release/USER_GUIDE.md",
+    "docs/release/MAINTENANCE.md",
+    "docs/ROADMAP_FA.md",
+    "docs/evidence/C38.json",
+    "plans/requirements.json",
+    "plans/progress.json",
+    "plans/project-state.json",
+    "docs/agents/SESSION_HANDOFF.json",
+    "apps/web/src/generated/project.json"
+  ]
+}

@@ -100,6 +100,9 @@ Keep manifests, reports, stores, backups and exported passports private unless
 reviewed for disclosure. Redaction recognizes certain credentials/local paths;
 it cannot detect every secret. Review exports yourself. Setup downloads public
 dependencies; browser-selected passport bytes are not uploaded.
+See the [local service, data and privacy policy](SERVICE_POLICY.md) and
+[maintenance and dependency policy](MAINTENANCE.md) for lifecycle and support
+boundaries.
 
 Project source/examples use [Apache-2.0](../../LICENSE); retain [NOTICE](../../NOTICE).
 Dependencies retain their licenses in [THIRD_PARTY_NOTICES.md](../../THIRD_PARTY_NOTICES.md).

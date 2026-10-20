@@ -339,10 +339,12 @@
     },
     {
       "id": "C38",
-      "status": "planned",
-      "evidence": [],
-      "source_identity": null,
-      "notes": ""
+      "status": "verified",
+      "evidence": [
+        "docs/evidence/C38.json"
+      ],
+      "source_identity": "sha256:abd5b706f71e90f9627aa9b7ac8a8fc34659407b341fc3d84c369e6ba6dced7e",
+      "notes": "Documented local data locations, per-operation export, manual deletion, no automatic retention, new-store recovery, supported profile and evidence-backed maintenance policy. Product behavior unchanged. npm run check passed all 62 Node tests on Go 1.27.2; uncached Go tests passed 542/542 with locked OPA and zero skips. Historical C05/C30 runtime evidence remains bound to its original source."
     },
     {
       "id": "C39",

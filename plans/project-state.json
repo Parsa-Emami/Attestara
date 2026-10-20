@@ -1,6 +1,6 @@
 {
   "project": "Attestara",
-  "reviewed_commit": "12a6acccddbe4adf5e3881bd8bd5b79f914a72e9",
+  "reviewed_commit": "90e1f9f3625589136835652620b6c6034460e8c6",
   "readiness": "LOCAL_USABLE",
   "core_ready": true,
   "implemented": [
@@ -41,10 +41,11 @@
     "C34 current-profile user/source-build/license/privacy/recovery/support guides, GitHub private vulnerability reporting enabled and live-checked without email, literal guide restart/restore and isolated local Nginx regressions; implementation commit 49700dc passed all four GitHub CI workflows including browser/clone/package checks. No new public API, production hosting or published OSS v1 claim.",
     "C35 offline release-distribution assessment verifies exact C31 checksum signatures, all required artifact bytes, independent signer/key trust and operator-selected expected source/freshness. Real source-built C34/candidate installation, restart and software rollback retain newer C05 snapshots; old backup overwrite and unsupported format reject. Test identities only; no automatic latest-version authority, publication, API or data format change.",
     "C36 fresh GitHub Actions ubuntu24 runner followed the public guide and passed the real C30 CLI, restart, new-store restore and browser workflow; source-bound report and fixture hashes recorded. No user-source execution; optional providers not invoked.",
-    "C37 owner-approved local acceptance audit reverified C30/C33/C35/C36 with no new product blocker: real setup/CLI/viewer/restart/new-store restore, C34/candidate upgrade and newer-data-safe rollback, 62 Node/118 uncached Go with locked OPA/25 browser checks; added versioned audit cases/provenance and source-bound report. No product behavior or format change, new remote Actions run or publication."
+    "C37 owner-approved local acceptance audit reverified C30/C33/C35/C36 with no new product blocker: real setup/CLI/viewer/restart/new-store restore, C34/candidate upgrade and newer-data-safe rollback, 62 Node/118 uncached Go with locked OPA/25 browser checks; added versioned audit cases/provenance and source-bound report. No product behavior or format change, new remote Actions run or publication.",
+    "C38 documented local data locations, per-operation export, manual deletion, no automatic retention, backup/recovery, the supported profile and evidence-backed dependency/maintenance policy. No product behavior, API, schema or runtime capability changed; C05/C30 runtime evidence retains its original source identity."
   ],
   "engine": "Current C30 local-cli-snapshots profile composes existing C04/C05/C08-C10/C14/C16/C18/C19 contracts through the existing evaluate/verify/export CLI plus restore. Full file/ZIP integrity and independently configured manifest signature trust are assessed separately from policy and unverified passport claims. C05 snapshots retain exact input/result/files through restart and new-store restore; identical operations replay and changed content conflicts. Freshness is caller classified. Draft domain HTTP APIs, multi-user/private authorization, automatic expiry/latest-release authority, scanner execution and representative Grype/full-size combined-workload capacity remain unsupported or unmeasured. Historical C01-C29 evidence retains its original scope.",
-  "next_task": "C38",
+  "next_task": "C39",
   "next_command": "npm run plan -- next",
   "full_product_endpoint": "C30 locally usable; C40 full published OSS v1",
   "verified_profile": "local-cli-snapshots"
