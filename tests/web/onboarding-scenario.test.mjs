@@ -4,7 +4,7 @@ import { createHash } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { join } from 'node:path';
-import { validateOnboardingEnvironment, validateOnboardingScenario } from '../../scripts/clone-workflow.mjs';
+import { validateOnboardingEnvironment, validateOnboardingScenario, validateWorkflowScenario } from '../../scripts/clone-workflow.mjs';
 
 const root = fileURLToPath(new URL('../../', import.meta.url));
 const digest = bytes => 'sha256:' + createHash('sha256').update(bytes).digest('hex');
@@ -43,6 +43,16 @@ test('C36 rejects malformed scenario contracts before setup can appear successfu
     mutate(changed);
     assert.throws(() => validateOnboardingScenario(changed));
   }
+});
+
+test('shared CLI workflow accepts the historical C34 scenario without the later C36 onboarding contract', async () => {
+  const scenario = JSON.parse(await readFile(join(root, 'tests/scenarios/clone-to-value.json'), 'utf8'));
+  delete scenario.onboarding;
+  assert.doesNotThrow(() => validateWorkflowScenario(scenario));
+  const current = JSON.parse(await readFile(join(root, 'tests/scenarios/clone-to-value.json'), 'utf8'));
+  assert.doesNotThrow(() => validateWorkflowScenario(current));
+  current.onboarding.version = 2;
+  assert.throws(() => validateWorkflowScenario(current), /Unsupported onboarding contract version/);
 });
 
 test('C36 reports missing or incompatible pinned prerequisites explicitly', async () => {

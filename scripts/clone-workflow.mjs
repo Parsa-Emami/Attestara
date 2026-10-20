@@ -30,6 +30,12 @@ export function validateOnboardingEnvironment(onboarding, actual) {
   assert.equal(actual?.platform, onboarding.toolchain.platform, 'C36 prerequisite unavailable: linux-x64');
 }
 
+export function validateWorkflowScenario(scenario) {
+  assert.equal(scenario?.steps?.length, 10);
+  assert.equal(scenario?.execution?.profile, 'local-cli-snapshots');
+  if (scenario.onboarding !== undefined) validateOnboardingScenario(scenario);
+}
+
 export function engineCommand(root, args, code = 0) {
   const started = performance.now();
   const result = spawnSync(join(root, 'dist/engine/attestara'), args, { cwd: root, encoding: 'utf8', timeout: 20000, maxBuffer: 2 * 1024 * 1024 });
@@ -43,8 +49,7 @@ export function runWorkflow(root, work, store = join(work, 'store')) {
   const fixture = join(root, 'tests/fixtures/attestara/C30');
   const manifest = join(fixture, 'manifest.json');
   const scenario = JSON.parse(readFileSync(join(root, 'tests/scenarios/clone-to-value.json')));
-  assert.equal(scenario.steps.length, 10);
-  validateOnboardingScenario(scenario);
+  validateWorkflowScenario(scenario);
   const provenance = JSON.parse(readFileSync(join(fixture, 'provenance.json')));
   assert.equal(provenance.license, 'Apache-2.0');
   for (const [path, digest] of Object.entries(provenance.files)) assert.equal('sha256:' + createHash('sha256').update(readFileSync(join(fixture, path))).digest('hex'), digest);
