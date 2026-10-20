@@ -321,10 +321,12 @@
     },
     {
       "id": "C36",
-      "status": "planned",
-      "evidence": [],
-      "source_identity": null,
-      "notes": ""
+      "status": "verified",
+      "evidence": [
+        "docs/evidence/C36.json"
+      ],
+      "source_identity": "sha256:2f62e1e1b033d493e1fc597bd33dd05dca764f8b6721929ffc3ea14361625632",
+      "notes": "Fresh GitHub Actions ubuntu24 runner followed the public guide and passed the real C30 CLI, restart, new-store restore and browser workflow in 18.992 seconds; no failures, limitations or user-source execution. Optional providers were not run."
     },
     {
       "id": "C37",
