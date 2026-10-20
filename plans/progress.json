@@ -362,7 +362,7 @@
         "docs/evidence/C40.json"
       ],
       "source_identity": "sha256:a072f78bb7e6cb596077357abaf7421176a0be3b7aea583b51a271070977b83b",
-      "notes": "Local C40 implementation validated: fresh 28-phase gate, 73 Node/17 Python/542 uncached Go tests (zero skips), 25 browser checks, signed install/restart/restore/rollback rehearsal, all-workflow actionlint, typecheck/build and zero audit advisories passed. Local commit authorized; user will push separately. No real release or public-install proof. C40 remains in_progress pending explicit approvals, environment setup and actual candidate GitHub execution."
+      "notes": "Implementation db2f831 is pushed on main. All five prerequisite GitHub workflows and manual unsigned-candidate release run 39455305663 succeeded; fresh 28-phase gate, 653 canonical inputs, output digests and exact-source distribution verified. Local signed installed rehearsal remains separate. Owner access for protected release Environment/signing Secret is unavailable; publication still needs separate approval. No public release or downloaded public-install proof; C40 remains in_progress."
     }
   ],
   "web_progress": "plans/web-roadmap.json",

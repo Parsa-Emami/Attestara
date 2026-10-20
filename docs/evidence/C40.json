@@ -42,9 +42,9 @@
     }
   ],
   "blockers": [
-    "Local commit authorized; user will push separately. Publication still requires separate approval.",
-    "The release Environment, main restriction, maintainer reviewer and dedicated key Secret have not been configured/verified.",
-    "No candidate C40 GitHub workflow, actual public v1.0.0 or downloaded public-install proof exists."
+    "Repository owner access is unavailable: the current browser account cannot configure or verify the protected release Environment, main-only deployment rule, required reviewer and Environment signing Secret.",
+    "Public v1.0.0 publication requires separate explicit maintainer approval after Environment configuration and candidate review.",
+    "No actual public v1.0.0 publication or clean-runner downloaded-public-artifact installation proof exists."
   ],
   "published": false,
   "date": "2026-10-20T14:58:03.520326+00:00",
@@ -140,8 +140,9 @@
       "yaml": "parsed; manual/default-off publication, scoped signing secret, full SHA pins and separate public-download job checked"
     },
     "javascript_syntax": "All changed/new mjs files parsed; no standalone JavaScript lint command exists.",
-    "github_candidate_workflows": "not run; no commit/push authorized",
-    "public_installation_verified": false
+    "github_candidate_workflows": "All five real prerequisite workflows succeeded on db2f831d8ef66095010da30e94cf3e3587e816a0; source-bound gate artifact independently verified.",
+    "public_installation_verified": false,
+    "github_unsigned_candidate": "Release workflow 39455305663 succeeded with publish=false; fresh 28-phase gate, exact-source distribution and uploaded candidate verified."
   },
   "historical_failed_local_attempts": [
     {
@@ -171,5 +172,9 @@
     "GitHub writes are unit-tested only with a fake network boundary. Real publication and public-download installation require candidate CI and maintainer authorization."
   ],
   "changed_paths": "docs/evidence/C40-changed-paths.json",
-  "final_review": "docs/evidence/C40-final-review.json"
+  "final_review": "docs/evidence/C40-final-review.json",
+  "github_candidate": {
+    "path": "docs/evidence/C40-github-candidate.json",
+    "sha256": "sha256:d850cd4f2e09631acdf3f19a2c3f089fdefc2bba3fdef5fda9a6249152b4418a"
+  }
 }

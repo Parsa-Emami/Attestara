@@ -1,5 +1,5 @@
 {
-  "date": "2026-10-20T14:58:03.520326+00:00",
+  "date": "2026-10-20T16:20:37.755120+00:00",
   "task": "C40",
   "base_commit": "6ff30c32f00c6b811453e30d46befa6edafc354e",
   "status": "in_progress",
@@ -25,17 +25,19 @@
     ]
   },
   "next_task": "C40",
-  "next_action": "User authorized a local commit on main and will push separately. After that push, inspect all five source-matched candidate workflows. Configure and verify the release Environment and signing Secret; obtain separate publication approval. Actual public-install proof remains mandatory.",
+  "next_action": "Await repository owner configuration and verification of protected release Environment, main-only deployment, reviewer and ATTESTARA_RELEASE_PRIVATE_KEY. Then obtain separate explicit publication approval and rerun release with the reviewed SHA and publish=true. Verify the independent public-install job before marking C40 verified. User authorized committing and pushing this evidence follow-up; publication remains separately unauthorized. An updated main SHA requires fresh source-matched CI and candidate preparation before publication.",
   "blockers": [
-    "Local commit authorized; user will push separately. Publication still requires separate approval.",
-    "The release Environment, main restriction, maintainer reviewer and dedicated key Secret have not been configured/verified.",
-    "No candidate C40 GitHub workflow, actual public v1.0.0 or downloaded public-install proof exists."
+    "Repository owner access is unavailable: the current browser account cannot configure or verify the protected release Environment, main-only deployment rule, required reviewer and Environment signing Secret.",
+    "Public v1.0.0 publication requires separate explicit maintainer approval after Environment configuration and candidate review.",
+    "No actual public v1.0.0 publication or clean-runner downloaded-public-artifact installation proof exists."
   ],
   "publication_performed": false,
   "delivery": {
     "local_commit_authorized": true,
-    "push_authorized": false,
-    "publication_authorized": false
+    "push_authorized": true,
+    "publication_authorized": false,
+    "implementation_commit": "db2f831d8ef66095010da30e94cf3e3587e816a0",
+    "implementation_commit_pushed_by_user": true
   },
   "source_identity": "sha256:a072f78bb7e6cb596077357abaf7421176a0be3b7aea583b51a271070977b83b",
   "runtime_candidate_commit": "b245640b39a648ee6b4a3d097d02897fa31fa1d3",
@@ -71,10 +73,11 @@
       "yaml": "parsed; manual/default-off publication, scoped signing secret, full SHA pins and separate public-download job checked"
     },
     "javascript_syntax": "All changed/new mjs files parsed; no standalone JavaScript lint command exists.",
-    "github_candidate_workflows": "not run; push left to the user",
+    "github_candidate_workflows": "All five successful on db2f831d8ef66095010da30e94cf3e3587e816a0",
     "public_installation_verified": false,
     "canonical_inputs_unchanged": true,
-    "canonical_input_count": 653
+    "canonical_input_count": 653,
+    "github_unsigned_candidate": "39455305663 succeeded; publish and installed deliberately skipped"
   },
   "changed_paths": [
     ".github/workflows/release.yml",
@@ -106,5 +109,25 @@
     "tests/fixtures/attestara/C40/provenance.json",
     "tests/web/release-publication.test.mjs"
   ],
-  "worktree_committed_at_evidence_capture": false
+  "worktree_committed_at_evidence_capture": false,
+  "ci_followup": {
+    "evidence": {
+      "path": "docs/evidence/C40-github-candidate.json",
+      "sha256": "sha256:d850cd4f2e09631acdf3f19a2c3f089fdefc2bba3fdef5fda9a6249152b4418a"
+    },
+    "candidate_commit": "db2f831d8ef66095010da30e94cf3e3587e816a0",
+    "status": "Unsigned candidate verified; publication and public installation blocked on owner configuration and separate approval.",
+    "changed_paths": [
+      "docs/agents/SESSION_HANDOFF.json",
+      "docs/evidence/C40-candidate-gate.json",
+      "docs/evidence/C40-candidate-output.zip",
+      "docs/evidence/C40-github-candidate.json",
+      "docs/evidence/C40.json",
+      "docs/evidence/launch.json",
+      "plans/progress.json"
+    ],
+    "commit_performed": false,
+    "push_performed": false,
+    "delivery_state_at_recording": "Evidence validated before authorized commit/push; actual delivery SHA is reported after Git operations."
+  }
 }

@@ -7,9 +7,9 @@
   "manifest": "docs/release/RELEASE_MANIFEST.json",
   "evidence": "docs/evidence/C40.json",
   "blockers": [
-    "Local commit authorized; user will push separately. Publication still requires separate approval.",
-    "The release Environment, main restriction, maintainer reviewer and dedicated key Secret have not been configured/verified.",
-    "No candidate C40 GitHub workflow, actual public v1.0.0 or downloaded public-install proof exists."
+    "Repository owner access is unavailable: the current browser account cannot configure or verify the protected release Environment, main-only deployment rule, required reviewer and Environment signing Secret.",
+    "Public v1.0.0 publication requires separate explicit maintainer approval after Environment configuration and candidate review.",
+    "No actual public v1.0.0 publication or clean-runner downloaded-public-artifact installation proof exists."
   ],
   "local_ready": true,
   "source_identity": "sha256:a072f78bb7e6cb596077357abaf7421176a0be3b7aea583b51a271070977b83b",
@@ -25,5 +25,9 @@
   },
   "signer_fingerprint": "sha256:f54a6ceaf3ff6ba76775ea97d25ae519b2e0bbf389d9f8bd15f71fd4dbe64443",
   "release_id": null,
-  "release_url": null
+  "release_url": null,
+  "github_candidate": {
+    "path": "docs/evidence/C40-github-candidate.json",
+    "sha256": "sha256:d850cd4f2e09631acdf3f19a2c3f089fdefc2bba3fdef5fda9a6249152b4418a"
+  }
 }
