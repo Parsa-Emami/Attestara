@@ -142,7 +142,7 @@ export async function packageRelease(root = fileURLToPath(new URL('../', import.
     run('go', ['build', '-mod=readonly', '-trimpath', '-buildvcs=false', '-o', engine, './cmd/attestara'], build, { env, stdio: 'inherit' });
     // Build hooks may not silently change the archived source inputs.
     await verifyInventory(build, source.files);
-    for (const path of ['dist/engine', 'dist/web', 'scripts/start-local.mjs', 'scripts/serve-web.mjs', 'scripts/verify-release.mjs', 'apps/web/src/lib/runtime-config.mjs', 'apps/web/src/lib/engine-health.mjs', 'ops/web', 'LICENSE', 'NOTICE', 'THIRD_PARTY_NOTICES.md', 'docs/engineering/resources', 'docs/engineering/C30_LOCAL_WORKFLOW.md', 'docs/engineering/WEB_RUNBOOK.md', 'docs/release/ARTIFACTS.md', 'tests/fixtures/attestara/C30', 'tests/scenarios/clone-to-value.json']) await copy(build, runtime, path);
+    for (const path of ['dist/engine', 'dist/web', 'scripts/start-local.mjs', 'scripts/serve-web.mjs', 'scripts/verify-release.mjs', 'apps/web/src/lib/runtime-config.mjs', 'apps/web/src/lib/engine-health.mjs', 'ops/web', 'LICENSE', 'NOTICE', 'THIRD_PARTY_NOTICES.md', 'docs/engineering/resources', 'docs/engineering/C30_LOCAL_WORKFLOW.md', 'docs/engineering/WEB_RUNBOOK.md', 'docs/release/ARTIFACTS.md', 'docs/release/RELEASING.md', 'docs/release/RELEASE_MANIFEST.json', 'tests/fixtures/attestara/C30', 'tests/scenarios/clone-to-value.json']) await copy(build, runtime, path);
     await cp(join(build, 'docs/release/ARTIFACTS.md'), join(runtime, 'README.md'));
     await billOfMaterials(build, runtime, source, engine, lock);
     const metadata = {

@@ -357,10 +357,12 @@
     },
     {
       "id": "C40",
-      "status": "planned",
-      "evidence": [],
-      "source_identity": null,
-      "notes": ""
+      "status": "in_progress",
+      "evidence": [
+        "docs/evidence/C40.json"
+      ],
+      "source_identity": "sha256:a072f78bb7e6cb596077357abaf7421176a0be3b7aea583b51a271070977b83b",
+      "notes": "Local C40 implementation validated: fresh 28-phase gate, 73 Node/17 Python/542 uncached Go tests (zero skips), 25 browser checks, signed install/restart/restore/rollback rehearsal, all-workflow actionlint, typecheck/build and zero audit advisories passed. Local commit authorized; user will push separately. No real release or public-install proof. C40 remains in_progress pending explicit approvals, environment setup and actual candidate GitHub execution."
     }
   ],
   "web_progress": "plans/web-roadmap.json",

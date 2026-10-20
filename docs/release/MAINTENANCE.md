@@ -36,7 +36,9 @@ Use the documented [artifact verification and upgrade procedure](ARTIFACTS.md)
 for a reviewed local candidate. Verify the detached signature and expected
 source identity before installing an artifact. Current upgrade evidence uses
 synthetic test signing material; it does not establish an official maintainer
-release identity or published release. Rollback switches software while
+release identity or published release. The C40 [maintainer release procedure](RELEASING.md)
+uses a separate pinned release key and requires public installed-workflow proof.
+Rollback switches software while
 preserving the external data store; it does not restore older data.
 
 Report vulnerabilities through the private route and scope described in

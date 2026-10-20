@@ -28,6 +28,7 @@
     "test:clone": "node scripts/clone-smoke.mjs",
     "package": "bash scripts/package.sh",
     "test:package": "node scripts/test-package.mjs",
+    "test:published": "node scripts/test-published-release.mjs",
     "verify:release": "node scripts/verify-release.mjs"
   },
   "dependencies": {

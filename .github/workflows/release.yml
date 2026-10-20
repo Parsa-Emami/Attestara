@@ -1,0 +1,213 @@
+name: release
+on:
+  workflow_dispatch:
+    inputs:
+      source_commit:
+        description: Exact reviewed main commit (full SHA)
+        required: true
+        type: string
+      publish:
+        description: Publish v1.0.0 after maintainer approval
+        type: boolean
+        default: false
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: release-v1.0.0
+  cancel-in-progress: false
+jobs:
+  prepare:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    env:
+      SOURCE_COMMIT: ${{ inputs.source_commit }}
+      GOTOOLCHAIN: local
+      GOSUMDB: sum.golang.org
+      GOPROXY: https://proxy.golang.org|direct
+      GOMAXPROCS: '2'
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+          fetch-depth: 0
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - name: Install pinned npm
+        run: |
+          npm_pin=$(node -p "require('./package.json').packageManager")
+          npm install --global --ignore-scripts "$npm_pin"
+      - name: Require pinned npm
+        run: npm run setup -- --check
+      - uses: actions/setup-go@924ae3a1cded613372ab5595356fb5720e22ba16
+        with:
+          go-version: '1.26.2'
+          cache: false
+      - name: Build locked Go toolchain from verified C02 source
+        shell: bash
+        run: |
+          set -euo pipefail
+          bootstrap_root=$(go env GOROOT)
+          source_dir="$RUNNER_TEMP/attestara-go"
+          mkdir -p "$source_dir"
+          node --input-type=module - "$source_dir/go-source.tar.gz" <<'NODE'
+          import { readFileSync, writeFileSync } from 'node:fs';
+          import { createHash } from 'node:crypto';
+          const resource = JSON.parse(readFileSync('docs/engineering/toolchain-lock.json')).resources.find(item => item.id === 'go');
+          const response = await fetch(resource.artifact.url, { signal: AbortSignal.timeout(120000) });
+          if (!response.ok) throw new Error('Locked Go source download failed: ' + response.status);
+          const bytes = Buffer.from(await response.arrayBuffer());
+          if (createHash('sha256').update(bytes).digest('hex') !== resource.artifact.sha256) throw new Error('Go source checksum mismatch');
+          writeFileSync(process.argv[2], bytes);
+          NODE
+          tar -xzf "$source_dir/go-source.tar.gz" --strip-components=1 -C "$source_dir"
+          (cd "$source_dir/src" && GOROOT_BOOTSTRAP="$bootstrap_root" GOMAXPROCS=2 ./make.bash)
+          "$source_dir/bin/go" version
+          echo "$source_dir/bin" >> "$GITHUB_PATH"
+      - run: npm ci --ignore-scripts
+      - run: npx --no-install playwright install --with-deps chromium
+      - name: Install the existing optional-proxy test prerequisite
+        run: |
+          sudo apt-get update
+          sudo apt-get install --no-install-recommends -y nginx
+      - name: Require the selected exact source
+        run: test "$(git rev-parse HEAD)" = "$SOURCE_COMMIT"
+      - name: Run a fresh complete gate
+        run: npm run release:check
+      - name: Build the exact committed distribution and collect its gate
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          npm run package
+          mkdir dist/release-candidate
+          cp "dist/packages/$SOURCE_COMMIT/"* dist/release-candidate/
+          node --input-type=module <<'NODE'
+          import { readdirSync, copyFileSync } from 'node:fs';
+          const runs = readdirSync('dist/release-gate').filter(name => name.startsWith('run-'));
+          if (runs.length !== 1) throw new Error('Require this run only');
+          copyFileSync('dist/release-gate/' + runs[0] + '/report.json', 'dist/release-candidate/gate.json');
+          NODE
+          node scripts/release-publication.mjs check --source-commit "$SOURCE_COMMIT" --report dist/release-candidate/gate.json --output dist/release-candidate/candidate.json
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: release-candidate-${{ github.sha }}-${{ github.run_id }}
+          path: dist/release-candidate/
+          retention-days: 14
+          if-no-files-found: error
+      - name: Retain verification diagnostics
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: release-preparation-${{ github.sha }}-${{ github.run_id }}
+          path: |
+            dist/release-gate/**/report.json
+            dist/release-gate/**/*.log
+          retention-days: 14
+          if-no-files-found: warn
+  publish:
+    needs: prepare
+    if: inputs.publish && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    environment: release
+    permissions:
+      contents: write
+      actions: read
+    env:
+      SOURCE_COMMIT: ${{ inputs.source_commit }}
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+        with:
+          node-version-file: .nvmrc
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: release-candidate-${{ github.sha }}-${{ github.run_id }}
+          path: dist/release-candidate/
+      - name: Sign only the reviewed checksum manifest
+        env:
+          ATTESTARA_RELEASE_PRIVATE_KEY: ${{ secrets.ATTESTARA_RELEASE_PRIVATE_KEY }}
+        run: node scripts/release-publication.mjs sign --source-commit "$SOURCE_COMMIT" --directory dist/release-candidate --output dist/release-candidate/signing.json
+      - name: Publish complete verified assets without replacing an existing release
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: node scripts/release-publication.mjs publish --publish --source-commit "$SOURCE_COMMIT" --directory dist/release-candidate --report dist/release-candidate/gate.json --output dist/release-candidate/publication.json
+      - name: Retain publication evidence, including incomplete attempts
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: release-publication-${{ github.sha }}-${{ github.run_id }}
+          path: dist/release-candidate/*.json
+          retention-days: 14
+          if-no-files-found: error
+  installed:
+    needs: publish
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      SOURCE_COMMIT: ${{ inputs.source_commit }}
+      GOTOOLCHAIN: local
+      GOSUMDB: sum.golang.org
+      GOPROXY: https://proxy.golang.org|direct
+      GOMAXPROCS: '2'
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+          fetch-depth: 0
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - name: Install pinned npm
+        run: |
+          npm_pin=$(node -p "require('./package.json').packageManager")
+          npm install --global --ignore-scripts "$npm_pin"
+      - name: Require pinned npm
+        run: npm run setup -- --check
+      - uses: actions/setup-go@924ae3a1cded613372ab5595356fb5720e22ba16
+        with:
+          go-version: '1.26.2'
+          cache: false
+      - name: Build locked Go toolchain from verified C02 source
+        shell: bash
+        run: |
+          set -euo pipefail
+          bootstrap_root=$(go env GOROOT)
+          source_dir="$RUNNER_TEMP/attestara-go"
+          mkdir -p "$source_dir"
+          node --input-type=module - "$source_dir/go-source.tar.gz" <<'NODE'
+          import { readFileSync, writeFileSync } from 'node:fs';
+          import { createHash } from 'node:crypto';
+          const resource = JSON.parse(readFileSync('docs/engineering/toolchain-lock.json')).resources.find(item => item.id === 'go');
+          const response = await fetch(resource.artifact.url, { signal: AbortSignal.timeout(120000) });
+          if (!response.ok) throw new Error('Locked Go source download failed: ' + response.status);
+          const bytes = Buffer.from(await response.arrayBuffer());
+          if (createHash('sha256').update(bytes).digest('hex') !== resource.artifact.sha256) throw new Error('Go source checksum mismatch');
+          writeFileSync(process.argv[2], bytes);
+          NODE
+          tar -xzf "$source_dir/go-source.tar.gz" --strip-components=1 -C "$source_dir"
+          (cd "$source_dir/src" && GOROOT_BOOTSTRAP="$bootstrap_root" GOMAXPROCS=2 ./make.bash)
+          "$source_dir/bin/go" version
+          echo "$source_dir/bin" >> "$GITHUB_PATH"
+      - run: npm ci --ignore-scripts
+      - run: npx --no-install playwright install --with-deps chromium
+      - name: Verify and exercise the downloaded public release
+        run: npm run test:published -- --source-commit "$SOURCE_COMMIT"
+      - name: Retain actual installed-release evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: release-installed-${{ github.sha }}-${{ github.run_id }}
+          path: dist/published-release/**/report.json
+          retention-days: 14
+          if-no-files-found: error

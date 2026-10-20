@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "passed": false,
+  "published": false,
+  "version": "1.0.0",
+  "tag": "v1.0.0",
+  "manifest": "docs/release/RELEASE_MANIFEST.json",
+  "evidence": "docs/evidence/C40.json",
+  "blockers": [
+    "Local commit authorized; user will push separately. Publication still requires separate approval.",
+    "The release Environment, main restriction, maintainer reviewer and dedicated key Secret have not been configured/verified.",
+    "No candidate C40 GitHub workflow, actual public v1.0.0 or downloaded public-install proof exists."
+  ],
+  "local_ready": true,
+  "source_identity": "sha256:a072f78bb7e6cb596077357abaf7421176a0be3b7aea583b51a271070977b83b",
+  "runtime_candidate_commit": "b245640b39a648ee6b4a3d097d02897fa31fa1d3",
+  "runtime_candidate_tree": "be3f2507cc4ca1d682e6643d3fb022c5d7d351c8",
+  "local_gate": {
+    "path": "docs/evidence/C40-local-run.json",
+    "sha256": "sha256:266ccd1b076f65c7fe10eea10cb0b031d5deb4f35035cb24132917f444488833"
+  },
+  "local_rehearsal": {
+    "path": "docs/evidence/C40-installed-rehearsal.json",
+    "sha256": "sha256:453f9754c68aed4ae45cf2b9cc18d23421c2b27ae9dd172c4d55ac140dc0295c"
+  },
+  "signer_fingerprint": "sha256:f54a6ceaf3ff6ba76775ea97d25ae519b2e0bbf389d9f8bd15f71fd4dbe64443",
+  "release_id": null,
+  "release_url": null
+}

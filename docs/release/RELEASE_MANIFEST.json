@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "repository": "Parsa-Emami/Attestara",
+  "version": "1.0.0",
+  "tag": "v1.0.0",
+  "profile": "local-cli-snapshots",
+  "platform": "linux-x64",
+  "signer_id": "attestara-release-v1",
+  "public_key_hex": "835d4fdff1d18bb2ff76761c3dc4a8df2ceffbe7ae9c5c083ac9ff853e136025",
+  "fingerprint": "sha256:f54a6ceaf3ff6ba76775ea97d25ae519b2e0bbf389d9f8bd15f71fd4dbe64443"
+}

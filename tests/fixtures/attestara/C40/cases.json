@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "required_workflows": [
+    "contracts.yml",
+    "plan.yml",
+    "runtime.yml",
+    "web.yml",
+    "release-gate.yml"
+  ],
+  "publication_without_authorization": "rejected",
+  "negative_cases": [
+    "missing or latest failed/running CI",
+    "wrong main/source/gate",
+    "existing tag/release",
+    "wrong key or fingerprint",
+    "bad signature or changed/missing artifacts (C35 verifier)",
+    "incomplete upload",
+    "draft/prerelease/wrong source",
+    "missing/duplicate/unsafe published assets",
+    "corrupt public download",
+    "key directory inside repository or existing key"
+  ],
+  "runtime_negative_cases": "Existing C05/C31/C35 tests: SIGKILL, replay/lost ACK, ENOSPC/quota, inert input and rollback preserving newer data."
+}

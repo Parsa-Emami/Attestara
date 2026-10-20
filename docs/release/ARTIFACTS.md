@@ -91,7 +91,8 @@ Checksums detect accidental modification against a separately trusted expected
 manifest; neither checksums nor this unsigned provenance authenticate a publisher.
 The C35 verifier authenticates a detached signature over the checksum manifest,
 using independently configured trust. The package command itself remains unsigned.
-Publication and a maintainer-controlled release identity require C40 authorization.
+The dedicated maintainer public key and staged C40 publication procedure are in
+[RELEASING.md](RELEASING.md); real publication requires separate authorization.
 No artifact here is a published OSS v1 claim.
 
 ## Verify a detached release signature (C35)

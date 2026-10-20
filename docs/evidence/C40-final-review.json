@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-20T14:58:03.612129+00:00",
+  "runtime_source_identity": "sha256:a072f78bb7e6cb596077357abaf7421176a0be3b7aea583b51a271070977b83b",
+  "runtime_candidate_commit": "b245640b39a648ee6b4a3d097d02897fa31fa1d3",
+  "runtime_candidate_tree": "be3f2507cc4ca1d682e6643d3fb022c5d7d351c8",
+  "canonical_inputs_unchanged": true,
+  "canonical_input_count": 653,
+  "index_unchanged": true,
+  "user_branch_unchanged": true,
+  "protected_files_changed": false,
+  "private_key_found_in_task_files": false,
+  "review": [
+    "Reused C35 verifier and installed recovery; no product API/data/health changes.",
+    "Manual main-only publication defaults off; only publish job has contents write and the dedicated key is confined to its signing step.",
+    "All five latest source-matched workflows and this run gate are required before signing/publication; existing drafts/tags and incomplete uploads fail closed.",
+    "Authenticated API/upload origins and public asset URLs/names/sizes/digests are confined. Signature and expected source are verified before extracting/executing candidate bytes.",
+    "Local rehearsal is explicitly not public-install proof; public download and GitHub writes remain unexecuted until authorization.",
+    "No added npm/Go dependencies; additional CI Action pinned to an official commit with MIT license provenance."
+  ],
+  "validation": {
+    "actionlint_all_workflows": "passed (1.7.12)",
+    "javascript_syntax": "all six changed/new mjs files passed",
+    "ci_context_unit_tests": "7 passed with GITHUB_RUN_ID=synthetic-ci-context; no actual GitHub workflow run claimed",
+    "diff_check": "passed"
+  }
+}
