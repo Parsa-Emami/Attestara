@@ -330,10 +330,12 @@
     },
     {
       "id": "C37",
-      "status": "planned",
-      "evidence": [],
-      "source_identity": null,
-      "notes": ""
+      "status": "verified",
+      "evidence": [
+        "docs/evidence/C37.json"
+      ],
+      "source_identity": "sha256:4628db4f0f57b6bab5eae68b56f39d98435e067525108f29c73048f9d4026dc1",
+      "notes": "Owner-approved audit found no reproducible product blocker; existing contracts preserved. 62 Node/118 uncached Go (real locked OPA, zero skips)/25 browser cases and real local clone, restart/restore, installed C34/candidate upgrade/rollback and package reproduction passed. Local equivalents of all four workflows; no new remote Actions or publication."
     },
     {
       "id": "C38",

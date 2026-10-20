@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "license": "Apache-2.0",
+  "profile": "local-cli-snapshots",
+  "cases": [
+    {
+      "id": "prerequisites",
+      "kind": "negative",
+      "checks": [
+        "tests/web/oss-tooling.test.mjs",
+        "tests/web/local-launch.test.mjs"
+      ],
+      "expected": "Missing or incompatible prerequisites fail explicitly; failed setup invalidates stale engine output according to C03."
+    },
+    {
+      "id": "malformed-input",
+      "kind": "negative",
+      "checks": [
+        "tests/web/onboarding-scenario.test.mjs",
+        "tests/c30_test.go"
+      ],
+      "expected": "Malformed onboarding contracts and missing evidence cannot produce accepted success."
+    },
+    {
+      "id": "core-workflow",
+      "kind": "positive",
+      "checks": [
+        "scripts/clone-smoke.mjs",
+        "tests/ops/user-guide.test.mjs"
+      ],
+      "expected": "Actual setup, documented CLI, supervised service and browser viewer complete the supported local workflow."
+    },
+    {
+      "id": "restart-restore",
+      "kind": "recovery",
+      "checks": [
+        "scripts/clone-workflow.mjs",
+        "tests/c30_test.go"
+      ],
+      "expected": "Restart preserves the accepted passport; restore uses a new store and rejects corrupted backups or existing destinations."
+    },
+    {
+      "id": "accessible-viewer",
+      "kind": "positive",
+      "checks": [
+        "tests/browser/full-workflow-accessibility.spec.ts"
+      ],
+      "expected": "Keyboard workflow, 360px/1440px views, invalid/empty/interrupted reads and engine outage preserve explicit unverified claims."
+    },
+    {
+      "id": "release-integrity-trust",
+      "kind": "negative",
+      "checks": [
+        "tests/web/release-verification.test.mjs"
+      ],
+      "expected": "Changed or missing artifact bytes and invalid signatures fail; valid signatures and independent signer trust remain separate."
+    },
+    {
+      "id": "upgrade-rollback",
+      "kind": "recovery",
+      "checks": [
+        "tests/release/upgrade-recovery.mjs"
+      ],
+      "expected": "Installed C34/candidate software upgrade and rollback retain newer accepted store bytes; old backup overwrite and unsupported formats reject."
+    },
+    {
+      "id": "provider-unavailable",
+      "kind": "negative",
+      "checks": [
+        "tests/opa_test.go"
+      ],
+      "expected": "Missing or failed optional OPA is an explicit adapter error; optional providers are not prerequisites for the base workflow."
+    },
+    {
+      "id": "inert-source",
+      "kind": "security",
+      "checks": [
+        "tests/c30_test.go",
+        "tests/release/upgrade-recovery.mjs"
+      ],
+      "expected": "Shell-like input remains inert; no user source executes during evaluation, installation or restore."
+    }
+  ]
+}

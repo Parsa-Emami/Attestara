@@ -1,0 +1,706 @@
+{
+  "passed": true,
+  "baseline_commit": "f103087fe933937775f701dbc9170cdfd9ee3a7d",
+  "candidate_commit": "c933b198c3c45d97eae561a38e7ad9f2ec0560e7",
+  "license": "Apache-2.0",
+  "trust": {
+    "schema_version": "1",
+    "trusted_signers": {
+      "synthetic-c35-test": "b150cd60a2f8b22bab2edc594cc52db3982b67219eb19ae75b4b62d36d4f7686"
+    }
+  },
+  "releases": [
+    {
+      "commit": "f103087fe933937775f701dbc9170cdfd9ee3a7d",
+      "signature": {
+        "schema_version": "1",
+        "signer_id": "synthetic-c35-test",
+        "public_key_hex": "b150cd60a2f8b22bab2edc594cc52db3982b67219eb19ae75b4b62d36d4f7686",
+        "signature_hex": "fafc4a1734cf46115172d6ac87bcf129527f08a17d3a7e154f3728d388f6a04bc2d304484e86cd43a10e2909e5e22024d1f7273fb12d9e9abc2db159181f4b0e"
+      },
+      "checksums_sha256": "7cba56c27b46f57495c9c1fed0d0efac7f03b3bc82270c25f80317c28eed2444",
+      "assessment": {
+        "schema_version": "1",
+        "scope": "release-distribution",
+        "file_integrity": "verified",
+        "cryptographic_valid": true,
+        "signer_trusted": true,
+        "expected_source_match": true,
+        "freshness": "fresh",
+        "release_trusted": true,
+        "source_commit": "f103087fe933937775f701dbc9170cdfd9ee3a7d",
+        "checksums_sha256": "7cba56c27b46f57495c9c1fed0d0efac7f03b3bc82270c25f80317c28eed2444"
+      },
+      "files": [
+        {
+          "path": "SHA256SUMS.txt",
+          "sha256": "7cba56c27b46f57495c9c1fed0d0efac7f03b3bc82270c25f80317c28eed2444",
+          "mode": 420
+        },
+        {
+          "path": "attestara-f103087fe933937775f701dbc9170cdfd9ee3a7d-linux-x64.tar.gz",
+          "sha256": "0140d84a6fbc0133ca5df73f57db524d80d7489789c6624617140d924be6d65d",
+          "mode": 420
+        },
+        {
+          "path": "attestara-f103087fe933937775f701dbc9170cdfd9ee3a7d-source.tar.gz",
+          "sha256": "d530b7d8874477160664d406b5af9901d43af44ddaa3b2284877d2ab758c03f9",
+          "mode": 420
+        },
+        {
+          "path": "release.json",
+          "sha256": "3656c17128d58f2ebf0b618e20e1b9ad1295f782e284f904b8a7439f08de6cdc",
+          "mode": 420
+        },
+        {
+          "path": "sbom.cdx.json",
+          "sha256": "e99a14e98584503bc347f976ee9118a47d9b5c215a4a4ec4dec70d2c7be57717",
+          "mode": 420
+        }
+      ]
+    },
+    {
+      "commit": "c933b198c3c45d97eae561a38e7ad9f2ec0560e7",
+      "signature": {
+        "schema_version": "1",
+        "signer_id": "synthetic-c35-test",
+        "public_key_hex": "b150cd60a2f8b22bab2edc594cc52db3982b67219eb19ae75b4b62d36d4f7686",
+        "signature_hex": "40003bf6846cd01096b42c874f8c707205fcd81ee258ab55986304888516f6702eacd01d4b593db44cc1e9ec3366e23e875969b168ab1967112e6abf2f8e220f"
+      },
+      "checksums_sha256": "047b79148cb685615f70fdf5e5b19614f952f6bb3c29c48d5f2d1681c4dfca5b",
+      "assessment": {
+        "schema_version": "1",
+        "scope": "release-distribution",
+        "file_integrity": "verified",
+        "cryptographic_valid": true,
+        "signer_trusted": true,
+        "expected_source_match": true,
+        "freshness": "fresh",
+        "release_trusted": true,
+        "source_commit": "c933b198c3c45d97eae561a38e7ad9f2ec0560e7",
+        "checksums_sha256": "047b79148cb685615f70fdf5e5b19614f952f6bb3c29c48d5f2d1681c4dfca5b"
+      },
+      "files": [
+        {
+          "path": "SHA256SUMS.txt",
+          "sha256": "047b79148cb685615f70fdf5e5b19614f952f6bb3c29c48d5f2d1681c4dfca5b",
+          "mode": 420
+        },
+        {
+          "path": "attestara-c933b198c3c45d97eae561a38e7ad9f2ec0560e7-linux-x64.tar.gz",
+          "sha256": "73baa1952b8fd5c503b61f9380cfe9ccb0d56d6243df51d18cb2054ce45bbf35",
+          "mode": 420
+        },
+        {
+          "path": "attestara-c933b198c3c45d97eae561a38e7ad9f2ec0560e7-source.tar.gz",
+          "sha256": "446e3043092441f7f396431424780581a298768917b20d670905b44fdbed0571",
+          "mode": 420
+        },
+        {
+          "path": "release.json",
+          "sha256": "23eecb9bfb6194f6cb11df8a76b08d3f7efed121f958a19f7c9a244fe4902d68",
+          "mode": 420
+        },
+        {
+          "path": "sbom.cdx.json",
+          "sha256": "c585a80cc6a1144ddc6c7a681fcce8a0bf0d906d8b89df32ba38616efbea1c4e",
+          "mode": 420
+        }
+      ]
+    }
+  ],
+  "store_before_upgrade": [
+    {
+      "path": "lock",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": 420
+    },
+    {
+      "path": "manifest",
+      "sha256": "799f639246af8a465e72a5417a0d4a24eb9b8803f733064ecc084a11ec1e9fd7",
+      "mode": 420
+    },
+    {
+      "path": "objects/55761b9f1b1f365a584540c0396fc6c669393bedd08d0736977461369345c9ab",
+      "sha256": "55761b9f1b1f365a584540c0396fc6c669393bedd08d0736977461369345c9ab",
+      "mode": 420
+    },
+    {
+      "path": "objects/a8bff7c6201d8eacba9acf62cee9f3d2f50ceb1af9327340c464abc848068446",
+      "sha256": "a8bff7c6201d8eacba9acf62cee9f3d2f50ceb1af9327340c464abc848068446",
+      "mode": 420
+    },
+    {
+      "path": "objects/ecdc32b595e2dc30f73744505e78f4f6888b76c3997098f3f1fdffcb7b7d9cd4",
+      "sha256": "ecdc32b595e2dc30f73744505e78f4f6888b76c3997098f3f1fdffcb7b7d9cd4",
+      "mode": 420
+    },
+    {
+      "path": "objects/f4eef926e346ce1feac1114ab917dc53928001104bab21cb7e88948a9f1ca193",
+      "sha256": "f4eef926e346ce1feac1114ab917dc53928001104bab21cb7e88948a9f1ca193",
+      "mode": 420
+    }
+  ],
+  "store_after_new_write_and_rollback": [
+    {
+      "path": "lock",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": 420
+    },
+    {
+      "path": "manifest",
+      "sha256": "ccf47d8eaddd9d3dc23d92d495cc1a5012ab683a872cc07be26419dba4dcc358",
+      "mode": 420
+    },
+    {
+      "path": "objects/55761b9f1b1f365a584540c0396fc6c669393bedd08d0736977461369345c9ab",
+      "sha256": "55761b9f1b1f365a584540c0396fc6c669393bedd08d0736977461369345c9ab",
+      "mode": 420
+    },
+    {
+      "path": "objects/7b07639a99149414f55215da7b83acb0decffc26659c42432b86b7a05d98d890",
+      "sha256": "7b07639a99149414f55215da7b83acb0decffc26659c42432b86b7a05d98d890",
+      "mode": 420
+    },
+    {
+      "path": "objects/a8bff7c6201d8eacba9acf62cee9f3d2f50ceb1af9327340c464abc848068446",
+      "sha256": "a8bff7c6201d8eacba9acf62cee9f3d2f50ceb1af9327340c464abc848068446",
+      "mode": 420
+    },
+    {
+      "path": "objects/ecdc32b595e2dc30f73744505e78f4f6888b76c3997098f3f1fdffcb7b7d9cd4",
+      "sha256": "ecdc32b595e2dc30f73744505e78f4f6888b76c3997098f3f1fdffcb7b7d9cd4",
+      "mode": 420
+    },
+    {
+      "path": "objects/f4eef926e346ce1feac1114ab917dc53928001104bab21cb7e88948a9f1ca193",
+      "sha256": "f4eef926e346ce1feac1114ab917dc53928001104bab21cb7e88948a9f1ca193",
+      "mode": 420
+    }
+  ],
+  "passport_sha256": [
+    "30edaf77ae94f1240a99e958aeac81ea5648ccc8ccc700b6c3469b6267b5bddc",
+    "d1a2f072b3a05d6d0aa0e03cad171c4a8bbe7b599c66882140b82eed7c356867"
+  ],
+  "browser": "153.0.8010.52",
+  "commands": [
+    {
+      "command": [
+        "attestara",
+        "evaluate",
+        "--input",
+        "/tmp/attestara-c31-rx9HTr/upgrade/installed-baseline/tests/fixtures/attestara/C30/manifest.json",
+        "--policy",
+        "/tmp/attestara-c31-rx9HTr/upgrade/installed-baseline/tests/fixtures/attestara/C30/rule.json",
+        "--evidence",
+        "/tmp/attestara-c31-rx9HTr/upgrade/installed-baseline/tests/fixtures/attestara/C30/evidence.json",
+        "--freshness",
+        "fresh",
+        "--files",
+        "/tmp/attestara-c31-rx9HTr/upgrade/installed-baseline/tests/fixtures/attestara/C30",
+        "--store",
+        "/tmp/attestara-c31-rx9HTr/upgrade/store",
+        "--operation-id",
+        "release-1"
+      ],
+      "expected_exit": 0,
+      "exit": 0,
+      "duration_ms": 74,
+      "stdout": "{\"schema_version\":\"1\",\"status\":\"unverified\",\"release_id\":\"attestara-c30-release\",\"source_revision\":\"synthetic-c30-1\",\"subject_digest\":\"sha256:ecdc32b595e2dc30f73744505e78f4f6888b76c3997098f3f1fdffcb7b7d9cd4\",\"evidence_digest\":\"sha256:f4eef926e346ce1feac1114ab917dc53928001104bab21cb7e88948a9f1ca193\",\"policy_digest\":\"sha256:a8bff7c6201d8eacba9acf62cee9f3d2f50ceb1af9327340c464abc848068446\",\"policy_decision\":\"pass\",\"verification\":\"unverified\",\"evidence_references\":[{\"path\":\"evidence.json\",\"digest\":\"sha256:f4eef926e346ce1feac1114ab917dc53928001104bab21cb7e88948a9f1ca193\"}],\"warnings\":[],\"report_digest\":\"sha256:bf536d4b367271e7a954b409f3c61de82b69a9f97f9b221bb533d7d254634e40\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "attestara",
+        "evaluate",
+        "--input",
+        "/tmp/attestara-c31-rx9HTr/upgrade/installed-baseline/tests/fixtures/attestara/C30/manifest.json",
+        "--policy",
+        "/tmp/attestara-c31-rx9HTr/upgrade/installed-baseline/tests/fixtures/attestara/C30/rule.json",
+        "--evidence",
+        "/tmp/attestara-c31-rx9HTr/upgrade/installed-baseline/tests/fixtures/attestara/C30/evidence.json",
+        "--freshness",
+        "fresh",
+        "--files",
+        "/tmp/attestara-c31-rx9HTr/upgrade/installed-baseline/tests/fixtures/attestara/C30",
+        "--store",
+        "/tmp/attestara-c31-rx9HTr/upgrade/store",
+        "--operation-id",
+        "release-1"
+      ],
+      "expected_exit": 0,
+      "exit": 0,
+      "duration_ms": 34,
+      "stdout": "{\"schema_version\":\"1\",\"status\":\"unverified\",\"release_id\":\"attestara-c30-release\",\"source_revision\":\"synthetic-c30-1\",\"subject_digest\":\"sha256:ecdc32b595e2dc30f73744505e78f4f6888b76c3997098f3f1fdffcb7b7d9cd4\",\"evidence_digest\":\"sha256:f4eef926e346ce1feac1114ab917dc53928001104bab21cb7e88948a9f1ca193\",\"policy_digest\":\"sha256:a8bff7c6201d8eacba9acf62cee9f3d2f50ceb1af9327340c464abc848068446\",\"policy_decision\":\"pass\",\"verification\":\"unverified\",\"evidence_references\":[{\"path\":\"evidence.json\",\"digest\":\"sha256:f4eef926e346ce1feac1114ab917dc53928001104bab21cb7e88948a9f1ca193\"}],\"warnings\":[],\"report_digest\":\"sha256:bf536d4b367271e7a954b409f3c61de82b69a9f97f9b221bb533d7d254634e40\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "attestara",
+        "evaluate",
+        "--input",
+        "/tmp/attestara-c31-rx9HTr/upgrade/installed-baseline/tests/fixtures/attestara/C30/manifest.json",
+        "--policy",
+        "/tmp/attestara-c31-rx9HTr/upgrade/installed-baseline/tests/fixtures/attestara/C30/rule.json",
+        "--evidence",
+        "/tmp/attestara-c31-rx9HTr/upgrade/installed-baseline/tests/fixtures/attestara/C30/evidence.json",
+        "--freshness",
+        "stale",
+        "--files",
+        "/tmp/attestara-c31-rx9HTr/upgrade/installed-baseline/tests/fixtures/attestara/C30",
+        "--store",
+        "/tmp/attestara-c31-rx9HTr/upgrade/store",
+        "--operation-id",
+        "release-1"
+      ],
+      "expected_exit": 3,
+      "exit": 3,
+      "duration_ms": 28,
+      "stdout": "",
+      "stderr": "snapshot commit failed or conflicted; reopen to reconcile\n"
+    },
+    {
+      "command": [
+        "attestara",
+        "verify",
+        "--store",
+        "/tmp/attestara-c31-rx9HTr/upgrade/store",
+        "--operation-id",
+        "release-1"
+      ],
+      "expected_exit": 0,
+      "exit": 0,
+      "duration_ms": 34,
+      "stdout": "{\"schema_version\":\"1\",\"status\":\"unverified\",\"release_id\":\"attestara-c30-release\",\"source_revision\":\"synthetic-c30-1\",\"subject_digest\":\"sha256:ecdc32b595e2dc30f73744505e78f4f6888b76c3997098f3f1fdffcb7b7d9cd4\",\"evidence_digest\":\"sha256:f4eef926e346ce1feac1114ab917dc53928001104bab21cb7e88948a9f1ca193\",\"policy_digest\":\"sha256:a8bff7c6201d8eacba9acf62cee9f3d2f50ceb1af9327340c464abc848068446\",\"policy_decision\":\"pass\",\"verification\":\"unverified\",\"evidence_references\":[{\"path\":\"evidence.json\",\"digest\":\"sha256:f4eef926e346ce1feac1114ab917dc53928001104bab21cb7e88948a9f1ca193\"}],\"warnings\":[],\"report_digest\":\"sha256:bf536d4b367271e7a954b409f3c61de82b69a9f97f9b221bb533d7d254634e40\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "attestara",
+        "verify",
+        "--input",
+        "/tmp/attestara-c31-rx9HTr/upgrade/installed-baseline/tests/fixtures/attestara/C30/manifest.json",
+        "--files",
+        "/tmp/attestara-c31-rx9HTr/upgrade/installed-baseline/tests/fixtures/attestara/C30",
+        "--passport",
+        "/tmp/attestara-c31-rx9HTr/upgrade/passport.json"
+      ],
+      "expected_exit": 0,
+      "exit": 0,
+      "duration_ms": 13,
+      "stdout": "{\"schema_version\":\"1\",\"status\":\"unverified\",\"release_id\":\"attestara-c30-release\",\"source_revision\":\"synthetic-c30-1\",\"subject_digest\":\"sha256:ecdc32b595e2dc30f73744505e78f4f6888b76c3997098f3f1fdffcb7b7d9cd4\",\"evidence_digest\":\"sha256:f4eef926e346ce1feac1114ab917dc53928001104bab21cb7e88948a9f1ca193\",\"policy_digest\":\"sha256:a8bff7c6201d8eacba9acf62cee9f3d2f50ceb1af9327340c464abc848068446\",\"policy_decision\":\"pass\",\"verification\":\"unverified\",\"evidence_references\":[{\"path\":\"evidence.json\",\"digest\":\"sha256:f4eef926e346ce1feac1114ab917dc53928001104bab21cb7e88948a9f1ca193\"}],\"warnings\":[],\"report_digest\":\"sha256:bf536d4b367271e7a954b409f3c61de82b69a9f97f9b221bb533d7d254634e40\"}\n",
+      "stderr": "{\"schema_version\":\"1\",\"file_integrity\":\"verified\",\"cryptographic_valid\":false,\"signer_trusted\":false,\"manifest_trusted\":false}\n"
+    },
+    {
+      "command": [
+        "attestara",
+        "verify",
+        "--input",
+        "/tmp/attestara-c31-rx9HTr/upgrade/installed-baseline/tests/fixtures/attestara/C30/manifest.json",
+        "--files",
+        "/tmp/attestara-c31-rx9HTr/upgrade/installed-baseline/tests/fixtures/attestara/C30",
+        "--passport",
+        "/tmp/attestara-c31-rx9HTr/upgrade/passport.json",
+        "--signature",
+        "/tmp/attestara-c31-rx9HTr/upgrade/installed-baseline/tests/fixtures/attestara/C30/signature.json",
+        "--trust",
+        "/tmp/attestara-c31-rx9HTr/upgrade/installed-baseline/tests/fixtures/attestara/C30/trust.json"
+      ],
+      "expected_exit": 0,
+      "exit": 0,
+      "duration_ms": 11,
+      "stdout": "{\"schema_version\":\"1\",\"status\":\"unverified\",\"release_id\":\"attestara-c30-release\",\"source_revision\":\"synthetic-c30-1\",\"subject_digest\":\"sha256:ecdc32b595e2dc30f73744505e78f4f6888b76c3997098f3f1fdffcb7b7d9cd4\",\"evidence_digest\":\"sha256:f4eef926e346ce1feac1114ab917dc53928001104bab21cb7e88948a9f1ca193\",\"policy_digest\":\"sha256:a8bff7c6201d8eacba9acf62cee9f3d2f50ceb1af9327340c464abc848068446\",\"policy_decision\":\"pass\",\"verification\":\"unverified\",\"evidence_references\":[{\"path\":\"evidence.json\",\"digest\":\"sha256:f4eef926e346ce1feac1114ab917dc53928001104bab21cb7e88948a9f1ca193\"}],\"warnings\":[],\"report_digest\":\"sha256:bf536d4b367271e7a954b409f3c61de82b69a9f97f9b221bb533d7d254634e40\"}\n",
+      "stderr": "{\"schema_version\":\"1\",\"file_integrity\":\"verified\",\"cryptographic_valid\":true,\"signer_trusted\":true,\"manifest_trusted\":true}\n"
+    },
+    {
+      "command": [
+        "attestara",
+        "verify",
+        "--input",
+        "/tmp/attestara-c31-rx9HTr/upgrade/installed-baseline/tests/fixtures/attestara/C30/manifest.json",
+        "--files",
+        "/tmp/attestara-c31-rx9HTr/upgrade/installed-baseline/tests/fixtures/attestara/C30",
+        "--passport",
+        "/tmp/attestara-c31-rx9HTr/upgrade/passport.json",
+        "--signature",
+        "/tmp/attestara-c31-rx9HTr/upgrade/installed-baseline/tests/fixtures/attestara/C30/signature.json",
+        "--trust",
+        "/tmp/attestara-c31-rx9HTr/upgrade/installed-baseline/tests/fixtures/attestara/C30/untrusted.json"
+      ],
+      "expected_exit": 0,
+      "exit": 0,
+      "duration_ms": 13,
+      "stdout": "{\"schema_version\":\"1\",\"status\":\"unverified\",\"release_id\":\"attestara-c30-release\",\"source_revision\":\"synthetic-c30-1\",\"subject_digest\":\"sha256:ecdc32b595e2dc30f73744505e78f4f6888b76c3997098f3f1fdffcb7b7d9cd4\",\"evidence_digest\":\"sha256:f4eef926e346ce1feac1114ab917dc53928001104bab21cb7e88948a9f1ca193\",\"policy_digest\":\"sha256:a8bff7c6201d8eacba9acf62cee9f3d2f50ceb1af9327340c464abc848068446\",\"policy_decision\":\"pass\",\"verification\":\"unverified\",\"evidence_references\":[{\"path\":\"evidence.json\",\"digest\":\"sha256:f4eef926e346ce1feac1114ab917dc53928001104bab21cb7e88948a9f1ca193\"}],\"warnings\":[],\"report_digest\":\"sha256:bf536d4b367271e7a954b409f3c61de82b69a9f97f9b221bb533d7d254634e40\"}\n",
+      "stderr": "{\"schema_version\":\"1\",\"file_integrity\":\"verified\",\"cryptographic_valid\":true,\"signer_trusted\":false,\"manifest_trusted\":false}\n"
+    },
+    {
+      "command": [
+        "attestara",
+        "verify",
+        "--input",
+        "/tmp/attestara-c31-rx9HTr/upgrade/installed-baseline/tests/fixtures/attestara/C30/manifest.json",
+        "--files",
+        "/tmp/attestara-c31-rx9HTr/upgrade/installed-baseline/tests/fixtures/attestara/C30",
+        "--passport",
+        "/tmp/attestara-c31-rx9HTr/upgrade/passport.json",
+        "--signature",
+        "/tmp/attestara-c31-rx9HTr/upgrade/installed-baseline/tests/fixtures/attestara/C30/invalid-signature.json"
+      ],
+      "expected_exit": 2,
+      "exit": 2,
+      "duration_ms": 11,
+      "stdout": "",
+      "stderr": "manifest signature rejected\n"
+    },
+    {
+      "command": [
+        "attestara",
+        "verify",
+        "--input",
+        "/tmp/attestara-c31-rx9HTr/upgrade/installed-baseline/tests/fixtures/attestara/C30/manifest.json",
+        "--files",
+        "/tmp/attestara-c31-rx9HTr/upgrade/changed",
+        "--passport",
+        "/tmp/attestara-c31-rx9HTr/upgrade/passport.json"
+      ],
+      "expected_exit": 2,
+      "exit": 2,
+      "duration_ms": 10,
+      "stdout": "",
+      "stderr": "invalid_input: files.digest: A referenced file digest does not match the manifest.\n"
+    },
+    {
+      "command": [
+        "attestara",
+        "evaluate",
+        "--input",
+        "/tmp/attestara-c31-rx9HTr/upgrade/incomplete.json",
+        "--policy",
+        "/tmp/attestara-c31-rx9HTr/upgrade/installed-baseline/tests/fixtures/attestara/C30/rule.json",
+        "--evidence",
+        "/tmp/attestara-c31-rx9HTr/upgrade/installed-baseline/tests/fixtures/attestara/C30/evidence.json",
+        "--freshness",
+        "fresh",
+        "--files",
+        "/tmp/attestara-c31-rx9HTr/upgrade/installed-baseline/tests/fixtures/attestara/C30",
+        "--store",
+        "/tmp/attestara-c31-rx9HTr/upgrade/store",
+        "--operation-id",
+        "invalid"
+      ],
+      "expected_exit": 2,
+      "exit": 2,
+      "duration_ms": 11,
+      "stdout": "",
+      "stderr": "invalid_input: evidence_digest: Required value is missing or invalid.\n"
+    },
+    {
+      "command": [
+        "attestara",
+        "export",
+        "--input",
+        "/tmp/attestara-c31-rx9HTr/upgrade/installed-baseline/tests/fixtures/attestara/C30/manifest.json",
+        "--files",
+        "/tmp/attestara-c31-rx9HTr/upgrade/installed-baseline/tests/fixtures/attestara/C30",
+        "--output",
+        "/tmp/attestara-c31-rx9HTr/upgrade/release.zip"
+      ],
+      "expected_exit": 0,
+      "exit": 0,
+      "duration_ms": 19,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "attestara",
+        "verify",
+        "--archive",
+        "/tmp/attestara-c31-rx9HTr/upgrade/release.zip",
+        "--passport",
+        "/tmp/attestara-c31-rx9HTr/upgrade/passport.json"
+      ],
+      "expected_exit": 0,
+      "exit": 0,
+      "duration_ms": 12,
+      "stdout": "{\"schema_version\":\"1\",\"status\":\"unverified\",\"release_id\":\"attestara-c30-release\",\"source_revision\":\"synthetic-c30-1\",\"subject_digest\":\"sha256:ecdc32b595e2dc30f73744505e78f4f6888b76c3997098f3f1fdffcb7b7d9cd4\",\"evidence_digest\":\"sha256:f4eef926e346ce1feac1114ab917dc53928001104bab21cb7e88948a9f1ca193\",\"policy_digest\":\"sha256:a8bff7c6201d8eacba9acf62cee9f3d2f50ceb1af9327340c464abc848068446\",\"policy_decision\":\"pass\",\"verification\":\"unverified\",\"evidence_references\":[{\"path\":\"evidence.json\",\"digest\":\"sha256:f4eef926e346ce1feac1114ab917dc53928001104bab21cb7e88948a9f1ca193\"}],\"warnings\":[],\"report_digest\":\"sha256:bf536d4b367271e7a954b409f3c61de82b69a9f97f9b221bb533d7d254634e40\"}\n",
+      "stderr": "{\"schema_version\":\"1\",\"file_integrity\":\"verified\",\"cryptographic_valid\":false,\"signer_trusted\":false,\"manifest_trusted\":false}\n"
+    },
+    {
+      "command": [
+        "attestara",
+        "export",
+        "--store",
+        "/tmp/attestara-c31-rx9HTr/upgrade/store",
+        "--operation-id",
+        "release-1",
+        "--output",
+        "/tmp/attestara-c31-rx9HTr/upgrade/backup"
+      ],
+      "expected_exit": 0,
+      "exit": 0,
+      "duration_ms": 98,
+      "stdout": "{\"schema_version\":\"1\",\"status\":\"unverified\",\"release_id\":\"attestara-c30-release\",\"source_revision\":\"synthetic-c30-1\",\"subject_digest\":\"sha256:ecdc32b595e2dc30f73744505e78f4f6888b76c3997098f3f1fdffcb7b7d9cd4\",\"evidence_digest\":\"sha256:f4eef926e346ce1feac1114ab917dc53928001104bab21cb7e88948a9f1ca193\",\"policy_digest\":\"sha256:a8bff7c6201d8eacba9acf62cee9f3d2f50ceb1af9327340c464abc848068446\",\"policy_decision\":\"pass\",\"verification\":\"unverified\",\"evidence_references\":[{\"path\":\"evidence.json\",\"digest\":\"sha256:f4eef926e346ce1feac1114ab917dc53928001104bab21cb7e88948a9f1ca193\"}],\"warnings\":[],\"report_digest\":\"sha256:bf536d4b367271e7a954b409f3c61de82b69a9f97f9b221bb533d7d254634e40\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "attestara",
+        "verify",
+        "--store",
+        "/tmp/attestara-c31-rx9HTr/upgrade/store",
+        "--operation-id",
+        "release-1"
+      ],
+      "expected_exit": 0,
+      "exit": 0,
+      "duration_ms": 33,
+      "stdout": "{\"schema_version\":\"1\",\"status\":\"unverified\",\"release_id\":\"attestara-c30-release\",\"source_revision\":\"synthetic-c30-1\",\"subject_digest\":\"sha256:ecdc32b595e2dc30f73744505e78f4f6888b76c3997098f3f1fdffcb7b7d9cd4\",\"evidence_digest\":\"sha256:f4eef926e346ce1feac1114ab917dc53928001104bab21cb7e88948a9f1ca193\",\"policy_digest\":\"sha256:a8bff7c6201d8eacba9acf62cee9f3d2f50ceb1af9327340c464abc848068446\",\"policy_decision\":\"pass\",\"verification\":\"unverified\",\"evidence_references\":[{\"path\":\"evidence.json\",\"digest\":\"sha256:f4eef926e346ce1feac1114ab917dc53928001104bab21cb7e88948a9f1ca193\"}],\"warnings\":[],\"report_digest\":\"sha256:bf536d4b367271e7a954b409f3c61de82b69a9f97f9b221bb533d7d254634e40\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "attestara",
+        "evaluate",
+        "--input",
+        "/tmp/attestara-c31-rx9HTr/upgrade/newer-input/manifest.json",
+        "--files",
+        "/tmp/attestara-c31-rx9HTr/upgrade/newer-input",
+        "--policy",
+        "/tmp/attestara-c31-rx9HTr/upgrade/newer-input/rule.json",
+        "--evidence",
+        "/tmp/attestara-c31-rx9HTr/upgrade/newer-input/evidence.json",
+        "--freshness",
+        "fresh",
+        "--store",
+        "/tmp/attestara-c31-rx9HTr/upgrade/store",
+        "--operation-id",
+        "release-2"
+      ],
+      "expected_exit": 0,
+      "exit": 0,
+      "duration_ms": 54,
+      "stdout": "{\"schema_version\":\"1\",\"status\":\"unverified\",\"release_id\":\"attestara-c35-newer\",\"source_revision\":\"synthetic-c35-2\",\"subject_digest\":\"sha256:7b07639a99149414f55215da7b83acb0decffc26659c42432b86b7a05d98d890\",\"evidence_digest\":\"sha256:f4eef926e346ce1feac1114ab917dc53928001104bab21cb7e88948a9f1ca193\",\"policy_digest\":\"sha256:a8bff7c6201d8eacba9acf62cee9f3d2f50ceb1af9327340c464abc848068446\",\"policy_decision\":\"pass\",\"verification\":\"unverified\",\"evidence_references\":[{\"path\":\"evidence.json\",\"digest\":\"sha256:f4eef926e346ce1feac1114ab917dc53928001104bab21cb7e88948a9f1ca193\"}],\"warnings\":[],\"report_digest\":\"sha256:c995df4b0830bde9bfa39ff2eaeaf3a752a1ce231926796a988f0c03eb93cb1b\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "attestara",
+        "evaluate",
+        "--input",
+        "/tmp/attestara-c31-rx9HTr/upgrade/newer-input/manifest.json",
+        "--files",
+        "/tmp/attestara-c31-rx9HTr/upgrade/newer-input",
+        "--policy",
+        "/tmp/attestara-c31-rx9HTr/upgrade/newer-input/rule.json",
+        "--evidence",
+        "/tmp/attestara-c31-rx9HTr/upgrade/newer-input/evidence.json",
+        "--freshness",
+        "fresh",
+        "--store",
+        "/tmp/attestara-c31-rx9HTr/upgrade/store",
+        "--operation-id",
+        "release-2"
+      ],
+      "expected_exit": 0,
+      "exit": 0,
+      "duration_ms": 35,
+      "stdout": "{\"schema_version\":\"1\",\"status\":\"unverified\",\"release_id\":\"attestara-c35-newer\",\"source_revision\":\"synthetic-c35-2\",\"subject_digest\":\"sha256:7b07639a99149414f55215da7b83acb0decffc26659c42432b86b7a05d98d890\",\"evidence_digest\":\"sha256:f4eef926e346ce1feac1114ab917dc53928001104bab21cb7e88948a9f1ca193\",\"policy_digest\":\"sha256:a8bff7c6201d8eacba9acf62cee9f3d2f50ceb1af9327340c464abc848068446\",\"policy_decision\":\"pass\",\"verification\":\"unverified\",\"evidence_references\":[{\"path\":\"evidence.json\",\"digest\":\"sha256:f4eef926e346ce1feac1114ab917dc53928001104bab21cb7e88948a9f1ca193\"}],\"warnings\":[],\"report_digest\":\"sha256:c995df4b0830bde9bfa39ff2eaeaf3a752a1ce231926796a988f0c03eb93cb1b\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "attestara",
+        "verify",
+        "--store",
+        "/tmp/attestara-c31-rx9HTr/upgrade/store",
+        "--operation-id",
+        "release-2"
+      ],
+      "expected_exit": 0,
+      "exit": 0,
+      "duration_ms": 37,
+      "stdout": "{\"schema_version\":\"1\",\"status\":\"unverified\",\"release_id\":\"attestara-c35-newer\",\"source_revision\":\"synthetic-c35-2\",\"subject_digest\":\"sha256:7b07639a99149414f55215da7b83acb0decffc26659c42432b86b7a05d98d890\",\"evidence_digest\":\"sha256:f4eef926e346ce1feac1114ab917dc53928001104bab21cb7e88948a9f1ca193\",\"policy_digest\":\"sha256:a8bff7c6201d8eacba9acf62cee9f3d2f50ceb1af9327340c464abc848068446\",\"policy_decision\":\"pass\",\"verification\":\"unverified\",\"evidence_references\":[{\"path\":\"evidence.json\",\"digest\":\"sha256:f4eef926e346ce1feac1114ab917dc53928001104bab21cb7e88948a9f1ca193\"}],\"warnings\":[],\"report_digest\":\"sha256:c995df4b0830bde9bfa39ff2eaeaf3a752a1ce231926796a988f0c03eb93cb1b\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "attestara",
+        "verify",
+        "--store",
+        "/tmp/attestara-c31-rx9HTr/upgrade/store",
+        "--operation-id",
+        "release-1"
+      ],
+      "expected_exit": 0,
+      "exit": 0,
+      "duration_ms": 33,
+      "stdout": "{\"schema_version\":\"1\",\"status\":\"unverified\",\"release_id\":\"attestara-c30-release\",\"source_revision\":\"synthetic-c30-1\",\"subject_digest\":\"sha256:ecdc32b595e2dc30f73744505e78f4f6888b76c3997098f3f1fdffcb7b7d9cd4\",\"evidence_digest\":\"sha256:f4eef926e346ce1feac1114ab917dc53928001104bab21cb7e88948a9f1ca193\",\"policy_digest\":\"sha256:a8bff7c6201d8eacba9acf62cee9f3d2f50ceb1af9327340c464abc848068446\",\"policy_decision\":\"pass\",\"verification\":\"unverified\",\"evidence_references\":[{\"path\":\"evidence.json\",\"digest\":\"sha256:f4eef926e346ce1feac1114ab917dc53928001104bab21cb7e88948a9f1ca193\"}],\"warnings\":[],\"report_digest\":\"sha256:bf536d4b367271e7a954b409f3c61de82b69a9f97f9b221bb533d7d254634e40\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "attestara",
+        "verify",
+        "--store",
+        "/tmp/attestara-c31-rx9HTr/upgrade/store",
+        "--operation-id",
+        "release-2"
+      ],
+      "expected_exit": 0,
+      "exit": 0,
+      "duration_ms": 30,
+      "stdout": "{\"schema_version\":\"1\",\"status\":\"unverified\",\"release_id\":\"attestara-c35-newer\",\"source_revision\":\"synthetic-c35-2\",\"subject_digest\":\"sha256:7b07639a99149414f55215da7b83acb0decffc26659c42432b86b7a05d98d890\",\"evidence_digest\":\"sha256:f4eef926e346ce1feac1114ab917dc53928001104bab21cb7e88948a9f1ca193\",\"policy_digest\":\"sha256:a8bff7c6201d8eacba9acf62cee9f3d2f50ceb1af9327340c464abc848068446\",\"policy_decision\":\"pass\",\"verification\":\"unverified\",\"evidence_references\":[{\"path\":\"evidence.json\",\"digest\":\"sha256:f4eef926e346ce1feac1114ab917dc53928001104bab21cb7e88948a9f1ca193\"}],\"warnings\":[],\"report_digest\":\"sha256:c995df4b0830bde9bfa39ff2eaeaf3a752a1ce231926796a988f0c03eb93cb1b\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "attestara",
+        "restore",
+        "--backup",
+        "/tmp/attestara-c31-rx9HTr/upgrade/backup",
+        "--store",
+        "/tmp/attestara-c31-rx9HTr/upgrade/store",
+        "--operation-id",
+        "release-1"
+      ],
+      "expected_exit": 3,
+      "exit": 3,
+      "duration_ms": 96,
+      "stdout": "",
+      "stderr": "snapshot unavailable or destination exists; existing data was not replaced\n"
+    },
+    {
+      "command": [
+        "attestara",
+        "restore",
+        "--backup",
+        "/tmp/attestara-c31-rx9HTr/upgrade/backup",
+        "--store",
+        "/tmp/attestara-c31-rx9HTr/upgrade/restored",
+        "--operation-id",
+        "release-1"
+      ],
+      "expected_exit": 0,
+      "exit": 0,
+      "duration_ms": 95,
+      "stdout": "{\"schema_version\":\"1\",\"status\":\"unverified\",\"release_id\":\"attestara-c30-release\",\"source_revision\":\"synthetic-c30-1\",\"subject_digest\":\"sha256:ecdc32b595e2dc30f73744505e78f4f6888b76c3997098f3f1fdffcb7b7d9cd4\",\"evidence_digest\":\"sha256:f4eef926e346ce1feac1114ab917dc53928001104bab21cb7e88948a9f1ca193\",\"policy_digest\":\"sha256:a8bff7c6201d8eacba9acf62cee9f3d2f50ceb1af9327340c464abc848068446\",\"policy_decision\":\"pass\",\"verification\":\"unverified\",\"evidence_references\":[{\"path\":\"evidence.json\",\"digest\":\"sha256:f4eef926e346ce1feac1114ab917dc53928001104bab21cb7e88948a9f1ca193\"}],\"warnings\":[],\"report_digest\":\"sha256:bf536d4b367271e7a954b409f3c61de82b69a9f97f9b221bb533d7d254634e40\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "attestara",
+        "export",
+        "--store",
+        "/tmp/attestara-c31-rx9HTr/upgrade/store",
+        "--operation-id",
+        "release-2",
+        "--output",
+        "/tmp/attestara-c31-rx9HTr/upgrade/newer-backup"
+      ],
+      "expected_exit": 0,
+      "exit": 0,
+      "duration_ms": 87,
+      "stdout": "{\"schema_version\":\"1\",\"status\":\"unverified\",\"release_id\":\"attestara-c35-newer\",\"source_revision\":\"synthetic-c35-2\",\"subject_digest\":\"sha256:7b07639a99149414f55215da7b83acb0decffc26659c42432b86b7a05d98d890\",\"evidence_digest\":\"sha256:f4eef926e346ce1feac1114ab917dc53928001104bab21cb7e88948a9f1ca193\",\"policy_digest\":\"sha256:a8bff7c6201d8eacba9acf62cee9f3d2f50ceb1af9327340c464abc848068446\",\"policy_decision\":\"pass\",\"verification\":\"unverified\",\"evidence_references\":[{\"path\":\"evidence.json\",\"digest\":\"sha256:f4eef926e346ce1feac1114ab917dc53928001104bab21cb7e88948a9f1ca193\"}],\"warnings\":[],\"report_digest\":\"sha256:c995df4b0830bde9bfa39ff2eaeaf3a752a1ce231926796a988f0c03eb93cb1b\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "attestara",
+        "restore",
+        "--backup",
+        "/tmp/attestara-c31-rx9HTr/upgrade/newer-backup",
+        "--store",
+        "/tmp/attestara-c31-rx9HTr/upgrade/newer-restored",
+        "--operation-id",
+        "release-2"
+      ],
+      "expected_exit": 0,
+      "exit": 0,
+      "duration_ms": 96,
+      "stdout": "{\"schema_version\":\"1\",\"status\":\"unverified\",\"release_id\":\"attestara-c35-newer\",\"source_revision\":\"synthetic-c35-2\",\"subject_digest\":\"sha256:7b07639a99149414f55215da7b83acb0decffc26659c42432b86b7a05d98d890\",\"evidence_digest\":\"sha256:f4eef926e346ce1feac1114ab917dc53928001104bab21cb7e88948a9f1ca193\",\"policy_digest\":\"sha256:a8bff7c6201d8eacba9acf62cee9f3d2f50ceb1af9327340c464abc848068446\",\"policy_decision\":\"pass\",\"verification\":\"unverified\",\"evidence_references\":[{\"path\":\"evidence.json\",\"digest\":\"sha256:f4eef926e346ce1feac1114ab917dc53928001104bab21cb7e88948a9f1ca193\"}],\"warnings\":[],\"report_digest\":\"sha256:c995df4b0830bde9bfa39ff2eaeaf3a752a1ce231926796a988f0c03eb93cb1b\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "attestara",
+        "verify",
+        "--store",
+        "/tmp/attestara-c31-rx9HTr/upgrade/store",
+        "--operation-id",
+        "release-2"
+      ],
+      "expected_exit": 0,
+      "exit": 0,
+      "duration_ms": 38,
+      "stdout": "{\"schema_version\":\"1\",\"status\":\"unverified\",\"release_id\":\"attestara-c35-newer\",\"source_revision\":\"synthetic-c35-2\",\"subject_digest\":\"sha256:7b07639a99149414f55215da7b83acb0decffc26659c42432b86b7a05d98d890\",\"evidence_digest\":\"sha256:f4eef926e346ce1feac1114ab917dc53928001104bab21cb7e88948a9f1ca193\",\"policy_digest\":\"sha256:a8bff7c6201d8eacba9acf62cee9f3d2f50ceb1af9327340c464abc848068446\",\"policy_decision\":\"pass\",\"verification\":\"unverified\",\"evidence_references\":[{\"path\":\"evidence.json\",\"digest\":\"sha256:f4eef926e346ce1feac1114ab917dc53928001104bab21cb7e88948a9f1ca193\"}],\"warnings\":[],\"report_digest\":\"sha256:c995df4b0830bde9bfa39ff2eaeaf3a752a1ce231926796a988f0c03eb93cb1b\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "attestara",
+        "verify",
+        "--store",
+        "/tmp/attestara-c31-rx9HTr/upgrade/unsupported-store",
+        "--operation-id",
+        "release-2"
+      ],
+      "expected_exit": 3,
+      "exit": 3,
+      "duration_ms": 11,
+      "stdout": "",
+      "stderr": "snapshot unavailable or corrupt\n"
+    },
+    {
+      "command": [
+        "attestara",
+        "verify",
+        "--store",
+        "/tmp/attestara-c31-rx9HTr/upgrade/unsupported-store",
+        "--operation-id",
+        "release-2"
+      ],
+      "expected_exit": 3,
+      "exit": 3,
+      "duration_ms": 11,
+      "stdout": "",
+      "stderr": "snapshot unavailable or corrupt\n"
+    },
+    {
+      "command": [
+        "attestara",
+        "evaluate",
+        "--input",
+        "/tmp/attestara-c31-rx9HTr/upgrade/source-sentinel/manifest.json",
+        "--files",
+        "/tmp/attestara-c31-rx9HTr/upgrade/source-sentinel",
+        "--policy",
+        "/tmp/attestara-c31-rx9HTr/upgrade/source-sentinel/rule.json",
+        "--evidence",
+        "/tmp/attestara-c31-rx9HTr/upgrade/source-sentinel/evidence.json",
+        "--freshness",
+        "fresh"
+      ],
+      "expected_exit": 0,
+      "exit": 0,
+      "duration_ms": 30,
+      "stdout": "{\"schema_version\":\"1\",\"status\":\"unverified\",\"release_id\":\"attestara-c35-newer\",\"source_revision\":\"synthetic-c35-2\",\"subject_digest\":\"sha256:95ff2f60b0db746488aef294ef8e8ee52ac73f3ea7a6c0e20095971b0d676e7f\",\"evidence_digest\":\"sha256:f4eef926e346ce1feac1114ab917dc53928001104bab21cb7e88948a9f1ca193\",\"policy_digest\":\"sha256:a8bff7c6201d8eacba9acf62cee9f3d2f50ceb1af9327340c464abc848068446\",\"policy_decision\":\"pass\",\"verification\":\"unverified\",\"evidence_references\":[{\"path\":\"evidence.json\",\"digest\":\"sha256:f4eef926e346ce1feac1114ab917dc53928001104bab21cb7e88948a9f1ca193\"}],\"warnings\":[],\"report_digest\":\"sha256:197deeeb1947d85bea7a952af665785007b6ae2fbaded185cdf6e5d4ce748972\"}\n",
+      "stderr": ""
+    }
+  ],
+  "checks": [
+    "independently configured Ed25519 test identity authenticates exact C31 checksum bytes",
+    "both source-built releases installed in separate directories with an external private store",
+    "newer distinct snapshot survives candidate restart and baseline software rollback with identical stored bytes",
+    "old backup cannot overwrite existing newer store; fresh destinations restore both operations independently",
+    "stale and wrong expected release cannot produce trusted success",
+    "incomplete installation and unsupported store version fail without replacing accepted data",
+    "real candidate and rollback browser display newer passport locally without upload",
+    "user source bytes remain inert"
+  ],
+  "limits": [
+    "Temporary test key, not the maintainer release identity.",
+    "Same supported Linux host; independent onboarding remains C36.",
+    "Expected source and freshness are explicit operator inputs, not persistent anti-replay authority."
+  ]
+}

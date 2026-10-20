@@ -332,7 +332,7 @@
       "mandatory": true,
       "planned_commit": "C37",
       "evidence_path": "docs/evidence/C37.json",
-      "status": "unimplemented"
+      "status": "verified"
     },
     {
       "id": "N38",

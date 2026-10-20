@@ -9,6 +9,24 @@ import { validateOnboardingEnvironment, validateOnboardingScenario, validateWork
 const root = fileURLToPath(new URL('../../', import.meta.url));
 const digest = bytes => 'sha256:' + createHash('sha256').update(bytes).digest('hex');
 
+test('C37 acceptance audit pins reused fixtures and existing regression checks', async () => {
+  const base = join(root, 'tests/fixtures/attestara/C37');
+  const provenance = JSON.parse(await readFile(join(base, 'provenance.json'), 'utf8'));
+  const cases = JSON.parse(await readFile(join(base, 'cases.json'), 'utf8'));
+  assert.equal(cases.schema_version, 1);
+  assert.equal(cases.license, 'Apache-2.0');
+  assert.equal(provenance.license, cases.license);
+  assert.equal(cases.profile, 'local-cli-snapshots');
+  assert.deepEqual(cases.cases.map(item => item.id), ['prerequisites', 'malformed-input', 'core-workflow', 'restart-restore', 'accessible-viewer', 'release-integrity-trust', 'upgrade-rollback', 'provider-unavailable', 'inert-source']);
+  for (const [path, expected] of Object.entries(provenance.files)) assert.equal(digest(await readFile(join(base, path))), expected, path);
+  for (const [path, expected] of Object.entries(provenance.reused_inputs)) assert.equal(digest(await readFile(join(root, path))), expected, path);
+  for (const item of cases.cases) {
+    assert.ok(item.expected.length > 0);
+    assert.ok(item.checks.length > 0);
+    for (const path of item.checks) assert.ok((await readFile(join(root, path))).length > 0, path);
+  }
+});
+
 test('C36 fixture provenance and positive/negative onboarding cases are pinned', async () => {
   const base = join(root, 'tests/fixtures/attestara/C36');
   const provenance = JSON.parse(await readFile(join(base, 'provenance.json'), 'utf8'));
