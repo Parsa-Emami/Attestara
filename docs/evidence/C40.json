@@ -42,10 +42,9 @@
     }
   ],
   "blockers": [
-    "The original pinned signing key is absent from this execution environment; do not recreate it, commit it or paste it into chat.",
-    "Available GitHub connector operations cannot configure Environment/Secrets or dispatch release. The checked-in owner helper must run on the owner machine containing the original key, or a separately approved administrative interface is required.",
-    "The changed source requires five successful workflows and a fresh same-SHA publish=false run; earlier candidate evidence does not satisfy the new source.",
-    "Publication requires subsequent explicit approval, protected Environment approval and successful public downloaded-artifact installed verification."
+    "The protected release Environment now exists with main only, required owner review and administrator bypass disabled; its ATTESTARA_RELEASE_PRIVATE_KEY Secret is still missing. The original pinned private key is absent from this execution environment.",
+    "The final source needs five successful workflows and a fresh reviewed publish=false preparation before signed publication.",
+    "Signed v1 publication still requires explicit approval, Environment approval and a successful independent public downloaded-artifact installed job. GitHub Pages hosting does not certify C40."
   ],
   "published": false,
   "date": "2026-10-20T14:58:03.520326+00:00",
@@ -181,5 +180,9 @@
   "owner_setup_followup": {
     "path": "docs/evidence/C40-owner-setup.json",
     "sha256": "sha256:8c83c52337b1650e9ce1201081c2869f491311fda6c9f183527251b8189b32d5"
+  },
+  "environment_configuration": {
+    "path": "docs/evidence/C40-environment-configuration.json",
+    "sha256": "sha256:f3822acd4e1f6d8df7831e6162cbf882b6a5caa4deec94d16361fb9989ec273d"
   }
 }

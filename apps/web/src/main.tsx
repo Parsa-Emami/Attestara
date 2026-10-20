@@ -9,6 +9,8 @@ import './styles.css';
 
 type Runtime = { projectId: string; apiBasePath: string; engineEnabled: false; maxPreviewBytes: number };
 type Route = 'workspace' | 'passport' | 'roadmap';
+const staticPages = __ATTESTARA_STATIC_PAGES__;
+const staticAvailability = 'Online viewer. Files stay in this tab. The Go engine and snapshot operations run in the local application.';
 function route(): Route { return location.hash === '#passport' ? 'passport' : location.hash === '#roadmap' ? 'roadmap' : 'workspace'; }
 
 function App({ config }: { config: Runtime }) {
@@ -20,8 +22,9 @@ function App({ config }: { config: Runtime }) {
   const busy = useRef(false);
   const generation = useRef(0);
   const [engine, setEngine] = useState<ReturnType<typeof validateEngineHealth> | null>(null);
-  const [engineState, setEngineState] = useState('Checking local engine…');
+  const [engineState, setEngineState] = useState(staticPages ? staticAvailability : 'Checking local engine…');
   useEffect(() => {
+    if (staticPages) return;
     let active = true;
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), 3000);
@@ -54,11 +57,12 @@ function App({ config }: { config: Runtime }) {
   const tasks = project.tasks.filter(task => (stage === 'all' || task.stage === stage) && `${task.id} ${task.title}`.toLowerCase().includes(query.toLowerCase()));
   return <div className="app" style={{ '--accent': project.accent } as React.CSSProperties}>
     <a className="skip" href="#content" onClick={event => { event.preventDefault(); document.getElementById('content')?.focus(); }}>Skip to content</a>
-    <header><a className="brand" href="#workspace"><span className="mark" aria-hidden="true">{project.name.slice(0, 1)}</span>{project.name}</a><nav aria-label="Main"><a href="#workspace" aria-current={page === 'workspace' ? 'page' : undefined}>Workspace</a><a href="#passport" aria-current={page === 'passport' ? 'page' : undefined}>Passport</a><a href="#roadmap" aria-current={page === 'roadmap' ? 'page' : undefined}>Roadmap</a></nav><span className="badge">Foundation · 0.0.1</span></header>
+    <header><a className="brand" href="#workspace"><span className="mark" aria-hidden="true">{project.name.slice(0, 1)}</span>{project.name}</a><nav aria-label="Main"><a href="#workspace" aria-current={page === 'workspace' ? 'page' : undefined}>Workspace</a><a href="#passport" aria-current={page === 'passport' ? 'page' : undefined}>Passport</a><a href="#roadmap" aria-current={page === 'roadmap' ? 'page' : undefined}>Roadmap</a></nav><span className="badge">{staticPages ? 'Online viewer' : 'Foundation · 0.0.1'}</span></header>
     <main id="content" tabIndex={-1}>
       <div className="eyebrow">{project.mode.replaceAll('-', ' ')} · browser workspace</div>
       <h1>{page === 'workspace' ? project.title : page === 'passport' ? 'Inspect a release passport.' : 'A clear path to release.'}</h1>
       <p className="intro">{page === 'workspace' ? project.description : page === 'passport' ? 'Read a local passport and its evidence claims without uploading the file.' : 'Track the product plan separately from the web foundation. Each task includes an acceptance target.'}</p>
+      {staticPages && <section className="panel" aria-label="Online and local use"><div className="eyebrow">Start here</div><h2>Open your passport. Keep your files local.</h2><p>Use Passport to inspect an existing release passport, or Workspace to preview JSON. Selected files stay in this tab. Their contents are not sent to GitHub.</p><p>For policy evaluation, trusted signature assessment, durable snapshots, backup, restore and rollback, run the full local application on Linux. GitHub Pages hosts this viewer; it does not run the Go engine.</p><a className="text-link" href="https://github.com/Parsa-Emami/Attestara/blob/main/docs/engineering/CLONE_TO_RUN.md" target="_blank" rel="noreferrer">Set up the full local application →</a><p><a className="text-link" href={`${import.meta.env.BASE_URL}example-passport.json`} download>Download an example passport</a><span className="muted"> · Example data for learning; all passport fields remain unverified claims.</span></p></section>}
       {page === 'workspace' ? <>
         <section className="notice" aria-label="Availability" aria-live="polite"><span className="dot"/><span>{engineState}{engine && ` Engine ${engine.version} · ${engine.goVersion}.`} This release does not produce security results.</span></section>
         <div className="grid"><section className="panel"><div className="eyebrow">Local file preview</div><h2>Inspect a document</h2><p>Choose a JSON file to inspect its top-level fields. The file stays in memory in this tab and is not uploaded or saved.</p><label className="file-button">Choose JSON file<input aria-label="Choose JSON file" type="file" accept=".json,application/json" onChange={event => { void importFile(event.target.files?.[0]); event.target.value = ''; }}/></label><p className="muted">Maximum {Math.round(config.maxPreviewBytes / 1024)} KiB · JSON structure only</p>
@@ -75,7 +79,7 @@ function App({ config }: { config: Runtime }) {
 }
 
 const root = createRoot(document.getElementById('root')!);
-fetch('/runtime-config.json', { cache: 'no-store', credentials: 'omit' }).then(async response => {
+fetch(`${import.meta.env.BASE_URL}runtime-config.json`, { cache: 'no-store', credentials: 'omit' }).then(async response => {
   if (!response.ok) throw new Error('Workspace configuration is unavailable.');
   return validateRuntimeConfig(await response.json(), project.slug) as Runtime;
 }).then(config => root.render(<StrictMode><App config={config}/></StrictMode>)).catch(() => {

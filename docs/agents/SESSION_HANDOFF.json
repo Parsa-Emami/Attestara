@@ -25,12 +25,11 @@
     ]
   },
   "next_task": "C40",
-  "next_action": "Observe all five workflows after this source is pushed. Owner must configure release/main/reviewer/Secret on the machine holding the original key. Dispatch and review release with the final full SHA and publish=false; obtain explicit publication approval before the same SHA/publish=true and Environment approval. Verify the independent public installed job before C40 finalization.",
+  "next_action": "Commit/push Pages changes; verify all workflows and the live viewer; dispatch release with the same final SHA/publish=false. Retain the actual run identity. Secret entry still requires the original-key machine.",
   "blockers": [
-    "The original pinned signing key is absent from this execution environment; do not recreate it, commit it or paste it into chat.",
-    "Available GitHub connector operations cannot configure Environment/Secrets or dispatch release. The checked-in owner helper must run on the owner machine containing the original key, or a separately approved administrative interface is required.",
-    "The changed source requires five successful workflows and a fresh same-SHA publish=false run; earlier candidate evidence does not satisfy the new source.",
-    "Publication requires subsequent explicit approval, protected Environment approval and successful public downloaded-artifact installed verification."
+    "The protected release Environment now exists with main only, required owner review and administrator bypass disabled; its ATTESTARA_RELEASE_PRIVATE_KEY Secret is still missing. The original pinned private key is absent from this execution environment.",
+    "The final source needs five successful workflows and a fresh reviewed publish=false preparation before signed publication.",
+    "Signed v1 publication still requires explicit approval, Environment approval and a successful independent public downloaded-artifact installed job. GitHub Pages hosting does not certify C40."
   ],
   "publication_performed": false,
   "delivery": {
@@ -151,5 +150,19 @@
     "publication_authorized": false,
     "environment_modified": false,
     "next_action": "Observe all five workflows after this source is pushed. Owner must configure release/main/reviewer/Secret on the machine holding the original key. Dispatch and review release with the final full SHA and publish=false; obtain explicit publication approval before the same SHA/publish=true and Environment approval. Verify the independent public installed job before C40 finalization."
+  },
+  "environment_configuration": {
+    "path": "docs/evidence/C40-environment-configuration.json",
+    "sha256": "sha256:f3822acd4e1f6d8df7831e6162cbf882b6a5caa4deec94d16361fb9989ec273d"
+  },
+  "pages_followup": {
+    "date": "2026-10-20T17:50:26.071094+00:00",
+    "base_commit": "62e95589017b1ee54d4cd4c21bba406f50b05b6b",
+    "authorization": "Owner explicitly requested public GitHub Pages publication and approved browser administration.",
+    "pages_source": "GitHub Actions, saved and visually verified; default-domain HTTPS enforced.",
+    "status": "implementation ready; final-source CI, deployment and live verification pending",
+    "scope": "Static local passport viewer, JSON preview and roadmap. Go evaluation and snapshots require the local application. No signed v1 publication is authorized or performed.",
+    "local_browser_blocker": "Playwright download returned a truncated ZIP; local Chromium is unavailable. The Pages workflow runs the actual browser check before deploying.",
+    "next_action": "Commit/push Pages changes; verify all workflows and the live viewer; dispatch release with the same final SHA/publish=false. Retain the actual run identity. Secret entry still requires the original-key machine."
   }
 }

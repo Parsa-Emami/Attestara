@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "task": "C40",
+  "scope": "GitHub release Environment configuration only",
+  "date": "2026-10-20T17:50:26.071094+00:00",
+  "passed": true,
+  "C40_verified": false,
+  "repository": "Parsa-Emami/Attestara",
+  "environment": "release",
+  "environment_id": 24839497663,
+  "verified_url": "https://github.com/Parsa-Emami/Attestara/settings/environments/24839497663/edit",
+  "verification_method": "Owner-authenticated GitHub settings UI; saved-state reviewer checkbox and main rule were visibly verified.",
+  "required_reviewer": "Parsa-Emami",
+  "reviewer_id": 111167585,
+  "deployment_branch_policy": {
+    "protected_branches": false,
+    "custom_branch_policies": true
+  },
+  "allowed_refs": [
+    {
+      "name": "main",
+      "type": "branch"
+    }
+  ],
+  "prevent_self_review": false,
+  "allow_administrator_bypass": false,
+  "secret_count": 0,
+  "signing_secret_present": false,
+  "private_key_transmitted": false,
+  "signed_publication_authorized": false,
+  "signed_publication_performed": false,
+  "notes": [
+    "The required reviewer is the existing repository owner; no new collaborator or app access was granted.",
+    "Signing Secret is still missing because the original private key exists outside this execution environment. The key was not regenerated or printed.",
+    "The owner approved browser administration and subsequently requested GitHub Pages. This authorizes public static hosting; it is not recorded as separate signed v1 release approval."
+  ]
+}

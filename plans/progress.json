@@ -362,7 +362,7 @@
         "docs/evidence/C40.json"
       ],
       "source_identity": "sha256:a072f78bb7e6cb596077357abaf7421176a0be3b7aea583b51a271070977b83b",
-      "notes": "C40 remains in_progress. Owner configuration helper and same-SHA unsigned-preparation guard are implemented; 14 release regressions, build/TypeScript and 17 Python tests passed. Local full tests require the absent Go/engine prerequisites. Connected owner has admin permission, but exposed tools cannot configure Environment/Secret or dispatch release; original pinned key is absent here. Fresh final-source CI, publish=false preparation, explicit publication approval and public installed proof remain required. See docs/evidence/C40-owner-setup.json; prior source-bound runtime evidence is unchanged."
+      "notes": "Protected release Environment verified through the authenticated owner UI: only main, required reviewer Parsa-Emami, administrator bypass disabled. The signing Secret remains missing; original key is outside this environment. Browser dispatch is available after owner approval. GitHub Pages static viewer hosting is separately authorized and does not verify C40. Final-source five-workflow CI, publish=false preparation, explicit signed publication approval and public installed proof remain required. Original source-bound runtime evidence is preserved."
     }
   ],
   "web_progress": "plans/web-roadmap.json",
