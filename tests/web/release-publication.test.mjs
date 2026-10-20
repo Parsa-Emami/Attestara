@@ -9,6 +9,10 @@ import { assertCandidate, signChecksums, publishRelease, downloadRelease, valida
 const commit = 'a'.repeat(40);
 const paths = ['contracts.yml', 'plan.yml', 'runtime.yml', 'web.yml', 'release-gate.yml'];
 const runs = paths.map((name, index) => ({ id: index + 1, path: '.github/workflows/' + name, head_sha: commit, head_branch: 'main', event: 'push', status: 'completed', conclusion: 'success' }));
+const preparation = { id: 6, path: '.github/workflows/release.yml', head_sha: commit, head_branch: 'main', event: 'workflow_dispatch', display_title: `release ${commit} / publish=false`, status: 'completed', conclusion: 'success' };
+const candidateRuns = { workflow_runs: [...runs, preparation], total_count: runs.length + 1 };
+const preparedJobs = { total_count: 3, jobs: [{ name: 'prepare', conclusion: 'success' }, { name: 'publish', conclusion: 'skipped' }, { name: 'installed', conclusion: 'skipped' }] };
+const preparedArtifacts = { total_count: 1, artifacts: [{ id: 42, name: `release-candidate-${commit}-6`, expired: false }] };
 const report = { schema_version: 1, planning_template: false, task: 'C39', profile: 'local-cli-snapshots', passed: true, run: { id: process.env.GITHUB_RUN_ID ?? 'synthetic-c40', kind: 'github-actions' }, source: { commit }, results: { source_unchanged: true }, blockers: [], commands: Array.from({ length: 28 }, () => ({ exit_code: 0 })) };
 test('C40 requires the latest successful five workflows and exact main/gate source', () => {
   const candidate = { commit, main: commit, runs, report, tagExists: false, releaseExists: false };
@@ -49,7 +53,9 @@ test('C40 cannot publish without explicit authorization or after partial uploads
   const request = async (path, options = {}) => {
     if (!options.method) {
       if (path.endsWith('/branches/main')) return { commit: { sha: commit } };
-      if (path.includes('/actions/runs?')) return { workflow_runs: runs, total_count: runs.length };
+      if (path.includes('/actions/runs?')) return candidateRuns;
+      if (path.includes('/jobs?')) return preparedJobs;
+      if (path.includes('/artifacts?')) return preparedArtifacts;
       if (path.includes('/releases?')) return [];
       return null;
     }
@@ -61,6 +67,31 @@ test('C40 cannot publish without explicit authorization or after partial uploads
   assert.equal(writes, 0);
   await assert.rejects(publishRelease({ ...f, commit, report, request, authorized: true }), /upload/i);
   assert.equal(writes, 2, 'failure leaves a draft and never publishes or deletes it');
+});
+
+test('C40 refuses missing, expired or incomplete preparation before creating any draft', async t => {
+  const f = await fixture(t);
+  await signChecksums({ ...f, commit, privateKey: f.keys.privateKey });
+  for (const mutation of [
+    { runs: { total_count: runs.length, workflow_runs: runs } },
+    { jobs: { total_count: 2, jobs: preparedJobs.jobs.slice(0, 2) } },
+    { jobs: { ...preparedJobs, jobs: preparedJobs.jobs.map(job => job.name === 'publish' ? { ...job, conclusion: 'success' } : job) } },
+    { artifacts: { total_count: 0, artifacts: [] } },
+    { artifacts: { total_count: 1, artifacts: [{ ...preparedArtifacts.artifacts[0], expired: true }] } },
+  ]) {
+    let writes = 0;
+    const request = async (path, options = {}) => {
+      if (options.method) { writes++; throw new Error('Unexpected write'); }
+      if (path.endsWith('/branches/main')) return { commit: { sha: commit } };
+      if (path.includes('/actions/runs?')) return mutation.runs ?? candidateRuns;
+      if (path.includes('/jobs?')) return mutation.jobs ?? preparedJobs;
+      if (path.includes('/artifacts?')) return mutation.artifacts ?? preparedArtifacts;
+      if (path.includes('/releases?')) return [];
+      return null;
+    };
+    await assert.rejects(publishRelease({ ...f, commit, report, request, authorized: true }), /preparation/i);
+    assert.equal(writes, 0);
+  }
 });
 
 test('C40 download refuses a draft, wrong tag/source and missing/unsafe assets before downloading', async t => {
@@ -87,7 +118,9 @@ test('C40 complete publication and public re-download authenticate the same byte
       uploaded.push(asset); blobs.set(asset.browser_download_url, options.body); return asset;
     }
     if (path.endsWith('/branches/main')) return { commit: { sha: commit } };
-    if (path.includes('/actions/runs?')) return { total_count: runs.length, workflow_runs: runs };
+    if (path.includes('/actions/runs?')) return candidateRuns;
+    if (path.includes('/jobs?')) return preparedJobs;
+    if (path.includes('/artifacts?')) return preparedArtifacts;
     if (path.includes('/releases?')) return [];
     if (path.endsWith('/git/ref/tags/v1.0.0')) return tag;
     if (path.endsWith('/git/refs')) { tag = { object: { type: 'commit', sha: options.body.sha } }; return tag; }
@@ -101,6 +134,7 @@ test('C40 complete publication and public re-download authenticate the same byte
   };
   const proof = await publishRelease({ ...f, commit, report, authorized: true, request });
   assert.equal(proof.published, true); assert.equal(uploaded.length, 6);
+  assert.equal(proof.candidate.preparation.run_id, preparation.id);
   const download = join(f.directory, 'download');
   const fetchFile = async (url, path) => writeFile(path, blobs.get(url), { flag: 'wx' });
   const result = await downloadRelease({ manifest: f.manifest, directory: download, commit, request, fetchFile });

@@ -39,6 +39,13 @@ export function assertCandidate({ commit, main, runs, report, tagExists, release
   }
 }
 
+export function findPreparedRun(commit, runs, currentRunId) {
+  validCommit(commit);
+  const prior = runs.filter(run => run.path === '.github/workflows/release.yml' && run.head_sha === commit && run.head_branch === 'main' && run.event === 'workflow_dispatch' && run.display_title === `release ${commit} / publish=false` && Number.isSafeInteger(run.id) && String(run.id) !== String(currentRunId)).sort((a, b) => b.id - a.id)[0];
+  check(prior?.status === 'completed' && prior.conclusion === 'success', 'Latest publish=false preparation must succeed on this exact source before publication');
+  return prior;
+}
+
 // Restrict authenticated requests to GitHub's API and this repository's upload endpoint.
 export async function github(path, { method = 'GET', body, upload = false } = {}) {
   const url = upload ? new URL(path) : new URL('https://api.github.com' + path);
@@ -49,7 +56,7 @@ export async function github(path, { method = 'GET', body, upload = false } = {}
   return response.json();
 }
 
-async function candidateState(commit, report, manifest, request) {
+async function candidateState(commit, report, manifest, request, requirePrepared = false) {
   validateManifest(manifest); validCommit(commit);
   if (process.env.GITHUB_RUN_ID) check(report?.run?.id === process.env.GITHUB_RUN_ID && report.run.kind === 'github-actions', 'Gate must belong to this exact workflow run');
   const [main, runs, tag, release, releases] = await Promise.all([
@@ -59,7 +66,17 @@ async function candidateState(commit, report, manifest, request) {
   check(Array.isArray(runs?.workflow_runs) && runs.total_count <= 100, 'Missing or truncated workflow history');
   check(Array.isArray(releases) && releases.length < 100, 'Missing or truncated draft release history');
   assertCandidate({ commit, main: main?.commit?.sha, runs: runs.workflow_runs, report, tagExists: !!tag, releaseExists: !!release || releases.some(r => r.tag_name === manifest.tag) });
-  return { commit, workflows: runs.workflow_runs.filter(r => workflows.some(name => r.path === '.github/workflows/' + name)).map(r => ({ id: r.id, path: r.path, conclusion: r.conclusion, url: r.html_url })) };
+  let preparation;
+  if (requirePrepared) {
+    const prior = findPreparedRun(commit, runs.workflow_runs, process.env.GITHUB_RUN_ID);
+    const [jobs, artifacts] = await Promise.all([request(prefix + '/actions/runs/' + prior.id + '/jobs?per_page=100'), request(prefix + '/actions/runs/' + prior.id + '/artifacts?per_page=100')]);
+    check(jobs?.total_count === 3 && jobs.jobs?.length === 3 && jobs.jobs.find(job => job.name === 'prepare')?.conclusion === 'success' && ['publish', 'installed'].every(name => jobs.jobs.find(job => job.name === name)?.conclusion === 'skipped'), 'Preparation must finish successfully without publication or installed execution');
+    check(Array.isArray(artifacts?.artifacts) && artifacts.total_count === artifacts.artifacts.length, 'Missing or truncated preparation artifacts');
+    const artifact = artifacts.artifacts.find(item => item.name === `release-candidate-${commit}-${prior.id}` && item.expired === false && Number.isSafeInteger(item.id));
+    check(artifact, 'Retained unsigned preparation candidate is required for review');
+    preparation = { run_id: prior.id, url: prior.html_url, artifact_id: artifact.id };
+  }
+  return { commit, ...(preparation ? { preparation } : {}), workflows: runs.workflow_runs.filter(r => workflows.some(name => r.path === '.github/workflows/' + name)).map(r => ({ id: r.id, path: r.path, conclusion: r.conclusion, url: r.html_url })) };
 }
 
 export async function assessRelease({ directory, commit, manifest, signature = true }) {
@@ -93,7 +110,7 @@ export async function publishRelease({ directory, commit, report, manifest, auth
   check(authorized === true, 'Explicit publication authorization required');
   const verified = await assessRelease({ directory, commit, manifest });
   check(verified.exitCode === 0, 'Trusted signed artifacts required before publication');
-  const candidate = await candidateState(commit, report, manifest, request);
+  const candidate = await candidateState(commit, report, manifest, request, true);
   const draft = await request(prefix + '/releases', { method: 'POST', body: { tag_name: manifest.tag, target_commitish: commit, name: 'Attestara ' + manifest.version, draft: true, prerelease: false, make_latest: 'false', body: `Linux x86_64 local-cli-snapshots. Source: ${commit}. Verify SHA256SUMS.sig.json with the independently established maintainer key before extracting. C40 installation acceptance is recorded separately after publication.` } });
   check(Number.isSafeInteger(draft.id) && draft.upload_url === `https://uploads.github.com${prefix}/releases/${draft.id}/assets{?name,label}`, 'Unexpected draft release response');
   const uploaded = [];

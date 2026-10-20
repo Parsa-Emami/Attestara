@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "task": "C40",
+  "scope": "Release configuration helper and same-source unsigned-preparation prerequisite; not publication or public installation proof.",
+  "date": "2026-10-20T17:20:52.981626+00:00",
+  "base_commit": "d72d9b8fa8358ce2668e8bce2b19750a3685bf28",
+  "source_identity": "sha256:e3516834bef2d94d3a887ffa17b07cb130e543cff53c932b88a36539b4d4870a",
+  "source_identity_method": "Sorted current runtime input paths, path/NUL/raw SHA-256/LF, existing C36 status/evidence exclusions. Includes untracked new source at capture.",
+  "canonical_input_count": 655,
+  "code_validation_passed": true,
+  "passed": false,
+  "published": false,
+  "environment_configured": false,
+  "environment_secret_written": false,
+  "publication_authorized": false,
+  "unsigned_release_dispatched": false,
+  "public_installation_verified": false,
+  "authenticated_owner": "Parsa-Emami",
+  "connector_repository_permission": "admin",
+  "owner_access_note": "Owner/admin identity is available through the GitHub connector. Its exposed operations do not support Environment/Secrets administration or workflow dispatch; authenticated local gh is unavailable. No browser fallback was performed.",
+  "original_key_available_in_this_environment": false,
+  "original_key_replaced": false,
+  "signer_fingerprint": "sha256:f54a6ceaf3ff6ba76775ea97d25ae519b2e0bbf389d9f8bd15f71fd4dbe64443",
+  "checks": [
+    {
+      "command": [
+        "node",
+        "--test",
+        "tests/web/release-environment.test.mjs",
+        "tests/web/release-publication.test.mjs"
+      ],
+      "exit_code": 0,
+      "elapsed_ms": 968,
+      "output_path": "docs/evidence/C40-owner-setup-output.zip",
+      "output_sha256": "sha256:576c1a89421c5b25b8022e43121f8d192d15856edb5532e25e4b9748be539f6c",
+      "archive_member": "final-0.log"
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "build"
+      ],
+      "exit_code": 0,
+      "elapsed_ms": 3029,
+      "output_path": "docs/evidence/C40-owner-setup-output.zip",
+      "output_sha256": "sha256:27a88b2c89b59969eb7cc6a5ad1d2c416dad66091d9c8ab40700de5cf9f1fefe",
+      "archive_member": "final-1.log"
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "validate:plan"
+      ],
+      "exit_code": 0,
+      "elapsed_ms": 847,
+      "output_path": "docs/evidence/C40-owner-setup-output.zip",
+      "output_sha256": "sha256:283e6caec9a4ede676ba65160c05d9cc3dbd186a1b5847b20847f3e4f84e946d",
+      "archive_member": "final-2.log"
+    },
+    {
+      "command": [
+        "python3",
+        "scripts/plan.py",
+        "validate"
+      ],
+      "exit_code": 0,
+      "elapsed_ms": 292,
+      "output_path": "docs/evidence/C40-owner-setup-output.zip",
+      "output_sha256": "sha256:80db941735ead06893f77b7665ee16dc48e94576f81377fc2591985f0778233d",
+      "archive_member": "final-3.log"
+    },
+    {
+      "command": [
+        "python3",
+        "scripts/validate_repo.py"
+      ],
+      "exit_code": 0,
+      "elapsed_ms": 254,
+      "output_path": "docs/evidence/C40-owner-setup-output.zip",
+      "output_sha256": "sha256:f65476d2178bbdfcab8a96e4b6c3d5ce306a66c28ac2f59e386b9d9a40f2f41c",
+      "archive_member": "final-4.log"
+    },
+    {
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests/engineering",
+        "-p",
+        "test_*.py"
+      ],
+      "exit_code": 0,
+      "elapsed_ms": 7032,
+      "output_path": "docs/evidence/C40-owner-setup-output.zip",
+      "output_sha256": "sha256:918802a9eb55d1cccafe9d8ec568694b91f69bc0269921bfd63704e588ecbf6c",
+      "archive_member": "final-5.log"
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "elapsed_ms": 12,
+      "output_path": "docs/evidence/C40-owner-setup-output.zip",
+      "output_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive_member": "final-6.log"
+    }
+  ],
+  "additional_attempts": [
+    {
+      "command": [
+        "npm",
+        "test"
+      ],
+      "exit_code": 1,
+      "output_path": "docs/evidence/C40-owner-setup-output.zip",
+      "output_sha256": "sha256:3aa2872ca2806064ac3ce69106a97031fef9cf925dc7ee0b3d794d1506e96ca7",
+      "archive_member": "check-0.log"
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "exit_code": 1,
+      "output_path": "docs/evidence/C40-owner-setup-output.zip",
+      "output_sha256": "sha256:3b8b19ea31cd138657f3136741b6d6010c98938c052178d8d3c577c71491a02f",
+      "archive_member": "check-1.log"
+    },
+    {
+      "command": [
+        "node",
+        "--check",
+        "scripts/configure-release-environment.mjs"
+      ],
+      "exit_code": 0,
+      "output_path": "docs/evidence/C40-owner-setup-output.zip",
+      "output_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive_member": "check-2.log"
+    },
+    {
+      "command": [
+        "node",
+        "--check",
+        "scripts/release-publication.mjs"
+      ],
+      "exit_code": 0,
+      "output_path": "docs/evidence/C40-owner-setup-output.zip",
+      "output_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive_member": "check-3.log"
+    },
+    {
+      "command": [
+        "node",
+        "scripts/configure-release-environment.mjs"
+      ],
+      "exit_code": 1,
+      "output_path": "docs/evidence/C40-owner-setup-output.zip",
+      "output_sha256": "sha256:4ea27c6e1ac3de325a04679300e74b4e0f1d174cdaafbf53df73883983f6d552",
+      "archive_member": "check-4.log"
+    },
+    {
+      "command": [
+        "node",
+        "scripts/configure-release-environment.mjs",
+        "--apply"
+      ],
+      "exit_code": 1,
+      "output_path": "docs/evidence/C40-owner-setup-output.zip",
+      "output_sha256": "sha256:14168dc8286d57475646fba4a3d6a39f06843941573657fca8ff494b014841c9",
+      "archive_member": "check-5.log"
+    }
+  ],
+  "local_full_check": {
+    "passed": false,
+    "node_tests": 80,
+    "passed_tests": 74,
+    "failed_tests": 6,
+    "reason": "Go is not installed and dist/engine is not prepared. The six real engine/launch tests fail; checks were not disabled. npm run check completed TypeScript and web build before these missing-prerequisite failures. No complete local gate or installed test is claimed."
+  },
+  "test_scope": "Owner API responses in unit regressions are synthetic. Tests prove guard behavior and secret handling, not actual remote configuration. Fourteen release tests and seventeen Python engineering tests passed.",
+  "output_archive_sha256": "sha256:c32f2144a3e7e9fbc8303050014e0e6ee845fa004af714fa8189fda1db60ee53",
+  "changed_source_paths": [
+    ".github/workflows/release.yml",
+    "docs/release/RELEASING.md",
+    "scripts/configure-release-environment.mjs",
+    "scripts/release-publication.mjs",
+    "tests/web/release-environment.test.mjs",
+    "tests/web/release-publication.test.mjs"
+  ],
+  "prior_main_ci": {
+    "commit": "d72d9b8fa8358ce2668e8bce2b19750a3685bf28",
+    "status": "All five push workflows were observed completed/success before this follow-up. These runs do not certify the changed source.",
+    "run_ids": [
+      39457271026,
+      39457270993,
+      39457270977,
+      39457270947,
+      39457270853
+    ]
+  },
+  "blockers": [
+    "The original pinned signing key is absent from this execution environment; do not recreate it, commit it or paste it into chat.",
+    "Available GitHub connector operations cannot configure Environment/Secrets or dispatch release. The checked-in owner helper must run on the owner machine containing the original key, or a separately approved administrative interface is required.",
+    "The changed source requires five successful workflows and a fresh same-SHA publish=false run; earlier candidate evidence does not satisfy the new source.",
+    "Publication requires subsequent explicit approval, protected Environment approval and successful public downloaded-artifact installed verification."
+  ]
+}

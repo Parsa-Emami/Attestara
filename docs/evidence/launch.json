@@ -7,9 +7,10 @@
   "manifest": "docs/release/RELEASE_MANIFEST.json",
   "evidence": "docs/evidence/C40.json",
   "blockers": [
-    "Repository owner access is unavailable: the current browser account cannot configure or verify the protected release Environment, main-only deployment rule, required reviewer and Environment signing Secret.",
-    "Public v1.0.0 publication requires separate explicit maintainer approval after Environment configuration and candidate review.",
-    "No actual public v1.0.0 publication or clean-runner downloaded-public-artifact installation proof exists."
+    "The original pinned signing key is absent from this execution environment; do not recreate it, commit it or paste it into chat.",
+    "Available GitHub connector operations cannot configure Environment/Secrets or dispatch release. The checked-in owner helper must run on the owner machine containing the original key, or a separately approved administrative interface is required.",
+    "The changed source requires five successful workflows and a fresh same-SHA publish=false run; earlier candidate evidence does not satisfy the new source.",
+    "Publication requires subsequent explicit approval, protected Environment approval and successful public downloaded-artifact installed verification."
   ],
   "local_ready": true,
   "source_identity": "sha256:a072f78bb7e6cb596077357abaf7421176a0be3b7aea583b51a271070977b83b",
@@ -29,5 +30,9 @@
   "github_candidate": {
     "path": "docs/evidence/C40-github-candidate.json",
     "sha256": "sha256:d850cd4f2e09631acdf3f19a2c3f089fdefc2bba3fdef5fda9a6249152b4418a"
+  },
+  "owner_setup_followup": {
+    "path": "docs/evidence/C40-owner-setup.json",
+    "sha256": "sha256:8c83c52337b1650e9ce1201081c2869f491311fda6c9f183527251b8189b32d5"
   }
 }

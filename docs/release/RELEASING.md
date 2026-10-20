@@ -22,14 +22,26 @@ only test fixtures and are never that identity.
 
 Before real publication, the repository maintainer must configure the GitHub
 Environment `release`, restrict deployments to `main`, select a maintainer reviewer,
-and set its Secret `ATTESTARA_RELEASE_PRIVATE_KEY` to that PKCS#8 PEM. If using an
-already authenticated GitHub CLI, stream the file directly into the secret command:
+and set its Secret `ATTESTARA_RELEASE_PRIVATE_KEY` to that PKCS#8 PEM. On the owner
+machine containing the original key, use an already authenticated GitHub CLI:
 
 ```sh
-gh secret set ATTESTARA_RELEASE_PRIVATE_KEY --env release \
-  --repo Parsa-Emami/Attestara \
-  < "$HOME/.local/share/attestara/release-signing/v1/private.pem"
+node scripts/configure-release-environment.mjs --apply --reviewer Parsa-Emami
+node scripts/configure-release-environment.mjs --reviewer Parsa-Emami
 ```
+
+The helper defaults to a read-only check; only `--apply` changes configuration.
+Before any remote write it requires the existing private, non-symlinked key outside
+the checkout and matches its public identity against the committed manifest. It
+requires the authenticated repository owner, preserves existing reviewers,
+wait timer and self-review policy, adds the selected reviewer, and restricts branch
+rules to exactly the `main` branch (removing other branch/tag rules). The PEM is
+sent only through the secret command's stdin. Captured CLI output is never printed
+on errors. A missing key is a blocker; the helper never generates a replacement.
+Afterward it re-reads configuration and Secret metadata. This cannot read back the
+Secret's value; actual signing must still verify it. It does not dispatch a
+workflow, approve a deployment or authorize publication. It does not configure
+GitHub's administrator bypass setting; review that setting in the Environment UI.
 
 Do not print the file or paste it into chat. Secret configuration is an operator
 step, not proof of CI availability; the signing step verifies the key against the
@@ -53,6 +65,29 @@ establish a reviewer. Do not run publication on a PR, fork or unreviewed source.
 4. A separate fresh job downloads the public assets itself, binds tag/source,
    verifies the independent signature and checksums before extraction, and runs
    `npm run test:published -- --source-commit <full-sha>`.
+
+The workflow records the full SHA and publish flag in its run name. Publication
+now requires the latest `publish=false` run for that exact SHA to have succeeded:
+`prepare` must pass, both `publish` and `installed` must be skipped, and its
+reviewable candidate artifact must still exist without expiry. A successful run
+on another commit, an expired candidate or a newer failed preparation cannot
+satisfy this prerequisite. The publication evidence records that preparation's
+run and artifact IDs. Runs predating this explicit run-name contract must be
+prepared again. Environment approval and explicit publication authorization
+remain separate requirements.
+
+After the final push and all five successful prerequisite workflows, prepare:
+
+```sh
+candidate_sha=$(git rev-parse HEAD)
+gh workflow run release.yml --repo Parsa-Emami/Attestara --ref main \
+  -f source_commit="$candidate_sha" -f publish=false
+```
+
+Review that run and its artifacts before authorizing publication. Only after
+explicit publication approval, reuse the unchanged `candidate_sha` with
+`-f publish=true`, then approve the protected Environment as its reviewer. Do not
+advance C40 to verified until the public-download `installed` job succeeds.
 
 A moving main, missing/running/failed latest workflow, existing tag/release, wrong
 key/source, changed bytes or incomplete upload blocks publication. Retries do not

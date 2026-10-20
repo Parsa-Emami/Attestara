@@ -25,11 +25,12 @@
     ]
   },
   "next_task": "C40",
-  "next_action": "Await repository owner configuration and verification of protected release Environment, main-only deployment, reviewer and ATTESTARA_RELEASE_PRIVATE_KEY. Then obtain separate explicit publication approval and rerun release with the reviewed SHA and publish=true. Verify the independent public-install job before marking C40 verified. User authorized committing and pushing this evidence follow-up; publication remains separately unauthorized. An updated main SHA requires fresh source-matched CI and candidate preparation before publication.",
+  "next_action": "Observe all five workflows after this source is pushed. Owner must configure release/main/reviewer/Secret on the machine holding the original key. Dispatch and review release with the final full SHA and publish=false; obtain explicit publication approval before the same SHA/publish=true and Environment approval. Verify the independent public installed job before C40 finalization.",
   "blockers": [
-    "Repository owner access is unavailable: the current browser account cannot configure or verify the protected release Environment, main-only deployment rule, required reviewer and Environment signing Secret.",
-    "Public v1.0.0 publication requires separate explicit maintainer approval after Environment configuration and candidate review.",
-    "No actual public v1.0.0 publication or clean-runner downloaded-public-artifact installation proof exists."
+    "The original pinned signing key is absent from this execution environment; do not recreate it, commit it or paste it into chat.",
+    "Available GitHub connector operations cannot configure Environment/Secrets or dispatch release. The checked-in owner helper must run on the owner machine containing the original key, or a separately approved administrative interface is required.",
+    "The changed source requires five successful workflows and a fresh same-SHA publish=false run; earlier candidate evidence does not satisfy the new source.",
+    "Publication requires subsequent explicit approval, protected Environment approval and successful public downloaded-artifact installed verification."
   ],
   "publication_performed": false,
   "delivery": {
@@ -129,5 +130,26 @@
     "commit_performed": false,
     "push_performed": false,
     "delivery_state_at_recording": "Evidence validated before authorized commit/push; actual delivery SHA is reported after Git operations."
+  },
+  "owner_setup_followup": {
+    "date": "2026-10-20T17:20:52.981626+00:00",
+    "base_commit": "d72d9b8fa8358ce2668e8bce2b19750a3685bf28",
+    "status": "in_progress",
+    "evidence": {
+      "path": "docs/evidence/C40-owner-setup.json",
+      "sha256": "sha256:8c83c52337b1650e9ce1201081c2869f491311fda6c9f183527251b8189b32d5"
+    },
+    "source_identity": "sha256:e3516834bef2d94d3a887ffa17b07cb130e543cff53c932b88a36539b4d4870a",
+    "changed_source_paths": [
+      ".github/workflows/release.yml",
+      "docs/release/RELEASING.md",
+      "scripts/configure-release-environment.mjs",
+      "scripts/release-publication.mjs",
+      "tests/web/release-environment.test.mjs",
+      "tests/web/release-publication.test.mjs"
+    ],
+    "publication_authorized": false,
+    "environment_modified": false,
+    "next_action": "Observe all five workflows after this source is pushed. Owner must configure release/main/reviewer/Secret on the machine holding the original key. Dispatch and review release with the final full SHA and publish=false; obtain explicit publication approval before the same SHA/publish=true and Environment approval. Verify the independent public installed job before C40 finalization."
   }
 }

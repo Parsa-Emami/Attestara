@@ -362,7 +362,7 @@
         "docs/evidence/C40.json"
       ],
       "source_identity": "sha256:a072f78bb7e6cb596077357abaf7421176a0be3b7aea583b51a271070977b83b",
-      "notes": "Implementation db2f831 is pushed on main. All five prerequisite GitHub workflows and manual unsigned-candidate release run 39455305663 succeeded; fresh 28-phase gate, 653 canonical inputs, output digests and exact-source distribution verified. Local signed installed rehearsal remains separate. Owner access for protected release Environment/signing Secret is unavailable; publication still needs separate approval. No public release or downloaded public-install proof; C40 remains in_progress."
+      "notes": "C40 remains in_progress. Owner configuration helper and same-SHA unsigned-preparation guard are implemented; 14 release regressions, build/TypeScript and 17 Python tests passed. Local full tests require the absent Go/engine prerequisites. Connected owner has admin permission, but exposed tools cannot configure Environment/Secret or dispatch release; original pinned key is absent here. Fresh final-source CI, publish=false preparation, explicit publication approval and public installed proof remain required. See docs/evidence/C40-owner-setup.json; prior source-bound runtime evidence is unchanged."
     }
   ],
   "web_progress": "plans/web-roadmap.json",
