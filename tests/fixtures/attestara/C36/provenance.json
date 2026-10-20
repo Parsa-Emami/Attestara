@@ -1,0 +1,8 @@
+{
+  "license": "Apache-2.0",
+  "provenance": "Repository-authored synthetic onboarding cases; the workflow reuses Apache-2.0 C30 fixtures and existing public documentation.",
+  "files": {
+    "README.md": "sha256:736a192a237cb068ce8ea541a83dc7e56af1f9d0158f1553cf19d2194c9b3eee",
+    "cases.json": "sha256:21c775524c423775f0a3546fb77da79a07b67716f9acbada6a632aa6b9cd52aa"
+  }
+}

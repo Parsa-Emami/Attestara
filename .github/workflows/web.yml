@@ -68,6 +68,14 @@ jobs:
       - run: npx --no-install playwright install --with-deps chromium
       - run: npm run test:browser
       - run: npm run test:clone
+      - name: Retain the C36 clean-clone onboarding result
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: c36-onboarding-${{ github.sha }}
+          path: dist/onboarding/C36-run.json
+          retention-days: 14
+          if-no-files-found: warn
       - run: npm run test:package
       - run: npm run package:web
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02

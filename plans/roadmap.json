@@ -3443,7 +3443,7 @@
         "npm run validate:plan — All task/dependency/resource/reference/evidence metadata validates; no runtime capability inferred.",
         "go test ./... — C03 creates this engine test command in the same commit; C06 adds CI/integration collection. Pass the actual C36 acceptance and negative cases on the selected engine; shell-only tests cannot certify this task.",
         "npm run test:browser — Existing shell regressions pass; add and pass this task's actual domain browser workflow before certification.",
-        "npm run test:clone — The current command proves web-only clone/setup/start. Extend it to tests/scenarios/clone-to-value.json with real engine readiness before verifying C36."
+        "npm run test:clone — Validate the versioned onboarding contract, replay the public guide and actual CLI/browser/restart/restore workflow in a fresh clone, and emit timed source-bound results. Local bubblewrap checks the harness only; verify C36 only after reviewing the fresh GitHub Actions runner result."
       ],
       "acceptance": [
         "A separate clean environment or independent contributor follows only the public guide and completes the actual core workflow. Record observed effort and failures; customer demand and five pilots are not prerequisites for OSS usability."
@@ -3520,7 +3520,7 @@
         {
           "command": "npm run test:clone",
           "available_now": true,
-          "expected": "The current command proves web-only clone/setup/start. Extend it to tests/scenarios/clone-to-value.json with real engine readiness before verifying C36.",
+          "expected": "Validate the versioned onboarding contract, replay the public guide and actual CLI/browser/restart/restore workflow in a fresh clone, and emit timed source-bound results. Local bubblewrap checks the harness only; verify C36 only after reviewing the fresh GitHub Actions runner result.",
           "introduced_by": "web-foundation"
         }
       ],

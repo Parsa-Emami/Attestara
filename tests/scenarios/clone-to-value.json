@@ -35,5 +35,30 @@
     "freshness": "explicit operator classification",
     "authority": "immutable C05 operation; no latest-release authority",
     "evidence": "docs/evidence/C30.json"
+  },
+  "onboarding": {
+    "version": 1,
+    "guide": "docs/release/USER_GUIDE.md",
+    "guide_test": "tests/ops/user-guide.test.mjs",
+    "browser_test": "tests/browser/clone-to-value.spec.ts",
+    "required_phases": [
+      "prerequisites",
+      "setup",
+      "guide-cli-restart-restore",
+      "browser-install",
+      "service-start",
+      "cli-workflow",
+      "service-restart",
+      "new-store-restore",
+      "browser-viewer"
+    ],
+    "toolchain": {
+      "node": "24.19.0",
+      "npm": "11.9.0",
+      "go": "1.27.2",
+      "platform": "linux-x64"
+    },
+    "optional_providers": [],
+    "user_source_execution": "forbidden"
   }
 }

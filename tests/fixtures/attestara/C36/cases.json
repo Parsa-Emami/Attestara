@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "license": "Apache-2.0",
+  "cases": [
+    {
+      "id": "clean-guide-workflow",
+      "kind": "positive",
+      "expected": "setup, documented CLI, supervised CLI, browser viewer, restart and new-store restore all pass with measured durations"
+    },
+    {
+      "id": "missing-prerequisite",
+      "kind": "negative",
+      "expected": "missing or wrong pinned Node, npm, Go or platform fails before success"
+    },
+    {
+      "id": "malformed-onboarding-contract",
+      "kind": "negative",
+      "expected": "unsupported version, missing public-guide test or incomplete phase list fails before setup"
+    },
+    {
+      "id": "restart-and-restore",
+      "kind": "recovery",
+      "expected": "the accepted passport remains byte-identical across service restart and restores only into a fresh store"
+    },
+    {
+      "id": "inert-user-source",
+      "kind": "security",
+      "expected": "the supported workflow does not execute user source bytes"
+    },
+    {
+      "id": "optional-providers",
+      "kind": "boundary",
+      "expected": "OPA, Syft and Grype remain optional and are not invoked by core onboarding"
+    }
+  ]
+}

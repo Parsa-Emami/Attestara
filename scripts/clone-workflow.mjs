@@ -6,9 +6,34 @@ import { createHash } from 'node:crypto';
 
 export const workflowCommands = [];
 
+export function validateOnboardingScenario(scenario) {
+  const onboarding = scenario?.onboarding;
+  assert.equal(scenario?.version, 1, 'Unsupported clone-to-value scenario version');
+  assert.equal(scenario?.status, 'unexecuted reference contract', 'C01 reference status is historical');
+  assert.equal(scenario?.engine_execution_verified, false, 'C01 scenario cannot certify engine execution');
+  assert.equal(scenario?.execution?.profile, 'local-cli-snapshots', 'Unsupported onboarding profile');
+  assert.equal(onboarding?.version, 1, 'Unsupported onboarding contract version');
+  assert.equal(onboarding.guide, 'docs/release/USER_GUIDE.md', 'Onboarding must follow the public user guide');
+  assert.equal(onboarding.guide_test, 'tests/ops/user-guide.test.mjs', 'Missing literal guide regression');
+  assert.equal(onboarding.browser_test, 'tests/browser/clone-to-value.spec.ts', 'Missing core browser workflow');
+  assert.deepEqual(onboarding.required_phases, ['prerequisites', 'setup', 'guide-cli-restart-restore', 'browser-install', 'service-start', 'cli-workflow', 'service-restart', 'new-store-restore', 'browser-viewer'], 'Onboarding phases are incomplete or reordered');
+  assert.deepEqual(onboarding.toolchain, { node: '24.19.0', npm: '11.9.0', go: '1.27.2', platform: 'linux-x64' }, 'Unsupported onboarding toolchain');
+  assert.deepEqual(onboarding.optional_providers, [], 'Optional providers cannot become onboarding prerequisites');
+  assert.equal(onboarding.user_source_execution, 'forbidden', 'User source execution must remain forbidden');
+  return onboarding;
+}
+
+export function validateOnboardingEnvironment(onboarding, actual) {
+  for (const tool of ['node', 'npm', 'go']) {
+    assert.equal(actual?.[tool], onboarding.toolchain[tool], `C36 prerequisite unavailable: ${tool}`);
+  }
+  assert.equal(actual?.platform, onboarding.toolchain.platform, 'C36 prerequisite unavailable: linux-x64');
+}
+
 export function engineCommand(root, args, code = 0) {
+  const started = performance.now();
   const result = spawnSync(join(root, 'dist/engine/attestara'), args, { cwd: root, encoding: 'utf8', timeout: 20000, maxBuffer: 2 * 1024 * 1024 });
-  workflowCommands.push({ command: ['attestara', ...args], exit: result.status, stdout: result.stdout, stderr: result.stderr });
+  workflowCommands.push({ command: ['attestara', ...args], expected_exit: code, exit: result.status, duration_ms: Math.round(performance.now() - started), stdout: result.stdout, stderr: result.stderr });
   assert.equal(result.error, undefined, 'engine invocation failed');
   assert.equal(result.status, code, `${args[0]}: ${result.stderr}`);
   return result;
@@ -19,7 +44,7 @@ export function runWorkflow(root, work, store = join(work, 'store')) {
   const manifest = join(fixture, 'manifest.json');
   const scenario = JSON.parse(readFileSync(join(root, 'tests/scenarios/clone-to-value.json')));
   assert.equal(scenario.steps.length, 10);
-  assert.equal(scenario.execution.profile, 'local-cli-snapshots');
+  validateOnboardingScenario(scenario);
   const provenance = JSON.parse(readFileSync(join(fixture, 'provenance.json')));
   assert.equal(provenance.license, 'Apache-2.0');
   for (const [path, digest] of Object.entries(provenance.files)) assert.equal('sha256:' + createHash('sha256').update(readFileSync(join(fixture, path))).digest('hex'), digest);
