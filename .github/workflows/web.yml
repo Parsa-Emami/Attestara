@@ -67,9 +67,19 @@ jobs:
           node --test tests/ops/nginx-local.test.mjs
       - run: npx --no-install playwright install --with-deps chromium
       - run: npm run test:browser
+        id: browser
+      - name: Retain failed browser diagnostics
+        if: ${{ failure() && steps.browser.outcome == 'failure' }}
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: browser-failure-${{ github.sha }}
+          path: test-results/
+          retention-days: 14
+          if-no-files-found: error
       - run: npm run test:clone
+        id: onboarding
       - name: Retain the C36 clean-clone onboarding result
-        if: always()
+        if: ${{ always() && steps.onboarding.outcome != 'skipped' && steps.onboarding.outcome != '' }}
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: c36-onboarding-${{ github.sha }}

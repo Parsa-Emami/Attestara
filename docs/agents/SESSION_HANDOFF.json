@@ -85,5 +85,13 @@
     "local_commit_authorized": true,
     "push_authorized": false,
     "pr_created": false
+  },
+  "ci_followup": {
+    "date": "2026-10-20",
+    "evidence": "docs/evidence/C39-ci-followup.json",
+    "status": "Local keyboard test hardening and diagnostics passed; intermittent runner root cause remains unconfirmed. Candidate GitHub verification still required.",
+    "branch": "main",
+    "push_authorized": false,
+    "next_action": "Keep C39 in_progress. Do not push without user authorization; after an authorized push inspect all five workflows for the new commit."
   }
 }
