@@ -75,11 +75,9 @@
     "Final retained output hashes and all 643 runtime input paths/bytes/modes match the actual tested candidate; protected files and original index were unchanged before task-owned staging.",
     "Final staged review: code/config/docs passed diff whitespace checks; three raw output files retain measured whitespace with verified hashes. Exact findings are recorded in C39-final-review.json; no analysis ignore was added."
   ],
-  "blockers": [
-    "Actual candidate GitHub Actions were not run: the user authorized a local commit only and explicitly prohibited push."
-  ],
-  "next_task": "C39",
-  "next_action": "C39 remains pending actual candidate GitHub workflows. User explicitly requested local commit only; do not push or create a PR without later authorization.",
+  "blockers": [],
+  "next_task": "C40",
+  "next_action": "C39 verified. C40 publication and installed published-artifact workflow need maintainer authorization; no push/tag/release authorized in this session.",
   "publication_performed": false,
   "delivery": {
     "local_commit_authorized": true,
@@ -93,5 +91,26 @@
     "branch": "main",
     "push_authorized": false,
     "next_action": "Keep C39 in_progress. Do not push without user authorization; after an authorized push inspect all five workflows for the new commit."
+  },
+  "c39_completion": {
+    "date": "2026-10-20T14:00:16.660Z",
+    "status": "verified",
+    "candidate_commit": "75b86c66eea0a8224503dfa6f9eb4743a6fb0824",
+    "candidate_tree": "a8568836af0934f1f90137b23e250f7aff0310cc",
+    "source_identity": "sha256:8aa0ea502f24ec34c113064d974a4ea4d78053a089b24eead4647cd1303cc1c7",
+    "evidence": "docs/evidence/C39.json",
+    "github_evidence": "docs/evidence/C39-github-actions.json",
+    "checks": "All five candidate workflows and all 28 release-gate phases succeeded. Downloaded artifact digest, each command output digest and local canonical runtime inputs match.",
+    "scope": "Evidence, progress and generated status only; no runtime source change or rerun attribution.",
+    "next_task": "C40",
+    "push_performed": false,
+    "finalization_checks": [
+      "npm run validate:plan passed; next task is C40.",
+      "validate_repo.py and 17 Python engineering tests passed.",
+      "npm run check passed: TypeScript, web build and 66 Node tests; command-local official Go proxy/checksum configuration used.",
+      "Historical C01-C38 evidence audit passed.",
+      "All 643 canonical runtime inputs still exactly match the GitHub report after metadata changes.",
+      "git diff --check passed."
+    ]
   }
 }

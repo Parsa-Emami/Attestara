@@ -348,12 +348,12 @@
     },
     {
       "id": "C39",
-      "status": "in_progress",
+      "status": "verified",
       "evidence": [
         "docs/evidence/C39.json"
       ],
-      "source_identity": "sha256:954d850f180e13495a3f37fc46d822834b9f65f86fdb77c7c4073290854e50e5",
-      "notes": "Full local C39 gate passed on an isolated clean source candidate: 66 Node, 17 Python, 542 uncached Go with pinned OPA/zero skips, 25 browser tests, real clone/package/upgrade/recovery and live audit/reporting. User authorized local commit only and prohibited push; actual candidate GitHub workflows were not run. C39 remains in_progress and is not certified."
+      "source_identity": "sha256:8aa0ea502f24ec34c113064d974a4ea4d78053a089b24eead4647cd1303cc1c7",
+      "notes": "Verified candidate 75b86c66eea0a8224503dfa6f9eb4743a6fb0824: all five real GitHub workflows succeeded, including a fresh 28-phase release gate with 66 Node, 17 Python, 542 uncached Go tests/zero skips, 25 browser tests, clone/restart/restore, package/upgrade/rollback and zero audit advisories. Source-bound report/output hashes retained. Publication and published-artifact installation remain C40."
     },
     {
       "id": "C40",

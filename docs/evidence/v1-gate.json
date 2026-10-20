@@ -1,20 +1,30 @@
 {
   "schema_version": 1,
   "planning_template": false,
-  "passed": false,
+  "passed": true,
   "profile": "local-cli-snapshots",
-  "source_identity": "sha256:954d850f180e13495a3f37fc46d822834b9f65f86fdb77c7c4073290854e50e5",
-  "runtime_candidate_commit": "b836f1bc54789838c2f10d3f4db83eb64abd73a3",
-  "runtime_candidate_tree": "566432229f9ab00c0977bb1b5efbec49da7f57ec",
+  "source_identity": "sha256:8aa0ea502f24ec34c113064d974a4ea4d78053a089b24eead4647cd1303cc1c7",
+  "runtime_candidate_commit": "75b86c66eea0a8224503dfa6f9eb4743a6fb0824",
+  "runtime_candidate_tree": "a8568836af0934f1f90137b23e250f7aff0310cc",
   "local_verified": true,
-  "github_verified": false,
+  "github_verified": true,
   "evidence": "docs/evidence/C39.json",
   "report": {
-    "path": "docs/evidence/C39-local-run.json",
-    "sha256": "sha256:9ea77a5b3fb2d99a091957420116566131d4769ab3c270b419eee20ad6cef7de"
+    "path": "docs/evidence/C39-github-run.json",
+    "sha256": "sha256:3d93fc084267a54ca7aa30ef0bdf239236d19b73172d40bf7d45f32151413380"
   },
-  "blockers": [
-    "Actual candidate GitHub Actions were not run: the user authorized a local commit only and explicitly prohibited push."
-  ],
-  "published": false
+  "blockers": [],
+  "published": false,
+  "github_actions": {
+    "path": "docs/evidence/C39-github-actions.json",
+    "sha256": "sha256:6aa8b5cd79f54de08ec86745c5c22429ea4cb200ec07def5f2f654f59ae14861"
+  },
+  "outputs": {
+    "path": "docs/evidence/C39-github-output.zip",
+    "sha256": "sha256:6e93459efe6d108a872fb818cba0490745a9d3d3e8b51d82d0fce85497657d45"
+  },
+  "local_attestation": {
+    "path": "docs/evidence/C39-local-attestation.json",
+    "sha256": "sha256:342e6ff07e4fff11a79500d2d13a355be03ab8aed42df5150ae69075b803b0ee"
+  }
 }

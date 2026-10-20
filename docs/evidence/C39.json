@@ -1,14 +1,13 @@
 {
   "schema_version": 1,
   "planning_template": false,
-  "passed": false,
+  "passed": true,
   "commit_id": "C39",
-  "date": "2026-10-20T09:25:31.842512+00:00",
-  "base_commit": "4846a5f9371e1024bbebd401ef3a4c6607f460df",
-  "source_identity": "sha256:954d850f180e13495a3f37fc46d822834b9f65f86fdb77c7c4073290854e50e5",
+  "date": "2026-10-20T14:00:16.660Z",
+  "source_identity": "sha256:8aa0ea502f24ec34c113064d974a4ea4d78053a089b24eead4647cd1303cc1c7",
   "source_identity_method": "C36 sorted path/NUL/raw SHA-256/LF framing; documented runtime exclusions.",
-  "runtime_candidate_commit": "b836f1bc54789838c2f10d3f4db83eb64abd73a3",
-  "runtime_candidate_tree": "566432229f9ab00c0977bb1b5efbec49da7f57ec",
+  "runtime_candidate_commit": "75b86c66eea0a8224503dfa6f9eb4743a6fb0824",
+  "runtime_candidate_tree": "a8568836af0934f1f90137b23e250f7aff0310cc",
   "tools": {
     "node": {
       "version": "v24.19.0",
@@ -30,41 +29,157 @@
       "version": "Python 3.12.3"
     },
     "git": {
-      "version": "git version 2.43.0"
+      "version": "git version 2.55.0"
     },
     "nginx": {
       "version": "nginx version: nginx/1.24.0 (Ubuntu)"
     },
     "browser": {
-      "version": "Google Chrome 153.0.8010.52",
-      "sha256": "sha256:aea09d69ce7f24d5901f6bfb15dd44d0c856e793e0a498f8d8393ec7d2c308ec"
+      "version": "Google Chrome for Testing 156.0.8078.4",
+      "sha256": "sha256:377a9fc07b495c3b8d0ab8ec1fdfd153641759f9756fea34d8dfce4de82f5025"
     }
+  },
+  "hardware": {
+    "platform": "linux",
+    "arch": "x64",
+    "kernel": "6.17.0-1022-azure",
+    "logical_cpus": 4,
+    "host_memory_bytes": 16766418944,
+    "capacity_certified": false
   },
   "fixture_license": "Apache-2.0 repository-authored synthetic C39 fixtures; provenance hashes validated by the actual Python suite.",
   "commands": [
     {
       "command": [
-        "node",
-        "/home/amirreza/.npm/_npx/5ed1df33febb5bb0/node_modules/npm/bin/npm-cli.js",
+        "npm",
         "run",
         "release:check"
       ],
-      "cwd": "/home/amirreza/Desktop/Projects/Attestara/dist/c39/candidate-owxccj20/checkout",
       "exit_code": 0,
-      "output_path": "docs/evidence/C39-local-driver.log",
-      "output_sha256": "sha256:052d12ddab177f0c836817e932660c42e35ee0f600cc6d2758a903007b394951",
-      "source_identity": "sha256:954d850f180e13495a3f37fc46d822834b9f65f86fdb77c7c4073290854e50e5"
+      "source_identity": "sha256:8aa0ea502f24ec34c113064d974a4ea4d78053a089b24eead4647cd1303cc1c7",
+      "run_id": "39434383277",
+      "output_path": "docs/evidence/C39-github-job.log.gz",
+      "output_sha256": "sha256:2f1bf4006feca4abfb0ba65e29f4d5ca99c964285f1fc3fdd9b9985f0167f3af",
+      "output_encoding": "gzip; complete GitHub job log; per-command exact outputs are retained in C39-github-output.zip"
     }
   ],
   "results": {
-    "local_release_gate": true,
-    "node_tests": 66,
-    "python_tests": 17,
+    "github_actions": {
+      "status": "success",
+      "verified": true,
+      "candidate_commit": "75b86c66eea0a8224503dfa6f9eb4743a6fb0824",
+      "candidate_tree": "a8568836af0934f1f90137b23e250f7aff0310cc",
+      "source_identity": "sha256:8aa0ea502f24ec34c113064d974a4ea4d78053a089b24eead4647cd1303cc1c7",
+      "runs": [
+        {
+          "id": 39434383228,
+          "name": "contracts",
+          "path": ".github/workflows/contracts.yml",
+          "head_sha": "75b86c66eea0a8224503dfa6f9eb4743a6fb0824",
+          "tree": "a8568836af0934f1f90137b23e250f7aff0310cc",
+          "status": "completed",
+          "conclusion": "success",
+          "event": "push",
+          "run_attempt": 1,
+          "url": "https://github.com/Parsa-Emami/Attestara/actions/runs/39434383228",
+          "created_at": "2026-10-20T13:53:47Z",
+          "updated_at": "2026-10-20T13:54:00Z"
+        },
+        {
+          "id": 39434383226,
+          "name": "plan-consistency",
+          "path": ".github/workflows/plan.yml",
+          "head_sha": "75b86c66eea0a8224503dfa6f9eb4743a6fb0824",
+          "tree": "a8568836af0934f1f90137b23e250f7aff0310cc",
+          "status": "completed",
+          "conclusion": "success",
+          "event": "push",
+          "run_attempt": 1,
+          "url": "https://github.com/Parsa-Emami/Attestara/actions/runs/39434383226",
+          "created_at": "2026-10-20T13:53:47Z",
+          "updated_at": "2026-10-20T13:53:55Z"
+        },
+        {
+          "id": 39434383268,
+          "name": "engine-runtime",
+          "path": ".github/workflows/runtime.yml",
+          "head_sha": "75b86c66eea0a8224503dfa6f9eb4743a6fb0824",
+          "tree": "a8568836af0934f1f90137b23e250f7aff0310cc",
+          "status": "completed",
+          "conclusion": "success",
+          "event": "push",
+          "run_attempt": 1,
+          "url": "https://github.com/Parsa-Emami/Attestara/actions/runs/39434383268",
+          "created_at": "2026-10-20T13:53:47Z",
+          "updated_at": "2026-10-20T13:56:50Z"
+        },
+        {
+          "id": 39434383224,
+          "name": "web-foundation",
+          "path": ".github/workflows/web.yml",
+          "head_sha": "75b86c66eea0a8224503dfa6f9eb4743a6fb0824",
+          "tree": "a8568836af0934f1f90137b23e250f7aff0310cc",
+          "status": "completed",
+          "conclusion": "success",
+          "event": "push",
+          "run_attempt": 1,
+          "url": "https://github.com/Parsa-Emami/Attestara/actions/runs/39434383224",
+          "created_at": "2026-10-20T13:53:47Z",
+          "updated_at": "2026-10-20T13:58:30Z"
+        },
+        {
+          "id": 39434383277,
+          "name": "release-gate",
+          "path": ".github/workflows/release-gate.yml",
+          "head_sha": "75b86c66eea0a8224503dfa6f9eb4743a6fb0824",
+          "tree": "a8568836af0934f1f90137b23e250f7aff0310cc",
+          "status": "completed",
+          "conclusion": "success",
+          "event": "push",
+          "run_attempt": 1,
+          "url": "https://github.com/Parsa-Emami/Attestara/actions/runs/39434383277",
+          "created_at": "2026-10-20T13:53:47Z",
+          "updated_at": "2026-10-20T14:00:21Z"
+        }
+      ],
+      "observation": {
+        "path": "docs/evidence/C39-github-actions.json",
+        "sha256": "sha256:6aa8b5cd79f54de08ec86745c5c22429ea4cb200ec07def5f2f654f59ae14861"
+      },
+      "report": {
+        "path": "docs/evidence/C39-github-run.json",
+        "sha256": "sha256:3d93fc084267a54ca7aa30ef0bdf239236d19b73172d40bf7d45f32151413380"
+      },
+      "outputs": {
+        "path": "docs/evidence/C39-github-output.zip",
+        "sha256": "sha256:6e93459efe6d108a872fb818cba0490745a9d3d3e8b51d82d0fce85497657d45"
+      },
+      "job_log": {
+        "path": "docs/evidence/C39-github-job.log.gz",
+        "sha256": "sha256:2f1bf4006feca4abfb0ba65e29f4d5ca99c964285f1fc3fdd9b9985f0167f3af"
+      },
+      "downloaded_artifact": {
+        "id": 12269758601,
+        "name": "release-gate-75b86c66eea0a8224503dfa6f9eb4743a6fb0824-39434383277-1",
+        "digest": "sha256:5e04aab235f530d292eb3c12804e8318cd86c435c83fad4d9a5024a745dfbd8d",
+        "size_in_bytes": 8652103,
+        "expired": false,
+        "workflow_run": {
+          "id": 39434383277,
+          "repository_id": 1354991022,
+          "head_repository_id": 1354991022,
+          "head_branch": "main",
+          "head_sha": "75b86c66eea0a8224503dfa6f9eb4743a6fb0824"
+        }
+      }
+    },
     "go": {
       "packages": 7,
       "passed": 542,
       "skipped": 0
     },
+    "node_tests": 66,
+    "python_tests": 17,
     "browser_tests": 25,
     "typecheck": "passed",
     "build": "web and Go passed",
@@ -76,38 +191,29 @@
       "critical": 0,
       "total": 0
     },
-    "live_private_reporting_enabled": true,
     "source_unchanged": true,
-    "github_actions": {
-      "status": "not_run_user_requested_no_push",
-      "verified": false
-    }
+    "live_private_reporting_enabled": true
   },
-  "local_report": {
-    "path": "docs/evidence/C39-local-run.json",
-    "sha256": "sha256:9ea77a5b3fb2d99a091957420116566131d4769ab3c270b419eee20ad6cef7de"
+  "local_attestation": {
+    "path": "docs/evidence/C39-local-attestation.json",
+    "sha256": "sha256:342e6ff07e4fff11a79500d2d13a355be03ab8aed42df5150ae69075b803b0ee"
   },
   "historical_supplements": {
     "C31": "docs/evidence/C39-C31-typecheck.json",
     "C36_archive": "docs/evidence/C39-C36-artifact.zip",
     "C36_member": "docs/evidence/C39-C36-run.json"
   },
-  "blockers": [
-    "Actual candidate GitHub Actions were not run: the user authorized a local commit only and explicitly prohibited push."
-  ],
+  "blockers": [],
   "limits": [
     "Supported Linux x86_64 single-operator profile only; measured host resources are not a new capacity certificate.",
     "No standalone JavaScript lint command; actual Go vet, syntax and diff checks passed.",
     "Synthetic release signing tests are not a maintainer identity; no tag, release publication or C40 claim.",
-    "Local source/clone/package results do not substitute for actual candidate GitHub Actions."
+    "Certification belongs to the exact tested candidate; this evidence/status-only follow-up is not another runtime or GitHub run."
   ],
   "delivery": {
     "local_commit_authorized": true,
     "push_authorized": false,
     "pr_created": false
   },
-  "final_review": {
-    "path": "docs/evidence/C39-final-review.json",
-    "sha256": "sha256:ea2dc5e3792a58b8a90cee3c89c2ef8d674c9318e2e9d392d519241798412811"
-  }
+  "published": false
 }
