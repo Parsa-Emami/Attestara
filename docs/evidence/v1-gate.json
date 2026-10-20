@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "planning_template": false,
+  "passed": false,
+  "profile": "local-cli-snapshots",
+  "source_identity": "sha256:954d850f180e13495a3f37fc46d822834b9f65f86fdb77c7c4073290854e50e5",
+  "runtime_candidate_commit": "b836f1bc54789838c2f10d3f4db83eb64abd73a3",
+  "runtime_candidate_tree": "566432229f9ab00c0977bb1b5efbec49da7f57ec",
+  "local_verified": true,
+  "github_verified": false,
+  "evidence": "docs/evidence/C39.json",
+  "report": {
+    "path": "docs/evidence/C39-local-run.json",
+    "sha256": "sha256:9ea77a5b3fb2d99a091957420116566131d4769ab3c270b419eee20ad6cef7de"
+  },
+  "blockers": [
+    "Actual candidate GitHub Actions were not run: the user authorized a local commit only and explicitly prohibited push."
+  ],
+  "published": false
+}

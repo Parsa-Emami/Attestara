@@ -87,5 +87,248 @@
     "customer pilot count",
     "app-store launch"
   ],
-  "verified_profile": "local-cli-snapshots"
+  "verified_profile": "local-cli-snapshots",
+  "evidence_contract": {
+    "schema_version": 1,
+    "historical_sources": {
+      "C01": {
+        "source_commit": "04732c9496ee0a4637a69adcab1b4fdabe24737e",
+        "evidence_sha256": "sha256:9c8e60682adfcbdb027a9f4f2860f1c7b1b5b5ac3ab75575b2856ac2e93c4019"
+      },
+      "C02": {
+        "source_commit": "771c5420927f12be8f8f6021fdd819ec367d5cb7",
+        "evidence_sha256": "sha256:3ccef98e480d0f3d99dfff079b341b556ab5e89f48e01be944f6641f53776171"
+      },
+      "C03": {
+        "source_commit": "9c6a788fdd92744a172f8d7b193c8d8d8320a265",
+        "evidence_sha256": "sha256:d93e4ca1273583def3bf10ca0c7affb36aad69408a49648f8702efab089b3a95"
+      },
+      "C04": {
+        "source_commit": "be36a29234ab41088e4682b936fddaae508ad1c5",
+        "evidence_sha256": "sha256:1aeb1fbb2f26ccdeb4f68ff674ab353ddf077bcbdeb856a99bf1eadff4282f9f"
+      },
+      "C05": {
+        "source_commit": "69684328ba1cd66063366a26a7fbefae7660c1f2",
+        "evidence_sha256": "sha256:4a2c82bd92c5f469c8bc9de0202ff17b23789104a6011b3c1dec99a61112a875"
+      },
+      "C06": {
+        "source_commit": "ac110c6c48cec7ad005027284c478697d9aca61a",
+        "evidence_sha256": "sha256:4d49ac7148739bdf3368ecadcb08f6a6692a46904bd09d53e31c106522fb5a48"
+      },
+      "C07": {
+        "source_commit": "c98c2dedd98a148606d3d2704a21a61fed8b7dd7",
+        "evidence_sha256": "sha256:5ba1d732ad652dd82cef121bedca19530ffef65406ab1294c1913ad971d825b2"
+      },
+      "C08": {
+        "source_commit": "1107f58e874f2c3e8ce26f597729546f1d5fe3f8",
+        "evidence_sha256": "sha256:d9faacd0b1e2577e7df7b373fd0521758d3d0d6d370a410bbe976c624e10b839"
+      },
+      "C09": {
+        "source_commit": "874890590589ce23c25743c6f1739c61b7c9239c",
+        "evidence_sha256": "sha256:3b46e946a5c77d6a1a475baddce710ca167ee451d8db8be78d4dd907812eae86"
+      },
+      "C10": {
+        "source_commit": "015004313e7fd5973f7857089f91435a3f0a5f50",
+        "evidence_sha256": "sha256:f07dfab4dff8bdcadc867c1e73b5885e303dea70a2949537cd7d4873fda7cfcf"
+      },
+      "C11": {
+        "source_commit": "0fca867a0c4b6e30ba29a74ce347ffd59664b8ae",
+        "evidence_sha256": "sha256:1bdbf5f8ce89646766de8687f57be1f543add7e8015160c5d9a09bd2a3da4e21"
+      },
+      "C12": {
+        "source_commit": "4fabe346c4b7ac22280168a134e7ea0e1f52c3db",
+        "evidence_sha256": "sha256:0e31a9668f0601a2f112690e9554fe8571cae8c92d2d8d8bda2fdfc1a9171df7"
+      },
+      "C13": {
+        "source_commit": "3107727b2d65328db2131758ce774725c2413417",
+        "evidence_sha256": "sha256:7f1fb63c43f5289989673eb1fb63082f90eaa59cc23cda4d40654212baf6b724"
+      },
+      "C14": {
+        "source_commit": "e79fdd54e25d79fd49730ff20cde2a4d3f572fdf",
+        "evidence_sha256": "sha256:42ce69f14d486c6fb8c32c2d457606c7db95b9fcad62fc057cc67c90014fa616"
+      },
+      "C15": {
+        "source_commit": "dfdf374dd6c305e569707d15842c58ad9241f053",
+        "evidence_sha256": "sha256:78fcfe2c63219e95ffa423bb1eeb284ea36a4f57eefb1c84e472c325aa390d39"
+      },
+      "C16": {
+        "source_commit": "10015f127ce309ab83d6d436bd212a475f4bf9e8",
+        "evidence_sha256": "sha256:2d5788983c3e3bd90257724b52508ffa1352a8097c6f42cd03ebfc17e239f273"
+      },
+      "C17": {
+        "source_commit": "b05f46f2ee086d8457bce5415c5931ab85962c21",
+        "evidence_sha256": "sha256:8cf462918d8ecbcef0aa4fa836e1771c8e7a31fdc79e42d0ea2df3abf0e6b060"
+      },
+      "C18": {
+        "source_commit": "a8707bacb8606557305c7b9b306dbf3fac0ce376",
+        "evidence_sha256": "sha256:3152c51b743f98722a952e823a65a9cccbfa1161fd796a680994ab0762cc2e6a"
+      },
+      "C19": {
+        "source_commit": "fc9df17c91c455c08f4004aa4f858d6383416ba2",
+        "evidence_sha256": "sha256:66c418cebc1447fa37cc555185dd9db0e8c35882fb873f45ab1b4a6902ec21b6"
+      },
+      "C20": {
+        "source_commit": "723fdcbb050a0fe169dd6c92c431a7cda30a3e45",
+        "evidence_sha256": "sha256:781fd499ab3a747042e8984944d061365039330e5f43252d348854c4df1b12c4"
+      },
+      "C21": {
+        "source_commit": "693c5ab0633e49c6fc3f711114fee5fdc4890c0f",
+        "evidence_sha256": "sha256:3b93a2c4c0d33d612d9e7b49c893b34abe510d160bf05356a99aacbcee4374df"
+      },
+      "C22": {
+        "source_commit": "391ceb9342ed3f2e76d6119fe0bb32a3505dd1d3",
+        "evidence_sha256": "sha256:0b0beb177e3b4812cd2942889b0a231861549e41129be2b63a3951078cd3c57c"
+      },
+      "C23": {
+        "source_commit": "3e9fc38af70ee844152d422023a464ec8c40ca4f",
+        "evidence_sha256": "sha256:e6313f57c10e07515d4bf15a2645b53e5dbf2c245da70650128f0053c55c3e01"
+      },
+      "C24": {
+        "source_commit": "78b6cf95535b31954a9d38a5170e156fd6b0f2ab",
+        "evidence_sha256": "sha256:e1b8c69f6956ffa314440efea95218e6f0b5f4dce688052cdec45079b9a7f102"
+      },
+      "C25": {
+        "source_commit": "f89976e976bdd79ce2a209cf914a697559570c87",
+        "evidence_sha256": "sha256:909b1e60ef2563cedb734ba8c5a67e6c15af8931145d35b2e2e237000407f9d8"
+      },
+      "C26": {
+        "source_commit": "88c1917aea11fac6f0e7226cd2eba3e399c1c2a6",
+        "evidence_sha256": "sha256:137ac4fbc82dfc1e14b6a6cb4f5b55352b151c5971be48755e4cad78df064d3c"
+      },
+      "C27": {
+        "source_commit": "be4f2501040b396501c472098633b54f1b32ee4b",
+        "evidence_sha256": "sha256:c713b050a3a1cfce62cf1651eaf16254bcb7c4bbf63d3c39763646eea695f080"
+      },
+      "C28": {
+        "source_commit": "cc1e3e42e9e79078fb85926c8a3aaec49e379637",
+        "evidence_sha256": "sha256:54258b80a74ea7044d22f6e08c79181a7c98560671ec0097c464e9c5ba9108a3"
+      },
+      "C29": {
+        "source_commit": "59e809487b9a10be32d353963f401627edf519e2",
+        "evidence_sha256": "sha256:2cd10aa6ebb6e92574260ac52662f579383c1e3a5163cb26ce605b54c5ad7700"
+      },
+      "C30": {
+        "source_commit": "4b9ba0a46dd8369e6fffa5c696f908d7f0c051e6",
+        "evidence_sha256": "sha256:366a74f172dea7ec3afe4c400491b4d24779615944a0080076e55af54cd7faaa"
+      },
+      "C31": {
+        "source_commit": "cb05cb748b6b73fad63252728cbb58f768fcb325",
+        "evidence_sha256": "sha256:edf4891706f06e5c0de14bd9eda93a3c1ae0dc181a42875be7b5f8f34433cc5c"
+      },
+      "C32": {
+        "source_commit": "9520e0871c4836cbd5d8dfe6aec65a1a5aa0cf88",
+        "evidence_sha256": "sha256:2233fe6500cdf43766fa35862a441f256c4735fb5b6e360d475e6e143df950cf"
+      },
+      "C33": {
+        "source_commit": "56e8aaa1b524ab024dc68fe4b4addc88088e9d00",
+        "evidence_sha256": "sha256:e08189bd396a74ccf7ded7905e32595ba723bbfac51f101580dabbc54f1a0eec"
+      },
+      "C34": {
+        "source_commit": "f103087fe933937775f701dbc9170cdfd9ee3a7d",
+        "evidence_sha256": "sha256:f18af39d18d7403902eaa68f33da5b094d71290643b3f2e74af84ebd0329b5c6"
+      },
+      "C35": {
+        "source_commit": "aacbce53b8689791f99759892fdbd12eb6f35e1f",
+        "evidence_sha256": "sha256:e93c7e860a93b5d1ba1638aabde90d7c4538646fc491d50c4145f94a104d629e"
+      },
+      "C36": {
+        "source_commit": "2fd255ad55d7461352c42608b1cbe0e3693d59b5",
+        "evidence_sha256": "sha256:e16e51192627188e6b157817b6a8dd002984e47cde7f0693be5048d6a9a9fdbc"
+      },
+      "C37": {
+        "source_commit": "90e1f9f3625589136835652620b6c6034460e8c6",
+        "evidence_sha256": "sha256:f927dfdbecfde07a4a22e6a38db6c3a166f5aef4fb1d6442c1b5fd7590d93481",
+        "source_omissions": [
+          "docs/product/BETA_FIXES.md"
+        ],
+        "source_overrides": {
+          "docs/ROADMAP_FA.md": "12a6acccddbe4adf5e3881bd8bd5b79f914a72e9"
+        }
+      },
+      "C38": {
+        "source_commit": "4846a5f9371e1024bbebd401ef3a4c6607f460df",
+        "evidence_sha256": "sha256:0e0addbfbe1a2f82e9ef6b2d0b1fde960d952695d18e42c985211cd2691177f0"
+      }
+    },
+    "output_sha256": {
+      "docs/evidence/C30-check.log": "sha256:f14ea49ad24b7e97988bfc65bdb0dee8b40cd4004236a2816c238fe955f381b0",
+      "docs/evidence/C30-typecheck.log": "sha256:9fea1d34e26bb91136dea3f70c7964b4d2eeb192dbe598dbc2405ae22752dcb7",
+      "docs/evidence/C30-go-test.log": "sha256:19c5b1f85193f4bd4e32534566a6b626f5c358659e1424ae634d6f5d17c71ce6",
+      "docs/evidence/C30-go-vet.log": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "docs/evidence/C30-go-build.log": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "docs/evidence/C30-discovery.log": "sha256:6eee51b54f5cae3068998ef6567c736c293f7f534d6493079fd5e0384284af68",
+      "docs/evidence/C30-browser.log": "sha256:88ea5cb4a7dc99bd41dabb1c3d7a001d24cfcf085bc6744bc10ab092f3a74c46",
+      "docs/evidence/C30-clone.log": "sha256:a8451959bb18983a8b05d5d334289d623aec7f398ccabd622a756211e7c9e379",
+      "docs/evidence/C30-plan.log": "sha256:80bbca2588f2b88e23d684c912d76f77095d0d2e92bc075441ad2bb7eb877446",
+      "docs/evidence/C30-python-plan.log": "sha256:80db941735ead06893f77b7665ee16dc48e94576f81377fc2591985f0778233d",
+      "docs/evidence/C30-diff.log": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "docs/evidence/C30-next.log": "sha256:e8c17e210345ae155fce9c8548962a45f79fdcdc9112883fb3902d5a31f64939"
+    },
+    "external_outputs": {
+      "GitHub Actions artifact c36-onboarding-2fd255ad55d7461352c42608b1cbe0e3693d59b5/C36-run.json": {
+        "archive": "docs/evidence/C39-C36-artifact.zip",
+        "member": "C36-run.json",
+        "path": "docs/evidence/C39-C36-run.json",
+        "sha256": "sha256:6dcc43fee5c006221683642a7a809c5fec01f548e9451445ea3ee9f56a131763",
+        "origin": "https://github.com/Parsa-Emami/Attestara/actions/runs/39389710759",
+        "artifact_id": 12249660279
+      }
+    },
+    "compatibility_notes": {
+      "C07": "Hash original recorded path labels; resolve only the fixed historical prefix through Git, never the host filesystem.",
+      "C32": "Actual historical digest is path/NUL/hex/LF, despite the raw-byte wording in its original metadata.",
+      "C36": "source_commit is the actual runner commit. The recorded output digest identifies the original GitHub ZIP container; verify its retained JSON member separately.",
+      "C37": "Reconstruct the tested snapshot using the documented post-runtime documentation changes; original runtime and final identities remain distinct."
+    },
+    "historical_scope_notes": {
+      "C24": {
+        "original_blockers": [
+          "C30 still requires the full clean-host core workflow, restart and restore proof."
+        ],
+        "verified_by": [
+          "C30",
+          "C38"
+        ],
+        "disposition": "Historical deferred C30 composition is now covered by the approved C30 local-cli-snapshots contract and current C39 runtime checks. Automatic release/revision/expiry authority and private/multi-user/remote-sensitive profiles remain unsupported; no such capability is certified."
+      },
+      "C25": {
+        "original_blockers": [
+          "C26 still owns distinct bundle trust outcomes; C30 still requires the full clean-host workflow, restart and restore proof."
+        ],
+        "verified_by": [
+          "C30",
+          "C38"
+        ],
+        "disposition": "Historical deferred C30 composition is now covered by the approved C30 local-cli-snapshots contract and current C39 runtime checks. Automatic release/revision/expiry authority and private/multi-user/remote-sensitive profiles remain unsupported; no such capability is certified."
+      },
+      "C26": {
+        "original_blockers": [
+          "C30 full browser/CLI workflow, durable revision/freshness/replay authority, clean-host restart and restore remain unproved."
+        ],
+        "verified_by": [
+          "C30",
+          "C38"
+        ],
+        "disposition": "Historical deferred C30 composition is now covered by the approved C30 local-cli-snapshots contract and current C39 runtime checks. Automatic release/revision/expiry authority and private/multi-user/remote-sensitive profiles remain unsupported; no such capability is certified."
+      },
+      "C27": {
+        "original_blockers": [
+          "Private/multi-user/remote-sensitive profiles unsupported pending explicit identity/object/provider authorization contract and genuine tests.",
+          "C28 target/overload resources, C29 readiness and C30 full clean-host workflow/restart/restore remain unproved."
+        ],
+        "verified_by": [
+          "C30",
+          "C38"
+        ],
+        "disposition": "Historical deferred C30 composition is now covered by the approved C30 local-cli-snapshots contract and current C39 runtime checks. Automatic release/revision/expiry authority and private/multi-user/remote-sensitive profiles remain unsupported; no such capability is certified."
+      }
+    },
+    "output_recoveries": {
+      "docs/evidence/C31-typecheck.log": {
+        "path": "docs/evidence/C39-C31-typecheck.log",
+        "attestation": "docs/evidence/C39-C31-typecheck.json",
+        "reason": "Original retained log is missing its final LF. A fresh pinned TypeScript run on the original C31 source reproduces the exact originally recorded output digest; the truncated file alone is not accepted."
+      }
+    }
+  }
 }

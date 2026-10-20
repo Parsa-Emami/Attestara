@@ -1,0 +1,9 @@
+{
+  "schema_version": 1,
+  "license": "Apache-2.0",
+  "origin": "repository-authored synthetic C39 validation cases; no customer data or execution authority",
+  "files": {
+    "README.md": "sha256:781059b4163fce5f141db088fff0289d0c154d735f18ff249eb7f65892d3c2de",
+    "cases.json": "sha256:bfa746dcafe0fa7dff79592cd600e94e839c1d8da99c5832ffc8204a840ea70f"
+  }
+}

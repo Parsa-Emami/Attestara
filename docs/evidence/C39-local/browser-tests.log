@@ -1,0 +1,46 @@
+
+> @parsa-emami/attestara-web@0.0.1 test:browser
+> playwright test
+
+[WebServer] (node:488638) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 25 tests using 5 workers
+
+(node:488657) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:488658) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:488664) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:488676) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:488665) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   2 apps/web/tests/passport.spec.ts:10:1 › C21 synthetic fixture hashes match their provenance (9ms)
+  ✓   4 tests/browser/full-workflow-accessibility.spec.ts:36:1 › C33 versioned scenarios retain the exact existing N-1 fixture bytes (11ms)
+  ✓   5 tests/browser/security.spec.ts:35:1 › C27 fixtures retain versioned synthetic provenance and exact hashes (12ms)
+  ✓   6 apps/web/tests/passport.spec.ts:19:1 › local C19 passport shows policy and evidence without uploading its bytes (426ms)
+  ✓   1 tests/browser/workspace.spec.ts:2:1 › workspace, local preview, navigation and roadmap filters work (593ms)
+  ✓   8 tests/browser/security.spec.ts:57:1 › C27 local preview escapes hostile names and keys without requests or prototype pollution (567ms)
+  ✓   9 apps/web/tests/passport.spec.ts:35:1 › viewer presents the C25 public redaction marker without exposing source text (195ms)
+  ✓  10 tests/browser/workspace.spec.ts:27:1 › malformed or unavailable runtime health is visible without blocking local preview (338ms)
+  ✓  11 tests/browser/security.spec.ts:78:1 › C27 hostile passport fields stay literal and unverified without sending selected bytes (332ms)
+  ✓  12 apps/web/tests/passport.spec.ts:48:1 › invalid, unsupported and oversized passports show an error (411ms)
+  ✓  13 tests/browser/workspace.spec.ts:36:1 › configuration failure blocks workspace startup (180ms)
+  ✓  15 apps/web/tests/passport.spec.ts:68:1 › unknown policy claims remain unverified (214ms)
+  ✓  16 tests/browser/workspace.spec.ts:43:1 › keyboard navigation, live status and narrow reflow remain usable (394ms)
+  ✓  14 tests/browser/security.spec.ts:92:1 › C27 invalid passports discard the previous display and fail with safe errors (636ms)
+  ✓   3 tests/browser/clone-to-value.spec.ts:9:1 › C30 real CLI snapshot and restored passport agree with the local viewer (1.7s)
+  ✓  17 apps/web/tests/passport.spec.ts:77:1 › cancellation, inert text, keyboard access and narrow layout remain explicit (569ms)
+  ✓  18 tests/browser/security.spec.ts:111:1 › C27 cancelled native file callbacks cannot restore old passport claims (255ms)
+  ✓  20 tests/browser/security.spec.ts:142:1 › C27 forged headers cannot open disabled object/provider APIs or turn health into a writer (32ms)
+  ✓  19 apps/web/tests/passport.spec.ts:98:1 › HTML-like passport text stays inert and engine unavailability is visible (190ms)
+  ✓   7 tests/browser/full-workflow-accessibility.spec.ts:57:5 › C33 360px › real CLI workflow, snapshot restore and N-1 files remain keyboard/table accessible (2.2s)
+  ✓  21 tests/browser/full-workflow-accessibility.spec.ts:113:5 › C33 360px › empty/invalid input discards prior claims and remains usable during engine outage (351ms)
+  ✓  22 tests/browser/full-workflow-accessibility.spec.ts:138:5 › C33 360px › keyboard cancellation suppresses late native reads and allows the same file again (286ms)
+  ✓  23 tests/browser/full-workflow-accessibility.spec.ts:57:5 › C33 1440px › real CLI workflow, snapshot restore and N-1 files remain keyboard/table accessible (1.1s)
+  ✓  24 tests/browser/full-workflow-accessibility.spec.ts:113:5 › C33 1440px › empty/invalid input discards prior claims and remains usable during engine outage (357ms)
+  ✓  25 tests/browser/full-workflow-accessibility.spec.ts:138:5 › C33 1440px › keyboard cancellation suppresses late native reads and allows the same file again (274ms)
+
+  25 passed (6.0s)

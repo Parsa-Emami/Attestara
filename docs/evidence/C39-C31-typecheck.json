@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "passed": true,
+  "planning_template": false,
+  "scope": "Source-bound revalidation of C31 TypeScript only; original incorrect output hash is not accepted.",
+  "source_commit": "cb05cb748b6b73fad63252728cbb58f768fcb325",
+  "source_identity": "sha256:ad6f10b7215259baeb241af87f7244323a05a861bda907cbfeddaac008936fc4",
+  "date": "2026-10-20T09:10:07.098567+00:00",
+  "commands": [
+    {
+      "command": [
+        "node",
+        "/home/amirreza/.npm/_npx/5ed1df33febb5bb0/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "typecheck"
+      ],
+      "cwd": "/home/amirreza/Desktop/Projects/Attestara/dist/c39/historical-C31",
+      "exit_code": 0,
+      "output_path": "docs/evidence/C39-C31-typecheck.log",
+      "output_sha256": "sha256:bacf67b27641e15adb7f6f66853da30940dabd4107ce8a1256b45c05d52a8bf5"
+    }
+  ],
+  "tools": {
+    "node": "v24.19.0",
+    "npm": "11.9.0"
+  },
+  "original_output_path": "docs/evidence/C31-typecheck.log",
+  "original_recorded_sha256": "sha256:bacf67b27641e15adb7f6f66853da30940dabd4107ce8a1256b45c05d52a8bf5",
+  "original_actual_sha256": "sha256:9fea1d34e26bb91136dea3f70c7964b4d2eeb192dbe598dbc2405ae22752dcb7"
+}

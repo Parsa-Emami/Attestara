@@ -54,17 +54,19 @@ export async function load() {
   return { plan, progress, gates, errors };
 }
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) try {
-  const { plan, progress, gates, errors } = await load(); if (errors.length) throw new Error(errors.join('\n'));
   const command = process.argv[2] ?? 'status';
-  if (command === 'validate') console.log('Validated 40 detailed tasks, resources, references and progress; no runtime capability inferred.');
-  else if (command === 'status') console.log(JSON.stringify({ project: plan.project, readiness: progress.readiness, verified: progress.commits.filter(t => t.status === 'verified').length, total: 40, core_ready: gates.core_ready, usable_at: 'C30', oss_v1_at: 'C40' }, null, 2));
-  else if (command === 'show' || command === 'next') {
-    const states = new Map(progress.commits.map(t => [t.id, t]));
-    const task = command === 'show' ? plan.commits.find(t => t.id === process.argv[3]) : plan.commits.find(t => states.get(t.id).status !== 'verified' && t.depends_on.every(id => states.get(id).status === 'verified'));
-    if (!task) throw new Error('No matching/dependency-ready task; inspect blockers.');
-    console.log(JSON.stringify({ task, progress: states.get(task.id) }, null, 2));
-  } else if (command === 'release-check') {
-    const missing = progress.commits.slice(0, 38).filter(t => t.status !== 'verified').map(t => t.id);
-    if (missing.length || !gates.core_ready) { console.error('NOT RELEASE READY: actual C01-C38 and complete clone-to-value evidence required. Missing: ' + missing.join(', ')); process.exitCode = 2; }
-  } else throw new Error('Usage: npm run plan -- [validate|status|next|show C07|release-check]');
+  if (command === 'release-check') {
+    const { runReleaseGate } = await import('./release-gate.mjs');
+    process.exitCode = await runReleaseGate(root);
+  } else {
+    const { plan, progress, gates, errors } = await load(); if (errors.length) throw new Error(errors.join('\n'));
+    if (command === 'validate') console.log('Validated 40 detailed tasks, resources, references and progress; no runtime capability inferred.');
+    else if (command === 'status') console.log(JSON.stringify({ project: plan.project, readiness: progress.readiness, verified: progress.commits.filter(t => t.status === 'verified').length, total: 40, core_ready: gates.core_ready, usable_at: 'C30', oss_v1_at: 'C40' }, null, 2));
+    else if (command === 'show' || command === 'next') {
+      const states = new Map(progress.commits.map(t => [t.id, t]));
+      const task = command === 'show' ? plan.commits.find(t => t.id === process.argv[3]) : plan.commits.find(t => states.get(t.id).status !== 'verified' && t.depends_on.every(id => states.get(id).status === 'verified'));
+      if (!task) throw new Error('No matching/dependency-ready task; inspect blockers.');
+      console.log(JSON.stringify({ task, progress: states.get(task.id) }, null, 2));
+    } else throw new Error('Usage: npm run plan -- [validate|status|next|show C07|release-check]');
+  }
 } catch (error) { console.error(error.message); process.exitCode = 1; }

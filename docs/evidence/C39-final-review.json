@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "source_only_diff_check": {
+    "exit_code": 0,
+    "scope": "All task paths except the three explicitly listed raw terminal-output files; no persistent ignore or check configuration changed."
+  },
+  "cached_diff_check": {
+    "command": "git diff --cached --check",
+    "exit_code": 2,
+    "findings": [
+      "docs/evidence/C39-C31-typecheck.log:4: new blank line at EOF.",
+      "docs/evidence/C39-local/browser-version.log:1: trailing whitespace.",
+      "docs/evidence/C39-local/typecheck.log:4: new blank line at EOF."
+    ]
+  },
+  "raw_outputs": {
+    "docs/evidence/C39-C31-typecheck.log": "sha256:bacf67b27641e15adb7f6f66853da30940dabd4107ce8a1256b45c05d52a8bf5",
+    "docs/evidence/C39-local/browser-version.log": "sha256:f80899be3820e22652d6ceb39abcacb2b18a434497fe00cb0d3379ffadc2f46e",
+    "docs/evidence/C39-local/typecheck.log": "sha256:bacf67b27641e15adb7f6f66853da30940dabd4107ce8a1256b45c05d52a8bf5"
+  },
+  "disposition": "Preserve exact measured tool output, including the LF needed to reproduce the original C31 digest and the browser version trailing space. These raw data findings are not code formatting changes.",
+  "runtime_source_unchanged": true,
+  "runtime_input_files_verified": 643,
+  "retained_command_output_hashes_verified": 28,
+  "protected_files_changed": false,
+  "github_actions_run": false,
+  "push_performed": false
+}

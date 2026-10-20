@@ -1,0 +1,206 @@
+
+> @parsa-emami/attestara-web@0.0.1 test:package
+> node scripts/test-package.mjs
+
+VALIDATION PASSED
+Checked 244 JSON files and repository contract invariants.
+test_action_and_source_updates_keep_old_proofs_bound_to_their_real_tree (test_ci_source.CiSourceTest.test_action_and_source_updates_keep_old_proofs_bound_to_their_real_tree) ... ok
+test_corrupted_recorded_manifest_cannot_be_relabelled_as_history (test_ci_source.CiSourceTest.test_corrupted_recorded_manifest_cannot_be_relabelled_as_history) ... ok
+test_dirty_workflow_is_rejected_even_if_old_evidence_is_valid (test_ci_source.CiSourceTest.test_dirty_workflow_is_rejected_even_if_old_evidence_is_valid) ... ok
+test_forged_evidence_identity_is_rejected (test_ci_source.CiSourceTest.test_forged_evidence_identity_is_rejected) ... ok
+test_shallow_history_fails_with_an_actionable_message (test_ci_source.CiSourceTest.test_shallow_history_fails_with_an_actionable_message) ... ok
+test_untracked_source_is_not_silently_omitted (test_ci_source.CiSourceTest.test_untracked_source_is_not_silently_omitted) ... ok
+test_actual_c01_c38_source_and_output_compatibility (test_release_evidence.CurrentHistoryTest.test_actual_c01_c38_source_and_output_compatibility) ... ok
+test_c39_fixture_provenance (test_release_evidence.CurrentHistoryTest.test_c39_fixture_provenance) ... ok
+test_complete_history_and_fixed_legacy_c07_path_are_verifiable (test_release_evidence.ReleaseEvidenceTest.test_complete_history_and_fixed_legacy_c07_path_are_verifiable) ... ok
+test_corrupted_output_is_rejected_and_command_text_stays_inert (test_release_evidence.ReleaseEvidenceTest.test_corrupted_output_is_rejected_and_command_text_stays_inert) ... ok
+test_duplicate_states_and_missing_prerequisites_are_rejected (test_release_evidence.ReleaseEvidenceTest.test_duplicate_states_and_missing_prerequisites_are_rejected) ... ok
+test_false_core_readiness_and_unverified_state_are_rejected (test_release_evidence.ReleaseEvidenceTest.test_false_core_readiness_and_unverified_state_are_rejected) ... ok
+test_missing_changed_template_and_false_success_are_rejected (test_release_evidence.ReleaseEvidenceTest.test_missing_changed_template_and_false_success_are_rejected) ... ok
+test_runtime_source_mutation_and_mode_change_are_rejected (test_release_evidence.ReleaseEvidenceTest.test_runtime_source_mutation_and_mode_change_are_rejected) ... ok
+test_shallow_history_fails (test_release_evidence.ReleaseEvidenceTest.test_shallow_history_fails) ... ok
+test_unsafe_and_symlink_evidence_never_reads_outside_checkout (test_release_evidence.ReleaseEvidenceTest.test_unsafe_and_symlink_evidence_never_reads_outside_checkout) ... ok
+test_wrong_historical_source_is_rejected_even_with_rehashed_evidence (test_release_evidence.ReleaseEvidenceTest.test_wrong_historical_source_is_rejected_even_with_rehashed_evidence) ... ok
+
+----------------------------------------------------------------------
+Ran 17 tests in 2.708s
+
+OK
+{"schema_version": 1, "passed": true, "scope": "Source integrity only; runtime results belong to this commit's CI jobs", "commit": "04ac8baded477fb5e620d8dd5723e5ceb70ed80b", "git_tree": "566432229f9ab00c0977bb1b5efbec49da7f57ec", "current_source_identity": "sha256:b2df9f9f2040123d2ee25496a24185212ab727f019e162b59b9319d6a743277a", "historical_manifest": {"commit": "67c5dbe0e628aca34c6703ffd66a0a82d31f093e", "verified_files": 291}, "historical_evidence": {"commit": "0717cbc89c456dc3f62d2cb01800512e95a74324", "source_identity": "sha256:4a72515c25cd45938e9a2d3c31aa8cad03a23c53d9fb83ddc2e1461c5c80f92c"}, "runtime_tests_certified": false, "core_tasks_certified": []}
+Package requires a clean source snapshot
+node:internal/modules/cjs/loader:1520
+  throw err;
+  ^
+
+Error: Cannot find module '/nonexistent/npm'
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1517:15)
+    at wrapResolveFilename (node:internal/modules/cjs/loader:1071:27)
+    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1095:10)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1122:12)
+    at Module._load (node:internal/modules/cjs/loader:1294:5)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)
+    at node:internal/main/run_main_module:33:47 {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: []
+}
+
+Node.js v24.19.0
+Command failed: /home/amirreza/.nvm/versions/node/v24.19.0/bin/node /nonexistent/npm --version
+node:internal/modules/cjs/loader:1520
+  throw err;
+  ^
+
+Error: Cannot find module '/nonexistent/npm'
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1517:15)
+    at wrapResolveFilename (node:internal/modules/cjs/loader:1071:27)
+    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1095:10)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1122:12)
+    at Module._load (node:internal/modules/cjs/loader:1294:5)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)
+    at node:internal/main/run_main_module:33:47 {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: []
+}
+
+Node.js v24.19.0
+
+ENOENT: no such file or directory, realpath '/tmp/attestara-c31-6yvWpS/missing-license/docs/engineering/resources/go-LICENSE.txt'
+
+> @parsa-emami/attestara-web@0.0.1 package
+> bash scripts/package.sh
+
+
+added 28 packages in 669ms
+
+> @parsa-emami/attestara-web@0.0.1 build
+> npm run prepare:web && npm run typecheck && vite build --config apps/web/vite.config.ts
+
+
+> @parsa-emami/attestara-web@0.0.1 prepare:web
+> node scripts/generate-web-data.mjs
+
+
+> @parsa-emami/attestara-web@0.0.1 typecheck
+> tsc -p tsconfig.json
+
+vite v8.3.4 building client environment for production...
+transforming...
+✓ 20 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/web/index.html                   0.79 kB │ gzip:  0.47 kB
+dist/web/assets/index-CiHsYJnA.css    5.05 kB │ gzip:  1.81 kB
+dist/web/assets/index-DFK3QxlQ.js   249.37 kB │ gzip: 77.91 kB
+
+✓ built in 109ms
+Complete unsigned local-profile artifacts: /tmp/attestara-c31-6yvWpS/first/dist/packages/04ac8baded477fb5e620d8dd5723e5ceb70ed80b
+
+> @parsa-emami/attestara-web@0.0.1 package
+> bash scripts/package.sh
+
+
+added 28 packages in 636ms
+
+> @parsa-emami/attestara-web@0.0.1 build
+> npm run prepare:web && npm run typecheck && vite build --config apps/web/vite.config.ts
+
+
+> @parsa-emami/attestara-web@0.0.1 prepare:web
+> node scripts/generate-web-data.mjs
+
+
+> @parsa-emami/attestara-web@0.0.1 typecheck
+> tsc -p tsconfig.json
+
+vite v8.3.4 building client environment for production...
+transforming...
+✓ 20 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/web/index.html                   0.79 kB │ gzip:  0.47 kB
+dist/web/assets/index-CiHsYJnA.css    5.05 kB │ gzip:  1.81 kB
+dist/web/assets/index-DFK3QxlQ.js   249.37 kB │ gzip: 77.91 kB
+
+✓ built in 106ms
+Complete unsigned local-profile artifacts: /tmp/attestara-c31-6yvWpS/different-path/dist/packages/04ac8baded477fb5e620d8dd5723e5ceb70ed80b
+Release destination exists
+
+> @parsa-emami/attestara-web@0.0.1 package
+> bash scripts/package.sh
+
+
+added 28 packages in 630ms
+
+> @parsa-emami/attestara-web@0.0.1 build
+> npm run prepare:web && npm run typecheck && vite build --config apps/web/vite.config.ts
+
+
+> @parsa-emami/attestara-web@0.0.1 prepare:web
+> node scripts/generate-web-data.mjs
+
+
+> @parsa-emami/attestara-web@0.0.1 typecheck
+> tsc -p tsconfig.json
+
+vite v8.3.4 building client environment for production...
+transforming...
+✓ 20 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/web/index.html                   0.79 kB │ gzip:  0.47 kB
+dist/web/assets/index-CiHsYJnA.css    5.05 kB │ gzip:  1.81 kB
+dist/web/assets/index-DFK3QxlQ.js   249.37 kB │ gzip: 77.91 kB
+
+✓ built in 101ms
+Complete unsigned local-profile artifacts: /tmp/attestara-c31-6yvWpS/rebuild-source/dist/packages/04ac8baded477fb5e620d8dd5723e5ceb70ed80b
+Release checksum mismatch: .agents/skills/no-ai-slop/LICENSE
+Packaged browser: 153.0.8010.52
+{
+  "passed": true,
+  "candidateCommit": "04ac8baded477fb5e620d8dd5723e5ceb70ed80b",
+  "candidateTree": "566432229f9ab00c0977bb1b5efbec49da7f57ec",
+  "artifacts": "/home/amirreza/Desktop/Projects/Attestara/dist/c39/candidate-owxccj20/checkout/dist/packages/04ac8baded477fb5e620d8dd5723e5ceb70ed80b",
+  "checks": [
+    "actual contracts CI validators, engineering regressions and exact-checkout source integrity passed in clean candidate",
+    "dirty source and incompatible/missing tool rejected",
+    "clean source with a missing locked Go license is rejected before packaging",
+    "real SIGKILL before publication exposes no partial release",
+    "two independently installed/built paths reproduce every output byte",
+    "source archive without Git rebuilds byte-identical artifacts",
+    "distributed source tampering rejected; exclusions explicit",
+    "shell-like evidence remains inert in actual packaged engine",
+    "C35 real signed artifact verification and installed C34 -> candidate -> C34 upgrade/rollback preserve newer accepted data",
+    "packaged CLI/full C30 negative workflow, service restart, restore and real browser parity without npm/Go on PATH"
+  ],
+  "files": [
+    {
+      "path": "SHA256SUMS.txt",
+      "sha256": "34ddc404d035a0fa50653f2264e32f918c7024e850f01f18ddefb6e31ebb5c87",
+      "mode": 420
+    },
+    {
+      "path": "attestara-04ac8baded477fb5e620d8dd5723e5ceb70ed80b-linux-x64.tar.gz",
+      "sha256": "e7f62a458e54c1250e388fd02abf5def9503dcc633b492fa5c6af3349d02a5f7",
+      "mode": 420
+    },
+    {
+      "path": "attestara-04ac8baded477fb5e620d8dd5723e5ceb70ed80b-source.tar.gz",
+      "sha256": "6dfd87870b9c2f4fc1e159deead48f3f5def76e82e685648d209a1b081e06594",
+      "mode": 420
+    },
+    {
+      "path": "release.json",
+      "sha256": "100fb17f7bf33a732c9682a2f653f86bc4a65ab82fceae4959ba4dc8e9d464ac",
+      "mode": 420
+    },
+    {
+      "path": "sbom.cdx.json",
+      "sha256": "641636826ec437a8f7c938583fa683d0c3b019f6fb22b97f79fcbab9da7880c8",
+      "mode": 420
+    }
+  ],
+  "publication": "local unsigned artifacts only",
+  "testEnvironment": "three fresh source/build paths on this Linux host; not independent-host C36 evidence"
+}

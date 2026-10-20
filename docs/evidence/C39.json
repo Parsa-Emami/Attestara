@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "planning_template": false,
+  "passed": false,
+  "commit_id": "C39",
+  "date": "2026-10-20T09:25:31.842512+00:00",
+  "base_commit": "4846a5f9371e1024bbebd401ef3a4c6607f460df",
+  "source_identity": "sha256:954d850f180e13495a3f37fc46d822834b9f65f86fdb77c7c4073290854e50e5",
+  "source_identity_method": "C36 sorted path/NUL/raw SHA-256/LF framing; documented runtime exclusions.",
+  "runtime_candidate_commit": "b836f1bc54789838c2f10d3f4db83eb64abd73a3",
+  "runtime_candidate_tree": "566432229f9ab00c0977bb1b5efbec49da7f57ec",
+  "tools": {
+    "node": {
+      "version": "v24.19.0",
+      "sha256": "sha256:bc17c508ffeed0ec622934f9b7fa72f8e78da65350e63c3eceb56fa688aa5e12"
+    },
+    "npm": {
+      "version": "11.9.0",
+      "cli_sha256": "sha256:8e5f6f3429f8cdbe693cdc29904e9d5a7b127a494bd15c804bd54c7403bfcbe7"
+    },
+    "go": {
+      "version": "go1.27.2",
+      "sha256": "sha256:548d3c32f83fa81152f543eb1526be7884cfe0526eb5e9ce29d3eca14786e7e0"
+    },
+    "opa": {
+      "version": "1.21.2",
+      "sha256": "sha256:830ab11f61ffec760b5e19db0d7ad02bf037e13f5ef4d665faeaf17632177527"
+    },
+    "python": {
+      "version": "Python 3.12.3"
+    },
+    "git": {
+      "version": "git version 2.43.0"
+    },
+    "nginx": {
+      "version": "nginx version: nginx/1.24.0 (Ubuntu)"
+    },
+    "browser": {
+      "version": "Google Chrome 153.0.8010.52",
+      "sha256": "sha256:aea09d69ce7f24d5901f6bfb15dd44d0c856e793e0a498f8d8393ec7d2c308ec"
+    }
+  },
+  "fixture_license": "Apache-2.0 repository-authored synthetic C39 fixtures; provenance hashes validated by the actual Python suite.",
+  "commands": [
+    {
+      "command": [
+        "node",
+        "/home/amirreza/.npm/_npx/5ed1df33febb5bb0/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "release:check"
+      ],
+      "cwd": "/home/amirreza/Desktop/Projects/Attestara/dist/c39/candidate-owxccj20/checkout",
+      "exit_code": 0,
+      "output_path": "docs/evidence/C39-local-driver.log",
+      "output_sha256": "sha256:052d12ddab177f0c836817e932660c42e35ee0f600cc6d2758a903007b394951",
+      "source_identity": "sha256:954d850f180e13495a3f37fc46d822834b9f65f86fdb77c7c4073290854e50e5"
+    }
+  ],
+  "results": {
+    "local_release_gate": true,
+    "node_tests": 66,
+    "python_tests": 17,
+    "go": {
+      "packages": 7,
+      "passed": 542,
+      "skipped": 0
+    },
+    "browser_tests": 25,
+    "typecheck": "passed",
+    "build": "web and Go passed",
+    "dependency_advisories": {
+      "info": 0,
+      "low": 0,
+      "moderate": 0,
+      "high": 0,
+      "critical": 0,
+      "total": 0
+    },
+    "live_private_reporting_enabled": true,
+    "source_unchanged": true,
+    "github_actions": {
+      "status": "not_run_user_requested_no_push",
+      "verified": false
+    }
+  },
+  "local_report": {
+    "path": "docs/evidence/C39-local-run.json",
+    "sha256": "sha256:9ea77a5b3fb2d99a091957420116566131d4769ab3c270b419eee20ad6cef7de"
+  },
+  "historical_supplements": {
+    "C31": "docs/evidence/C39-C31-typecheck.json",
+    "C36_archive": "docs/evidence/C39-C36-artifact.zip",
+    "C36_member": "docs/evidence/C39-C36-run.json"
+  },
+  "blockers": [
+    "Actual candidate GitHub Actions were not run: the user authorized a local commit only and explicitly prohibited push."
+  ],
+  "limits": [
+    "Supported Linux x86_64 single-operator profile only; measured host resources are not a new capacity certificate.",
+    "No standalone JavaScript lint command; actual Go vet, syntax and diff checks passed.",
+    "Synthetic release signing tests are not a maintainer identity; no tag, release publication or C40 claim.",
+    "Local source/clone/package results do not substitute for actual candidate GitHub Actions."
+  ],
+  "delivery": {
+    "local_commit_authorized": true,
+    "push_authorized": false,
+    "pr_created": false
+  },
+  "final_review": {
+    "path": "docs/evidence/C39-final-review.json",
+    "sha256": "sha256:ea2dc5e3792a58b8a90cee3c89c2ef8d674c9318e2e9d392d519241798412811"
+  }
+}

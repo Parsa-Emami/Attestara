@@ -1,0 +1,82 @@
+name: release-gate
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: release-gate-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    env:
+      GOTOOLCHAIN: local
+      GOSUMDB: sum.golang.org
+      GOPROXY: https://proxy.golang.org|direct
+      GOMAXPROCS: '2'
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - name: Install pinned npm
+        run: |
+          npm_pin=$(node -p "require('./package.json').packageManager")
+          npm install --global --ignore-scripts "$npm_pin"
+      - name: Require pinned npm
+        run: npm run setup -- --check
+      - uses: actions/setup-go@924ae3a1cded613372ab5595356fb5720e22ba16
+        with:
+          go-version: '1.26.2'
+          cache: false
+      - name: Build locked Go toolchain from verified C02 source
+        shell: bash
+        run: |
+          set -euo pipefail
+          bootstrap_root=$(go env GOROOT)
+          source_dir="$RUNNER_TEMP/attestara-go"
+          mkdir -p "$source_dir"
+          node --input-type=module - "$source_dir/go-source.tar.gz" <<'NODE'
+          import { readFileSync, writeFileSync } from 'node:fs';
+          import { createHash } from 'node:crypto';
+          const resource = JSON.parse(readFileSync('docs/engineering/toolchain-lock.json')).resources.find(item => item.id === 'go');
+          const response = await fetch(resource.artifact.url, { signal: AbortSignal.timeout(120000) });
+          if (!response.ok) throw new Error('Locked Go source download failed: ' + response.status);
+          const bytes = Buffer.from(await response.arrayBuffer());
+          if (createHash('sha256').update(bytes).digest('hex') !== resource.artifact.sha256) throw new Error('Go source checksum mismatch');
+          writeFileSync(process.argv[2], bytes);
+          NODE
+          tar -xzf "$source_dir/go-source.tar.gz" --strip-components=1 -C "$source_dir"
+          (cd "$source_dir/src" && GOROOT_BOOTSTRAP="$bootstrap_root" GOMAXPROCS=2 ./make.bash)
+          "$source_dir/bin/go" version
+          echo "$source_dir/bin" >> "$GITHUB_PATH"
+      - run: npm ci --ignore-scripts
+      - run: npx --no-install playwright install --with-deps chromium
+      - name: Install the existing optional-proxy test prerequisite
+        run: |
+          sudo apt-get update
+          sudo apt-get install --no-install-recommends -y nginx
+      - name: Run the complete source-bound C39 gate
+        run: npm run release:check
+      - name: Retain this run's evidence, including failed attempts
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: release-gate-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            dist/release-gate/**/report.json
+            dist/release-gate/**/*.log
+            dist/release-gate/**/source.json
+            dist/onboarding/C36-run.json
+            dist/release-verification/
+            dist/packages/
+          if-no-files-found: error
+          retention-days: 14

@@ -1,0 +1,10 @@
+✔ real isolated proxy preserves web boundaries and fails when upstream is down (52.451753ms)
+✔ the published guide CLI commands evaluate, verify, restart and restore real snapshots (542.608999ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 613.881897
