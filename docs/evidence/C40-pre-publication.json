@@ -1,0 +1,191 @@
+{
+  "schema_version": 1,
+  "commit_id": "C40",
+  "planning_template": false,
+  "passed": false,
+  "profile": "local-cli-snapshots",
+  "source_identity": "sha256:a072f78bb7e6cb596077357abaf7421176a0be3b7aea583b51a271070977b83b",
+  "implementation_status": "in_progress",
+  "commands": [
+    {
+      "command": [
+        "node",
+        "/home/amirreza/.npm/_npx/5ed1df33febb5bb0/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "release:check"
+      ],
+      "cwd": "/home/amirreza/Desktop/Projects/Attestara/dist/c40/candidate-ie92943h/checkout",
+      "exit_code": 0,
+      "output_path": "docs/evidence/C40-local-driver.log.gz",
+      "output_sha256": "sha256:4fbe50477ee323f56567d208459638a7888e8dd6aa149dca5cd459074d25683c",
+      "output_encoding": "gzip",
+      "source_identity": "sha256:a072f78bb7e6cb596077357abaf7421176a0be3b7aea583b51a271070977b83b"
+    },
+    {
+      "command": [
+        "node",
+        "/home/amirreza/.npm/_npx/5ed1df33febb5bb0/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "test:published",
+        "--",
+        "--source-commit",
+        "95fb192f1abd62361507780d88e1984cf00db2cf",
+        "--local-directory",
+        "/home/amirreza/Desktop/Projects/Attestara/dist/c40/rehearsal-final-95fb192f1abd62361507780d88e1984cf00db2cf"
+      ],
+      "cwd": "/home/amirreza/Desktop/Projects/Attestara",
+      "exit_code": 0,
+      "output_path": "docs/evidence/C40-rehearsal-driver.log.gz",
+      "output_sha256": "sha256:b2c0a107b069b2fd64261ec0dedd642c636d27a3e08ae33ec0c84dbac16c3af7",
+      "output_encoding": "gzip",
+      "source_identity": "sha256:a072f78bb7e6cb596077357abaf7421176a0be3b7aea583b51a271070977b83b"
+    }
+  ],
+  "blockers": [
+    "The replacement signing key and protected Environment Secret are configured. The new committed source must pass all five prerequisite workflows and a reviewed publish=false preparation.",
+    "The owner explicitly authorized signed v1 publication. The same source still requires publish=true, required Environment review and a successful independent public downloaded-artifact installed job before C40 verification."
+  ],
+  "published": false,
+  "date": "2026-10-20T14:58:03.520326+00:00",
+  "base_commit": "6ff30c32f00c6b811453e30d46befa6edafc354e",
+  "source_identity_method": "C36 sorted canonical runtime inputs, path/NUL/raw SHA-256/LF; evidence and status exclusions retained.",
+  "runtime_candidate_commit": "b245640b39a648ee6b4a3d097d02897fa31fa1d3",
+  "runtime_candidate_tree": "be3f2507cc4ca1d682e6643d3fb022c5d7d351c8",
+  "tools": {
+    "node": {
+      "version": "v24.19.0",
+      "sha256": "sha256:bc17c508ffeed0ec622934f9b7fa72f8e78da65350e63c3eceb56fa688aa5e12"
+    },
+    "npm": {
+      "version": "11.9.0",
+      "cli_sha256": "sha256:8e5f6f3429f8cdbe693cdc29904e9d5a7b127a494bd15c804bd54c7403bfcbe7"
+    },
+    "go": {
+      "version": "go1.27.2",
+      "sha256": "sha256:548d3c32f83fa81152f543eb1526be7884cfe0526eb5e9ce29d3eca14786e7e0"
+    },
+    "opa": {
+      "version": "1.21.2",
+      "sha256": "sha256:830ab11f61ffec760b5e19db0d7ad02bf037e13f5ef4d665faeaf17632177527"
+    },
+    "python": {
+      "version": "Python 3.12.3"
+    },
+    "git": {
+      "version": "git version 2.43.0"
+    },
+    "nginx": {
+      "version": "nginx version: nginx/1.24.0 (Ubuntu)"
+    },
+    "browser": {
+      "version": "Google Chrome 153.0.8010.52",
+      "sha256": "sha256:aea09d69ce7f24d5901f6bfb15dd44d0c856e793e0a498f8d8393ec7d2c308ec"
+    }
+  },
+  "hardware": {
+    "platform": "linux",
+    "arch": "x64",
+    "kernel": "7.0.0-38-generic",
+    "logical_cpus": 16,
+    "host_memory_bytes": 32863936512,
+    "capacity_certified": false
+  },
+  "fixture_license": "Apache-2.0 repository-authored synthetic C40 scenarios; exact provenance verified by Node tests.",
+  "signer": {
+    "signer_id": "attestara-release-v1",
+    "public_key_hex": "835d4fdff1d18bb2ff76761c3dc4a8df2ceffbe7ae9c5c083ac9ff853e136025",
+    "fingerprint": "sha256:f54a6ceaf3ff6ba76775ea97d25ae519b2e0bbf389d9f8bd15f71fd4dbe64443",
+    "private_key_location": "Outside repository; private directory 0700 and PEM 0600 verified. Secret was not configured or exposed in this session."
+  },
+  "local_gate": {
+    "path": "docs/evidence/C40-local-run.json",
+    "sha256": "sha256:266ccd1b076f65c7fe10eea10cb0b031d5deb4f35035cb24132917f444488833"
+  },
+  "local_rehearsal": {
+    "path": "docs/evidence/C40-installed-rehearsal.json",
+    "sha256": "sha256:453f9754c68aed4ae45cf2b9cc18d23421c2b27ae9dd172c4d55ac140dc0295c"
+  },
+  "outputs": {
+    "path": "docs/evidence/C40-local-output.zip",
+    "sha256": "sha256:9deb6719b1bf7d9bd7279948e0f49948f0882d1d9b4ce0e0c03a6b7e02f1c55a"
+  },
+  "results": {
+    "local_release_gate": true,
+    "local_signed_install_rehearsal": true,
+    "node_tests": 73,
+    "python_tests": 17,
+    "browser_tests": 25,
+    "go": {
+      "packages": 7,
+      "passed": 542,
+      "skipped": 0
+    },
+    "typecheck": "passed",
+    "build": "web and Go passed",
+    "vet": "passed",
+    "audit": {
+      "info": 0,
+      "low": 0,
+      "moderate": 0,
+      "high": 0,
+      "critical": 0,
+      "total": 0
+    },
+    "workflow_validation": {
+      "actionlint": "1.7.12",
+      "exit_code": 0,
+      "scope": "all six workflow YAML files",
+      "download_sha256": "8aca8db96f1b94770f1b0d72b6dddcb1ebb8123cb3712530b08cc387b349a3d8",
+      "yaml": "parsed; manual/default-off publication, scoped signing secret, full SHA pins and separate public-download job checked"
+    },
+    "javascript_syntax": "All changed/new mjs files parsed; no standalone JavaScript lint command exists.",
+    "github_candidate_workflows": "All five real prerequisite workflows succeeded on db2f831d8ef66095010da30e94cf3e3587e816a0; source-bound gate artifact independently verified.",
+    "public_installation_verified": false,
+    "github_unsigned_candidate": "Release workflow 39455305663 succeeded with publish=false; fresh 28-phase gate, exact-source distribution and uploaded candidate verified."
+  },
+  "historical_failed_local_attempts": [
+    {
+      "report_member": "failed-attempts/cyCcfp/report.json",
+      "outcome": "failed",
+      "scope": "Earlier isolated snapshot; browser-install failed in fresh clone. Detailed underlying error is not retained in its redacted artifact."
+    },
+    {
+      "report_member": "failed-attempts/O1XHnB/report.json",
+      "outcome": "failed",
+      "scope": "Earlier isolated snapshot; developer browser cache path rejected by the existing isolation guard. Guard unchanged."
+    }
+  ],
+  "ci_dependency_provenance": {
+    "action": "actions/download-artifact",
+    "version": "v4.3.0",
+    "commit": "d3f86a106a0bac45b974a628896c90dbdf5c8093",
+    "license": "MIT",
+    "license_source": "https://raw.githubusercontent.com/actions/download-artifact/d3f86a106a0bac45b974a628896c90dbdf5c8093/LICENSE",
+    "scope": "CI only; not shipped runtime code."
+  },
+  "limits": [
+    "Local isolated snapshots/test-package commits are not delivered commits, tags or published releases.",
+    "Final full gate used the supported installed system Chrome prerequisite; the earlier fresh browser-download attempt failed. This does not certify a fresh GitHub runner.",
+    "C35 comparison uses its fixed C34 baseline and temporary test signatures; actual candidate signature is independently verified against the dedicated manifest key before extraction.",
+    "No resource capacity, additional platform, multi-user/authentication or remote-sensitive profile certification.",
+    "GitHub writes are unit-tested only with a fake network boundary. Real publication and public-download installation require candidate CI and maintainer authorization."
+  ],
+  "changed_paths": "docs/evidence/C40-changed-paths.json",
+  "final_review": "docs/evidence/C40-final-review.json",
+  "github_candidate": {
+    "path": "docs/evidence/C40-github-candidate.json",
+    "sha256": "sha256:d850cd4f2e09631acdf3f19a2c3f089fdefc2bba3fdef5fda9a6249152b4418a"
+  },
+  "owner_setup_followup": {
+    "path": "docs/evidence/C40-owner-setup.json",
+    "sha256": "sha256:8c83c52337b1650e9ce1201081c2869f491311fda6c9f183527251b8189b32d5"
+  },
+  "environment_configuration": {
+    "path": "docs/evidence/C40-environment-configuration.json",
+    "sha256": "sha256:f3822acd4e1f6d8df7831e6162cbf882b6a5caa4deec94d16361fb9989ec273d"
+  },
+  "signing_key_change": {
+    "path": "docs/evidence/C40-signing-key-change.json",
+    "sha256": "sha256:04e20382989752d5ddb17c8c07c983f63b3d24011ff20c06198e5555b8cf82ec"
+  }
+}

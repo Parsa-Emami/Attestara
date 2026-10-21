@@ -1,8 +1,8 @@
 {
-  "date": "2026-10-21T03:23:24.622Z",
+  "date": "2026-10-21T03:56:50.285877+00:00",
   "task": "C40",
   "base_commit": "6ff30c32f00c6b811453e30d46befa6edafc354e",
-  "status": "in_progress",
+  "status": "verified",
   "c39_completion": {
     "date": "2026-10-20T14:00:16.660Z",
     "status": "verified",
@@ -24,13 +24,10 @@
       "git diff --check passed."
     ]
   },
-  "next_task": "C40",
-  "next_action": "Commit the reviewed public key replacement; wait for five successful workflows on that exact main SHA. Run/review publish=false, then the authorized publish=true on the same SHA, approve the protected Environment and inspect the independent public installed job before finalizing C40.",
-  "blockers": [
-    "The replacement signing key and protected Environment Secret are configured. The new committed source must pass all five prerequisite workflows and a reviewed publish=false preparation.",
-    "The owner explicitly authorized signed v1 publication. The same source still requires publish=true, required Environment review and a successful independent public downloaded-artifact installed job before C40 verification."
-  ],
-  "publication_performed": false,
+  "next_task": null,
+  "next_action": "C01-C40 are verified for the published Linux single-operator profile. Preserve the immutable v1.0.0 tag/assets and the private signing key. Future runtime changes require a new reviewed version; Pages remains a viewer.",
+  "blockers": [],
+  "publication_performed": true,
   "delivery": {
     "local_commit_authorized": true,
     "push_authorized": true,
@@ -38,7 +35,7 @@
     "implementation_commit": "db2f831d8ef66095010da30e94cf3e3587e816a0",
     "implementation_commit_pushed_by_user": true
   },
-  "source_identity": "sha256:a072f78bb7e6cb596077357abaf7421176a0be3b7aea583b51a271070977b83b",
+  "source_identity": "sha256:027de9460f0111fc88768395fcd2a518d357d9c0464947178e46b55c32b32fbb",
   "runtime_candidate_commit": "b245640b39a648ee6b4a3d097d02897fa31fa1d3",
   "runtime_candidate_tree": "be3f2507cc4ca1d682e6643d3fb022c5d7d351c8",
   "evidence": "docs/evidence/C40.json",
@@ -175,5 +172,15 @@
     "passed": true,
     "gate_command_count": 28,
     "scope": "Historical prior public key source; must prepare again after the key replacement."
+  },
+  "c40_completion": {
+    "source_commit": "8979fe5a7319d34f358c4b0fb32a8e09b1838384",
+    "source_tree": "04d24b7b7ec9f9dbbbe87f02f365bfd4570edb48",
+    "release_url": "https://github.com/Parsa-Emami/Attestara/releases/tag/v1.0.0",
+    "workflow_run_id": 39539895713,
+    "unsigned_preparation_run_id": 39539055482,
+    "installed_job_id": 119027480650,
+    "evidence": "docs/evidence/C40.json",
+    "scope": "Evidence/status finalization; runtime source unchanged from the published and installed version."
   }
 }

@@ -1,0 +1,35 @@
+{
+  "commit": "8979fe5a7319d34f358c4b0fb32a8e09b1838384",
+  "workflows": [
+    {
+      "id": 39538431456,
+      "path": ".github/workflows/plan.yml",
+      "conclusion": "success",
+      "url": "https://github.com/Parsa-Emami/Attestara/actions/runs/39538431456"
+    },
+    {
+      "id": 39538431557,
+      "path": ".github/workflows/contracts.yml",
+      "conclusion": "success",
+      "url": "https://github.com/Parsa-Emami/Attestara/actions/runs/39538431557"
+    },
+    {
+      "id": 39538431461,
+      "path": ".github/workflows/runtime.yml",
+      "conclusion": "success",
+      "url": "https://github.com/Parsa-Emami/Attestara/actions/runs/39538431461"
+    },
+    {
+      "id": 39538431457,
+      "path": ".github/workflows/release-gate.yml",
+      "conclusion": "success",
+      "url": "https://github.com/Parsa-Emami/Attestara/actions/runs/39538431457"
+    },
+    {
+      "id": 39538431583,
+      "path": ".github/workflows/web.yml",
+      "conclusion": "success",
+      "url": "https://github.com/Parsa-Emami/Attestara/actions/runs/39538431583"
+    }
+  ]
+}

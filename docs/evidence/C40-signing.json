@@ -1,0 +1,12 @@
+{
+  "schema_version": "1",
+  "scope": "release-distribution",
+  "file_integrity": "verified",
+  "cryptographic_valid": true,
+  "signer_trusted": true,
+  "expected_source_match": true,
+  "freshness": "fresh",
+  "release_trusted": true,
+  "source_commit": "8979fe5a7319d34f358c4b0fb32a8e09b1838384",
+  "checksums_sha256": "6dc281e99c10eed71afeb3bb0ea68e994b714fec7cb42e3cf2ddbcaa5e02ad7f"
+}

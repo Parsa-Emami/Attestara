@@ -1,7 +1,7 @@
 {
   "version": "0.0.0",
   "project": "Attestara",
-  "readiness": "LOCAL_USABLE",
+  "readiness": "OSS_V1_VERIFIED",
   "market_validation": "UNVALIDATED",
   "commits": [
     {
@@ -357,12 +357,12 @@
     },
     {
       "id": "C40",
-      "status": "in_progress",
+      "status": "verified",
       "evidence": [
         "docs/evidence/C40.json"
       ],
-      "source_identity": "sha256:a072f78bb7e6cb596077357abaf7421176a0be3b7aea583b51a271070977b83b",
-      "notes": "Owner-authorized replacement Ed25519 key created outside the repository; public identity updated and matching Environment Secret registered without printing the private key. release remains limited to main with owner review and no administrator bypass. Signed publication is authorized; final-source five-workflow CI, fresh unsigned preparation, signed release and independent public installed proof remain required before verified."
+      "source_identity": "sha256:027de9460f0111fc88768395fcd2a518d357d9c0464947178e46b55c32b32fbb",
+      "notes": "Owner-authorized v1.0.0 published from 8979fe5a7319d34f358c4b0fb32a8e09b1838384. All five prerequisite workflows, reviewed publish=false preparation, protected reviewer approval, real Ed25519 signing and separate public-download installed job 39539895713 succeeded. Actual signature/checksums, CLI/viewer, restart, new-store restore and newer-data-safe rollback verified; source-bound reports and output hashes retained. Linux x86_64 single operator; Go engine remains local."
     }
   ],
   "web_progress": "plans/web-roadmap.json",

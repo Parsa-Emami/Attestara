@@ -1,7 +1,7 @@
 {
   "project": "Attestara",
-  "reviewed_commit": "75b86c66eea0a8224503dfa6f9eb4743a6fb0824",
-  "readiness": "LOCAL_USABLE",
+  "reviewed_commit": "8979fe5a7319d34f358c4b0fb32a8e09b1838384",
+  "readiness": "OSS_V1_VERIFIED",
   "core_ready": true,
   "implemented": [
     "responsive web shell",
@@ -43,11 +43,18 @@
     "C36 fresh GitHub Actions ubuntu24 runner followed the public guide and passed the real C30 CLI, restart, new-store restore and browser workflow; source-bound report and fixture hashes recorded. No user-source execution; optional providers not invoked.",
     "C37 owner-approved local acceptance audit reverified C30/C33/C35/C36 with no new product blocker: real setup/CLI/viewer/restart/new-store restore, C34/candidate upgrade and newer-data-safe rollback, 62 Node/118 uncached Go with locked OPA/25 browser checks; added versioned audit cases/provenance and source-bound report. No product behavior or format change, new remote Actions run or publication.",
     "C38 documented local data locations, per-operation export, manual deletion, no automatic retention, backup/recovery, the supported profile and evidence-backed dependency/maintenance policy. No product behavior, API, schema or runtime capability changed; C05/C30 runtime evidence retains its original source identity.",
-    "C39 evidence-backed release gate verified on 75b86c66eea0a8224503dfa6f9eb4743a6fb0824 with all five actual candidate GitHub workflows; retained source-bound report and output hashes, no publication"
+    "C39 evidence-backed release gate verified on 75b86c66eea0a8224503dfa6f9eb4743a6fb0824 with all five actual candidate GitHub workflows; retained source-bound report and output hashes, no publication",
+    "C40 owner-authorized v1.0.0 on 8979fe5a7319d34f358c4b0fb32a8e09b1838384: reviewed unsigned preparation, protected reviewer approval, real maintainer signatures, six public assets and independent downloaded-artifact CLI/viewer, restart, restore and newer-data-safe rollback all verified; source-bound proof retained."
   ],
   "engine": "Current C30 local-cli-snapshots profile composes existing C04/C05/C08-C10/C14/C16/C18/C19 contracts through the existing evaluate/verify/export CLI plus restore. Full file/ZIP integrity and independently configured manifest signature trust are assessed separately from policy and unverified passport claims. C05 snapshots retain exact input/result/files through restart and new-store restore; identical operations replay and changed content conflicts. Freshness is caller classified. Draft domain HTTP APIs, multi-user/private authorization, automatic expiry/latest-release authority, scanner execution and representative Grype/full-size combined-workload capacity remain unsupported or unmeasured. Historical C01-C29 evidence retains its original scope.",
-  "next_task": "C40",
-  "next_command": "npm run plan -- next",
-  "full_product_endpoint": "C30 locally usable; C40 full published OSS v1",
-  "verified_profile": "local-cli-snapshots"
+  "next_task": null,
+  "next_command": "npm run plan -- status",
+  "full_product_endpoint": "Published OSS v1.0.0 Linux x86_64 local-cli-snapshots; static Pages viewer online; Go engine and snapshots remain local.",
+  "verified_profile": "local-cli-snapshots",
+  "published_release": {
+    "version": "1.0.0",
+    "source_commit": "8979fe5a7319d34f358c4b0fb32a8e09b1838384",
+    "url": "https://github.com/Parsa-Emami/Attestara/releases/tag/v1.0.0",
+    "evidence": "docs/evidence/C40.json"
+  }
 }

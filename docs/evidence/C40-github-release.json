@@ -1,0 +1,732 @@
+{
+  "schema_version": 1,
+  "task": "C40",
+  "passed": true,
+  "planning_template": false,
+  "source_commit": "8979fe5a7319d34f358c4b0fb32a8e09b1838384",
+  "source_tree": "04d24b7b7ec9f9dbbbe87f02f365bfd4570edb48",
+  "source_identity": "sha256:027de9460f0111fc88768395fcd2a518d357d9c0464947178e46b55c32b32fbb",
+  "environment_review": {
+    "approved": true,
+    "reviewer": "Parsa-Emami",
+    "environment": "release",
+    "run_id": 39539895713,
+    "source_commit": "8979fe5a7319d34f358c4b0fb32a8e09b1838384",
+    "method": "Owner-authenticated GitHub required-reviewer approval; approval success alert and Parsa-Emami approved table row observed. Administrator bypass remains disabled.",
+    "observed_at": "2026-10-21T03:49:26.028Z"
+  },
+  "preparation": {
+    "id": 39539055482,
+    "path": ".github/workflows/release.yml",
+    "head_sha": "8979fe5a7319d34f358c4b0fb32a8e09b1838384",
+    "head_branch": "main",
+    "event": "workflow_dispatch",
+    "display_title": "release 8979fe5a7319d34f358c4b0fb32a8e09b1838384 / publish=false",
+    "status": "completed",
+    "conclusion": "success",
+    "run_attempt": 1,
+    "html_url": "https://github.com/Parsa-Emami/Attestara/actions/runs/39539055482",
+    "run_started_at": "2026-10-21T03:31:36Z",
+    "updated_at": "2026-10-21T03:38:34Z",
+    "jobs": [
+      {
+        "id": 119022347397,
+        "name": "prepare",
+        "status": "completed",
+        "conclusion": "success",
+        "run_id": 39539055482,
+        "logs_url": null,
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1
+          },
+          {
+            "name": "Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2
+          },
+          {
+            "name": "Run actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3
+          },
+          {
+            "name": "Install pinned npm",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4
+          },
+          {
+            "name": "Require pinned npm",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5
+          },
+          {
+            "name": "Run actions/setup-go@924ae3a1cded613372ab5595356fb5720e22ba16",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6
+          },
+          {
+            "name": "Build locked Go toolchain from verified C02 source",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7
+          },
+          {
+            "name": "Run npm ci --ignore-scripts",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 8
+          },
+          {
+            "name": "Run npx --no-install playwright install --with-deps chromium",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 9
+          },
+          {
+            "name": "Install the existing optional-proxy test prerequisite",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 10
+          },
+          {
+            "name": "Require the selected exact source",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 11
+          },
+          {
+            "name": "Run a fresh complete gate",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 12
+          },
+          {
+            "name": "Build the exact committed distribution and collect its gate",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 13
+          },
+          {
+            "name": "Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 14
+          },
+          {
+            "name": "Retain verification diagnostics",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 15
+          },
+          {
+            "name": "Post Run actions/setup-go@924ae3a1cded613372ab5595356fb5720e22ba16",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 28
+          },
+          {
+            "name": "Post Run actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 29
+          },
+          {
+            "name": "Post Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 30
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 31
+          }
+        ]
+      },
+      {
+        "id": 119024345700,
+        "name": "publish",
+        "status": "completed",
+        "conclusion": "skipped",
+        "run_id": 39539055482,
+        "logs_url": null,
+        "steps": null
+      },
+      {
+        "id": 119024345711,
+        "name": "installed",
+        "status": "completed",
+        "conclusion": "skipped",
+        "run_id": 39539055482,
+        "logs_url": null,
+        "steps": null
+      }
+    ],
+    "artifacts": [
+      {
+        "id": 12318881711,
+        "name": "release-preparation-8979fe5a7319d34f358c4b0fb32a8e09b1838384-39539055482",
+        "size_in_bytes": 162223,
+        "url": "https://api.github.com/repos/Parsa-Emami/Attestara/actions/artifacts/12318881711",
+        "archive_download_url": "https://api.github.com/repos/Parsa-Emami/Attestara/actions/artifacts/12318881711/zip",
+        "expired": false,
+        "created_at": "2026-10-21T03:38:28Z",
+        "expires_at": "2026-11-04T03:38:27Z",
+        "updated_at": "2026-10-21T03:38:28Z",
+        "digest": "sha256:9339937409b3ac95acbe243d1a5548a8375d9fcba8eb0198ba898540bc2851fe",
+        "workflow_run": {
+          "id": 39539055482,
+          "repository_id": 1354991022,
+          "head_repository_id": 1354991022,
+          "head_branch": "main",
+          "head_sha": "8979fe5a7319d34f358c4b0fb32a8e09b1838384"
+        }
+      },
+      {
+        "id": 12318861761,
+        "name": "release-candidate-8979fe5a7319d34f358c4b0fb32a8e09b1838384-39539055482",
+        "size_in_bytes": 9248283,
+        "url": "https://api.github.com/repos/Parsa-Emami/Attestara/actions/artifacts/12318861761",
+        "archive_download_url": "https://api.github.com/repos/Parsa-Emami/Attestara/actions/artifacts/12318861761/zip",
+        "expired": false,
+        "created_at": "2026-10-21T03:38:26Z",
+        "expires_at": "2026-11-04T03:38:24Z",
+        "updated_at": "2026-10-21T03:38:26Z",
+        "digest": "sha256:d102604ca8898ddc0e244001fb11b94220ff0023df969d515a9aacad2b0b6d6b",
+        "workflow_run": {
+          "id": 39539055482,
+          "repository_id": 1354991022,
+          "head_repository_id": 1354991022,
+          "head_branch": "main",
+          "head_sha": "8979fe5a7319d34f358c4b0fb32a8e09b1838384"
+        }
+      }
+    ]
+  },
+  "publication": {
+    "id": 39539895713,
+    "path": ".github/workflows/release.yml",
+    "head_sha": "8979fe5a7319d34f358c4b0fb32a8e09b1838384",
+    "head_branch": "main",
+    "event": "workflow_dispatch",
+    "display_title": "release 8979fe5a7319d34f358c4b0fb32a8e09b1838384 / publish=true",
+    "status": "completed",
+    "conclusion": "success",
+    "run_attempt": 1,
+    "html_url": "https://github.com/Parsa-Emami/Attestara/actions/runs/39539895713",
+    "run_started_at": "2026-10-21T03:40:48Z",
+    "updated_at": "2026-10-21T03:53:02Z",
+    "jobs": [
+      {
+        "id": 119025000873,
+        "name": "prepare",
+        "status": "completed",
+        "conclusion": "success",
+        "run_id": 39539895713,
+        "logs_url": null,
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1
+          },
+          {
+            "name": "Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2
+          },
+          {
+            "name": "Run actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3
+          },
+          {
+            "name": "Install pinned npm",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4
+          },
+          {
+            "name": "Require pinned npm",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5
+          },
+          {
+            "name": "Run actions/setup-go@924ae3a1cded613372ab5595356fb5720e22ba16",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6
+          },
+          {
+            "name": "Build locked Go toolchain from verified C02 source",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7
+          },
+          {
+            "name": "Run npm ci --ignore-scripts",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 8
+          },
+          {
+            "name": "Run npx --no-install playwright install --with-deps chromium",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 9
+          },
+          {
+            "name": "Install the existing optional-proxy test prerequisite",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 10
+          },
+          {
+            "name": "Require the selected exact source",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 11
+          },
+          {
+            "name": "Run a fresh complete gate",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 12
+          },
+          {
+            "name": "Build the exact committed distribution and collect its gate",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 13
+          },
+          {
+            "name": "Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 14
+          },
+          {
+            "name": "Retain verification diagnostics",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 15
+          },
+          {
+            "name": "Post Run actions/setup-go@924ae3a1cded613372ab5595356fb5720e22ba16",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 28
+          },
+          {
+            "name": "Post Run actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 29
+          },
+          {
+            "name": "Post Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 30
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 31
+          }
+        ]
+      },
+      {
+        "id": 119026953009,
+        "name": "publish",
+        "status": "completed",
+        "conclusion": "success",
+        "run_id": 39539895713,
+        "logs_url": null,
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1
+          },
+          {
+            "name": "Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2
+          },
+          {
+            "name": "Run actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3
+          },
+          {
+            "name": "Run actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4
+          },
+          {
+            "name": "Sign only the reviewed checksum manifest",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5
+          },
+          {
+            "name": "Publish complete verified assets without replacing an existing release",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6
+          },
+          {
+            "name": "Retain publication evidence, including incomplete attempts",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7
+          },
+          {
+            "name": "Post Run actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 13
+          },
+          {
+            "name": "Post Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 14
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 15
+          }
+        ]
+      },
+      {
+        "id": 119027480650,
+        "name": "installed",
+        "status": "completed",
+        "conclusion": "success",
+        "run_id": 39539895713,
+        "logs_url": null,
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1
+          },
+          {
+            "name": "Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2
+          },
+          {
+            "name": "Run actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3
+          },
+          {
+            "name": "Install pinned npm",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4
+          },
+          {
+            "name": "Require pinned npm",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5
+          },
+          {
+            "name": "Run actions/setup-go@924ae3a1cded613372ab5595356fb5720e22ba16",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6
+          },
+          {
+            "name": "Build locked Go toolchain from verified C02 source",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7
+          },
+          {
+            "name": "Run npm ci --ignore-scripts",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 8
+          },
+          {
+            "name": "Run npx --no-install playwright install --with-deps chromium",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 9
+          },
+          {
+            "name": "Verify and exercise the downloaded public release",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 10
+          },
+          {
+            "name": "Retain actual installed-release evidence",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 11
+          },
+          {
+            "name": "Post Run actions/setup-go@924ae3a1cded613372ab5595356fb5720e22ba16",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 20
+          },
+          {
+            "name": "Post Run actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 21
+          },
+          {
+            "name": "Post Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 22
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 23
+          }
+        ]
+      }
+    ],
+    "artifacts": [
+      {
+        "id": 12319726956,
+        "name": "release-installed-8979fe5a7319d34f358c4b0fb32a8e09b1838384-39539895713",
+        "size_in_bytes": 6171,
+        "url": "https://api.github.com/repos/Parsa-Emami/Attestara/actions/artifacts/12319726956",
+        "archive_download_url": "https://api.github.com/repos/Parsa-Emami/Attestara/actions/artifacts/12319726956/zip",
+        "expired": false,
+        "created_at": "2026-10-21T03:52:56Z",
+        "expires_at": "2026-11-04T03:52:56Z",
+        "updated_at": "2026-10-21T03:52:56Z",
+        "digest": "sha256:813da199b8b1c51aa04205b98dcad0b14a0571b15061afd0cc679859e8461125",
+        "workflow_run": {
+          "id": 39539895713,
+          "repository_id": 1354991022,
+          "head_repository_id": 1354991022,
+          "head_branch": "main",
+          "head_sha": "8979fe5a7319d34f358c4b0fb32a8e09b1838384"
+        }
+      },
+      {
+        "id": 12319207476,
+        "name": "release-candidate-8979fe5a7319d34f358c4b0fb32a8e09b1838384-39539895713",
+        "size_in_bytes": 9248273,
+        "url": "https://api.github.com/repos/Parsa-Emami/Attestara/actions/artifacts/12319207476",
+        "archive_download_url": "https://api.github.com/repos/Parsa-Emami/Attestara/actions/artifacts/12319207476/zip",
+        "expired": false,
+        "created_at": "2026-10-21T03:47:34Z",
+        "expires_at": "2026-11-04T03:47:32Z",
+        "updated_at": "2026-10-21T03:47:34Z",
+        "digest": "sha256:a812a723c71d6d8d640c9edae90df47eefefdabe30b59cb233f853f254d8970c",
+        "workflow_run": {
+          "id": 39539895713,
+          "repository_id": 1354991022,
+          "head_repository_id": 1354991022,
+          "head_branch": "main",
+          "head_sha": "8979fe5a7319d34f358c4b0fb32a8e09b1838384"
+        }
+      },
+      {
+        "id": 12319142466,
+        "name": "release-preparation-8979fe5a7319d34f358c4b0fb32a8e09b1838384-39539895713",
+        "size_in_bytes": 162172,
+        "url": "https://api.github.com/repos/Parsa-Emami/Attestara/actions/artifacts/12319142466",
+        "archive_download_url": "https://api.github.com/repos/Parsa-Emami/Attestara/actions/artifacts/12319142466/zip",
+        "expired": false,
+        "created_at": "2026-10-21T03:47:36Z",
+        "expires_at": "2026-11-04T03:47:35Z",
+        "updated_at": "2026-10-21T03:47:36Z",
+        "digest": "sha256:c8572a079ecc5d0f1d97515967584e22d082da1123d25c5965ac9c3c5cc43129",
+        "workflow_run": {
+          "id": 39539895713,
+          "repository_id": 1354991022,
+          "head_repository_id": 1354991022,
+          "head_branch": "main",
+          "head_sha": "8979fe5a7319d34f358c4b0fb32a8e09b1838384"
+        }
+      },
+      {
+        "id": 12318988473,
+        "name": "release-publication-8979fe5a7319d34f358c4b0fb32a8e09b1838384-39539895713",
+        "size_in_bytes": 60562,
+        "url": "https://api.github.com/repos/Parsa-Emami/Attestara/actions/artifacts/12318988473",
+        "archive_download_url": "https://api.github.com/repos/Parsa-Emami/Attestara/actions/artifacts/12318988473/zip",
+        "expired": false,
+        "created_at": "2026-10-21T03:49:30Z",
+        "expires_at": "2026-11-04T03:49:29Z",
+        "updated_at": "2026-10-21T03:49:30Z",
+        "digest": "sha256:29ec0a44a6ed2d63e04f134db55c9d119bcfc6fc9acadf90da6c60ccaf6c0a30",
+        "workflow_run": {
+          "id": 39539895713,
+          "repository_id": 1354991022,
+          "head_repository_id": 1354991022,
+          "head_branch": "main",
+          "head_sha": "8979fe5a7319d34f358c4b0fb32a8e09b1838384"
+        }
+      }
+    ]
+  },
+  "prerequisite_workflows": [
+    {
+      "id": 39538431456,
+      "path": ".github/workflows/plan.yml",
+      "head_sha": "8979fe5a7319d34f358c4b0fb32a8e09b1838384",
+      "head_branch": "main",
+      "event": "push",
+      "display_title": "chore(release): replace the unavailable signing key with owner approval",
+      "status": "completed",
+      "conclusion": "success",
+      "run_attempt": 1,
+      "html_url": "https://github.com/Parsa-Emami/Attestara/actions/runs/39538431456",
+      "run_started_at": "2026-10-21T03:24:52Z",
+      "updated_at": "2026-10-21T03:25:00Z"
+    },
+    {
+      "id": 39538431557,
+      "path": ".github/workflows/contracts.yml",
+      "head_sha": "8979fe5a7319d34f358c4b0fb32a8e09b1838384",
+      "head_branch": "main",
+      "event": "push",
+      "display_title": "chore(release): replace the unavailable signing key with owner approval",
+      "status": "completed",
+      "conclusion": "success",
+      "run_attempt": 1,
+      "html_url": "https://github.com/Parsa-Emami/Attestara/actions/runs/39538431557",
+      "run_started_at": "2026-10-21T03:24:52Z",
+      "updated_at": "2026-10-21T03:25:05Z"
+    },
+    {
+      "id": 39538431461,
+      "path": ".github/workflows/runtime.yml",
+      "head_sha": "8979fe5a7319d34f358c4b0fb32a8e09b1838384",
+      "head_branch": "main",
+      "event": "push",
+      "display_title": "chore(release): replace the unavailable signing key with owner approval",
+      "status": "completed",
+      "conclusion": "success",
+      "run_attempt": 1,
+      "html_url": "https://github.com/Parsa-Emami/Attestara/actions/runs/39538431461",
+      "run_started_at": "2026-10-21T03:24:52Z",
+      "updated_at": "2026-10-21T03:27:52Z"
+    },
+    {
+      "id": 39538431457,
+      "path": ".github/workflows/release-gate.yml",
+      "head_sha": "8979fe5a7319d34f358c4b0fb32a8e09b1838384",
+      "head_branch": "main",
+      "event": "push",
+      "display_title": "chore(release): replace the unavailable signing key with owner approval",
+      "status": "completed",
+      "conclusion": "success",
+      "run_attempt": 1,
+      "html_url": "https://github.com/Parsa-Emami/Attestara/actions/runs/39538431457",
+      "run_started_at": "2026-10-21T03:24:52Z",
+      "updated_at": "2026-10-21T03:29:20Z"
+    },
+    {
+      "id": 39538431583,
+      "path": ".github/workflows/web.yml",
+      "head_sha": "8979fe5a7319d34f358c4b0fb32a8e09b1838384",
+      "head_branch": "main",
+      "event": "push",
+      "display_title": "chore(release): replace the unavailable signing key with owner approval",
+      "status": "completed",
+      "conclusion": "success",
+      "run_attempt": 1,
+      "html_url": "https://github.com/Parsa-Emami/Attestara/actions/runs/39538431583",
+      "run_started_at": "2026-10-21T03:24:52Z",
+      "updated_at": "2026-10-21T03:31:04Z"
+    }
+  ],
+  "release": {
+    "id": 419134117,
+    "tag_name": "v1.0.0",
+    "target_commitish": "8979fe5a7319d34f358c4b0fb32a8e09b1838384",
+    "name": "Attestara 1.0.0",
+    "draft": false,
+    "prerelease": false,
+    "created_at": "2026-10-21T03:24:49Z",
+    "published_at": "2026-10-21T03:49:28Z",
+    "html_url": "https://github.com/Parsa-Emami/Attestara/releases/tag/v1.0.0"
+  },
+  "assets": [
+    {
+      "id": 661274135,
+      "name": "attestara-8979fe5a7319d34f358c4b0fb32a8e09b1838384-linux-x64.tar.gz",
+      "digest": "sha256:a0f0c6ef6fd67df74608927870fbd5cfbcb65927b76adf18376c3083e411e1bf",
+      "size": 7003483,
+      "browser_download_url": "https://github.com/Parsa-Emami/Attestara/releases/download/v1.0.0/attestara-8979fe5a7319d34f358c4b0fb32a8e09b1838384-linux-x64.tar.gz"
+    },
+    {
+      "id": 661274168,
+      "name": "attestara-8979fe5a7319d34f358c4b0fb32a8e09b1838384-source.tar.gz",
+      "digest": "sha256:1115c6415b30afb771bee956c48799769e465e4a64818ef735fa2f75647bbc7f",
+      "size": 2203461,
+      "browser_download_url": "https://github.com/Parsa-Emami/Attestara/releases/download/v1.0.0/attestara-8979fe5a7319d34f358c4b0fb32a8e09b1838384-source.tar.gz"
+    },
+    {
+      "id": 661274086,
+      "name": "release.json",
+      "digest": "sha256:5289ae62616f14ab6dc4d89917e55b42db58059137f9f7a2588cd474d2acc5ca",
+      "size": 1138,
+      "browser_download_url": "https://github.com/Parsa-Emami/Attestara/releases/download/v1.0.0/release.json"
+    },
+    {
+      "id": 661274114,
+      "name": "sbom.cdx.json",
+      "digest": "sha256:c866cfb08031533696ad716f91cc3a5615031e5214900348142d033a9037f524",
+      "size": 60774,
+      "browser_download_url": "https://github.com/Parsa-Emami/Attestara/releases/download/v1.0.0/sbom.cdx.json"
+    },
+    {
+      "id": 661274200,
+      "name": "SHA256SUMS.sig.json",
+      "digest": "sha256:f4ffd95c0d6349623e55ebef7f30308c527dfddc8330f3ea19496c85d4ca4510",
+      "size": 306,
+      "browser_download_url": "https://github.com/Parsa-Emami/Attestara/releases/download/v1.0.0/SHA256SUMS.sig.json"
+    },
+    {
+      "id": 661274187,
+      "name": "SHA256SUMS.txt",
+      "digest": "sha256:6dc281e99c10eed71afeb3bb0ea68e994b714fec7cb42e3cf2ddbcaa5e02ad7f",
+      "size": 424,
+      "browser_download_url": "https://github.com/Parsa-Emami/Attestara/releases/download/v1.0.0/SHA256SUMS.txt"
+    }
+  ],
+  "reviewed_payload_matches_published": true
+}

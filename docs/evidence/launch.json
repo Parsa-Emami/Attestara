@@ -1,44 +1,28 @@
 {
   "schema_version": 1,
-  "passed": false,
-  "published": false,
+  "passed": true,
+  "published": true,
   "version": "1.0.0",
   "tag": "v1.0.0",
+  "profile": "local-cli-snapshots",
+  "platform": "linux-x64",
   "manifest": "docs/release/RELEASE_MANIFEST.json",
   "evidence": "docs/evidence/C40.json",
-  "blockers": [
-    "The replacement signing key and protected Environment Secret are configured. The new committed source must pass all five prerequisite workflows and a reviewed publish=false preparation.",
-    "The owner explicitly authorized signed v1 publication. The same source still requires publish=true, required Environment review and a successful independent public downloaded-artifact installed job before C40 verification."
-  ],
-  "local_ready": true,
-  "source_identity": "sha256:a072f78bb7e6cb596077357abaf7421176a0be3b7aea583b51a271070977b83b",
-  "runtime_candidate_commit": "b245640b39a648ee6b4a3d097d02897fa31fa1d3",
-  "runtime_candidate_tree": "be3f2507cc4ca1d682e6643d3fb022c5d7d351c8",
-  "local_gate": {
-    "path": "docs/evidence/C40-local-run.json",
-    "sha256": "sha256:266ccd1b076f65c7fe10eea10cb0b031d5deb4f35035cb24132917f444488833"
+  "source_commit": "8979fe5a7319d34f358c4b0fb32a8e09b1838384",
+  "source_tree": "04d24b7b7ec9f9dbbbe87f02f365bfd4570edb48",
+  "source_identity": "sha256:027de9460f0111fc88768395fcd2a518d357d9c0464947178e46b55c32b32fbb",
+  "signer_fingerprint": "sha256:d02ef875aeff974b033195e4b1b1b80491d16145e79bf7e603a4985c927606cd",
+  "release_id": 419134117,
+  "release_url": "https://github.com/Parsa-Emami/Attestara/releases/tag/v1.0.0",
+  "public_installation_verified": true,
+  "installed_evidence": {
+    "path": "docs/evidence/C40-public-installed.json",
+    "sha256": "sha256:698fabb236c71af817fd03ed73d35cab107563db9755e4e160a0ebb82c3c863c"
   },
-  "local_rehearsal": {
-    "path": "docs/evidence/C40-installed-rehearsal.json",
-    "sha256": "sha256:453f9754c68aed4ae45cf2b9cc18d23421c2b27ae9dd172c4d55ac140dc0295c"
+  "github_release": {
+    "path": "docs/evidence/C40-github-release.json",
+    "sha256": "sha256:6a9eaf575611ad2295755ab679e2e146ef41f491a5e3630228db1fc29f632448"
   },
-  "signer_fingerprint": "sha256:f54a6ceaf3ff6ba76775ea97d25ae519b2e0bbf389d9f8bd15f71fd4dbe64443",
-  "release_id": null,
-  "release_url": null,
-  "github_candidate": {
-    "path": "docs/evidence/C40-github-candidate.json",
-    "sha256": "sha256:d850cd4f2e09631acdf3f19a2c3f089fdefc2bba3fdef5fda9a6249152b4418a"
-  },
-  "owner_setup_followup": {
-    "path": "docs/evidence/C40-owner-setup.json",
-    "sha256": "sha256:8c83c52337b1650e9ce1201081c2869f491311fda6c9f183527251b8189b32d5"
-  },
-  "environment_configuration": {
-    "path": "docs/evidence/C40-environment-configuration.json",
-    "sha256": "sha256:f3822acd4e1f6d8df7831e6162cbf882b6a5caa4deec94d16361fb9989ec273d"
-  },
-  "signing_key_change": {
-    "path": "docs/evidence/C40-signing-key-change.json",
-    "sha256": "sha256:04e20382989752d5ddb17c8c07c983f63b3d24011ff20c06198e5555b8cf82ec"
-  }
+  "blockers": [],
+  "date": "2026-10-21T03:56:50.285877+00:00"
 }
