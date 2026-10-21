@@ -1,5 +1,5 @@
 {
-  "date": "2026-10-20T16:20:37.755120+00:00",
+  "date": "2026-10-21T03:23:24.622Z",
   "task": "C40",
   "base_commit": "6ff30c32f00c6b811453e30d46befa6edafc354e",
   "status": "in_progress",
@@ -25,17 +25,16 @@
     ]
   },
   "next_task": "C40",
-  "next_action": "Commit/push Pages changes; verify all workflows and the live viewer; dispatch release with the same final SHA/publish=false. Retain the actual run identity. Secret entry still requires the original-key machine.",
+  "next_action": "Commit the reviewed public key replacement; wait for five successful workflows on that exact main SHA. Run/review publish=false, then the authorized publish=true on the same SHA, approve the protected Environment and inspect the independent public installed job before finalizing C40.",
   "blockers": [
-    "The protected release Environment now exists with main only, required owner review and administrator bypass disabled; its ATTESTARA_RELEASE_PRIVATE_KEY Secret is still missing. The original pinned private key is absent from this execution environment.",
-    "The final source needs five successful workflows and a fresh reviewed publish=false preparation before signed publication.",
-    "Signed v1 publication still requires explicit approval, Environment approval and a successful independent public downloaded-artifact installed job. GitHub Pages hosting does not certify C40."
+    "The replacement signing key and protected Environment Secret are configured. The new committed source must pass all five prerequisite workflows and a reviewed publish=false preparation.",
+    "The owner explicitly authorized signed v1 publication. The same source still requires publish=true, required Environment review and a successful independent public downloaded-artifact installed job before C40 verification."
   ],
   "publication_performed": false,
   "delivery": {
     "local_commit_authorized": true,
     "push_authorized": true,
-    "publication_authorized": false,
+    "publication_authorized": true,
     "implementation_commit": "db2f831d8ef66095010da30e94cf3e3587e816a0",
     "implementation_commit_pushed_by_user": true
   },
@@ -160,9 +159,21 @@
     "base_commit": "62e95589017b1ee54d4cd4c21bba406f50b05b6b",
     "authorization": "Owner explicitly requested public GitHub Pages publication and approved browser administration.",
     "pages_source": "GitHub Actions, saved and visually verified; default-domain HTTPS enforced.",
-    "status": "implementation ready; final-source CI, deployment and live verification pending",
-    "scope": "Static local passport viewer, JSON preview and roadmap. Go evaluation and snapshots require the local application. No signed v1 publication is authorized or performed.",
+    "status": "Published and live-verified on e0122a89115918748f6ecd9dfbd1d854cca1b11f; Pages run 39469715080 and browser checks succeeded.",
+    "scope": "Static passport viewer, JSON preview and roadmap; engine and snapshot operations remain local. Signed v1 publication was separately authorized on 2026-10-21.",
     "local_browser_blocker": "Playwright download returned a truncated ZIP; local Chromium is unavailable. The Pages workflow runs the actual browser check before deploying.",
-    "next_action": "Commit/push Pages changes; verify all workflows and the live viewer; dispatch release with the same final SHA/publish=false. Retain the actual run identity. Secret entry still requires the original-key machine."
+    "next_action": "Preserve the static viewer; Pages hosting remains independent of the signed Linux release."
+  },
+  "signing_key_change": {
+    "path": "docs/evidence/C40-signing-key-change.json",
+    "sha256": "sha256:04e20382989752d5ddb17c8c07c983f63b3d24011ff20c06198e5555b8cf82ec"
+  },
+  "latest_unsigned_preparation": {
+    "source_commit": "e0122a89115918748f6ecd9dfbd1d854cca1b11f",
+    "run_id": 39530913190,
+    "url": "https://github.com/Parsa-Emami/Attestara/actions/runs/39530913190",
+    "passed": true,
+    "gate_command_count": 28,
+    "scope": "Historical prior public key source; must prepare again after the key replacement."
   }
 }

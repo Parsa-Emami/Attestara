@@ -42,9 +42,8 @@
     }
   ],
   "blockers": [
-    "The protected release Environment now exists with main only, required owner review and administrator bypass disabled; its ATTESTARA_RELEASE_PRIVATE_KEY Secret is still missing. The original pinned private key is absent from this execution environment.",
-    "The final source needs five successful workflows and a fresh reviewed publish=false preparation before signed publication.",
-    "Signed v1 publication still requires explicit approval, Environment approval and a successful independent public downloaded-artifact installed job. GitHub Pages hosting does not certify C40."
+    "The replacement signing key and protected Environment Secret are configured. The new committed source must pass all five prerequisite workflows and a reviewed publish=false preparation.",
+    "The owner explicitly authorized signed v1 publication. The same source still requires publish=true, required Environment review and a successful independent public downloaded-artifact installed job before C40 verification."
   ],
   "published": false,
   "date": "2026-10-20T14:58:03.520326+00:00",
@@ -184,5 +183,9 @@
   "environment_configuration": {
     "path": "docs/evidence/C40-environment-configuration.json",
     "sha256": "sha256:f3822acd4e1f6d8df7831e6162cbf882b6a5caa4deec94d16361fb9989ec273d"
+  },
+  "signing_key_change": {
+    "path": "docs/evidence/C40-signing-key-change.json",
+    "sha256": "sha256:04e20382989752d5ddb17c8c07c983f63b3d24011ff20c06198e5555b8cf82ec"
   }
 }

@@ -20,10 +20,18 @@ chat, build artifacts or logs. Do not recreate or silently replace a missing key
 The checked-in public fingerprint is the release identity; synthetic C35 keys are
 only test fixtures and are never that identity.
 
+On 2026-10-21 the owner explicitly authorized replacing the unavailable initial
+key before any v1 tag or public release existed. The replacement's fingerprint is
+`sha256:d02ef875aeff974b033195e4b1b1b80491d16145e79bf7e603a4985c927606cd`.
+`docs/evidence/C40-signing-key-change.json` records both public identities,
+authorization and protected Environment setup. Historical rehearsals retain their
+original signer and source; they do not certify this replacement or publication.
+The current private key remains outside Git with the same private permissions.
+
 Before real publication, the repository maintainer must configure the GitHub
 Environment `release`, restrict deployments to `main`, select a maintainer reviewer,
 and set its Secret `ATTESTARA_RELEASE_PRIVATE_KEY` to that PKCS#8 PEM. On the owner
-machine containing the original key, use an already authenticated GitHub CLI:
+machine containing the current dedicated key, use an already authenticated GitHub CLI:
 
 ```sh
 node scripts/configure-release-environment.mjs --apply --reviewer Parsa-Emami

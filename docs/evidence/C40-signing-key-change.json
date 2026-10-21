@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "task": "C40",
+  "event": "pre-publication-signing-key-replacement",
+  "date": "2026-10-21T03:21:25.506Z",
+  "authorization": "Owner explicitly requested making or creating the signing key, completing C40 and committing the result on 2026-10-21.",
+  "reason": "Original private key is absent from the current execution environment; no v1 tag or public release exists.",
+  "previous": {
+    "signer_id": "attestara-release-v1",
+    "public_key_hex": "835d4fdff1d18bb2ff76761c3dc4a8df2ceffbe7ae9c5c083ac9ff853e136025",
+    "fingerprint": "sha256:f54a6ceaf3ff6ba76775ea97d25ae519b2e0bbf389d9f8bd15f71fd4dbe64443"
+  },
+  "current": {
+    "signer_id": "attestara-release-v1",
+    "public_key_hex": "39451d16ca6a9c174df4ccf086d9da532d6636db2daf2097820aa971ac41f3b4",
+    "fingerprint": "sha256:d02ef875aeff974b033195e4b1b1b80491d16145e79bf7e603a4985c927606cd"
+  },
+  "private_key_in_repository": false,
+  "private_key_in_chat": false,
+  "private_key_file_mode": "0600",
+  "private_key_directory_mode": "0700",
+  "intended_secret": {
+    "environment": "release",
+    "name": "ATTESTARA_RELEASE_PRIVATE_KEY"
+  },
+  "publication_verified": false,
+  "environment_secret_configured": true,
+  "secret_metadata_verified": true,
+  "secret_value_verified": false,
+  "secret_configured_at": "2026-10-21T03:23:24.622Z",
+  "verification_method": "Owner-authenticated GitHub Environment UI: submitted the private key from a confined temporary 0600 file without printing it; secret row confirmed after form closed. Public key derived before submission matched the manifest. Actual signing remains required.",
+  "environment_configuration": {
+    "environment": "release",
+    "environment_id": 24839497663,
+    "required_reviewer": "Parsa-Emami",
+    "allowed_branch": "main",
+    "allowed_tags": [],
+    "allow_administrator_bypass": false
+  }
+}
