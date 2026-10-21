@@ -167,7 +167,7 @@ async function acceptance() {
     assert.equal(JSON.parse(restored).policy_decision, 'pass');
     record.commands = workflowCommands.slice(commandOffset).map(({ command, expected_exit, exit, duration_ms }) => ({ action: command[1], expected_exit, exit, duration_ms }));
     record.passed = true;
-    record.result = { profile: 'local-cli-snapshots', scenario_steps: scenario.steps.length, policy_decision: 'pass', authenticity: 'unverified', restart_preserved: true, new_store_restore: true, browser_viewer: 'passed', user_source_execution: false, optional_providers_executed: [] };
+    record.result = { profile: 'local-cli-snapshots', completed_steps: steps.length, policy_decision: 'pass', authenticity: 'unverified', restart_preserved: true, new_store_restore: true, browser_viewer: 'passed', user_source_execution: false, optional_providers_executed: [] };
     console.log(JSON.stringify({ phase: 'C36 onboarding', passed: true, source_identity: source.identity, environment: record.environment, fixtures: fixtureHashes, steps, commands: record.commands }, null, 2));
     console.log(JSON.stringify({ passed: true, profile: 'local-cli-snapshots', proof: 'fresh clone -> public guide CLI/restart/restore -> supervised CLI/viewer workflow -> restart -> new-store restore', isolation: record.environment.kind, browser: process.env.WEB_TEST_CHROMIUM ? { version: run(process.env.WEB_TEST_CHROMIUM, ['--version'], root), sha256: sha256(await readFile(process.env.WEB_TEST_CHROMIUM)), source: 'explicit installed system prerequisite' } : { source: 'fresh Playwright download' }, service_start_port: initialPort, user_source_execution: false, optional_providers_executed: [] }, null, 2));
   } finally {

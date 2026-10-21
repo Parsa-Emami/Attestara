@@ -25,7 +25,7 @@ export function setup(args = [], run = spawnSync, version = process.version, dir
   if (args.some(arg => !['--check', '--skip-install'].includes(arg))) throw new Error('Supported setup options: --check, --skip-install');
   const steps = args.includes('--skip-install') ? [['run', 'build']] : [['ci', '--ignore-scripts', '--no-fund'], ['run', 'build']];
   const goVersion = JSON.parse(readFileSync(new URL('../docs/engineering/toolchain-lock.json', import.meta.url))).resources.find(resource => resource.id === 'go').version;
-  if (args.includes('--check')) return { executed: false, steps, npm: verifyNpm(run, directory), go: goVersion, engineBuild: 'go build -mod=readonly -trimpath ./cmd/attestara', engineReady: false };
+  if (args.includes('--check')) return { executed: false, steps, npm: verifyNpm(run, directory), go: goVersion, engineBuild: 'go build -mod=readonly -trimpath -buildvcs=false ./cmd/attestara', engineReady: false };
   const binary = resolve(directory, 'dist/engine/attestara');
   const pending = binary + '.pending';
   mkdirSync(resolve(directory, 'dist/engine'), { recursive: true });
@@ -33,13 +33,13 @@ export function setup(args = [], run = spawnSync, version = process.version, dir
   const env = { ...process.env, GOTOOLCHAIN: 'local', CGO_ENABLED: '0' };
   try {
     const probe = run('go', ['env', 'GOVERSION'], { cwd: directory, env, encoding: 'utf8' });
-    if (probe.error || probe.status !== 0 || probe.stdout?.trim() !== 'go' + goVersion) throw new Error(`Setup failed: Go ${goVersion} is required on PATH; use the C02 source-build guide.`);
+    if (probe.error || probe.status !== 0 || probe.stdout?.trim() !== 'go' + goVersion) throw new Error(`Setup failed: Go ${goVersion} is required on PATH; use docs/engineering/RESOURCE_LOCK.md.`);
     verifyNpm(run, directory);
     for (const step of steps) {
       const result = run(process.execPath, [process.env.npm_execpath, ...step], { cwd: directory, stdio: 'inherit' });
       if (result.error || result.status !== 0) throw new Error('Setup failed at npm ' + step.join(' '));
     }
-    const built = run('go', ['build', '-mod=readonly', '-trimpath', '-o', pending, './cmd/attestara'], { cwd: directory, env, stdio: 'inherit' });
+    const built = run('go', ['build', '-mod=readonly', '-trimpath', '-buildvcs=false', '-o', pending, './cmd/attestara'], { cwd: directory, env, stdio: 'inherit' });
     if (built.error || built.status !== 0) throw new Error('Setup failed building the Go engine.');
     const response = run(pending, ['--version'], { cwd: directory, encoding: 'utf8' });
     if (response.error || response.status !== 0) throw new Error('Setup failed probing the built engine.');

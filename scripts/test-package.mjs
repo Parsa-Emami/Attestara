@@ -82,7 +82,7 @@ try {
   for (const file of files) assert.equal(sha256(await readFile(join(sourceRoot, 'dist/packages', commit, file.path))), file.sha256, 'source archive reproduction: ' + file.path);
   checks.push('source archive without Git rebuilds byte-identical artifacts');
   const sourceManifest = JSON.parse(await readFile(join(sourceRoot, 'SOURCE_MANIFEST.json')));
-  assert.ok(sourceManifest.excluded.length > 0);
+  assert.deepEqual(sourceManifest.excluded, []);
   assert.ok(sourceManifest.files.some(file => file.path === 'cmd/attestara/main.go'));
   assert.ok(sourceManifest.files.every(file => !file.path.includes('node_modules/') && !file.path.startsWith('.local-data/')));
   const changedPath = join(sourceRoot, sourceManifest.files[0].path), unchanged = await readFile(changedPath);
