@@ -43,7 +43,7 @@ Policy, file integrity, cryptographic validity and independently configured
 signer trust remain distinct. The example trust keys are synthetic. A changed
 or missing referenced file must fail full verification even with a valid
 signature. Test mutations in disposable copies, preserving original fixtures.
-[C30_LOCAL_WORKFLOW.md](../engineering/C30_LOCAL_WORKFLOW.md) gives exact
+[LOCAL_WORKFLOW.md](../engineering/LOCAL_WORKFLOW.md) gives exact
 formats, signature options, error semantics and independent assessments.
 
 ## Preserve and recover snapshots
@@ -71,8 +71,8 @@ Stop the service before switching immutable release directories. Follow the
 [signed-artifact and upgrade procedure](ARTIFACTS.md#verify-a-detached-release-signature-c35)
 before using another installed version. Rollback changes the software directory
 while retaining the same external store, including snapshots accepted afterward.
-The tested C35 baseline/candidate identities and limitations belong in its evidence;
-this guide does not establish a published maintainer-signed release.
+Verify the exact expected source and independently established signer before installation;
+CI records the compatible baseline/candidate recovery test results.
 
 ## Errors and limits
 
@@ -87,9 +87,8 @@ this guide does not establish a published maintainer-signed release.
 
 ZIP inputs are bounded to 100 MiB and 2,000 entries. The Grype adapter rejects
 more than 10,000 matches. The file repository is a bounded single-writer adapter;
-see [contracts](../../contracts/README.md) for formats/quotas. C28 measured only
-its declared CLI workload; complete combined/representative Grype capacity is
-not certified by the 2 vCPU/2048 MiB target. Remote/multi-user domain APIs and
+see [contracts](../../contracts/README.md) for formats/quotas. The 2 vCPU/2048 MiB resource target does not certify capacity for the complete
+combined workload or representative Grype reports. Remote/multi-user domain APIs and
 identity/object authorization remain unsupported. OPA and manual Syft/Grype
 report ingestion are optional; the core example does not execute those tools
 or uploaded user source.
@@ -107,7 +106,7 @@ boundaries.
 Project source/examples use [Apache-2.0](../../LICENSE); retain [NOTICE](../../NOTICE).
 Dependencies retain their licenses in [THIRD_PARTY_NOTICES.md](../../THIRD_PARTY_NOTICES.md).
 [ARTIFACTS.md](ARTIFACTS.md) covers local artifacts, detached signature verification,
-source rebuilds, checksums and bundled notices. No stable published v1 is claimed.
+source rebuilds, checksums and bundled notices. The signed v1.0.0 release is available on GitHub.
 
 Ask ordinary questions in [Issues](https://github.com/Parsa-Emami/Attestara/issues)
 with the commit, platform/tool versions, exact command and redacted expected/actual

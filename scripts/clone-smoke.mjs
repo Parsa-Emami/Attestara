@@ -182,11 +182,9 @@ async function acceptance() {
 
 async function sourceIdentity(directory) {
   const paths = run('git', ['ls-files', '-z'], directory).split('\0').filter(Boolean).sort();
-  const excluded = new Set(['plans/progress.json', 'plans/requirements.json', 'plans/project-state.json', 'docs/agents/SESSION_HANDOFF.json', 'apps/web/src/generated/project.json', 'SHA256SUMS.txt']);
   const digest = createHash('sha256');
   let fileCount = 0;
   for (const path of paths) {
-    if (excluded.has(path) || path.startsWith('docs/evidence/')) continue;
     digest.update(path).update('\0').update(createHash('sha256').update(await readFile(join(directory, path))).digest()).update('\n');
     fileCount++;
   }

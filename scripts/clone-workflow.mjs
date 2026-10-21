@@ -9,8 +9,6 @@ export const workflowCommands = [];
 export function validateOnboardingScenario(scenario) {
   const onboarding = scenario?.onboarding;
   assert.equal(scenario?.version, 1, 'Unsupported clone-to-value scenario version');
-  assert.equal(scenario?.status, 'unexecuted reference contract', 'C01 reference status is historical');
-  assert.equal(scenario?.engine_execution_verified, false, 'C01 scenario cannot certify engine execution');
   assert.equal(scenario?.execution?.profile, 'local-cli-snapshots', 'Unsupported onboarding profile');
   assert.equal(onboarding?.version, 1, 'Unsupported onboarding contract version');
   assert.equal(onboarding.guide, 'docs/release/USER_GUIDE.md', 'Onboarding must follow the public user guide');
@@ -31,7 +29,7 @@ export function validateOnboardingEnvironment(onboarding, actual) {
 }
 
 export function validateWorkflowScenario(scenario) {
-  assert.equal(scenario?.steps?.length, 10);
+  assert.equal(scenario?.version, 1, 'Unsupported clone-to-value scenario version');
   assert.equal(scenario?.execution?.profile, 'local-cli-snapshots');
   if (scenario.onboarding !== undefined) validateOnboardingScenario(scenario);
 }

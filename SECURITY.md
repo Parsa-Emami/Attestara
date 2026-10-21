@@ -37,10 +37,9 @@ before publishing details. Each participant manages their GitHub notifications.
 ## Supported scope
 
 Fixes target current `main` on Linux x86_64 for the single-operator local CLI,
-immutable snapshots and browser file viewer. No stable v1 or historical release
-support line is published yet. `legacy/v7` is historical. Remote/multi-user
+immutable snapshots and browser file viewer. Published v1.0.0 and current source retain the same local support boundary. Remote/multi-user
 domain APIs, identity/object authorization and hosted sensitive workloads remain
 unsupported. See the [threat model](docs/security/THREAT_MODEL.md),
-[network boundary](infra/deployment.md) and [release policy](docs/release/RELEASE_POLICY.md).
+[network boundary](infra/deployment.md) and [maintenance policy](docs/release/MAINTENANCE.md).
 A policy pass, digest or displayed passport does not establish producer trust,
 current-release authority, compliance or absence of vulnerabilities.

@@ -38,11 +38,9 @@ test('C36 fixture provenance and positive/negative onboarding cases are pinned',
   for (const [path, expected] of Object.entries(provenance.files)) assert.equal(digest(await readFile(join(base, path))), expected, `C36 fixture hash mismatch: ${path}`);
 });
 
-test('C36 contract keeps the C01 specification historical and binds the public guide to the real C30 workflow', async () => {
+test('onboarding binds the public guide to the executable local workflow', async () => {
   const scenario = JSON.parse(await readFile(join(root, 'tests/scenarios/clone-to-value.json'), 'utf8'));
   const onboarding = validateOnboardingScenario(scenario);
-  assert.equal(scenario.steps.length, 10);
-  assert.equal(scenario.status, 'unexecuted reference contract');
   assert.equal(onboarding.guide, 'docs/release/USER_GUIDE.md');
   assert.equal(onboarding.guide_test, 'tests/ops/user-guide.test.mjs');
   assert.equal(onboarding.user_source_execution, 'forbidden');

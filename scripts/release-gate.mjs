@@ -4,11 +4,13 @@ import { readFile, writeFile, mkdir, mkdtemp, lstat } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import { join, resolve, relative, isAbsolute } from 'node:path';
 import { cpus, totalmem, release } from 'node:os';
+import { fileURLToPath } from 'node:url';
 import { suites } from './verify-engine-tests.mjs';
 import { verifyInventory } from './package-release.mjs';
 
 const sha256 = bytes => 'sha256:' + createHash('sha256').update(bytes).digest('hex');
 const json = async path => JSON.parse(await readFile(path, 'utf8'));
+export const requiredGatePhases = ["source-before", "python-version", "git-version", "contracts", "engineering-tests", "setup", "resources", "engine-discovery", "go-build", "go-vet", "go-tests", "web-check", "typecheck", "nginx-version", "guide-and-nginx", "browser-version", "browser-tests", "clone-workflow", "package-workflow", "web-package", "dependency-audit", "security-reporting", "javascript-syntax", "diff-check", "source-after"];
 const check = (condition, message) => { if (!condition) throw new Error(message); };
 
 export function validateGoRun(output, required = suites) {
@@ -99,7 +101,7 @@ export async function runReleaseGate(root) {
   const abort = () => controller.abort();
   process.once('SIGINT', abort); process.once('SIGTERM', abort);
   const record = {
-    schema_version: 1, task: 'C39', passed: false, planning_template: false,
+    schema_version: 1, scope: 'release-gate', passed: false,
     profile: 'local-cli-snapshots', started_at: new Date().toISOString(), source: null,
     run: { id: process.env.GITHUB_RUN_ID ?? null, attempt: process.env.GITHUB_RUN_ATTEMPT ?? null,
       kind: process.env.GITHUB_ACTIONS === 'true' ? 'github-actions' : 'local' },
@@ -137,9 +139,7 @@ export async function runReleaseGate(root) {
     record.tools = { node: { version: process.version, sha256: sha256(await readFile(process.execPath)) },
       npm: { version: lock.runtime.npm, cli_sha256: sha256(await readFile(npm)) },
       go: { version: go[0], sha256: sha256(await readFile(join(go[1], 'bin/go'))) } };
-    await phase('source-integrity', 'python3', ['scripts/verify_ci_source.py', '--output', relative(root, join(directory, 'source.json'))]);
-    record.source = JSON.parse(await phase('source-before', 'python3', ['scripts/verify_release_evidence.py', '--current-source']));
-    record.results.historical = JSON.parse(await phase('historical-evidence', 'python3', ['scripts/verify_release_evidence.py']));
+    record.source = JSON.parse(await phase('source-before', 'python3', ['scripts/verify_ci_source.py', '--snapshot']));
     const resource = lock.resources.find(item => item.id === 'opa');
     const opa = environment.ATTESTARA_TEST_OPA ?? join(directory, 'opa');
     if (!environment.ATTESTARA_TEST_OPA) {
@@ -153,7 +153,6 @@ export async function runReleaseGate(root) {
       'Pinned regular OPA executable required');
     environment.ATTESTARA_TEST_OPA = opa;
     record.tools.opa = { version: resource.version, sha256: 'sha256:' + resource.artifact.sha256 };
-    await phase('plan-python', 'python3', ['scripts/plan.py', 'validate']);
     record.tools.python = { version: (await phase('python-version', 'python3', ['--version'])).trim() };
     record.tools.git = { version: (await phase('git-version', 'git', ['--version'])).trim() };
     await phase('contracts', 'python3', ['scripts/validate_repo.py']);
@@ -191,7 +190,7 @@ export async function runReleaseGate(root) {
     record.results.reporting = JSON.parse(await npmRun('security-reporting', 'run', '--silent', 'security:check'));
     await phase('javascript-syntax', process.execPath, ['--check', 'scripts/release-gate.mjs']);
     await phase('diff-check', 'git', ['diff', '--check']);
-    const final = JSON.parse(await phase('source-after', 'python3', ['scripts/verify_release_evidence.py', '--current-source']));
+    const final = JSON.parse(await phase('source-after', 'python3', ['scripts/verify_ci_source.py', '--snapshot']));
     check(final.identity === record.source.identity && final.commit === record.source.commit, 'Source changed during release verification');
     check(!controller.signal.aborted, 'Gate interrupted');
     record.fixtures = Object.fromEntries(Object.entries(record.source.files).filter(([path]) => path.startsWith('tests/fixtures/attestara/')));
@@ -208,4 +207,8 @@ export async function runReleaseGate(root) {
     console.log(JSON.stringify({ passed: record.passed, report: relative(root, join(directory, 'report.json')), exit_code: exitCode }));
   }
   return exitCode;
+}
+
+if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+  process.exitCode = await runReleaseGate(fileURLToPath(new URL('../', import.meta.url)));
 }

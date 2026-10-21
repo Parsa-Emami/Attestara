@@ -54,14 +54,13 @@ if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.ur
   try {
     if (process.argv[2] === 'doctor') {
       let built = false; try { await access(new URL('../dist/web/index.html', import.meta.url)); built = true; } catch {}
-      const state = JSON.parse(await readFile(new URL('../plans/project-state.json', import.meta.url), 'utf8'));
       let enginePrepared = false;
       try {
         const probe = spawnSync(resolve(root, 'dist/engine/attestara'), ['--version'], { encoding: 'utf8' });
         if (probe.status === 0) { validateEngineHealth(JSON.parse(probe.stdout)); enginePrepared = true; }
       } catch {}
-      console.log(JSON.stringify({ nodeSupported: supportedNode(process.version), webAssetsBuilt: built, enginePrepared, readiness: state.readiness, coreReady: state.core_ready, start: 'npm start', next: 'npm run plan -- next' }, null, 2));
+      console.log(JSON.stringify({ nodeSupported: supportedNode(process.version), webAssetsBuilt: built, enginePrepared, profile: 'local-cli-snapshots', start: 'npm start', guide: 'docs/release/USER_GUIDE.md' }, null, 2));
       if (!built || !enginePrepared || !supportedNode(process.version)) process.exitCode = 1;
-    } else console.log(JSON.stringify({ ...setup(process.argv.slice(3)), start: 'npm start', note: 'Full product usability requires the C30 workflow; complete OSS v1 requires C40.' }, null, 2));
+    } else console.log(JSON.stringify({ ...setup(process.argv.slice(3)), start: 'npm start', note: 'Use docs/release/USER_GUIDE.md for policy evaluation, verification and snapshot recovery.' }, null, 2));
   } catch (error) { console.error(error.message); process.exitCode = 1; }
 }

@@ -23,13 +23,6 @@ export async function sourceSnapshot(root) {
     const [mode, kind] = header.split(' ');
     safeName(name);
     if (kind !== 'blob' || !['100644', '100755'].includes(mode)) throw new Error('Source must contain only regular files: ' + name);
-    if (name.startsWith('.agents/skills/')) {
-      const directory = name.split('/').slice(0, 3).join('/');
-      if (!entries.some(item => item.endsWith('\t' + directory + '/LICENSE'))) {
-        excluded.push({ path: name, reason: 'Optional copied agent skill has no declared upstream redistribution license' });
-        continue;
-      }
-    }
     const bytes = await readFile(join(root, name));
     // Check the working bytes too, including changes hidden by assume-unchanged.
     const expected = git(root, ['show', sourceCommit + ':' + name]);

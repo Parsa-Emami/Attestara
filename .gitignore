@@ -24,7 +24,7 @@ storage/logs/*.log
 *.pfx
 secrets/
 
-# Supplied planning and web foundation rules
+# Build and local data
 node_modules/
 target/
 dist/
@@ -35,7 +35,6 @@ __pycache__/
 .env.*
 data/
 *.sqlite*
-!legacy/v7/.env.example
 
 # Web application outputs
 node_modules/

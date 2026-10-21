@@ -8,7 +8,7 @@ node scripts/verify-resources.mjs --artifacts /absolute/path/to/downloads
 node --test tests/web/resource-lock.test.mjs
 ```
 
-The default command is offline: it checks official sources, immutable pins, retained license/checksum/commit snapshots, fixture hashes, the npm lock and required/optional declarations. It never downloads or executes content. The artifact command additionally hashes files named by each resource's `artifact.filename`; absent required archives fail, absent optional archives are reported, and an optional archive present with incorrect bytes fails. Exit 0 certifies resource integrity only. Actual tool version probes and source-build results are recorded separately in `docs/evidence/C02.json`.
+The default command is offline: it checks official sources, immutable pins, retained license/checksum/commit snapshots, fixture hashes, the npm lock and required/optional declarations. It never downloads or executes content. The artifact command additionally hashes files named by each resource's `artifact.filename`; absent required archives fail, absent optional archives are reported, and an optional archive present with incorrect bytes fails. Exit 0 certifies resource integrity only. Run the documented build/version commands on the target host; CI retains their actual output as run artifacts.
 
 ## Obtaining and verifying resources
 

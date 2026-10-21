@@ -1,6 +1,6 @@
 {
   "verified_on": "2026-10-17",
-  "scope": "C02 resource inventory and integrity only; product engine execution unverified",
+  "scope": "Upstream resource inventory and integrity; application behavior is checked separately.",
   "runtime": {
     "node": "24.19.0",
     "npm": "11.9.0"
@@ -27,7 +27,7 @@
     "path": "package-lock.json",
     "sha256": "2512e1850692f4fe46cebd1b04ac9c33a2ca3269fbf6800f1a026e6fdc8b6570"
   },
-  "engine_toolchain": "Go 1.27.2 from pinned official source; C03 creates the product engine",
+  "engine_toolchain": "Go 1.27.2 from pinned official source; application dependencies are locked in go.mod/go.sum.",
   "schema_version": 1,
   "profile": "linux-x64",
   "resources": [
@@ -67,7 +67,7 @@
         "commands": [
           "cd src && GOROOT_BOOTSTRAP=/path/to/go1.26.2 GOMAXPROCS=2 ./make.bash"
         ],
-        "verification": "Built successfully from the pinned official source on Linux x86_64. See docs/evidence/C02.json for exact commands, bootstrap/module verification and observed build metadata."
+        "verification": "Build using the pinned source archive and documented commands; verify actual versions and retain command output in the current CI run."
       },
       "prebuilt_alternative": {
         "url": "https://go.dev/dl/go1.27.2.linux-amd64.tar.gz",
@@ -190,7 +190,7 @@
         "commands": [
           "GOTOOLCHAIN=local GOPROXY='https://proxy.golang.org|direct' GOSUMDB=sum.golang.org go build -mod=readonly -trimpath -o opa ."
         ],
-        "verification": "Built successfully from the pinned official source on Linux x86_64. See docs/evidence/C02.json for exact commands, bootstrap/module verification and observed build metadata.",
+        "verification": "Build using the pinned source archive and documented commands; verify actual versions and retain command output in the current CI run.",
         "commit_metadata": {
           "url": "https://api.github.com/repos/open-policy-agent/opa/commits/3f7474e6b3c631821d8aac25ca444f7e75a56483",
           "path": "docs/engineering/resources/opa-source-commit.json",
@@ -242,7 +242,7 @@
         "commands": [
           "GOTOOLCHAIN=local GOPROXY='https://proxy.golang.org|direct' GOSUMDB=sum.golang.org go build -mod=readonly -trimpath -o syft ./cmd/syft"
         ],
-        "verification": "Built successfully from the pinned official source on Linux x86_64. See docs/evidence/C02.json for exact commands, bootstrap/module verification and observed build metadata.",
+        "verification": "Build using the pinned source archive and documented commands; verify actual versions and retain command output in the current CI run.",
         "commit_metadata": {
           "url": "https://api.github.com/repos/anchore/syft/commits/b254e6d92f28c3868a755f62fb3ca8f26e9fee76",
           "path": "docs/engineering/resources/syft-source-commit.json",
@@ -294,7 +294,7 @@
         "commands": [
           "GOTOOLCHAIN=local GOPROXY='https://proxy.golang.org|direct' GOSUMDB=sum.golang.org go build -mod=readonly -trimpath -o grype ./cmd/grype"
         ],
-        "verification": "Built successfully from the pinned official source on Linux x86_64. See docs/evidence/C02.json for exact commands, bootstrap/module verification and observed build metadata.",
+        "verification": "Build using the pinned source archive and documented commands; verify actual versions and retain command output in the current CI run.",
         "commit_metadata": {
           "url": "https://api.github.com/repos/anchore/grype/commits/6f8d854af29d3a3086b11a84afa51554a2a245fe",
           "path": "docs/engineering/resources/grype-source-commit.json",
@@ -369,9 +369,9 @@
   ],
   "not_applicable": {
     "container_images": "The supported local profile uses native tools, not container images. No image or Dockerfile is introduced.",
-    "policy_rules": "No upstream rule bundle is shipped or selected. Product policy semantics belong to C14/C15, not this resource task.",
+    "policy_rules": "No external rule bundle is shipped; built-in policy semantics are implemented and tested in the engine.",
     "external_datasets": "No external dataset is required; current C01/C02 fixtures are repository-authored synthetic Apache-2.0 data.",
-    "go_module": "No product Go module exists before C03. C03 introduces the real go.mod/go.sum; no fictitious dependency lock is created here."
+    "go_module": "The product Go module is pinned separately in root go.mod/go.sum."
   },
   "fixtures": [
     {

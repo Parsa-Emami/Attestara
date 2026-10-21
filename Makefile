@@ -1,20 +1,16 @@
-.PHONY: validate next status hashes bootstrap dev build test package
-validate:
-	python3 scripts/plan.py validate
-next:
-	python3 scripts/plan.py next
-status:
-	python3 scripts/plan.py status
-hashes:
-	python3 scripts/hashes.py --write
-bootstrap:
-	npm ci --ignore-scripts
-	npm run build
+.PHONY: setup start dev build check test package
+setup:
+	npm run setup
+start:
+	npm start
 dev:
 	npm run dev
 build:
 	npm run build
+check:
+	npm run check
 test:
+	go test ./...
 	npm test
 package:
-	npm run package:web
+	npm run package

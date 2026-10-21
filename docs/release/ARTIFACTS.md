@@ -59,7 +59,7 @@ node scripts/start-local.mjs --store /absolute/private/attestara-store --port 41
 
 Use a fresh extraction directory; never extract over a store or another release.
 Open `http://127.0.0.1:4173/#passport`. The CLI is `dist/engine/attestara`; follow
-`docs/engineering/C30_LOCAL_WORKFLOW.md` using the included C30 synthetic fixtures.
+`docs/engineering/LOCAL_WORKFLOW.md` using the included C30 synthetic fixtures.
 Keep the store outside the release directory and private to its OS operator.
 The service and CLI use immutable operations; restoring a backup creates a new
 store only. Policy, file integrity and independently configured signer trust are
@@ -164,7 +164,7 @@ NODE
 
 C35 tests generate ephemeral keys in memory. Those signatures demonstrate the
 real mechanism on locally built artifacts; they are not the maintainer's identity
-and are never a production trust root. Real publication remains C40.
+and are never a production trust root. Published maintainer signatures are assessed independently using the release public key.
 
 ## Upgrade and roll back without replacing accepted data
 
@@ -191,8 +191,7 @@ bytes and compatible reader and repair forward; do not edit the version header.
 the candidate, verifies test signatures, writes distinct snapshots, restarts,
 rolls software back and checks byte preservation, restore refusal/new-store recovery,
 unsupported-format refusal and both browser viewers. Public test-key/signature and
-artifact identities are retained under `dist/release-verification/`. See C35 evidence
-for actual results; this same-host test does not certify C36 independent onboarding.
+artifact identities are retained under `dist/release-verification/`. Actual results are retained in CI run artifacts; this same-host test is separate from independent clean-clone onboarding.
 
 License texts for distributed components accompany `THIRD_PARTY_NOTICES.md` and
 `license-inventory.json`. The Go runtime and schema licenses are retained under

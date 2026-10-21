@@ -2,7 +2,7 @@
 
 Owner-approved scope: the existing single-operator loopback profile. This matrix
 maps assertions to executable tests; actual runs, source/tool/provider identities,
-fixture hashes, exits and outputs are recorded in `docs/evidence/C27.json`.
+fixture hashes are retained with their inputs; exits and outputs are retained in CI artifacts.
 `docs/security/THREAT_MODEL.md` describes trust assumptions and residual risks.
 
 ## New C27 browser and HTTP coverage
@@ -15,7 +15,7 @@ acceptance service is mocked into existence.
 | Surface / case | Expected observable result | Test |
 | --- | --- | --- |
 | Fixture integrity | Version/license and exact fixture plus reused C21 hashes match; scenario IDs are unique | C27 fixtures retain versioned synthetic provenance and exact hashes |
-| JSON preview name/key, roadmap search | Hostile markup stays literal; no injected DOM, JS marker, pollution, request or dialog; unsafe nested keys reject and clear preview | C27 local preview escapes hostile names and keys without requests or prototype pollution |
+| JSON preview name/key | Hostile markup stays literal; no injected DOM, JS marker, pollution, request or dialog; unsafe nested keys reject and clear preview | C27 local preview escapes hostile names and keys without requests or prototype pollution |
 | Passport metadata and warnings | Literal text and Unverified assessment; no injected DOM, JS marker or network request; clear/reload removes display | C27 hostile passport fields stay literal and unverified without sending selected bytes |
 | Empty, malformed, oversized, traversal/absolute evidence path, forged trust/owner field, unsupported version | Exact safe error; previous passport article and assessment disappear | C27 invalid passports discard the previous display and fail with safe errors |
 | Cancel a pending read after a previous valid passport | Prior display disappears; resumed native callbacks cannot restore cancelled claims; another valid read still works | C27 cancelled native file callbacks cannot restore old passport claims |

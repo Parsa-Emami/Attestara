@@ -69,10 +69,6 @@ test('C27 local preview escapes hostile names and keys without requests or proto
       await inert(page, effects);
     });
   }
-  await page.getByRole('link', { name: 'Roadmap', exact: true }).click();
-  await page.getByLabel('Search tasks').fill(cases.preview.field);
-  await expect(page.getByText('No matching tasks.')).toBeVisible();
-  await inert(page, effects);
 });
 
 test('C27 hostile passport fields stay literal and unverified without sending selected bytes', async ({ page }) => {

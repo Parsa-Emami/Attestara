@@ -4,6 +4,6 @@
   "origin": "Repository-authored synthetic C40 scenarios; no customer data or private keys.",
   "files": {
     "README.md": "sha256:5e4ff6cf5dccdf0e0fe96cd391c7a60849786a8e19d26995fe0258160320cce8",
-    "cases.json": "sha256:f33237aba54c05fce6744529703053164b198f73ec1959fe1050320e0a941dc1"
+    "cases.json": "sha256:0d4c25cd33b7ebc6a980d9eab738c647cf6df8493dec6a375e49481f3d17df92"
   }
 }

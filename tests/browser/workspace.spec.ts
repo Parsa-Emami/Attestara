@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-test('workspace, local preview, navigation and roadmap filters work', async ({ page }) => {
+test('workspace, local preview and passport navigation work', async ({ page }) => {
   const errors: string[] = [];
   page.on('pageerror', error => errors.push(error.message));
   const uploads: string[] = [];
@@ -8,7 +8,7 @@ test('workspace, local preview, navigation and roadmap filters work', async ({ p
   await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
   await expect(page.getByLabel('Availability')).toContainText('Local engine process was healthy at the last check.');
   await expect(page.getByLabel('Availability')).toContainText('Engine 0.0.1 · go1.27.2');
-  await expect(page.getByLabel('Availability')).toContainText('does not produce security results');
+  await expect(page.getByLabel('Availability')).toContainText('use the CLI for evaluation and verification');
   await page.getByLabel('Choose JSON file').setInputFiles({ name: 'example.json', mimeType: 'application/json', buffer: Buffer.from('{"review":"synthetic"}') });
   await expect(page.getByRole('status')).toContainText('example.json');
   await expect(page.getByRole('status')).toContainText('1 top-level fields');
@@ -16,10 +16,9 @@ test('workspace, local preview, navigation and roadmap filters work', async ({ p
   await expect(page.getByRole('status')).toHaveCount(0);
   await page.getByLabel('Choose JSON file').setInputFiles({ name: 'bad.json', mimeType: 'application/json', buffer: Buffer.from('{') });
   await expect(page.getByRole('alert')).toContainText('valid JSON');
-  await page.getByRole('link', { name: 'Roadmap', exact: true }).click();
-  await page.getByLabel('Search tasks').fill('C40');
-  await expect(page.locator('.tasks > li')).toHaveCount(1);
-  await expect(page.locator('.tasks')).toContainText('C40');
+  await expect(page.getByRole('link', { name: 'Roadmap', exact: true })).toHaveCount(0);
+  await page.getByRole('link', { name: 'Passport', exact: true }).click();
+  await expect(page.getByLabel('Choose passport file')).toBeVisible();
   await page.setViewportSize({ width: 375, height: 812 });
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   expect(uploads).toEqual([]); expect(errors).toEqual([]);
@@ -51,16 +50,14 @@ test('keyboard navigation, live status and narrow reflow remain usable', async (
   await page.keyboard.press('Enter');
   await expect(page.locator('main#content')).toBeFocused();
   await page.goto('/');
-  await page.getByRole('link', { name: 'Roadmap', exact: true }).focus();
-  await expect(page.getByRole('link', { name: 'Roadmap', exact: true })).toBeFocused();
+  await page.getByRole('link', { name: 'Passport', exact: true }).focus();
+  await expect(page.getByRole('link', { name: 'Passport', exact: true })).toBeFocused();
   await page.keyboard.press('Tab');
   await expect(page.getByLabel('Choose JSON file')).toBeFocused();
   await expect(page.locator('.file-button')).toHaveCSS('outline-style', 'solid');
   await expect(page.getByLabel('Availability')).toHaveAttribute('aria-live', 'polite');
-  await page.getByRole('link', { name: 'Roadmap', exact: true }).click();
-  await page.getByLabel('Search tasks').fill('no-such-task');
-  await expect(page.locator('.filters + p')).toHaveAttribute('aria-live', 'polite');
-  await expect(page.getByText('No matching tasks.')).toBeVisible();
+  await page.getByRole('link', { name: 'Passport', exact: true }).click();
+  await expect(page.getByLabel('Choose passport file')).toBeVisible();
   for (const width of [320, 640, 1280]) {
     await page.setViewportSize({ width, height: 800 });
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);

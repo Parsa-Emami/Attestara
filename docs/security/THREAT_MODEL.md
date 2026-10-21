@@ -3,7 +3,7 @@
 This model covers the owner-approved enabled C27 profile: one local operator,
 loopback web/engine processes, browser-local JSON/passport viewing and local CLI
 commands/libraries. It does not enable private hosting or multi-user access.
-Execution evidence and exact source/tool identities belong in `docs/evidence/C27.json`;
+Execution results are retained in CI run artifacts;
 coverage and exclusions are in `tests/release/security-matrix.md`.
 
 ## Assets, actors and trust boundaries
@@ -22,7 +22,7 @@ against that principal. Keep private data and executable paths owner-controlled.
 
 | Boundary | Threat | Existing control and proof |
 | --- | --- | --- |
-| Selected file to browser | DOM/script injection, prototype keys, oversized/complex input | `inspectJson` rejects unsafe keys and bounds bytes/depth/count; React renders text. C27 checks DOM absence, execution markers, errors and network requests, including hostile filenames, JSON keys, passport metadata and roadmap search. |
+| Selected file to browser | DOM/script injection, prototype keys, oversized/complex input | `inspectJson` rejects unsafe keys and bounds bytes/depth/count; React renders text. C27 checks DOM absence, execution markers, errors and network requests, including hostile filenames, JSON keys, passport metadata. |
 | Passport claims to display | Fake trust, invalid paths, old data after rejection/cancellation | C21 shape/path checks; the viewer always labels its assessment Unverified. C27 rejects forged trust/owner fields, removes the prior display and resumes cancelled native FileReader callbacks to test stale-result rejection. |
 | Browser to local HTTP | Header spoofing, unintended writes, access to private assets | Go and web CLIs restrict listening to numeric loopback; web serves an asset allowlist with realpath containment, CSP and safe response headers. Only GET/HEAD are admitted. Health is process health; remaining `/api/**` routes are disabled. C27 uses real HTTP denials, not mocked authorization. |
 | Manifest/ZIP to local file reads | Traversal, symlink escape, missing/modified files, decompression abuse | C08/C09 validation, confined `os.Root` reads, byte/hash and expansion limits. C23 confines export reads and refuses publishing bad inputs or overwriting an existing destination. Existing Go regressions exercise actual files. |

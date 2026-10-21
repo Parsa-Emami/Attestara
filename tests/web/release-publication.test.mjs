@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { requiredGatePhases } from '../../scripts/release-gate.mjs';
 import { test } from 'node:test';
 import { generateKeyPairSync, createHash } from 'node:crypto';
 import { mkdtemp, writeFile, readFile, rm, stat } from 'node:fs/promises';
@@ -7,17 +8,17 @@ import { join } from 'node:path';
 import { assertCandidate, signChecksums, publishRelease, downloadRelease, validateManifest, createReleaseKey, digest } from '../../scripts/release-publication.mjs';
 
 const commit = 'a'.repeat(40);
-const paths = ['contracts.yml', 'plan.yml', 'runtime.yml', 'web.yml', 'release-gate.yml'];
+const paths = ['contracts.yml', 'runtime.yml', 'web.yml', 'release-gate.yml', 'pages.yml'];
 const runs = paths.map((name, index) => ({ id: index + 1, path: '.github/workflows/' + name, head_sha: commit, head_branch: 'main', event: 'push', status: 'completed', conclusion: 'success' }));
 const preparation = { id: 6, path: '.github/workflows/release.yml', head_sha: commit, head_branch: 'main', event: 'workflow_dispatch', display_title: `release ${commit} / publish=false`, status: 'completed', conclusion: 'success' };
 const candidateRuns = { workflow_runs: [...runs, preparation], total_count: runs.length + 1 };
 const preparedJobs = { total_count: 3, jobs: [{ name: 'prepare', conclusion: 'success' }, { name: 'publish', conclusion: 'skipped' }, { name: 'installed', conclusion: 'skipped' }] };
 const preparedArtifacts = { total_count: 1, artifacts: [{ id: 42, name: `release-candidate-${commit}-6`, expired: false }] };
-const report = { schema_version: 1, planning_template: false, task: 'C39', profile: 'local-cli-snapshots', passed: true, run: { id: process.env.GITHUB_RUN_ID ?? 'synthetic-c40', kind: 'github-actions' }, source: { commit }, results: { source_unchanged: true }, blockers: [], commands: Array.from({ length: 28 }, () => ({ exit_code: 0 })) };
+const report = { schema_version: 1, scope: 'release-gate', profile: 'local-cli-snapshots', passed: true, run: { id: process.env.GITHUB_RUN_ID ?? 'synthetic-c40', kind: 'github-actions' }, source: { commit }, results: { source_unchanged: true }, blockers: [], commands: requiredGatePhases.map(id => ({ id, exit_code: 0 })) };
 test('C40 requires the latest successful five workflows and exact main/gate source', () => {
   const candidate = { commit, main: commit, runs, report, tagExists: false, releaseExists: false };
   assert.doesNotThrow(() => assertCandidate(candidate));
-  for (const mutation of [ { main: 'b'.repeat(40) }, { runs: runs.slice(1) }, { tagExists: true }, { releaseExists: true }, { report: { ...report, source: { commit: 'b'.repeat(40) } } }, { report: { ...report, passed: false } }, { runs: [...runs, { ...runs[0], id: 100, conclusion: 'failure' }] }, { runs: [...runs, { ...runs[0], id: 100, status: 'in_progress' }] } ]) {
+  for (const mutation of [ { main: 'b'.repeat(40) }, { runs: runs.slice(1) }, { tagExists: true }, { releaseExists: true }, { report: { ...report, source: { commit: 'b'.repeat(40) } } }, { report: { ...report, passed: false } }, { report: { ...report, commands: report.commands.slice(1) } }, { report: { ...report, commands: report.commands.map(command => ({ ...command, id: report.commands[0].id })) } }, { runs: [...runs, { ...runs[0], id: 100, conclusion: 'failure' }] }, { runs: [...runs, { ...runs[0], id: 100, status: 'in_progress' }] } ]) {
     assert.throws(() => assertCandidate({ ...candidate, ...mutation }));
   }
 });

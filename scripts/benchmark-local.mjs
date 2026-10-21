@@ -117,11 +117,9 @@ async function cgroup() {
 async function sourceIdentity() {
   const listing = await runProcess('git', ['ls-files', '-z', '--cached', '--others', '--exclude-standard']);
   assertExit(listing, 0, 'source listing');
-  const excluded = new Set(['plans/progress.json', 'plans/requirements.json', 'plans/project-state.json', 'docs/agents/SESSION_HANDOFF.json', 'apps/web/src/generated/project.json', 'SHA256SUMS.txt']);
   const hash = createHash('sha256');
   let count = 0;
   for (const relative of listing.stdout.split('\0').filter(Boolean).sort()) {
-    if (excluded.has(relative) || relative.startsWith('docs/evidence/')) continue;
     const bytes = await readFile(join(root, relative));
     hash.update(relative).update('\0').update(createHash('sha256').update(bytes).digest()).update('\n');
     count++;

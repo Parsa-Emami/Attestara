@@ -8,10 +8,11 @@ import { join, resolve, relative, isAbsolute } from 'node:path';
 import { parseArgs } from 'node:util';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { verifyRelease } from './verify-release.mjs';
+import { requiredGatePhases } from './release-gate.mjs';
 
 const repository = 'Parsa-Emami/Attestara';
 const prefix = '/repos/' + repository;
-const workflows = ['contracts.yml', 'plan.yml', 'runtime.yml', 'web.yml', 'release-gate.yml'];
+const workflows = ['contracts.yml', 'runtime.yml', 'web.yml', 'release-gate.yml', 'pages.yml'];
 const check = (condition, message) => { if (!condition) throw new Error(message); };
 export const digest = bytes => 'sha256:' + createHash('sha256').update(bytes).digest('hex');
 async function fileDigest(path) {
@@ -32,7 +33,7 @@ export function assertCandidate({ commit, main, runs, report, tagExists, release
   validCommit(commit);
   check(main === commit, 'Candidate must be the exact current main commit');
   check(!tagExists && !releaseExists, 'Release/tag already exists; never overwrite it');
-  check(report?.passed === true && report.planning_template === false && report.task === 'C39' && report.profile === 'local-cli-snapshots' && report.source?.commit === commit && report.results?.source_unchanged === true && report.blockers?.length === 0 && report.commands?.length >= 28 && report.commands.every(c => c.exit_code === 0 && !c.signal && !c.timed_out && !c.interrupted), 'Fresh complete gate report required for this source');
+  check(report?.passed === true && report.scope === 'release-gate' && report.profile === 'local-cli-snapshots' && report.source?.commit === commit && report.results?.source_unchanged === true && report.blockers?.length === 0 && JSON.stringify(report.commands?.map(command => command.id)) === JSON.stringify(requiredGatePhases) && report.commands.every(c => c.exit_code === 0 && !c.signal && !c.timed_out && !c.interrupted), 'Fresh complete gate report required for this source');
   for (const name of workflows) {
     const matching = runs.filter(run => run.path === '.github/workflows/' + name && run.head_sha === commit && run.head_branch === 'main' && ['push', 'workflow_dispatch'].includes(run.event)).sort((a, b) => b.id - a.id);
     check(matching[0]?.status === 'completed' && matching[0]?.conclusion === 'success', 'Latest candidate workflow must succeed: ' + name);
@@ -111,7 +112,7 @@ export async function publishRelease({ directory, commit, report, manifest, auth
   const verified = await assessRelease({ directory, commit, manifest });
   check(verified.exitCode === 0, 'Trusted signed artifacts required before publication');
   const candidate = await candidateState(commit, report, manifest, request, true);
-  const draft = await request(prefix + '/releases', { method: 'POST', body: { tag_name: manifest.tag, target_commitish: commit, name: 'Attestara ' + manifest.version, draft: true, prerelease: false, make_latest: 'false', body: `Linux x86_64 local-cli-snapshots. Source: ${commit}. Verify SHA256SUMS.sig.json with the independently established maintainer key before extracting. C40 installation acceptance is recorded separately after publication.` } });
+  const draft = await request(prefix + '/releases', { method: 'POST', body: { tag_name: manifest.tag, target_commitish: commit, name: 'Attestara ' + manifest.version, draft: true, prerelease: false, make_latest: 'false', body: `Linux x86_64 local-cli-snapshots. Source: ${commit}. Verify SHA256SUMS.sig.json with the independently established maintainer key before extracting. Independent installation acceptance is recorded separately after publication.` } });
   check(Number.isSafeInteger(draft.id) && draft.upload_url === `https://uploads.github.com${prefix}/releases/${draft.id}/assets{?name,label}`, 'Unexpected draft release response');
   const uploaded = [];
   for (const name of releaseFiles(commit)) {

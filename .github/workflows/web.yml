@@ -54,7 +54,6 @@ jobs:
           "$source_dir/bin/go" version
           echo "$source_dir/bin" >> "$GITHUB_PATH"
       - run: npm ci --ignore-scripts
-      - run: npm run validate:plan
       - run: npm run setup -- --skip-install
       - run: go test ./...
       - run: npm test

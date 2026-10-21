@@ -8,15 +8,13 @@ import { Passport } from './pages/Passport';
 import './styles.css';
 
 type Runtime = { projectId: string; apiBasePath: string; engineEnabled: false; maxPreviewBytes: number };
-type Route = 'workspace' | 'passport' | 'roadmap';
+type Route = 'workspace' | 'passport';
 const staticPages = __ATTESTARA_STATIC_PAGES__;
 const staticAvailability = 'Online viewer. Files stay in this tab. The Go engine and snapshot operations run in the local application.';
-function route(): Route { return location.hash === '#passport' ? 'passport' : location.hash === '#roadmap' ? 'roadmap' : 'workspace'; }
+function route(): Route { return location.hash === '#passport' ? 'passport' : 'workspace'; }
 
 function App({ config }: { config: Runtime }) {
   const [page, setPage] = useState<Route>(route);
-  const [query, setQuery] = useState('');
-  const [stage, setStage] = useState('all');
   const [preview, setPreview] = useState<{ name: string; bytes: number; fields: string[] } | null>(null);
   const [error, setError] = useState('');
   const busy = useRef(false);
@@ -54,26 +52,24 @@ function App({ config }: { config: Runtime }) {
       if (current === generation.current) setError(reason instanceof Error ? reason.message : 'Unable to read this file.');
     } finally { busy.current = false; }
   }
-  const tasks = project.tasks.filter(task => (stage === 'all' || task.stage === stage) && `${task.id} ${task.title}`.toLowerCase().includes(query.toLowerCase()));
   return <div className="app" style={{ '--accent': project.accent } as React.CSSProperties}>
     <a className="skip" href="#content" onClick={event => { event.preventDefault(); document.getElementById('content')?.focus(); }}>Skip to content</a>
-    <header><a className="brand" href="#workspace"><span className="mark" aria-hidden="true">{project.name.slice(0, 1)}</span>{project.name}</a><nav aria-label="Main"><a href="#workspace" aria-current={page === 'workspace' ? 'page' : undefined}>Workspace</a><a href="#passport" aria-current={page === 'passport' ? 'page' : undefined}>Passport</a><a href="#roadmap" aria-current={page === 'roadmap' ? 'page' : undefined}>Roadmap</a></nav><span className="badge">{staticPages ? 'Online viewer' : 'Foundation · 0.0.1'}</span></header>
+    <header><a className="brand" href="#workspace"><span className="mark" aria-hidden="true">{project.name.slice(0, 1)}</span>{project.name}</a><nav aria-label="Main"><a href="#workspace" aria-current={page === 'workspace' ? 'page' : undefined}>Workspace</a><a href="#passport" aria-current={page === 'passport' ? 'page' : undefined}>Passport</a></nav><span className="badge">{staticPages ? 'Online viewer' : 'Local application'}</span></header>
     <main id="content" tabIndex={-1}>
       <div className="eyebrow">{project.mode.replaceAll('-', ' ')} · browser workspace</div>
-      <h1>{page === 'workspace' ? project.title : page === 'passport' ? 'Inspect a release passport.' : 'A clear path to release.'}</h1>
-      <p className="intro">{page === 'workspace' ? project.description : page === 'passport' ? 'Read a local passport and its evidence claims without uploading the file.' : 'Track the product plan separately from the web foundation. Each task includes an acceptance target.'}</p>
+      <h1>{page === 'workspace' ? project.title : 'Inspect a release passport.'}</h1>
+      <p className="intro">{page === 'workspace' ? project.description : 'Read a local passport and its evidence claims without uploading the file.'}</p>
       {staticPages && <section className="panel" aria-label="Online and local use"><div className="eyebrow">Start here</div><h2>Open your passport. Keep your files local.</h2><p>Use Passport to inspect an existing release passport, or Workspace to preview JSON. Selected files stay in this tab. Their contents are not sent to GitHub.</p><p>For policy evaluation, trusted signature assessment, durable snapshots, backup, restore and rollback, run the full local application on Linux. GitHub Pages hosts this viewer; it does not run the Go engine.</p><a className="text-link" href="https://github.com/Parsa-Emami/Attestara/blob/main/docs/engineering/CLONE_TO_RUN.md" target="_blank" rel="noreferrer">Set up the full local application →</a><p><a className="text-link" href={`${import.meta.env.BASE_URL}example-passport.json`} download>Download an example passport</a><span className="muted"> · Example data for learning; all passport fields remain unverified claims.</span></p></section>}
       {page === 'workspace' ? <>
-        <section className="notice" aria-label="Availability" aria-live="polite"><span className="dot"/><span>{engineState}{engine && ` Engine ${engine.version} · ${engine.goVersion}.`} This release does not produce security results.</span></section>
+        <section className="notice" aria-label="Availability" aria-live="polite"><span className="dot"/><span>{engineState}{engine && ` Engine ${engine.version} · ${engine.goVersion}.`} The browser displays files; use the CLI for evaluation and verification.</span></section>
         <div className="grid"><section className="panel"><div className="eyebrow">Local file preview</div><h2>Inspect a document</h2><p>Choose a JSON file to inspect its top-level fields. The file stays in memory in this tab and is not uploaded or saved.</p><label className="file-button">Choose JSON file<input aria-label="Choose JSON file" type="file" accept=".json,application/json" onChange={event => { void importFile(event.target.files?.[0]); event.target.value = ''; }}/></label><p className="muted">Maximum {Math.round(config.maxPreviewBytes / 1024)} KiB · JSON structure only</p>
           {error && <p role="alert" className="error">{error}</p>}
           {preview && <div className="preview" role="status"><h3>{preview.name}</h3><p>{preview.bytes} bytes · {preview.fields.length} top-level fields</p><ul>{preview.fields.slice(0, 30).map(field => <li key={field}><code>{field}</code></li>)}</ul><p className="muted">JSON structure checked. Domain validation requires the engine.</p><button onClick={() => { generation.current++; setPreview(null); }}>Clear preview</button></div>}
-        </section><section className="panel"><div className="eyebrow">Product contract</div><h2>{project.documentType.replaceAll('-', ' ')}</h2><p>The engine will enforce these domain guarantees.</p><ul className="invariants">{project.invariants.map(invariant => <li key={invariant}>{invariant}</li>)}</ul><a className="text-link" href="#roadmap">Explore the implementation plan <span aria-hidden="true">→</span></a></section></div>
-        <section className="panel"><div className="eyebrow">Web foundation</div><h2>Release preparation</h2><div className="milestones">{project.webTasks.map(task => <article key={task.id}><span className="task-id">{task.id}</span><h3>{task.title}</h3><span className={'state ' + task.status}>{task.status.replaceAll('_', ' ')}</span></article>)}</div></section>
-      </> : page === 'passport' ? <>
+        </section><section className="panel"><div className="eyebrow">Product contract</div><h2>{project.documentType.replaceAll('-', ' ')}</h2><p>The local CLI keeps policy decisions, file integrity and signer trust separate.</p><ul className="invariants">{project.invariants.map(invariant => <li key={invariant}>{invariant}</li>)}</ul><a className="text-link" href="https://github.com/Parsa-Emami/Attestara/blob/main/docs/release/USER_GUIDE.md" target="_blank" rel="noreferrer">Read the user guide →</a></section></div>
+      </> : <>
         <section className="notice" aria-label="Availability" aria-live="polite"><span className="dot"/><span>{engineState} Local passport viewing does not require the engine.</span></section>
         <Passport maxPreviewBytes={config.maxPreviewBytes}/>
-      </> : <section className="panel"><div className="filters"><label>Search tasks<input value={query} onChange={event => setQuery(event.target.value)} placeholder="ID or task title" type="search"/></label><label>Stage<select value={stage} onChange={event => setStage(event.target.value)}><option value="all">All stages</option>{[...new Set(project.tasks.map(task => task.stage))].map(value => <option key={value} value={value}>{value}</option>)}</select></label></div><p aria-live="polite" className="muted">{tasks.length} of {project.tasks.length} product tasks</p><ol className="tasks">{tasks.map(task => <li key={task.id}><div className="task-line"><span className="task-id">{task.id}</span><h2>{task.title}</h2><span className="state">{task.status.replaceAll('_', ' ')}</span></div><p>{task.acceptance.join(' ')}</p><p className="muted">Stage: {task.stage} · Prerequisites: {task.dependsOn.join(', ') || 'None'}</p></li>)}</ol>{tasks.length === 0 && <p>No matching tasks.</p>}</section>}
+      </>}
     </main><footer><span>{project.name}</span><span>No telemetry · No automatic file uploads</span></footer>
   </div>;
 }

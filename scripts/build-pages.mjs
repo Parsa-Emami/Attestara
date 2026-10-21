@@ -21,6 +21,6 @@ await writeFile(join(output, '.nojekyll'), '');
 await cp(join(root, 'tests/fixtures/attestara/C19/expected.json'), join(output, 'example-passport.json'));
 const commit = execFileSync('git', ['rev-parse', 'HEAD'], { cwd: root, encoding: 'utf8' }).trim();
 const dirty = execFileSync('git', ['status', '--porcelain', '--untracked-files=normal'], { cwd: root, encoding: 'utf8' }).trim() !== '';
-await writeFile(join(output, 'deployment.json'), JSON.stringify({ schema_version: 1, source_commit: commit, source_dirty: dirty, scope: 'static-local-passport-viewer', engine_hosted: false, C40_verified: false }, null, 2) + '\n');
+await writeFile(join(output, 'deployment.json'), JSON.stringify({ schema_version: 1, source_commit: commit, source_dirty: dirty, scope: 'static-local-passport-viewer', engine_hosted: false, public_installation_verified: false }, null, 2) + '\n');
 await mkdir(join(root, 'dist/pages-check'), { recursive: true });
 console.log('Built GitHub Pages viewer at /Attestara/; local engine and signed-release status are unchanged.');

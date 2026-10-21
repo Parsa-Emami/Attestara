@@ -2,10 +2,10 @@
   "schema_version": 1,
   "required_workflows": [
     "contracts.yml",
-    "plan.yml",
     "runtime.yml",
     "web.yml",
-    "release-gate.yml"
+    "release-gate.yml",
+    "pages.yml"
   ],
   "publication_without_authorization": "rejected",
   "negative_cases": [

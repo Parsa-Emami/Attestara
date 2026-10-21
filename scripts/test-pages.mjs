@@ -51,9 +51,7 @@ try {
   await page.getByRole('link', { name: 'Workspace', exact: true }).click();
   await page.getByLabel('Choose JSON file').setInputFiles({ name: 'local-only.json', mimeType: 'application/json', buffer: Buffer.from('{"local_marker":"NEVER_UPLOAD_THIS_MARKER"}') });
   await page.getByRole('heading', { name: 'local-only.json', exact: true }).waitFor();
-  await page.getByRole('link', { name: 'Roadmap', exact: true }).click();
-  await page.getByLabel('Search tasks').fill('C40');
-  assert.equal(await page.locator('.tasks > li').count(), 1);
+  assert.equal(await page.getByRole('link', { name: 'Roadmap', exact: true }).count(), 0);
   assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
   await page.goto(origin + '/Attestara/#passport');
   await page.getByLabel('Choose passport file').waitFor();
@@ -61,7 +59,7 @@ try {
   assert.deepEqual(errors, []); assert.deepEqual(failures, []);
   assert.ok(requests.every(request => request.method === 'GET' && new URL(request.url).origin === origin && new URL(request.url).pathname.startsWith('/Attestara/') && !request.url.includes('/api/') && !request.url.includes('NEVER_UPLOAD_THIS_MARKER')));
   await page.screenshot({ path: join(diagnostics, 'viewer.png'), fullPage: true });
-  report.checks = ['Real browser loaded the repository subpath and base-prefixed configuration/assets/manifest.', 'Existing passport import and unverified assessment, JSON preview, clear actions, roadmap filtering and direct hash navigation passed.', '375px reflow passed; selected bytes stayed in the tab; no API, external request, failed response or script error observed.'];
+  report.checks = ['Real browser loaded the repository subpath and base-prefixed configuration/assets/manifest.', 'Existing passport import and unverified assessment, JSON preview, clear actions and direct hash navigation passed.', '375px reflow passed; selected bytes stayed in the tab; no API, external request, failed response or script error observed.'];
   report.passed = true;
 } catch (error) { report.blockers.push(error.message); }
 finally {

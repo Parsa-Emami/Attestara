@@ -1,20 +1,26 @@
 # Attestara
 
-[![Source](https://github.com/Parsa-Emami/Attestara/actions/workflows/contracts.yml/badge.svg?branch=main)](https://github.com/Parsa-Emami/Attestara/actions/workflows/contracts.yml?query=branch%3Amain) [![Plan](https://github.com/Parsa-Emami/Attestara/actions/workflows/plan.yml/badge.svg?branch=main)](https://github.com/Parsa-Emami/Attestara/actions/workflows/plan.yml?query=branch%3Amain) [![Web](https://github.com/Parsa-Emami/Attestara/actions/workflows/web.yml/badge.svg?branch=main)](https://github.com/Parsa-Emami/Attestara/actions/workflows/web.yml?query=branch%3Amain)
+Open-source local release-evidence CLI and browser passport viewer, under [Apache-2.0](LICENSE).
 
-[CI source integrity and dependency updates](docs/engineering/CI_SOURCE_INTEGRITY.md)
+Attestara validates release manifests, actual file bytes and CycloneDX 1.7 SBOMs,
+evaluates the built-in evidence-presence rule, produces portable passports and
+assesses Ed25519 signatures against independently configured trust. Immutable
+local snapshots support restart, backup and restore into a new store.
+Policy decisions, byte integrity and signer trust are separate assessments.
 
+## Open the viewer
 
-Open-source local-first application under [Apache-2.0](LICENSE). The current
-Linux x86_64 single-operator profile evaluates local evidence with the Go CLI,
-verifies referenced bytes and independently configured signatures, preserves
-immutable snapshots and opens portable passports in a browser without upload.
-Policy, byte integrity and signer trust are separate assessments; the browser
-displays unverified claims. A published stable OSS v1 remains pending.
+[Use the browser viewer](https://parsa-emami.github.io/Attestara/#passport).
+Select a passport JSON file to inspect its claims without uploading it.
+The viewer does not verify hashes, signatures or signer trust and has no accounts
+or server-side evidence storage. Use the local CLI for those operations.
 
-## Clone and run the current workspace
+## Install and run locally
 
-Prerequisites: Linux x86_64, Git, Node 24.19.0, npm 11.9.0 and Go 1.27.2 on PATH. See the pinned [Go source-build route](docs/engineering/RESOURCE_LOCK.md).
+Supported profile: Linux x86_64, one local OS operator. Prerequisites:
+Git, Node 24.19.0, npm 11.9.0 and Go 1.27.2 on PATH.
+See [installation](docs/engineering/CLONE_TO_RUN.md) and the
+[pinned Go source-build instructions](docs/engineering/RESOURCE_LOCK.md).
 
 ```sh
 git clone https://github.com/Parsa-Emami/Attestara.git
@@ -23,43 +29,45 @@ npm run setup
 npm start
 ```
 
-Open http://127.0.0.1:4173. Follow the [user guide](docs/release/USER_GUIDE.md)
-to evaluate the synthetic example, view its passport and verify/restore a
-snapshot. No Python, database, paid/cloud account, domain or sibling clone is
-needed to run this profile. Domain HTTP APIs and multi-user authorization remain
-unavailable. [Clone guide](docs/engineering/CLONE_TO_RUN.md).
+Open http://127.0.0.1:4173/#passport. Ctrl+C stops the application.
+Choose another port with `npm start -- --port 4301`.
+No database, Docker, domain or paid/cloud account is required.
 
-Apache can keep port 80: the application uses 4173 (or select another port with
-`npm start -- --port 4301`). For an optional isolated Nginx proxy on loopback
-8080, see [the web runbook](docs/engineering/WEB_RUNBOOK.md#test-alongside-apache-on-port-80).
+[The user guide](docs/release/USER_GUIDE.md) walks through actual CLI evaluation,
+verification, viewing, backup, restart and restore using licensed synthetic inputs.
+[The CLI reference](docs/engineering/LOCAL_WORKFLOW.md) explains signature trust,
+exit codes and immutable operation IDs.
 
-## Full product endpoint
+## Downloads and builds
 
-Load valid sample SBOM with manifest -> evaluate local policy -> produce passport -> change one byte -> verify failure -> distinguish unsigned from signed/trusted.
+[Published v1.0.0](https://github.com/Parsa-Emami/Attestara/releases/tag/v1.0.0)
+contains the signed Linux runtime and source archives for its tagged commit.
+The `main` branch contains the current source. Older releases retain their original
+contents; use a current source ZIP to obtain subsequent repository cleanup.
 
-[C30 evidence](docs/evidence/C30.json) records the local workflow including
-restart/restore; [C33 evidence](docs/evidence/C33.json) records browser and
-keyboard checks at 360/1440px. Those historical checks retain their original
-source identities and limits. [C40](plans/commits/C40.md) remains the published
-OSS v1 gate. [Runtime resources](ops/runtime-requirements.json).
+`npm run package` builds a fresh runtime and source distribution from a clean
+committed checkout. [Artifact verification and installation](docs/release/ARTIFACTS.md)
+describes independently trusted signatures, checksums and expected source identity.
+The binary distribution needs Node; Go/npm are build tools.
 
-## Support and security reports
-
-Use [Issues](https://github.com/Parsa-Emami/Attestara/issues) for non-sensitive
-questions/bugs with the commit, tool versions, command and redacted expected/actual
-result. Use [SECURITY.md](SECURITY.md) for private vulnerabilities and its live
-activation status. Reports and responses are intended to remain in GitHub;
-no dedicated security mailbox is required.
-
-## Implement the next commit
+## Development checks
 
 ```sh
-npm run plan -- status
-npm run plan -- next
-npm run plan -- show C07
 npm run check
+go test ./...
+go vet ./...
+npx --no-install playwright install chromium
+npm run test:browser
 ```
 
-Each [work card](plans/COMMIT_ROADMAP.md) specifies paths, actions, resources, fixtures, acceptance, negative tests, command availability and rollback. [AGENTS.md](AGENTS.md) and [execution contract](docs/agents/EXECUTION_CONTRACT.md) let an agent resume from this repository alone. [فارسی](docs/ROADMAP_FA.md).
+[Testing](docs/engineering/ENGINE_TESTS.md) documents the optional OPA tests,
+clean-clone workflow and complete release checks. CI retains reports as run
+artifacts rather than committing generated execution logs into the source tree.
 
-[Open-source contract](OPEN_SOURCE.md) · [Contributing](CONTRIBUTING.md) · [Third-party inventory](THIRD_PARTY_NOTICES.md) · [Definition of done](docs/release/DEFINITION_OF_DONE.md) · [Security](SECURITY.md). No DB schema, migration, .env or Dockerfile changes are authorized.
+The supported rule is `evidence_present`; it evaluates a supplied boolean fact,
+not a security scan. Freshness is explicitly classified by the operator.
+Scanner execution, arbitrary policies, multi-user authorization, automatic expiry
+and latest-release authority are unsupported. See [the security model](docs/security/THREAT_MODEL.md).
+
+[Contributing](CONTRIBUTING.md) · [Security reports](SECURITY.md) ·
+[Third-party notices](THIRD_PARTY_NOTICES.md) · [Maintenance](docs/release/MAINTENANCE.md).

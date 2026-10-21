@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-"""Verify immutable recorded snapshots and the exact checkout being tested."""
 from pathlib import Path, PurePosixPath
 import argparse
 import hashlib
@@ -8,10 +7,6 @@ import os
 import re
 import subprocess
 import sys
-
-MANIFEST = 'SHA256SUMS.txt'
-EVIDENCE = 'docs/evidence/oss-roadmap.json'
-
 
 class IntegrityError(ValueError):
     pass
@@ -65,45 +60,16 @@ def tree_files(root, revision):
 def source_identity(files):
     digest = hashlib.sha256()
     for name in sorted(files):
-        if name == MANIFEST or name.startswith('docs/evidence/'):
-            continue
-        digest.update(name.encode() + b'\0' + bytes.fromhex(files[name]['sha256']))
+        digest.update(name.encode() + b'\0' + bytes.fromhex(files[name]['sha256']) + b'\n')
     return 'sha256:' + digest.hexdigest()
-
-
-def origin(root, path):
-    commit = git(root, 'log', '-1', '--format=%H', 'HEAD', '--', path).decode().strip()
-    if not re.fullmatch(r'[0-9a-f]{40,64}', commit):
-        raise IntegrityError('No recorded source history for ' + path)
-    return commit
-
-
-def verify_manifest(files):
-    if MANIFEST not in files:
-        raise IntegrityError('Missing committed source manifest')
-    recorded = {}
-    for line in files[MANIFEST]['bytes'].decode('utf-8').splitlines():
-        if '  ' not in line:
-            raise IntegrityError('Malformed source manifest entry')
-        digest, name = line.split('  ', 1)
-        if not safe_path(name) or name in recorded or not re.fullmatch(r'[0-9a-f]{64}', digest):
-            raise IntegrityError('Unsafe/duplicate/invalid source manifest entry: ' + name)
-        recorded[name] = digest
-    actual = {name: item['sha256'] for name, item in files.items() if name != MANIFEST}
-    if recorded.keys() != actual.keys():
-        raise IntegrityError('Recorded manifest file set differs from its historical Git tree')
-    different = [name for name in recorded if recorded[name] != actual[name]]
-    if different:
-        raise IntegrityError('Historical manifest mismatch: ' + ', '.join(different[:8]))
-    return len(actual)
 
 
 def verify(root):
     root = root.resolve()
-    if git(root, 'rev-parse', '--is-shallow-repository').strip() == b'true':
-        raise IntegrityError('Full history required; use actions/checkout fetch-depth: 0 or git fetch --unshallow')
     head = git(root, 'rev-parse', 'HEAD').decode().strip()
     current = tree_files(root, head)
+    if git(root, 'diff', '--cached', '--name-only', 'HEAD'):
+        raise IntegrityError('Index differs from Git; commit the selected source before verification')
     for name, item in current.items():
         path = root / name
         if item['mode'] == '120000':
@@ -119,19 +85,6 @@ def verify(root):
     untracked = git(root, 'ls-files', '--others', '--exclude-standard', '-z').decode().split('\0')
     if any(untracked):
         raise IntegrityError('Untracked source is not part of the tested commit: ' + ', '.join(filter(None, untracked)))
-    manifest_commit = origin(root, MANIFEST)
-    evidence_commit = origin(root, EVIDENCE)
-    cache = {head: current}
-    for revision in [manifest_commit, evidence_commit]:
-        if revision not in cache:
-            cache[revision] = tree_files(root, revision)
-    count = verify_manifest(cache[manifest_commit])
-    files = cache[evidence_commit]
-    if EVIDENCE not in files:
-        raise IntegrityError('Missing recorded evidence')
-    evidence = json.loads(files[EVIDENCE]['bytes'])
-    if evidence.get('source_identity') != source_identity(files):
-        raise IntegrityError('Recorded evidence does not match its historical Git source identity')
     return {
         'schema_version': 1,
         'passed': True,
@@ -140,20 +93,23 @@ def verify(root):
         'git_tree': git(root, 'rev-parse', 'HEAD^{tree}').decode().strip(),
         'current_source_identity': source_identity(current),
         'current_files': {name: {'mode': item['mode'], 'sha256': item['sha256']} for name, item in sorted(current.items())},
-        'historical_manifest': {'commit': manifest_commit, 'verified_files': count},
-        'historical_evidence': {'commit': evidence_commit, 'source_identity': evidence['source_identity']},
         'runtime_tests_certified': False,
-        'core_tasks_certified': [],
     }
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--snapshot', action='store_true', help='Print the checked commit/tree and canonical file hashes without writing an artifact')
     parser.add_argument('--output', default='dist/ci/source.json', help='Ignored artifact path inside this checkout')
     args = parser.parse_args()
     root = Path(__file__).resolve().parents[1]
     try:
         result = verify(root)
+        if args.snapshot:
+            print(json.dumps({'commit': result['commit'], 'tree': result['git_tree'],
+                              'identity': result['current_source_identity'],
+                              'files': {name: 'sha256:' + item['sha256'] for name, item in result['current_files'].items()}}))
+            return 0
         output = (root / args.output).resolve()
         relative = output.relative_to(root).as_posix()
         if not safe_path(relative) or subprocess.run(['git', 'check-ignore', '--quiet', '--', relative], cwd=root).returncode:

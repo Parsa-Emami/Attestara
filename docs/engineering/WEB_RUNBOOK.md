@@ -24,7 +24,7 @@ engine process and C05 snapshot storage readiness. A concurrent writer can yield
 The browser-selected passport stays local and unverified. The runtime has no
 multi-user/private authorization contract. Never enable it by a public config flag.
 
-Keep a private store outside immutable release directories. C30_LOCAL_WORKFLOW.md
+Keep a private store outside immutable release directories. LOCAL_WORKFLOW.md
 covers exact CLI workflow, portable backup, non-overwriting restore and recovery
 on uncertain acknowledgement. Never copy a live store or replace newer data with
 an older backup. Stop/restart the unified launcher with SIGTERM/Ctrl+C; it supervises

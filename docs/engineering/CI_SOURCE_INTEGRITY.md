@@ -1,28 +1,24 @@
-# Attestara: CI source integrity and dependency updates
+# CI source integrity
 
-The failed Dependabot PRs changed a GitHub Action pin, while CI compared the new checkout to the previous committed SHA256SUMS.txt and oss-roadmap evidence as if those were fresh results. The latest main build was green, but those PRs were blocked. RiskWeft's old bot branches additionally lacked the subsequent API/cache repairs.
+`python3 scripts/verify_ci_source.py` verifies every tracked file against the
+actual current Git commit, including bytes and executable modes. It rejects
+missing/altered files, symlink substitution, staged changes and untracked source.
+It reads Git objects directly, so `assume-unchanged` cannot conceal modified bytes.
+A shallow clone can verify its complete current tree without older planning data.
 
-## What is verified
-
-`python3 scripts/verify_ci_source.py` requires full Git history and verifies every tracked file's actual bytes and executable/symlink mode against the exact checked-out HEAD. Unexpected untracked source fails. Workflows, lockfiles, tests and evidence are covered; dependencies and build outputs remain ignored runtime state.
-
-The committed checksum manifest is verified in the Git commit where its contents last changed, with exact file-set and byte hashes. The recorded oss-roadmap source identity is independently verified against the Git tree where that evidence last changed. A forged identity, corrupted historical manifest, dirty checkout or missing history fails. Updating a dependency cannot relabel old tests as newly executed proof.
-
-A new `source-integrity-<sha>-<run>` artifact contains this run's commit/tree, complete current file hashes and the original commits of the verified historical records. It certifies source integrity only. Real build, browser, clone and domain/API results remain the jobs executed for the new commit. No check is disabled, no success status is fabricated and no C task becomes verified from source checks.
-
-## Local reproduction
-
-Use a clean committed checkout with full history (`git fetch --unshallow` if shallow):
+The generated inventory is `dist/ci/source.json`, uploaded by the contracts
+workflow. It contains commit/tree IDs, each file's mode/SHA-256 and a deterministic
+source identity: sorted path, NUL, raw SHA-256 bytes, LF for every tracked file.
+No source path is excluded as planning metadata. The `--snapshot` option prints
+the checked commit/tree/identity and file hashes for the release gate.
 
 ```sh
 python3 -m unittest discover -s tests/engineering -p 'test_*.py' -v
+python3 scripts/validate_repo.py
 python3 scripts/verify_ci_source.py
-npm run check
-npm run test:clone
 ```
 
-The output defaults to ignored dist/ci/source.json. Source validation deliberately rejects uncommitted edits; contributors can test a staged candidate in an isolated temporary worktree before pushing.
-
-`python3 scripts/hashes.py` and `python3 scripts/source_identity.py --check` retain their strict current-checkout behavior. They reproduce the recorded snapshot only when checked out at its original source. For a new release, regenerate the manifest, run the actual tests and record new source-bound results before certification. The CI artifact never substitutes for a published release's trusted checksums/signature or the C30/C40 acceptance gates.
-
-Updating an existing Dependabot branch with the repaired main retains its proposed pinned dependency change and reruns the normal pull_request workflows. It does not merge the dependency upgrade into main. Historical failed runs remain an accurate record; the new head's checks show the repaired result.
+Run commit-bound inventory verification on a clean committed checkout. Behavioral
+checks run separately; a matching inventory does not establish application safety
+or certify previous executions. Distribution checksums/signatures are produced by
+packaging and release tools; the source inventory does not replace them.

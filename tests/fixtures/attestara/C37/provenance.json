@@ -2,7 +2,7 @@
   "license": "Apache-2.0",
   "provenance": "Repository-authored synthetic audit cases; existing Apache-2.0 fixtures remain owned by their original tasks.",
   "files": {
-    "README.md": "sha256:976301f42ec780176f5a563a36a81d0ab34e3efabed5d3ad372ce54822426993",
+    "README.md": "sha256:9063a64ad15ca86f9a5ab426426c8ac7a8ba61760813749da21a2dd746835b2b",
     "cases.json": "sha256:ade953551fe71dfeaf0a992f4728680659412ccbf910e1b27403c17e820c0ffe"
   },
   "reused_inputs": {
@@ -11,6 +11,6 @@
     "tests/fixtures/attestara/C33/cases.json": "sha256:aeb08173928a188db83c2def1591bfe69c4b67cefb825fb53be7831cc63d4a4d",
     "tests/fixtures/attestara/C35/cases.json": "sha256:ed98fdbbeb870e89152983ccf12b10337768ec5865366c928ae9c381e918265e",
     "tests/fixtures/attestara/C36/cases.json": "sha256:21c775524c423775f0a3546fb77da79a07b67716f9acbada6a632aa6b9cd52aa",
-    "tests/scenarios/clone-to-value.json": "sha256:65b3d1f40a1b2ba2a38c62cbd856cbefffa871ca8ae6614d26cefad2db363409"
+    "tests/scenarios/clone-to-value.json": "sha256:d4c279d4fd107412aa1bc0733545b97e8af84818fa07e39565e0bbf008888377"
   }
 }

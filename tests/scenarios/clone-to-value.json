@@ -1,30 +1,10 @@
 {
   "version": 1,
   "project": "Attestara",
-  "status": "unexecuted reference contract",
-  "engine_execution_verified": false,
-  "guide": "docs/product/REFERENCE_WORKFLOW.md",
-  "fixtures": [
-    { "id": "positive", "kind": "positive", "path": "tests/fixtures/attestara/C01/positive.json" },
-    { "id": "negative", "kind": "negative", "path": "tests/fixtures/attestara/C01/negative.json" },
-    { "id": "expected", "kind": "expected-output", "path": "tests/fixtures/attestara/C01/expected.json" }
-  ],
   "invariants": [
     "No user source execution",
     "Digest binds subject and outputs",
     "Missing evidence never means pass"
-  ],
-  "steps": [
-    { "id": "load", "action": "Import the synthetic subject manifest and declared SBOM evidence", "fixture_refs": ["positive", "expected"], "expected_state": "subject and evidence associated with one owned release", "expected_result": "Subject, source revision, evidence and policy digests are retained together", "on_error": "Reject a missing or inconsistent manifest", "outcome_ref": "load" },
-    { "id": "policy", "action": "Evaluate the local policy against the imported evidence", "fixture_refs": ["positive", "expected"], "expected_state": "policy decision bound to subject and evidence digests", "expected_result": "The synthetic complete evidence satisfies the stated local policy", "on_error": "Missing evidence is unverified, never pass", "outcome_ref": "policy" },
-    { "id": "passport", "action": "Produce a portable release passport", "fixture_refs": ["positive", "expected"], "expected_state": "passport records subject, evidence, policy and verification status", "expected_result": "Unsigned passport carries the subject digest and an unverified authenticity status", "on_error": "Reject an output whose subject or evidence binding differs", "outcome_ref": "passport" },
-    { "id": "changed-subject", "action": "Change one byte of the subject and verify the earlier passport", "fixture_refs": ["negative", "expected"], "expected_state": "previous passport remains bound to original bytes", "expected_result": "Modified subject fails digest verification", "on_error": "Fail closed when the changed bytes cannot be read", "outcome_ref": "changed-subject" },
-    { "id": "incomplete-manifest", "action": "Import a manifest without its evidence digest", "fixture_refs": ["negative", "expected"], "expected_state": "no accepted release created", "expected_result": "Incomplete manifest is rejected", "on_error": "Never infer a passing policy decision", "outcome_ref": "incomplete-manifest" },
-    { "id": "unsigned", "action": "Inspect a passport without a signature", "fixture_refs": ["negative", "expected"], "expected_state": "policy decision separate from authenticity", "expected_result": "Unsigned passport is unverified, even when policy allows", "on_error": "Never label a digest as a trusted signature", "outcome_ref": "unsigned" },
-    { "id": "invalid-signature", "action": "Verify a signature that fails cryptographic validation", "fixture_refs": ["negative", "expected"], "expected_state": "authenticity remains unverified", "expected_result": "Invalid signature is rejected or explicitly unverified", "on_error": "Never promote invalid signature to trusted", "outcome_ref": "invalid-signature" },
-    { "id": "signed-untrusted", "action": "Inspect a signed passport without a trusted signer", "fixture_refs": ["negative", "expected"], "expected_state": "signed and trusted remain distinct states", "expected_result": "Signature presence alone is unverified; trusted requires valid signature and trusted signer", "on_error": "Never infer signer trust from signature presence", "outcome_ref": "signed-untrusted" },
-    { "id": "viewer-parity", "action": "Compare offline verifier and viewer policy results", "fixture_refs": ["positive", "expected"], "expected_state": "both present the same policy decision for the same passport", "expected_result": "Viewer and offline verifier agree on the policy result", "on_error": "Report a mismatch rather than silently choosing one result", "outcome_ref": "viewer-parity" },
-    { "id": "restart-restore", "action": "Restart the local service and restore the accepted portable result", "fixture_refs": ["positive", "expected"], "expected_state": "subject and passport identity survive restart and restore", "expected_result": "Restored passport retains the same subject digest and policy result", "on_error": "Reject missing or corrupted restored evidence", "outcome_ref": "restart-restore" }
   ],
   "execution": {
     "version": 1,
@@ -33,8 +13,7 @@
     "browser_test": "tests/browser/clone-to-value.spec.ts",
     "fixture_directory": "tests/fixtures/attestara/C30",
     "freshness": "explicit operator classification",
-    "authority": "immutable C05 operation; no latest-release authority",
-    "evidence": "docs/evidence/C30.json"
+    "authority": "immutable local operation; no latest-release authority"
   },
   "onboarding": {
     "version": 1,

@@ -4,16 +4,10 @@ import { mkdtemp, mkdir, writeFile, rm, symlink, readFile } from 'node:fs/promis
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { once } from 'node:events';
-import { execFileSync } from 'node:child_process';
 import { createWebServer } from '../../scripts/serve-web.mjs';
 import { validateRuntimeConfig } from '../../apps/web/src/lib/runtime-config.mjs';
 import { inspectJson } from '../../apps/web/src/lib/preview.mjs';
 const config = { projectId: 'test-project', apiBasePath: '/api', engineEnabled: false, maxPreviewBytes: 1048576 };
-
-test('planning validator accepts current and historical evidence result fields', () => {
-  const output = execFileSync('python3', ['scripts/plan.py', 'validate'], { encoding: 'utf8' });
-  assert.match(output, /PLAN VALIDATION PASSED/);
-});
 
 test('public configuration fails closed on engine flags, external endpoints, unknown keys and project mismatch', () => {
   assert.equal(validateRuntimeConfig(config, 'test-project').engineEnabled, false);
@@ -57,11 +51,12 @@ test('HTTP isolation, cache rules, health semantics, methods, traversal and syml
   assert.equal(await (await fetch(base, { method: 'HEAD' })).text(), '');
   await rm(join(root, 'index.html')); assert.equal((await fetch(base + '/readyz')).status, 503);
 });
-test('generated project and runtime identity agree with exactly forty original product tasks', async () => {
+test('generated product metadata and runtime identity agree without a development plan', async () => {
   const read = async path => JSON.parse(await readFile(new URL('../../' + path, import.meta.url), 'utf8'));
   const product = await read('apps/web/src/generated/project.json');
   const actual = await read('ops/web/runtime-config.json');
   validateRuntimeConfig(actual, product.slug);
-  assert.equal(product.tasks.length, 40); assert.equal(new Set(product.tasks.map(task => task.id)).size, 40);
-  assert.equal(product.webTasks.length, 8);
+  assert.equal(product.name, 'Attestara');
+  assert.equal(Object.hasOwn(product, 'tasks'), false);
+  assert.equal(Object.hasOwn(product, 'webTasks'), false);
 });

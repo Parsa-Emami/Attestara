@@ -37,7 +37,7 @@ jobs:
         with:
           go-version: '1.26.2'
           cache: false
-      - name: Build locked Go toolchain from verified C02 source
+      - name: Build locked Go toolchain from verified upstream source
         shell: bash
         run: |
           set -euo pipefail
@@ -64,7 +64,7 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install --no-install-recommends -y nginx
-      - name: Run the complete source-bound C39 gate
+      - name: Run the complete source and runtime release gate
         run: npm run release:check
       - name: Retain this run's evidence, including failed attempts
         if: always()
