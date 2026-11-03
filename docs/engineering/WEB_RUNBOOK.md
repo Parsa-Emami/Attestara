@@ -41,7 +41,7 @@ writable store at `/var/lib/attestara/store`; the release tree remains read-only
 The service binds only loopback on port 4304. Copy the template to a temporary file named `attestara-web.service` and run
 `systemd-analyze verify /path/to/attestara-web.service` before an operator installs/enables it.
 
-The Nginx template denies all external traffic by default. Only an operator-owned
+The reviewed TLS Nginx template forwards the trusted loopback upstream authority (`$proxy_host`) to the Node web listener. The listener rejects foreign `Host` values, including on health endpoints. Do not forward arbitrary external Host headers to the loopback listener; this helps reduce DNS-rebinding exposure without altering an operator's public HTTPS domain. The Nginx template denies all external traffic by default. Only an operator-owned
 domain, actual TLS paths and explicitly reviewed private network ranges may be
 substituted. IP allowlists do not provide user/object authorization. Keep domain
 API routes unavailable and validate a rendered template using `nginx -t` before
