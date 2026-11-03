@@ -71,3 +71,16 @@ and latest-release authority are unsupported. See [the security model](docs/secu
 
 [Contributing](CONTRIBUTING.md) · [Security reports](SECURITY.md) ·
 [Third-party notices](THIRD_PARTY_NOTICES.md) · [Maintenance](docs/release/MAINTENANCE.md).
+
+## Community and contributions
+
+Attestara welcomes reproducible reports and focused improvements to its local
+CLI, evidence formats, browser viewer and installation documentation.
+
+- [Report a bug](https://github.com/Parsa-Emami/Attestara/issues/new?template=bug_report.yml) with synthetic inputs and redacted observations.
+- [Suggest an improvement](https://github.com/Parsa-Emami/Attestara/issues/new?template=improvement.yml) with a bounded acceptance test.
+- [Read the contribution workflow](CONTRIBUTING.md) before opening a pull request.
+
+Use [private security reporting](SECURITY.md) for vulnerabilities rather than
+public issues. The browser viewer is an *inspection-only* interface; contributions
+must not imply that it verifies signatures or byte integrity.

@@ -1,0 +1,47 @@
+name: Focused improvement
+description: Propose a scoped improvement with a reproducible acceptance test.
+title: "enhancement: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Explain the user problem and a bounded improvement. Attestara's browser viewer inspects claims but does not verify files or signatures. Do not propose bypassing local trust boundaries or publishing private evidence.
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - CLI and evidence formats
+        - Browser passport viewer
+        - Installation or release tooling
+        - Documentation and accessibility
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: User problem
+      description: Describe the current behavior and who encounters the problem.
+    validations:
+      required: true
+  - type: textarea
+    id: change
+    attributes:
+      label: Proposed change
+      description: State the minimum useful scope and what is deliberately out of scope.
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance and negative tests
+      description: Specify a concrete reproduction and an expected pass/fail boundary using synthetic fixtures.
+    validations:
+      required: true
+  - type: textarea
+    id: compatibility
+    attributes:
+      label: Compatibility and security considerations
+      description: Explain impacts on input formats, key trust, data boundaries, and supported platforms.
+    validations:
+      required: true

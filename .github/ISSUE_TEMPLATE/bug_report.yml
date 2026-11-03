@@ -1,0 +1,61 @@
+name: Bug report
+description: Report a reproducible problem in the CLI, local viewer, build, or documentation.
+title: "bug: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Share only synthetic or fully redacted data. Never paste secrets, private paths, release signing keys, incident records, or unpublished evidence. Follow SECURITY.md to report vulnerabilities privately.
+  - type: dropdown
+    id: area
+    attributes:
+      label: Affected area
+      options:
+        - CLI evaluation or verification
+        - Browser passport viewer
+        - Local installation or packaging
+        - Documentation or other
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Release or commit
+      description: Use the release tag or exact source commit used to reproduce.
+      placeholder: v1.0.0 or git commit SHA
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Reproduction steps
+      description: Include safe commands and synthetic fixture references.
+      placeholder: "1. Clone revision ...\n2. Run ...\n3. Observe ..."
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: observed
+    attributes:
+      label: Actual behavior
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Include OS/architecture and relevant Node, npm, and Go versions.
+    validations:
+      required: true
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Public report safety
+      options:
+        - label: I removed private information and will report any vulnerability through the private security channel.
+          required: true
