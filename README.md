@@ -84,3 +84,9 @@ CLI, evidence formats, browser viewer and installation documentation.
 Use [private security reporting](SECURITY.md) for vulnerabilities rather than
 public issues. The browser viewer is an *inspection-only* interface; contributions
 must not imply that it verifies signatures or byte integrity.
+
+## Maintainer and engineering case study
+
+Built and maintained by **[Parsa Emami](https://parsaaemm.dev/)**, a software engineer and security architect. [Read the Attestara case study](https://parsaaemm.dev/projects/attestara/) for the design rationale, implementation scope, and technical trade-offs behind this repository. An engineering case study of release evidence, CycloneDX SBOMs, byte-integrity verification, Ed25519 signatures, and independently configured trust.
+
+[Professional portfolio](https://parsaaemm.dev/) · [LinkedIn profile](https://www.linkedin.com/in/parsaaemm/) · [GitHub profile](https://github.com/Parsa-Emami)
