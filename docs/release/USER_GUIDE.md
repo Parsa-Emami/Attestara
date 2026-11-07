@@ -46,6 +46,35 @@ signature. Test mutations in disposable copies, preserving original fixtures.
 [LOCAL_WORKFLOW.md](../engineering/LOCAL_WORKFLOW.md) gives exact
 formats, signature options, error semantics and independent assessments.
 
+### Reproduce the C30 CLI result transcript
+
+After `npm run setup` on the supported Linux toolchain, run:
+
+```sh
+bash scripts/reproduce-c30-guide.sh
+```
+
+The script prints the **actual** checked-out Git revision and observed exit
+status for four isolated synthetic cases. It must report `evaluate=0`,
+`stored_verify=0`, `signed_verify=0` and
+`tampered_bytes=2`. A mismatch fails the script, rather than
+displaying a fabricated success transcript. Record its output alongside the
+toolchain versions and commit SHA when opening a reproducible issue or PR.
+
+The script uses a temporary copy of the existing C30 fixtures and an isolated
+local store. It verifies the original immutable operation, checks signed file
+integrity with independent synthetic trust, and then changes a referenced
+subject byte **only in the disposable copy**. This last case must never be
+reported as verified. The temporary passport and diagnostic outputs are
+removed at exit; no secrets, local paths or runtime traces are committed.
+
+A successful policy evaluation is not equivalent to byte integrity, a valid
+signature, or independent signer trust. The CLI performs the latter checks;
+the browser viewer displays claims without verifying them. The expected
+statuses above follow the documented CLI contract and must be corroborated
+by an actual run on the pinned toolchain before calling the reproduction
+validated.
+
 ## Preserve and recover snapshots
 
 The default private store is `.local-data/attestara`; an explicit private

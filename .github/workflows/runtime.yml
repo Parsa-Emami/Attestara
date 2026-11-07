@@ -68,6 +68,14 @@ jobs:
         run: go test -count=1 -v ./...
         env:
           GOTOOLCHAIN: local
+      - name: Reproduce C30 positive and tampered-byte CLI results
+        shell: bash
+        env:
+          GOTOOLCHAIN: local
+        run: |
+          mkdir -p dist/engine
+          go build -mod=readonly -trimpath -buildvcs=false -o dist/engine/attestara ./cmd/attestara
+          bash scripts/reproduce-c30-guide.sh
       - name: Verify C02-pinned OPA artifact and run real-provider regressions
         shell: bash
         run: |
