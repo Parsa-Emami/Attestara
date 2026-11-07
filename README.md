@@ -60,6 +60,11 @@ npx --no-install playwright install chromium
 npm run test:browser
 ```
 
+After `npm run setup`, run `bash scripts/reproduce-c30-guide.sh` for a
+source-bound synthetic CLI success/tampered-byte regression transcript. It
+checks observed exit codes against the documented expectations without
+changing the original fixtures. See the [C30 walkthrough](docs/release/USER_GUIDE.md#reproduce-the-c30-cli-result-transcript).
+
 [Testing](docs/engineering/ENGINE_TESTS.md) documents the optional OPA tests,
 clean-clone workflow and complete release checks. CI retains reports as run
 artifacts rather than committing generated execution logs into the source tree.
