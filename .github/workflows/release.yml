@@ -94,7 +94,7 @@ jobs:
           copyFileSync('dist/release-gate/' + runs[0] + '/report.json', 'dist/release-candidate/gate.json');
           NODE
           node scripts/release-publication.mjs check --source-commit "$SOURCE_COMMIT" --report dist/release-candidate/gate.json --output dist/release-candidate/candidate.json
-      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
         with:
           name: release-candidate-${{ github.sha }}-${{ github.run_id }}
           path: dist/release-candidate/
@@ -102,7 +102,7 @@ jobs:
           if-no-files-found: error
       - name: Retain verification diagnostics
         if: always()
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
         with:
           name: release-preparation-${{ github.sha }}-${{ github.run_id }}
           path: |
@@ -143,7 +143,7 @@ jobs:
         run: node scripts/release-publication.mjs publish --publish --source-commit "$SOURCE_COMMIT" --directory dist/release-candidate --report dist/release-candidate/gate.json --output dist/release-candidate/publication.json
       - name: Retain publication evidence, including incomplete attempts
         if: always()
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
         with:
           name: release-publication-${{ github.sha }}-${{ github.run_id }}
           path: dist/release-candidate/*.json
@@ -206,7 +206,7 @@ jobs:
         run: npm run test:published -- --source-commit "$SOURCE_COMMIT"
       - name: Retain actual installed-release evidence
         if: always()
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
         with:
           name: release-installed-${{ github.sha }}-${{ github.run_id }}
           path: dist/published-release/**/report.json
