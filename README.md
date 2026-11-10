@@ -33,6 +33,9 @@ Open http://127.0.0.1:4173/#passport. Ctrl+C stops the application.
 Choose another port with `npm start -- --port 4301`.
 No database, Docker, domain or paid/cloud account is required.
 
+[Frequently asked questions](docs/release/FAQ.md) explain supported scope, local
+setup and why viewer claims are not verification.
+
 [The user guide](docs/release/USER_GUIDE.md) walks through actual CLI evaluation,
 verification, viewing, backup, restart and restore using licensed synthetic inputs.
 [The CLI reference](docs/engineering/LOCAL_WORKFLOW.md) explains signature trust,
