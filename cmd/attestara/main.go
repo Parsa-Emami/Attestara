@@ -79,7 +79,7 @@ func isDomainCommand(args []string) bool {
 		return false
 	}
 	switch args[0] {
-	case "evaluate", "verify", "export", "restore":
+	case "evaluate", "verify", "export", "restore", "provenance":
 		return true
 	default:
 		return false
@@ -135,6 +135,8 @@ func run(ctx context.Context, args []string, stdout, stderr io.Writer) error {
 		switch args[0] {
 		case "evaluate":
 			return evaluateCommand(ctx, args[1:], stdout, stderr)
+		case "provenance":
+			return provenanceCommand(ctx, args[1:], stdout, stderr)
 		case "verify":
 			return verifyCommand(ctx, args[1:], stdout, stderr)
 		case "restore":

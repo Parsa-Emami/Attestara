@@ -57,3 +57,7 @@ Its fixed historical baseline is fetched from Git history; no historical roadmap
 or generated evidence files are required in the current checkout.
 
 For the complete current-source release gate, see [RELEASE_GATE.md](RELEASE_GATE.md).
+
+## V2-01 SLSA provenance subject binding (new, limited)
+
+`go test ./internal/slsa ./cmd/attestara ./tests` covers matching, mismatching and malformed in-toto Statement v1 subject claims, as well as CLI behavior with local release files. Run the complete release gate before claiming version 2 release readiness. This assessment never establishes signature or builder trust. See [scope](SLSA_STATEMENT_BINDING.md).

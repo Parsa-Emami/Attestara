@@ -61,3 +61,7 @@ private-ingress work; TLS or a proxy alone does not supply this missing authorit
 - C28 measures overload/resource limits; C29 adds real operational readiness;
   C30 must prove the full clean-host browser/CLI workflow and restart/restore.
   C27 certifies none of those release claims, publication or remote CI.
+
+## V2-01 provenance metadata boundary
+
+A local in-toto Statement v1 / SLSA provenance v1 JSON document is attacker-controlled metadata. The new `provenance` CLI command checks the declared subject paths and SHA-256 hashes against C04 and actual confined files, but treats nested predicate data and builder identity as **untrusted claims**. The parser rejects oversized, duplicate-key, overly nested, path-traversing and malformed documents. Neither the CLI nor browser gains signature/DSSE trust. See [V2-01 scope](../engineering/SLSA_STATEMENT_BINDING.md).

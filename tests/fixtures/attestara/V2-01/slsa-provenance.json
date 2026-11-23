@@ -1,0 +1,28 @@
+{
+  "_type": "https://in-toto.io/Statement/v1",
+  "subject": [
+    {
+      "name": "subject.txt",
+      "digest": {
+        "sha256": "ecdc32b595e2dc30f73744505e78f4f6888b76c3997098f3f1fdffcb7b7d9cd4"
+      }
+    }
+  ],
+  "predicateType": "https://slsa.dev/provenance/v1",
+  "predicate": {
+    "buildDefinition": {
+      "buildType": "https://example.invalid/synthetic-build/v1",
+      "externalParameters": {},
+      "internalParameters": {},
+      "resolvedDependencies": []
+    },
+    "runDetails": {
+      "builder": {
+        "id": "https://example.invalid/synthetic-builder"
+      },
+      "metadata": {
+        "invocationId": "synthetic-v2-01"
+      }
+    }
+  }
+}

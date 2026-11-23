@@ -8,6 +8,12 @@ assesses Ed25519 signatures against independently configured trust. Immutable
 local snapshots support restart, backup and restore into a new store.
 Policy decisions, byte integrity and signer trust are separate assessments.
 
+## Attestara 2.0 work in progress
+
+The v1.0.0 release remains unchanged. The next version adds a local, read-only `provenance` command to compare in-toto Statement v1 / SLSA provenance v1 subject digests with validated manifest files. It does **not** verify provenance signatures or builder identity and always reports signer trust as `unverified`.
+
+[Version 2 roadmap](docs/roadmap/ATTESTARA_V2.md) · [SLSA subject binding scope](docs/engineering/SLSA_STATEMENT_BINDING.md). No v2 release or SLSA compliance claim is made.
+
 ## Open the viewer
 
 [Use the browser viewer](https://parsa-emami.github.io/Attestara/#passport).
